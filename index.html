@@ -64,13 +64,11 @@
   .btn-secondary:hover:not(:disabled) { background: rgba(0, 255, 136, 0.1); transform: translateY(-2px); }
   .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-  /* Top Bar - UPDATED */
+  /* Top Bar */
   .top-bar { position: sticky; top: 0; z-index: 30; display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0, 255, 136, 0.15); animation: slideDown 0.5s ease both; }
   @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
   
   .top-left { display: flex; align-items: center; gap: 12px; }
-  
-  /* Coins Box */
   .coins-box { display: flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #00ff88, #00cc6a); color: #000; padding: 8px 16px; border-radius: 25px; font-weight: 800; font-size: 16px; box-shadow: 0 0 20px rgba(0, 255, 136, 0.4); animation: coinGlow 3s ease-in-out infinite; }
   @keyframes coinGlow { 0%,100% { box-shadow: 0 0 20px rgba(0,255,136,0.3); } 50% { box-shadow: 0 0 35px rgba(0,255,136,0.6); } }
   
@@ -160,17 +158,25 @@
   .text-content li { margin-bottom: 8px; }
 
   /* Dashboard Grid */
-  .dash-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 20px; }
-  .dash-card { background: rgba(0, 0, 0, 0.4); padding: 15px 10px; border-radius: 15px; text-align: center; border: 1px solid rgba(0, 255, 136, 0.15); cursor: pointer; transition: all 0.25s; }
+  .dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .dash-card { background: rgba(0, 0, 0, 0.4); padding: 20px 15px; border-radius: 15px; text-align: center; border: 1px solid rgba(0, 255, 136, 0.15); cursor: pointer; transition: all 0.25s; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
   .dash-card:hover { border-color: #00ff88; background: rgba(0, 255, 136, 0.1); transform: translateY(-3px); box-shadow: 0 5px 20px rgba(0,255,136,0.15); }
-  .dash-icon { font-size: 26px; margin-bottom: 8px; }
-  .dash-text { font-size: 13px; font-weight: 700; color: #fff; }
+  .dash-icon { font-size: 30px; }
+  .dash-text { font-size: 14px; font-weight: 700; color: #fff; }
 
-  /* Profile Page */
-  .profile-avatar-large { width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 20px; background: rgba(0, 255, 136, 0.1); border: 3px solid #00ff88; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
-  .profile-avatar-large img { width: 100%; height: 100%; object-fit: cover; }
-  .profile-avatar-large span { font-size: 40px; font-weight: bold; color: #00ff88; }
-  .avatar-upload-btn { position: absolute; bottom: 0; right: 0; background: #00ff88; color: #000; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; border: 2px solid #0a0a0a; }
+  /* History Table */
+  .history-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
+  .history-table th { text-align: left; padding: 10px; color: #6b7a73; border-bottom: 1px solid rgba(0, 255, 136, 0.1); font-weight: 600; }
+  .history-table td { padding: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); color: #e0e0e0; }
+  .history-table tr:last-child td { border-bottom: none; }
+  .status-badge { padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+  .status-pending { background: rgba(255, 193, 7, 0.15); color: #ffc107; }
+  .status-approved { background: rgba(0, 255, 136, 0.15); color: #00ff88; }
+
+  /* Spin Wheel */
+  .spin-container { position: relative; width: 250px; height: 250px; margin: 20px auto; border-radius: 50%; border: 5px solid #00ff88; box-shadow: 0 0 30px rgba(0, 255, 136, 0.3); overflow: hidden; transition: transform 4s cubic-bezier(0.1, 0.8, 0.1, 1); }
+  .spin-item { position: absolute; width: 50%; height: 50%; top: 0; left: 0; transform-origin: 100% 100%; border: 1px solid rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; color: #000; }
+  .spin-pointer { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent; border-top: 25px solid #ff3c3c; z-index: 10; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
 
   @media (max-width: 480px) {
     .top-bar { padding: 10px 15px; flex-direction: column; gap: 12px; }
@@ -179,6 +185,7 @@
     .container { padding: 15px; }
     .card { padding: 20px; border-radius: 18px; }
     .wallet-icon { width: 45px; height: 45px; font-size: 16px; }
+    .dash-grid { grid-template-columns: 1fr 1fr; }
   }
 </style>
 </head>
@@ -220,28 +227,21 @@
   <!-- TOP BAR -->
   <div class="top-bar">
     <div class="top-left">
-      <!-- PROFILE DROPDOWN -->
       <div class="profile-container">
         <div class="avatar-btn" id="avatarBtn" onclick="toggleProfileMenu()">
           <span id="avatarInitial">U</span>
           <img id="avatarImage" class="hidden" src="" alt="Profile">
         </div>
-        <!-- Dropdown Menu -->
         <div class="profile-dropdown" id="profileDropdown">
           <div class="profile-dropdown-header">
             <p>Logged in as</p>
             <strong id="dropdownEmail">loading...</strong>
           </div>
-          <div class="profile-menu-item" onclick="openProfilePage()">
-            ⚙️ Profile Settings
-          </div>
-          <div class="profile-menu-item logout" onclick="logoutUser()">
-            🚪 Logout
-          </div>
+          <div class="profile-menu-item" onclick="openProfilePage()">⚙️ Profile Settings</div>
+          <div class="profile-menu-item logout" onclick="logoutUser()">🚪 Logout</div>
         </div>
       </div>
       
-      <!-- COINS -->
       <div class="coins-box"><span>🪙</span><span id="balance">0</span></div>
     </div>
     
@@ -257,14 +257,23 @@
   <div class="container">
     <!-- DASHBOARD -->
     <div id="dashboardPage" class="page active">
-      <div class="card" style="background: linear-gradient(135deg, rgba(0,255,136,0.1), rgba(0,0,0,0.6)); border-color: rgba(0,255,136,0.3);">
-        <h2 style="color: #00ff88;">🎁 Daily Bonus</h2>
-        <p style="font-size:13px;">Claim 1-2 coins every 24 hours!</p>
-        <button id="claimBonusBtn" class="submit-btn" style="margin-top:10px;">Claim Now</button>
-        <div id="bonusMsg" class="msg hidden"></div>
+      
+      <!-- Daily Bonus & Spin Grid -->
+      <div class="dash-grid">
+        <div class="card" style="margin-bottom:0; background: linear-gradient(135deg, rgba(0,255,136,0.1), rgba(0,0,0,0.6)); border-color: rgba(0,255,136,0.3);">
+          <h2 style="color: #00ff88; font-size: 16px;">🎁 Daily Bonus</h2>
+          <p style="font-size:12px; margin-bottom:10px;">Get 1-2 coins</p>
+          <button id="claimBonusBtn" class="submit-btn" style="padding:10px; font-size:14px;">Claim</button>
+        </div>
+        
+        <div class="card" style="margin-bottom:0; background: linear-gradient(135deg, rgba(255,193,7,0.1), rgba(0,0,0,0.6)); border-color: rgba(255,193,7,0.3);">
+          <h2 style="color: #ffc107; font-size: 16px;">🎡 Daily Spin</h2>
+          <p style="font-size:12px; margin-bottom:10px;">Win up to 100 coins</p>
+          <button id="openSpinBtn" class="submit-btn" style="padding:10px; font-size:14px; background:linear-gradient(135deg, #ffc107, #d39e00);">Spin Now</button>
+        </div>
       </div>
 
-      <div class="card">
+      <div class="card" style="margin-top: 15px;">
         <h2>🎯 Play Quiz</h2>
         <p style="font-size:13px; margin-bottom:15px;">Answer faster to win more coins!</p>
         <button id="startBtn" class="submit-btn">Start Question (100 Coins)</button>
@@ -274,17 +283,24 @@
           <div id="options"></div>
         </div>
       </div>
+    </div>
 
-      <div class="dash-grid">
-        <div class="dash-card" onclick="document.getElementById('navDeposit').click()">
-          <div class="dash-icon">💰</div><div class="dash-text">Deposit</div>
+    <!-- SPIN PAGE -->
+    <div id="spinPage" class="page">
+      <button id="backFromSpin" class="back-btn">← Back</button>
+      <div class="card" style="text-align:center;">
+        <h2>🎡 Spin & Win</h2>
+        <p style="font-size:13px; margin-bottom:15px;">Try your luck once every 24 hours!</p>
+        
+        <div style="position: relative; width: 250px; margin: 0 auto;">
+          <div class="spin-pointer"></div>
+          <div class="spin-container" id="spinWheel">
+            <!-- Segments will be injected here by JS -->
+          </div>
         </div>
-        <div class="dash-card" onclick="document.getElementById('navWithdraw').click()">
-          <div class="dash-icon">🏦</div><div class="dash-text">Withdraw</div>
-        </div>
-        <div class="dash-card" onclick="document.getElementById('navReferral').click()">
-          <div class="dash-icon">🎁</div><div class="dash-text">Refer & Earn</div>
-        </div>
+        
+        <button id="spinBtn" class="submit-btn" style="margin-top:20px; background:linear-gradient(135deg, #ffc107, #d39e00);">SPIN NOW</button>
+        <div id="spinMsg" class="msg hidden"></div>
       </div>
     </div>
 
@@ -355,6 +371,19 @@
         <button id="depBtn" class="submit-btn">Submit Deposit</button>
         <div id="depMsg" class="msg hidden"></div>
       </div>
+      
+      <!-- Deposit History -->
+      <div class="card">
+        <h2>📜 Deposit History</h2>
+        <table class="history-table">
+          <thead>
+            <tr><th>Date</th><th>Amount</th><th>Status</th></tr>
+          </thead>
+          <tbody id="depositHistoryBody">
+            <tr><td colspan="3" style="text-align:center; color:#6b7a73;">No deposits yet.</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <!-- WITHDRAW -->
@@ -377,6 +406,19 @@
         <button id="wdBtn" class="submit-btn">Request Withdrawal</button>
         <div id="wdMsg" class="msg hidden"></div>
       </div>
+
+      <!-- Withdrawal History -->
+      <div class="card">
+        <h2>📜 Withdrawal History</h2>
+        <table class="history-table">
+          <thead>
+            <tr><th>Date</th><th>Amount</th><th>Status</th></tr>
+          </thead>
+          <tbody id="withdrawHistoryBody">
+            <tr><td colspan="3" style="text-align:center; color:#6b7a73;">No withdrawals yet.</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <!-- REFERRAL -->
@@ -386,9 +428,7 @@
         <h2>🎁 Refer & Earn</h2>
         <p style="font-size:14px; margin-bottom:20px;">Invite friends! When they sign up and deposit 100+ coins, you get <b>10 Rupees</b> bonus.</p>
         
-        <p style="font-size:13px; color:#00ff88; margin-bottom:5px; font-weight:bold;">Total Referrals: <span id="referralCount">0</span></p>
-
-        <p style="font-size:12px; color:#6b7a73; margin-bottom:5px; margin-top:15px;">Your Referral ID:</p>
+        <p style="font-size:12px; color:#6b7a73; margin-bottom:5px;">Your Referral ID:</p>
         <div style="background:rgba(0,0,0,0.5); padding:12px; border-radius:10px; border:1px dashed #00ff88; margin-bottom:15px; text-align:center;">
           <strong id="myReferralId" style="color:#00ff88; word-break:break-all;">Loading...</strong>
           <button class="btn btn-secondary" style="width:auto; padding:6px 12px; margin-top:8px; font-size:12px;" onclick="copyRefId()">Copy ID</button>
@@ -399,10 +439,19 @@
           <a href="#" id="myReferralLink" style="color:#00ff88; word-break:break-all; font-size:13px;">Loading...</a>
           <button class="btn btn-secondary" style="width:auto; padding:6px 12px; margin-top:8px; font-size:12px;" onclick="copyRefLink()">Copy Link</button>
         </div>
-        
-        <div class="instruction">
-          <b>Note:</b> Bonus is credited to your account automatically after your friend's 100+ deposit is approved.
-        </div>
+      </div>
+
+      <!-- Referred Members List -->
+      <div class="card">
+        <h2>👥 Your Referrals</h2>
+        <table class="history-table">
+          <thead>
+            <tr><th>Member Email</th><th>Status</th></tr>
+          </thead>
+          <tbody id="referralListBody">
+            <tr><td colspan="2" style="text-align:center; color:#6b7a73;">No referrals yet.</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
@@ -593,10 +642,6 @@ async function loadData() {
   document.getElementById('profilePhone').value = data?.phone_number || '';
   document.getElementById('profileEmail').value = currentUser.email || '';
 
-  // Referral Count
-  const { count } = await supabase.from('profiles').select('*', { count: 'exact', head: true }).eq('referred_by', currentUser.id);
-  document.getElementById('referralCount').textContent = count || 0;
-
   // Bonus Check
   const now = new Date();
   const lastClaim = data?.last_bonus_claim ? new Date(data.last_bonus_claim) : null;
@@ -604,11 +649,84 @@ async function loadData() {
   const claimBtn = document.getElementById('claimBonusBtn');
   if (canClaim) {
     claimBtn.disabled = false;
-    claimBtn.textContent = "Claim Bonus Now";
+    claimBtn.textContent = "Claim";
   } else {
     claimBtn.disabled = true;
-    claimBtn.textContent = "Bonus Claimed (Wait 24h)";
+    claimBtn.textContent = "Wait 24h";
   }
+  
+  // Spin Check
+  const lastSpin = data?.last_spin_claim ? new Date(data.last_spin_claim) : null;
+  const canSpin = !lastSpin || (now - lastSpin) > 24 * 60 * 60 * 1000;
+  const spinBtn = document.getElementById('spinBtn');
+  if (canSpin) {
+    spinBtn.disabled = false;
+    spinBtn.textContent = "SPIN NOW";
+  } else {
+    spinBtn.disabled = true;
+    spinBtn.textContent = "COME BACK TOMORROW";
+  }
+
+  // Load Histories
+  await loadDepositHistory();
+  await loadWithdrawHistory();
+  await loadReferrals();
+}
+
+async function loadDepositHistory() {
+  const { data } = await supabase.from('deposits').select('*').eq('user_id', currentUser.id).order('created_at', { ascending: false });
+  const tbody = document.getElementById('depositHistoryBody');
+  tbody.innerHTML = '';
+  if (!data || data.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#6b7a73;">No deposits yet.</td></tr>';
+    return;
+  }
+  data.forEach(d => {
+    const date = new Date(d.created_at).toLocaleDateString();
+    const statusClass = d.status === 'approved' ? 'status-approved' : 'status-pending';
+    tbody.innerHTML += `<tr>
+      <td>${date}</td>
+      <td>${d.amount}</td>
+      <td><span class="status-badge ${statusClass}">${d.status}</span></td>
+    </tr>`;
+  });
+}
+
+async function loadWithdrawHistory() {
+  const { data } = await supabase.from('withdrawals').select('*').eq('user_id', currentUser.id).order('created_at', { ascending: false });
+  const tbody = document.getElementById('withdrawHistoryBody');
+  tbody.innerHTML = '';
+  if (!data || data.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#6b7a73;">No withdrawals yet.</td></tr>';
+    return;
+  }
+  data.forEach(d => {
+    const date = new Date(d.created_at).toLocaleDateString();
+    const statusClass = d.status === 'approved' ? 'status-approved' : 'status-pending';
+    tbody.innerHTML += `<tr>
+      <td>${date}</td>
+      <td>${d.amount}</td>
+      <td><span class="status-badge ${statusClass}">${d.status}</span></td>
+    </tr>`;
+  });
+}
+
+async function loadReferrals() {
+  const { data } = await supabase.from('profiles').select('email, created_at, referral_bonus_paid').eq('referred_by', currentUser.id);
+  const tbody = document.getElementById('referralListBody');
+  tbody.innerHTML = '';
+  if (!data || data.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:#6b7a73;">No referrals yet.</td></tr>';
+    return;
+  }
+  data.forEach(d => {
+    const status = d.referral_bonus_paid ? 'Earned 10₹' : 'Pending 100 Deposit';
+    const statusClass = d.referral_bonus_paid ? 'status-approved' : 'status-pending';
+    tbody.innerHTML += `<tr>
+      <td>${d.email}</td>
+      <td><span class="status-badge ${statusClass}">${status}</span></td>
+    </tr>`;
+  });
 }
 
 // PROFILE DROPDOWN
@@ -687,6 +805,8 @@ document.getElementById('backFromDeposit').addEventListener('click', () => docum
 document.getElementById('backFromWithdraw').addEventListener('click', () => document.getElementById('navDashboard').click());
 document.getElementById('backFromReferral').addEventListener('click', () => document.getElementById('navDashboard').click());
 document.getElementById('backFromInfo').addEventListener('click', () => document.getElementById('navDashboard').click());
+document.getElementById('backFromSpin').addEventListener('click', () => document.getElementById('navDashboard').click());
+document.getElementById('openSpinBtn').addEventListener('click', () => { closeAllPages(); document.getElementById('spinPage').classList.add('active'); });
 
 window.switchInfoTab = function(tab) {
   document.querySelectorAll('#infoPage .nav-btn').forEach(b => b.classList.remove('active'));
@@ -707,6 +827,7 @@ document.getElementById('depBtn').addEventListener('click', submitDeposit);
 document.getElementById('startBtn').addEventListener('click', startQuestion);
 document.getElementById('wdBtn').addEventListener('click', submitWithdrawal);
 document.getElementById('claimBonusBtn').addEventListener('click', claimBonus);
+document.getElementById('spinBtn').addEventListener('click', spinWheel);
 
 supabase.auth.onAuthStateChange(async (event, session) => {
   if (session?.user) {
@@ -742,6 +863,64 @@ async function claimBonus() {
   btnLoading(btn, false);
 }
 
+// SPIN WHEEL LOGIC
+const spinOptions = [
+  { text: '5', value: 5, color: '#ff4d4d' },
+  { text: '10', value: 10, color: '#4d79ff' },
+  { text: '50', value: 50, color: '#ffc107' },
+  { text: '20', value: 20, color: '#00cc6a' },
+  { text: '100', value: 100, color: '#cc0000' }
+];
+let isSpinning = false;
+
+function initSpinWheel() {
+  const wheel = document.getElementById('spinWheel');
+  const anglePerSegment = 360 / spinOptions.length;
+  wheel.innerHTML = '';
+  spinOptions.forEach((opt, index) => {
+    const el = document.createElement('div');
+    el.className = 'spin-item';
+    el.style.background = opt.color;
+    el.style.transform = `rotate(${index * anglePerSegment}deg) skewY(${90 - anglePerSegment}deg)`;
+    el.innerHTML = `<span style="transform: skewY(-${90 - anglePerSegment}deg) rotate(${anglePerSegment/2}deg); display:inline-block;">${opt.text}</span>`;
+    wheel.appendChild(el);
+  });
+}
+initSpinWheel();
+
+async function spinWheel() {
+  if (isSpinning) return;
+  const btn = document.getElementById('spinBtn');
+  if (btn.disabled) return;
+  
+  isSpinning = true;
+  btn.disabled = true;
+  btn.textContent = 'Spinning...';
+  
+  // Randomly select winner
+  const winnerIndex = Math.floor(Math.random() * spinOptions.length);
+  const winner = spinOptions[winnerIndex];
+  
+  // Calculate rotation
+  const anglePerSegment = 360 / spinOptions.length;
+  const targetAngle = 3600 + (360 - (winnerIndex * anglePerSegment)) - (anglePerSegment / 2);
+  
+  const wheel = document.getElementById('spinWheel');
+  wheel.style.transform = `rotate(${targetAngle}deg)`;
+  
+  setTimeout(async () => {
+    try {
+      const { error } = await supabase.rpc('claim_daily_spin', { p_amount: winner.value });
+      if (error) throw error;
+      showMsg('spinMsg', `🎉 You won ${winner.value} coins!`, 'ok');
+      await loadData();
+    } catch (e) {
+      showMsg('spinMsg', '❌ ' + (e.message || e));
+    }
+    isSpinning = false;
+  }, 4500); // Wait for animation
+}
+
 async function submitDeposit() {
   const btn = document.getElementById('depBtn');
   const amount = Number(document.getElementById('depAmount').value);
@@ -763,6 +942,7 @@ async function submitDeposit() {
     const { error } = await supabase.from('deposits').insert({ user_id: currentUser.id, amount, method, transaction_id: tid, screenshot_url: pub.publicUrl });
     if (error) throw error;
     showMsg('depMsg', '✅ Deposit submitted. Approval in 2 hours.', 'ok');
+    await loadData();
   } catch (e) {
     showMsg('depMsg', '❌ ' + (e.message || e));
   }
