@@ -7,27 +7,9 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; }
-  body {
-    font-family: 'Segoe UI', system-ui, Arial, sans-serif;
-    min-height: 100vh;
-    background: #fdfaf3;
-    color: #332d1a;
-    overflow-x: hidden;
-    position: relative;
-  }
-
-  /* Motion Background */
-  .bg-layer {
-    position: fixed; inset: 0; z-index: -2;
-    background: linear-gradient(-45deg, #fdfaf3, #fff8d6, #fffdf5, #fcf5e3);
-    background-size: 400% 400%;
-    animation: gradientShift 18s ease infinite;
-  }
-  @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
+  body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; min-height: 100vh; background: #fdfaf3; color: #332d1a; overflow-x: hidden; position: relative; }
+  .bg-layer { position: fixed; inset: 0; z-index: -2; background: linear-gradient(-45deg, #fdfaf3, #fff8d6, #fffdf5, #fcf5e3); background-size: 400% 400%; animation: gradientShift 18s ease infinite; }
+  @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
   .orb { position: fixed; border-radius: 50%; z-index: -1; filter: blur(70px); opacity: 0.6; pointer-events: none; }
   .orb1 { width: 320px; height: 320px; background: radial-gradient(circle, #fceeb5, transparent 70%); top: -80px; left: -80px; animation: float1 20s ease-in-out infinite; }
   .orb2 { width: 380px; height: 380px; background: radial-gradient(circle, #ffeaa7, transparent 70%); bottom: -120px; right: -120px; animation: float2 25s ease-in-out infinite; }
@@ -38,13 +20,7 @@
 
   /* Login Screen */
   #loginScreen { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
-  .login-card {
-    width: 100%; max-width: 400px;
-    background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(230, 200, 77, 0.3); border-radius: 24px; padding: 32px 26px;
-    box-shadow: 0 25px 60px rgba(200, 180, 100, 0.2), 0 0 40px rgba(255,255,255,0.5);
-    animation: cardIn 0.6s cubic-bezier(0.16,1,0.3,1) both;
-  }
+  .login-card { width: 100%; max-width: 400px; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); border: 1px solid rgba(230, 200, 77, 0.3); border-radius: 24px; padding: 32px 26px; box-shadow: 0 25px 60px rgba(200, 180, 100, 0.2); animation: cardIn 0.6s cubic-bezier(0.16,1,0.3,1) both; }
   @keyframes cardIn { from { opacity: 0; transform: translateY(30px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
   .brand { text-align: center; margin-bottom: 24px; }
   .brand-logo { width: 64px; height: 64px; margin: 0 auto 12px; border-radius: 18px; background: linear-gradient(135deg, #f5e6a3, #e6c84d); display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 8px 24px rgba(230,200,77,0.4); animation: pulseLogo 3s ease-in-out infinite; }
@@ -54,15 +30,10 @@
 
   /* Inputs */
   .field { position: relative; margin-bottom: 14px; }
-  .field input, .field textarea {
-    width: 100%; padding: 14px 16px;
-    background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(230, 200, 77, 0.4); border-radius: 14px;
-    color: #332d1a; font-size: 15px; transition: all 0.25s ease; font-family: inherit;
-  }
+  .field input, .field textarea { width: 100%; padding: 14px 16px; background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(230, 200, 77, 0.4); border-radius: 14px; color: #332d1a; font-size: 15px; transition: all 0.25s ease; font-family: inherit; }
   .field textarea { resize: vertical; min-height: 100px; }
   .field input::placeholder, .field textarea::placeholder { color: #a89d7a; }
   .field input:focus, .field textarea:focus { outline: none; border-color: #e6c84d; background: #ffffff; box-shadow: 0 0 0 3px rgba(230, 200, 77, 0.2); }
-
   .check { display: flex; align-items: center; gap: 10px; margin: 14px 0; font-size: 14px; color: #5c5233; cursor: pointer; }
   .check input { width: 18px; height: 18px; accent-color: #e6c84d; cursor: pointer; }
   .check a { color: #d4b02a; font-weight: bold; text-decoration: none; }
@@ -78,11 +49,7 @@
   .btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
   /* Top Bar */
-  .top-bar {
-    position: sticky; top: 0; z-index: 30; display: flex; justify-content: space-between; align-items: center;
-    padding: 12px 16px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(230, 200, 77, 0.3); animation: slideDown 0.5s ease both; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  }
+  .top-bar { position: sticky; top: 0; z-index: 30; display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(230, 200, 77, 0.3); animation: slideDown 0.5s ease both; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
   @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
   .top-left { display: flex; align-items: center; gap: 10px; }
   .coins-box { display: flex; align-items: center; gap: 7px; background: linear-gradient(135deg, #e6c84d, #d4b02a); color: #fff; padding: 8px 16px; border-radius: 22px; font-weight: 800; font-size: 15px; box-shadow: 0 4px 16px rgba(230, 200, 77, 0.4); animation: coinGlow 2.5s ease-in-out infinite; }
@@ -97,7 +64,7 @@
 
   /* Layout */
   .container { max-width: 520px; margin: auto; padding: 16px; }
-  .card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(230, 200, 77, 0.2); border-radius: 20px; padding: 22px; margin-bottom: 16px; box-shadow: 0 10px 40px rgba(200, 180, 100, 0.1); animation: fadeUp 0.45s cubic-bezier(0.16,1,0.3,1) both; }
+  .card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(14px); border: 1px solid rgba(230, 200, 77, 0.2); border-radius: 20px; padding: 22px; margin-bottom: 16px; box-shadow: 0 10px 40px rgba(200, 180, 100, 0.1); animation: fadeUp 0.45s cubic-bezier(0.16,1,0.3,1) both; }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
   h2 { font-size: 18px; margin-bottom: 14px; color: #332d1a; display: flex; align-items: center; gap: 8px; }
   p { color: #7a6e4a; font-size: 14px; line-height: 1.5; }
@@ -115,20 +82,17 @@
 
   .instruction { background: #fff8d6; border-left: 3px solid #e6c84d; border-radius: 10px; padding: 12px 14px; font-size: 13px; color: #5c5233; margin: 14px 0; line-height: 1.6; }
 
-  /* Form Elements */
-  input[type="number"], input[type="text"], select {
-    width: 100%; padding: 13px 15px; margin: 6px 0; background: #ffffff; border: 1px solid rgba(230, 200, 77, 0.4); border-radius: 12px; color: #332d1a; font-size: 15px; transition: all 0.25s; font-family: inherit;
-  }
+  /* Forms */
+  input[type="number"], input[type="text"], select { width: 100%; padding: 13px 15px; margin: 6px 0; background: #ffffff; border: 1px solid rgba(230, 200, 77, 0.4); border-radius: 12px; color: #332d1a; font-size: 15px; transition: all 0.25s; font-family: inherit; }
   input[type="number"]::placeholder, input[type="text"]::placeholder { color: #a89d7a; }
   input:focus, select:focus { outline: none; border-color: #e6c84d; background: #ffffff; box-shadow: 0 0 0 3px rgba(230, 200, 77, 0.2); }
   select option { background: #ffffff; color: #332d1a; }
   input[type="file"] { width: 100%; padding: 11px; margin: 6px 0; background: #ffffff; border: 1px dashed rgba(230, 200, 77, 0.5); border-radius: 12px; color: #7a6e4a; font-size: 13px; cursor: pointer; }
-
   .submit-btn { width: 100%; padding: 14px; margin-top: 8px; background: linear-gradient(135deg, #e6c84d, #d4b02a); color: #1a1a1a; border: none; border-radius: 14px; font-weight: 800; font-size: 15px; cursor: pointer; transition: all 0.25s cubic-bezier(0.16,1,0.3,1); box-shadow: 0 6px 20px rgba(230, 200, 77, 0.4); }
   .submit-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(230, 200, 77, 0.6); }
   .submit-btn:disabled { opacity: 0.55; cursor: not-allowed; }
 
-  /* Quiz Options */
+  /* Quiz */
   .option { padding: 15px 18px; margin: 9px 0; border-radius: 14px; border: 2px solid rgba(230, 200, 77, 0.3); background: #ffffff; cursor: pointer; font-size: 15px; color: #332d1a; transition: all 0.22s cubic-bezier(0.16,1,0.3,1); animation: slideIn 0.35s ease both; }
   @keyframes slideIn { from { opacity: 0; transform: translateX(-18px); } to { opacity: 1; transform: translateX(0); } }
   .option:hover { border-color: #e6c84d; background: #fcf9f0; transform: translateX(4px); }
@@ -149,16 +113,19 @@
   .hidden { display: none !important; }
   .page { display: none; }
   .page.active { display: block; animation: fadeUp 0.4s ease both; }
-
   .back-btn { background: #ffffff; border: 1px solid rgba(230, 200, 77, 0.4); color: #5c5233; padding: 8px 16px; border-radius: 18px; font-size: 13px; font-weight: 600; cursor: pointer; margin-bottom: 12px; transition: all 0.2s; }
   .back-btn:hover { background: #fcf9f0; transform: translateX(-3px); }
-
   .user-email { font-size: 12px; color: #a89d7a; margin-bottom: 12px; text-align: center; word-break: break-all; }
-
-  /* Terms & About Text */
   .text-content { font-size: 13px; color: #5c5233; line-height: 1.6; }
   .text-content h3 { color: #332d1a; margin: 10px 0 5px 0; font-size: 15px; }
   .text-content ul { padding-left: 20px; margin-bottom: 10px; }
+
+  /* Dashboard Quick Links */
+  .dash-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 15px; }
+  .dash-card { background: #ffffff; padding: 15px 10px; border-radius: 14px; text-align: center; border: 1px solid rgba(230, 200, 77, 0.3); cursor: pointer; transition: all 0.2s; }
+  .dash-card:hover { border-color: #e6c84d; background: #fcf9f0; transform: translateY(-2px); }
+  .dash-icon { font-size: 24px; margin-bottom: 5px; }
+  .dash-text { font-size: 12px; font-weight: bold; color: #5c5233; }
 
   @media (max-width: 420px) {
     .top-bar { padding: 10px 12px; flex-direction: column; gap: 10px; }
@@ -171,14 +138,12 @@
 </style>
 </head>
 <body>
-
-<!-- Motion background layers -->
 <div class="bg-layer"></div>
 <div class="orb orb1"></div>
 <div class="orb orb2"></div>
 <div class="orb orb3"></div>
 
-<!-- ============ LOGIN / SIGNUP ============ -->
+<!-- LOGIN -->
 <div id="loginScreen">
   <div class="login-card">
     <div class="brand">
@@ -192,30 +157,31 @@
     <div class="field">
       <input id="password" type="password" placeholder="Password (min 6 characters)" autocomplete="current-password" />
     </div>
+    <div class="field" id="promoField" style="display:none;">
+      <input id="promoCode" type="text" placeholder="Promo Code / Referral ID (Optional)" />
+    </div>
     <label class="check">
       <input id="ageCheck" type="checkbox" />
-      <span>Main 10 saal se zyada hoon aur <a href="#" onclick="showTermsFromLogin(event)">Terms & Conditions</a> se agree karta hoon</span>
+      <span>Main 10 saal se zyada hoon aur <a href="#" onclick="alert('Terms: Khelna apki marzi hai. Deposit/Withdrawal rules apply hain.')">Terms & Conditions</a> se agree karta hoon</span>
     </label>
     <button id="loginBtn" class="btn btn-primary">Login</button>
-    <button id="signupBtn" class="btn btn-secondary">Signup — Naya Account</button>
+    <button id="signupBtn" class="btn btn-secondary" onclick="document.getElementById('promoField').style.display='block'">Signup — Naya Account</button>
     <div id="loginMsg" class="msg hidden"></div>
   </div>
 </div>
 
-<!-- ============ MAIN APP ============ -->
+<!-- MAIN APP -->
 <div id="appScreen" class="hidden">
   <div class="top-bar">
     <div class="top-left">
-      <div class="coins-box">
-        <span>🪙</span>
-        <span id="balance">0</span>
-      </div>
+      <div class="coins-box"><span>🪙</span><span id="balance">0</span></div>
       <button id="logoutBtn" class="logout-btn">Logout</button>
     </div>
     <div class="nav-buttons">
-      <button id="navQuiz" class="nav-btn active">🎯 Quiz</button>
+      <button id="navDashboard" class="nav-btn active">🏠 Dashboard</button>
       <button id="navDeposit" class="nav-btn">💰 Deposit</button>
       <button id="navWithdraw" class="nav-btn">🏦 Withdraw</button>
+      <button id="navReferral" class="nav-btn">🎁 Refer</button>
       <button id="navInfo" class="nav-btn">ℹ️ Info</button>
     </div>
   </div>
@@ -223,16 +189,38 @@
   <div class="container">
     <p class="user-email">Logged in: <span id="userEmail"></span></p>
 
-    <!-- QUIZ PAGE (Default) -->
-    <div id="quizPage" class="page active">
+    <!-- DASHBOARD PAGE -->
+    <div id="dashboardPage" class="page active">
+      <!-- Daily Bonus -->
+      <div class="card" style="background: linear-gradient(135deg, #fff8d6, #ffffff); border-color: #e6c84d;">
+        <h2>🎁 Daily Bonus</h2>
+        <p style="font-size:13px;">Har 24 ghante baad 1 se 2 coins ka bonus claim karein!</p>
+        <button id="claimBonusBtn" class="submit-btn" style="margin-top:10px; background: linear-gradient(135deg, #d4b02a, #b89b1f); color: white;">Claim Bonus</button>
+        <div id="bonusMsg" class="msg hidden"></div>
+      </div>
+
+      <!-- Quiz Section -->
       <div class="card">
         <h2>🎯 Quiz</h2>
-        <p style="font-size:13px; margin-bottom:10px;">Har baar naya question aur options shuffle honge.</p>
+        <p style="font-size:13px; margin-bottom:10px;">Jitni jaldi jawab denge, utna zyada inaam milega!</p>
         <button id="startBtn" class="submit-btn">Enable Question (100 coins)</button>
         <div id="questionBox" class="hidden">
           <div id="timer">10</div>
           <h3 id="qtext" style="margin:12px 0; color:#332d1a; font-size:17px; line-height:1.5;"></h3>
           <div id="options"></div>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="dash-grid">
+        <div class="dash-card" onclick="document.getElementById('navDeposit').click()">
+          <div class="dash-icon">💰</div><div class="dash-text">Deposit</div>
+        </div>
+        <div class="dash-card" onclick="document.getElementById('navWithdraw').click()">
+          <div class="dash-icon">🏦</div><div class="dash-text">Withdraw</div>
+        </div>
+        <div class="dash-card" onclick="document.getElementById('navReferral').click()">
+          <div class="dash-icon">🎁</div><div class="dash-text">Refer & Earn</div>
         </div>
       </div>
     </div>
@@ -258,9 +246,7 @@
             <div class="wallet-number">03034538628</div>
           </div>
         </div>
-        <div class="instruction">
-          Is number par JazzCash ya SadaPay mein payment kar dein. Jitny paisy deposit karna chahty hain utni amount bhejein. Phir neeche form mein amount, method, Transaction ID (TID) aur screenshot daal kar submit karein. 2 hours mein approval milega.
-        </div>
+        <div class="instruction">Is number par payment kar dein. Form bhar kar submit karein. 2 hours mein approval milega.</div>
         <input id="depAmount" type="number" min="100" max="100000" placeholder="Amount (100 - 100000)" />
         <select id="depMethod">
           <option value="jazzcash">JazzCash</option>
@@ -280,8 +266,9 @@
         <h2>🏦 Withdrawal</h2>
         <div class="instruction">
           <b>Rules:</b><br>
-          1. Minimum withdrawal 100 coins hai.<br>
-          2. Aap sirf tab withdraw kar sakte hain jab aapne apne total deposit se zyada paisy kama liye hon (yani aap profit mein hon).
+          1. Min 100 coins.<br>
+          2. Deposit ke baad 10 questions solve karna zaroori hai.<br>
+          3. Profit mein hone par hi withdraw hoga.
         </div>
         <input id="wdAmount" type="number" placeholder="Amount" />
         <select id="wdMethod">
@@ -294,77 +281,83 @@
       </div>
     </div>
 
-    <!-- INFO PAGE (Terms, About, Contact) -->
+    <!-- REFERRAL PAGE -->
+    <div id="referralPage" class="page">
+      <button id="backFromReferral" class="back-btn">← Dashboard</button>
+      <div class="card">
+        <h2>🎁 Refer & Earn</h2>
+        <p style="font-size:14px; margin-bottom:15px;">Dosto ko invite karein! Jab wo 100 coins deposit karenge, aapko <b>10 rupees</b> ka bonus milega.</p>
+        
+        <p style="font-size:12px; color:#7a6e4a; margin-bottom:5px;">Aapki Referral ID:</p>
+        <div style="background:#fff8d6; padding:10px; border-radius:8px; border:1px dashed #e6c84d; margin-bottom:15px; text-align:center;">
+          <strong id="myReferralId">Loading...</strong>
+          <button class="btn btn-secondary" style="width:auto; padding:5px 10px; margin-top:5px; font-size:12px;" onclick="copyRefId()">Copy ID</button>
+        </div>
+
+        <p style="font-size:12px; color:#7a6e4a; margin-bottom:5px;">Share Link (Website):</p>
+        <div style="background:#fff8d6; padding:10px; border-radius:8px; border:1px dashed #e6c84d; margin-bottom:15px; text-align:center;">
+          <a href="#" id="myReferralLink" style="color:#d4b02a; word-break:break-all; font-size:13px;">https://fortube.online</a>
+          <button class="btn btn-secondary" style="width:auto; padding:5px 10px; margin-top:5px; font-size:12px;" onclick="copyRefLink()">Copy Link</button>
+        </div>
+        
+        <div class="instruction">
+          <b>Note:</b> Referral bonus tabhi milega jab aapka dost is link/ID se signup kare aur kam az kam 100 coins deposit kare.
+        </div>
+      </div>
+    </div>
+
+    <!-- INFO PAGE -->
     <div id="infoPage" class="page">
       <button id="backFromInfo" class="back-btn">← Dashboard</button>
-      
-      <!-- TABS for Info -->
       <div style="display:flex; gap:8px; margin-bottom:15px;">
         <button class="nav-btn active" id="tabTerms" onclick="switchInfoTab('terms')">Terms</button>
         <button class="nav-btn" id="tabAbout" onclick="switchInfoTab('about')">About Us</button>
         <button class="nav-btn" id="tabContact" onclick="switchInfoTab('contact')">Contact</button>
       </div>
 
-      <!-- Terms Content -->
+      <!-- Terms -->
       <div id="infoTerms" class="card">
         <h2>📜 Terms & Conditions</h2>
         <div class="text-content">
-          <p>Quiz Earn par account banane aur khelne se pehle in sharaait ka ghaur se mutala karein:</p>
-          <h3>1. Khelnay ki Marzi (Free Will)</h3>
-          <p>Yeh app tashreehat (entertainment) aur zehni abiyari (mental exercise) ke liye hai. Aap apni marzi se paisy deposit karte hain aur quiz khel kar unhe double karne ki koshish karte hain. Kisi bhi qism ka dabao (pressure) nahi hai.</p>
-          <h3>2. Deposit Rules</h3>
-          <ul>
-            <li>Deposit kam az kam 100 coins aur zyada se zyada 100,000 coins tak ho sakta hai.</li>
-            <li>Paisy JazzCash ya SadaPay ke zariye bheje jayen aur screenshot ke sath Transaction ID (TID) submit ki jaye.</li>
-            <li>Deposit approve hone mein 2 se 24 ghante lag sakte hain.</li>
-          </ul>
+          <h3>1. Khelnay ki Marzi</h3>
+          <p>Yeh app entertainment ke liye hai. Aap apni marzi se paisy deposit karte hain aur quiz khel kar unhe double karne ki koshish karte hain.</p>
+          <h3>2. Time-Based Winning</h3>
+          <p>Jitni jaldi aap 10 second mein jawab denge, utna zyada inaam milega. 10 sec par double hoga, jabke 0 sec (time out) par 100 coins cut ho jayenge.</p>
           <h3>3. Withdrawal Rules</h3>
           <ul>
-            <li>Withdraw kam az kam 100 coins ka ho sakta hai.</li>
-            <li>Aap sirf tab withdraw kar sakte hain jab aapka total balance aapke total deposit se zyada ho (yani aap profit mein hon).</li>
-            <li>Withdrawal requests admin ke approve karne ke baad process hongi.</li>
+            <li>Minimum withdrawal 100 coins hai.</li>
+            <li>Deposit ke baad kam az kam 10 questions solve karna zaroori hai tabhi withdraw hoga.</li>
+            <li>Withdrawal tabhi hogi jab aap profit mein hon (balance > total deposit).</li>
+            <li>Withdraw karne ke baad agle withdrawal ke liye dobara deposit karna hoga.</li>
           </ul>
-          <h3>4. Zimmedari</h3>
-          <p>Aap apne account ki security ke khud zimmedar hain. Password kisi ke sath share na karein. Quiz Earn kisi bhi qism ke financial nuqsan ki zimmedari nahi leta.</p>
+          <h3>4. Referral & Promo</h3>
+          <p>Dost ko refer karne par 10 rupees tab milenge jab wo kam az kam 100 deposit karega. Daily bonus 24 ghante baad milega.</p>
         </div>
       </div>
 
-      <!-- About Content -->
+      <!-- About -->
       <div id="infoAbout" class="card hidden">
         <h2>ℹ️ About Us</h2>
         <div class="text-content">
           <p><b>Quiz Earn</b> ek online quiz platform hai jahan aap apne ilm (knowledge) ko test kar sakte hain aur saath hi paisay bhi kama sakte hain.</p>
           <p>Hamara maqsad logon ko mushkil sawalon ke zariye apni sochne ki salahiyat (thinking ability) ko tez karna aur unhe inaam dena hai.</p>
-          <p>Yeh platform Pakistan aur India ke logon ke liye banaya gaya hai jahan wo general knowledge, science, history, aur literature jaise topics par apna ilm azma sakte hain.</p>
         </div>
       </div>
 
-      <!-- Contact Content -->
+      <!-- Contact -->
       <div id="infoContact" class="card hidden">
         <h2>📞 Contact Us</h2>
-        <p style="font-size:13px; margin-bottom:15px;">Koi sawal ya masla hai? Humein message bhejein, hum 24 ghante mein jawab denge.</p>
-        
-        <!-- FormSubmit form direct to email -->
+        <p style="font-size:13px; margin-bottom:15px;">Koi sawal hai? Humein message bhejein.</p>
         <form action="https://formsubmit.co/syedadeen16@gmail.com" method="POST">
-          <!-- Disable Captcha -->
           <input type="hidden" name="_captcha" value="false">
-          <!-- Redirect after submit -->
-          <input type="hidden" name="_next" value="https://your-website-url.com/index.html"> 
-          
-          <div class="field">
-            <input type="email" name="email" placeholder="Aapki Email" required />
-          </div>
-          <div class="field">
-            <input type="text" name="topic" placeholder="Topic (Maslan: Deposit Issue)" required />
-          </div>
-          <div class="field">
-            <textarea name="message" placeholder="Apna message yahan likhein..." required></textarea>
-          </div>
+          <input type="hidden" name="_next" value="https://fortube.online">
+          <div class="field"><input type="email" name="email" placeholder="Aapki Email" required /></div>
+          <div class="field"><input type="text" name="topic" placeholder="Topic (Maslan: Deposit Issue)" required /></div>
+          <div class="field"><textarea name="message" placeholder="Message..." required></textarea></div>
           <button type="submit" class="submit-btn">Send Message</button>
         </form>
-        <p style="font-size:11px; margin-top:10px; text-align:center;">Ya seedha email karein: <b>syedadeen16@gmail.com</b></p>
+        <p style="font-size:11px; margin-top:10px; text-align:center;">Email: <b>syedadeen16@gmail.com</b></p>
       </div>
-      
     </div>
 
   </div>
@@ -384,17 +377,12 @@ function showMsg(elId, text, type = 'err') {
   el.classList.remove('hidden');
 }
 
-let supabase;
-try {
-  supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-    auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, storage: window.localStorage }
-  });
-} catch (e) {
-  showMsg('loginMsg', '⚠️ Supabase client error: ' + e.message);
-  throw e;
-}
+let supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+  auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, storage: window.localStorage }
+});
 
 let currentUser = null;
+let userProfile = null;
 
 function btnLoading(btn, loading, label) {
   if (loading) {
@@ -407,31 +395,39 @@ function btnLoading(btn, loading, label) {
   }
 }
 
-async function ensureProfile(user) {
+async function ensureProfile(user, promoCode = null) {
+  let referredById = null;
+  if (promoCode) {
+    // Check if promo code (user ID) exists
+    const { data: referrer } = await supabase.from('profiles').select('id').eq('id', promoCode).single();
+    if (referrer) referredById = referrer.id;
+  }
+
   const { error } = await supabase.from('profiles').upsert(
-    { id: user.id, email: user.email, age_confirmed: true },
+    { id: user.id, email: user.email, age_confirmed: true, referred_by: referredById },
     { onConflict: 'id' }
   );
   if (error) throw error;
 }
 
-// ---------- SIGNUP ----------
+// SIGNUP
 async function signup() {
   const btn = document.getElementById('signupBtn');
   const email = document.getElementById('email').value.trim();
   const password = document.getElementById('password').value;
   const ageOk = document.getElementById('ageCheck').checked;
+  const promo = document.getElementById('promoCode').value.trim();
 
   if (!email || !password) return showMsg('loginMsg', 'Email aur password daalein');
-  if (password.length < 6) return showMsg('loginMsg', 'Password kam az kam 6 characters');
-  if (!ageOk) return showMsg('loginMsg', '10 saal se zyada hone ka checkbox aur Terms tick karein');
+  if (password.length < 6) return showMsg('loginMsg', 'Password min 6 chars');
+  if (!ageOk) return showMsg('loginMsg', 'Terms tick karein');
 
   btnLoading(btn, true, 'Signing up...');
   try {
     const { data, error } = await supabase.auth.signUp({ email, password });
     if (error) throw error;
     if (data.user) {
-      try { await ensureProfile(data.user); } catch (e) { /* ignore */ }
+      await ensureProfile(data.user, promo);
     }
     showMsg('loginMsg', '✅ Account ban gaya. Ab Login dabaein.', 'ok');
   } catch (e) {
@@ -440,7 +436,7 @@ async function signup() {
   btnLoading(btn, false);
 }
 
-// ---------- LOGIN ----------
+// LOGIN
 async function login() {
   const btn = document.getElementById('loginBtn');
   const email = document.getElementById('email').value.trim();
@@ -448,14 +444,14 @@ async function login() {
   const ageOk = document.getElementById('ageCheck').checked;
 
   if (!email || !password) return showMsg('loginMsg', 'Email aur password daalein');
-  if (!ageOk) return showMsg('loginMsg', '10 saal se zyada hone ka checkbox aur Terms tick karein');
+  if (!ageOk) return showMsg('loginMsg', 'Terms tick karein');
 
   btnLoading(btn, true, 'Logging in...');
   try {
     const { data, error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) throw error;
     currentUser = data.user;
-    try { await ensureProfile(currentUser); } catch (e) { /* ignore */ }
+    await ensureProfile(currentUser);
     showApp();
   } catch (e) {
     showMsg('loginMsg', '❌ ' + (e.message || e));
@@ -463,23 +459,37 @@ async function login() {
   }
 }
 
-// ---------- APP SHOW ----------
 async function showApp() {
   document.getElementById('loginScreen').classList.add('hidden');
   document.getElementById('appScreen').classList.remove('hidden');
   if (currentUser) {
     document.getElementById('userEmail').textContent = currentUser.email;
-    await loadBalance();
+    await loadData();
   }
 }
 
-async function loadBalance() {
+async function loadData() {
   if (!currentUser) return;
-  const { data } = await supabase.from('profiles').select('balance').eq('id', currentUser.id).single();
+  const { data } = await supabase.from('profiles').select('*').eq('id', currentUser.id).single();
+  userProfile = data;
   document.getElementById('balance').textContent = data?.balance ?? 0;
+  document.getElementById('myReferralId').textContent = currentUser.id;
+  
+  // Check Bonus status
+  const now = new Date();
+  const lastClaim = data?.last_bonus_claim ? new Date(data.last_bonus_claim) : null;
+  const canClaim = !lastClaim || (now - lastClaim) > 24 * 60 * 60 * 1000;
+  const claimBtn = document.getElementById('claimBonusBtn');
+  if (canClaim) {
+    claimBtn.disabled = false;
+    claimBtn.textContent = "Claim Bonus (Available)";
+  } else {
+    claimBtn.disabled = true;
+    claimBtn.textContent = "Bonus Claimed (Wait 24h)";
+  }
 }
 
-// ---------- NAVIGATION ----------
+// NAVIGATION
 function closeAllPages() {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => {
@@ -487,77 +497,44 @@ function closeAllPages() {
   });
 }
 
-document.getElementById('navQuiz').addEventListener('click', () => {
-  closeAllPages();
-  document.getElementById('quizPage').classList.add('active');
-  document.getElementById('navQuiz').classList.add('active');
-});
+document.getElementById('navDashboard').addEventListener('click', () => { closeAllPages(); document.getElementById('dashboardPage').classList.add('active'); document.getElementById('navDashboard').classList.add('active'); });
+document.getElementById('navDeposit').addEventListener('click', () => { closeAllPages(); document.getElementById('depositPage').classList.add('active'); document.getElementById('navDeposit').classList.add('active'); });
+document.getElementById('navWithdraw').addEventListener('click', () => { closeAllPages(); document.getElementById('withdrawPage').classList.add('active'); document.getElementById('navWithdraw').classList.add('active'); });
+document.getElementById('navReferral').addEventListener('click', () => { closeAllPages(); document.getElementById('referralPage').classList.add('active'); document.getElementById('navReferral').classList.add('active'); document.getElementById('myReferralLink').href = `https://fortube.online?ref=${currentUser.id}`; });
+document.getElementById('navInfo').addEventListener('click', () => { closeAllPages(); document.getElementById('infoPage').classList.add('active'); document.getElementById('navInfo').classList.add('active'); switchInfoTab('terms'); });
 
-document.getElementById('navDeposit').addEventListener('click', () => {
-  closeAllPages();
-  document.getElementById('depositPage').classList.add('active');
-  document.getElementById('navDeposit').classList.add('active');
-});
+document.getElementById('backFromDeposit').addEventListener('click', () => document.getElementById('navDashboard').click());
+document.getElementById('backFromWithdraw').addEventListener('click', () => document.getElementById('navDashboard').click());
+document.getElementById('backFromReferral').addEventListener('click', () => document.getElementById('navDashboard').click());
+document.getElementById('backFromInfo').addEventListener('click', () => document.getElementById('navDashboard').click());
 
-document.getElementById('navWithdraw').addEventListener('click', () => {
-  closeAllPages();
-  document.getElementById('withdrawPage').classList.add('active');
-  document.getElementById('navWithdraw').classList.add('active');
-});
-
-document.getElementById('navInfo').addEventListener('click', () => {
-  closeAllPages();
-  document.getElementById('infoPage').classList.add('active');
-  document.getElementById('navInfo').classList.add('active');
-  switchInfoTab('terms'); // Default tab
-});
-
-// Back Buttons
-document.getElementById('backFromDeposit').addEventListener('click', () => document.getElementById('navQuiz').click());
-document.getElementById('backFromWithdraw').addEventListener('click', () => document.getElementById('navQuiz').click());
-document.getElementById('backFromInfo').addEventListener('click', () => document.getElementById('navQuiz').click());
-
-// Info Tabs Switch
 window.switchInfoTab = function(tab) {
   document.querySelectorAll('#infoPage .nav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('infoTerms').classList.add('hidden');
   document.getElementById('infoAbout').classList.add('hidden');
   document.getElementById('infoContact').classList.add('hidden');
-
-  if(tab === 'terms') {
-    document.getElementById('tabTerms').classList.add('active');
-    document.getElementById('infoTerms').classList.remove('hidden');
-  } else if(tab === 'about') {
-    document.getElementById('tabAbout').classList.add('active');
-    document.getElementById('infoAbout').classList.remove('hidden');
-  } else if(tab === 'contact') {
-    document.getElementById('tabContact').classList.add('active');
-    document.getElementById('infoContact').classList.remove('hidden');
-  }
+  if(tab === 'terms') { document.getElementById('tabTerms').classList.add('active'); document.getElementById('infoTerms').classList.remove('hidden'); }
+  else if(tab === 'about') { document.getElementById('tabAbout').classList.add('active'); document.getElementById('infoAbout').classList.remove('hidden'); }
+  else if(tab === 'contact') { document.getElementById('tabContact').classList.add('active'); document.getElementById('infoContact').classList.remove('hidden'); }
 }
 
-window.showTermsFromLogin = function(e) {
-  e.preventDefault();
-  // Just show an alert in login screen for terms (since infoPage is hidden)
-  alert("Terms & Conditions:\n\n1. Yeh platform entertainment ke liye hai.\n2. Deposit minimum 100 hai.\n3. Withdrawal tabhi hogi jab aap profit mein hon.\n4. Khelna aapki apni marzi hai.");
-}
+window.copyRefId = function() { navigator.clipboard.writeText(currentUser.id); alert('Referral ID Copied!'); }
+window.copyRefLink = function() { navigator.clipboard.writeText(`https://fortube.online?ref=${currentUser.id}`); alert('Link Copied!'); }
 
-// ---------- EVENT LISTENERS ----------
+// EVENTS
 document.getElementById('loginBtn').addEventListener('click', login);
 document.getElementById('signupBtn').addEventListener('click', signup);
-document.getElementById('logoutBtn').addEventListener('click', async () => {
-  await supabase.auth.signOut({ scope: 'local' });
-  location.reload();
-});
+document.getElementById('logoutBtn').addEventListener('click', async () => { await supabase.auth.signOut({ scope: 'local' }); location.reload(); });
 document.getElementById('depBtn').addEventListener('click', submitDeposit);
 document.getElementById('startBtn').addEventListener('click', startQuestion);
 document.getElementById('wdBtn').addEventListener('click', submitWithdrawal);
+document.getElementById('claimBonusBtn').addEventListener('click', claimBonus);
 
-// ---------- SESSION PERSISTENCE ----------
+// SESSION
 supabase.auth.onAuthStateChange(async (event, session) => {
   if (session?.user) {
     currentUser = session.user;
-    try { await ensureProfile(currentUser); } catch (e) { /* ignore */ }
+    try { await ensureProfile(currentUser); } catch (e) {}
     showApp();
   } else {
     currentUser = null;
@@ -569,15 +546,27 @@ supabase.auth.onAuthStateChange(async (event, session) => {
 (async () => {
   try {
     const { data: { session } } = await supabase.auth.getSession();
-    if (session?.user) {
-      currentUser = session.user;
-      try { await ensureProfile(currentUser); } catch (e) { /* ignore */ }
-      showApp();
-    }
-  } catch (e) { /* ignore */ }
+    if (session?.user) { currentUser = session.user; try { await ensureProfile(currentUser); } catch (e) {} showApp(); }
+  } catch (e) {}
 })();
 
-// ---------- DEPOSIT ----------
+// BONUS
+async function claimBonus() {
+  const btn = document.getElementById('claimBonusBtn');
+  btnLoading(btn, true, 'Claiming...');
+  try {
+    const bonusAmount = Math.floor(Math.random() * 2) + 1; // 1 or 2
+    const { error } = await supabase.rpc('claim_daily_bonus', { p_amount: bonusAmount });
+    if (error) throw error;
+    showMsg('bonusMsg', `✅ Aapne ${bonusAmount} coins ka bonus claim kiya!`, 'ok');
+    await loadData();
+  } catch(e) {
+    showMsg('bonusMsg', '❌ ' + (e.message || e));
+  }
+  btnLoading(btn, false);
+}
+
+// DEPOSIT
 async function submitDeposit() {
   const btn = document.getElementById('depBtn');
   const amount = Number(document.getElementById('depAmount').value);
@@ -585,56 +574,38 @@ async function submitDeposit() {
   const tid = document.getElementById('depTid').value.trim();
   const file = document.getElementById('depShot').files[0];
 
-  if (!amount || amount < 100 || amount > 100000) return showMsg('depMsg', 'Amount 100 se 100000 ke darmiyan ho');
-  if (!tid) return showMsg('depMsg', 'Transaction ID daalein');
+  if (!amount || amount < 100 || amount > 100000) return showMsg('depMsg', 'Amount 100-100000');
+  if (!tid) return showMsg('depMsg', 'TID daalein');
   if (!file) return showMsg('depMsg', 'Screenshot select karein');
 
   btnLoading(btn, true, 'Uploading...');
   try {
     await ensureProfile(currentUser);
-
     const path = `${currentUser.id}/${Date.now()}_${file.name}`;
     const { error: upErr } = await supabase.storage.from('screenshots').upload(path, file);
     if (upErr) throw upErr;
-
     const { data: pub } = supabase.storage.from('screenshots').getPublicUrl(path);
-
-    const { error } = await supabase.from('deposits').insert({
-      user_id: currentUser.id, amount, method,
-      transaction_id: tid, screenshot_url: pub.publicUrl
-    });
+    const { error } = await supabase.from('deposits').insert({ user_id: currentUser.id, amount, method, transaction_id: tid, screenshot_url: pub.publicUrl });
     if (error) throw error;
-    
-    showMsg('depMsg', '✅ Deposit submit ho gaya. 2 hours mein approval milega.', 'ok');
+    showMsg('depMsg', '✅ Deposit submit ho gaya. 2 hours mein approval.', 'ok');
   } catch (e) {
     showMsg('depMsg', '❌ ' + (e.message || e));
   }
   btnLoading(btn, false);
 }
 
-// ---------- QUIZ ----------
+// QUIZ (WITH TIME LOGIC)
 let currentQ = null, timerInterval = null;
-
-function shuffle(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
+function shuffle(arr) { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
 async function startQuestion() {
   const btn = document.getElementById('startBtn');
-
   const { data: prof } = await supabase.from('profiles').select('balance').eq('id', currentUser.id).single();
-  if (!prof || prof.balance < 100) return alert('Balance kam hai. Pehle deposit karein.');
+  if (!prof || prof.balance < 100) return alert('Balance kam hai. Deposit karein.');
 
-  btnLoading(btn, true, 'Loading question...');
-
+  btnLoading(btn, true, 'Loading...');
   const { data: attempted } = await supabase.from('attempts').select('question_id').eq('user_id', currentUser.id);
   const doneIds = (attempted ?? []).map(a => a.question_id);
-
   let q = null;
   const { data: fresh } = await supabase.from('questions').select('*').not('id', 'in', `(${doneIds.join(',') || 0})`).limit(100);
   if (fresh?.length) q = fresh[Math.floor(Math.random() * fresh.length)];
@@ -642,12 +613,10 @@ async function startQuestion() {
     const { data: all } = await supabase.from('questions').select('*').limit(1200);
     if (all?.length) q = all[Math.floor(Math.random() * all.length)];
   }
-  if (!q) { btnLoading(btn, false); return alert('Koi question nahi mila.'); }
+  if (!q) { btnLoading(btn, false); return alert('No questions found.'); }
 
   currentQ = q;
-  const opts = shuffle([
-    { key: 'A', text: q.option_a }, { key: 'B', text: q.option_b }, { key: 'C', text: q.option_c }
-  ]);
+  const opts = shuffle([{ key: 'A', text: q.option_a }, { key: 'B', text: q.option_b }, { key: 'C', text: q.option_c }]);
 
   document.getElementById('qtext').textContent = q.question_text;
   const box = document.getElementById('options');
@@ -658,7 +627,7 @@ async function startQuestion() {
     div.textContent = o.text;
     div.dataset.orig = o.key;
     div.style.animationDelay = (i * 0.08) + 's';
-    div.addEventListener('click', () => submitAnswer(o.key));
+    div.addEventListener('click', () => submitAnswer(o.key, 10 - t)); // Pass time taken
     box.appendChild(div);
   });
 
@@ -673,27 +642,22 @@ async function startQuestion() {
     t--;
     timerEl.textContent = t;
     if (t <= 3) timerEl.classList.add('warn');
-    if (t <= 0) { clearInterval(timerInterval); submitAnswer(null); }
+    if (t <= 0) { clearInterval(timerInterval); submitAnswer(null, 0); }
   }, 1000);
 }
 
-async function submitAnswer(chosenKey) {
+async function submitAnswer(chosenKey, timeTaken) {
   clearInterval(timerInterval);
   document.querySelectorAll('.option').forEach(o => o.style.pointerEvents = 'none');
 
   try {
     const { data, error } = await supabase.functions.invoke('answer-question', {
-      body: { question_id: currentQ.id, chosen_option: chosenKey }
+      body: { question_id: currentQ.id, chosen_option: chosenKey, time_taken: timeTaken }
     });
 
     if (error) {
       let msg = error.message;
-      if (error.context) {
-        try {
-          const body = await error.context.json();
-          if (body?.error) msg = body.error;
-        } catch (e) {}
-      }
+      if (error.context) { try { const body = await error.context.json(); if (body?.error) msg = body.error; } catch (e) {} }
       throw new Error(msg);
     }
 
@@ -708,38 +672,34 @@ async function submitAnswer(chosenKey) {
       document.getElementById('questionBox').classList.add('hidden');
       document.getElementById('startBtn').disabled = false;
       currentQ = null;
+      loadData(); // Refresh 10 questions solved count
     }, 2000);
   } catch (e) {
-    alert('Quiz error: ' + e.message + '\n\nSupabase → Edge Functions → answer-question → Logs check karein.');
+    alert('Quiz error: ' + e.message);
     document.getElementById('startBtn').disabled = false;
     document.getElementById('questionBox').classList.add('hidden');
     currentQ = null;
   }
 }
 
-// ---------- WITHDRAWAL (RPC) ----------
+// WITHDRAWAL
 async function submitWithdrawal() {
   const btn = document.getElementById('wdBtn');
   const amount = Number(document.getElementById('wdAmount').value);
   const method = document.getElementById('wdMethod').value;
   const acc = document.getElementById('wdAccount').value.trim();
-  
-  if (!amount || amount < 100) return showMsg('wdMsg', 'Minimum withdrawal 100 coins hai.');
+  if (!amount || amount < 100) return showMsg('wdMsg', 'Min 100 coins.');
   if (!acc) return showMsg('wdMsg', 'Account number daalein');
 
   btnLoading(btn, true, 'Sending...');
   try {
     const { data, error } = await supabase.rpc('request_withdrawal', {
-      p_amount: amount,
-      p_method: method,
-      p_account_number: acc
+      p_amount: amount, p_method: method, p_account_number: acc
     });
-
     if (error) throw error;
     if (data && data.error) throw new Error(data.error);
-
-    showMsg('wdMsg', '✅ ' + (data.message || 'Withdrawal request bhej di gayi.'), 'ok');
-    await loadBalance();
+    showMsg('wdMsg', '✅ ' + (data.message || 'Withdrawal request sent!'), 'ok');
+    await loadData();
   } catch (e) {
     showMsg('wdMsg', '❌ ' + (e.message || e));
   }
