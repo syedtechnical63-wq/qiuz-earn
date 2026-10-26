@@ -72,6 +72,10 @@
   .coins-box { display: flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #00ff88, #00cc6a); color: #000; padding: 8px 16px; border-radius: 25px; font-weight: 800; font-size: 16px; box-shadow: 0 0 20px rgba(0, 255, 136, 0.4); animation: coinGlow 3s ease-in-out infinite; }
   @keyframes coinGlow { 0%,100% { box-shadow: 0 0 20px rgba(0,255,136,0.3); } 50% { box-shadow: 0 0 35px rgba(0,255,136,0.6); } }
   
+  .mailbox-btn { position: relative; background: rgba(0, 255, 136, 0.1); border: 1px solid rgba(0, 255, 136, 0.3); color: #00ff88; padding: 8px 12px; border-radius: 12px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; }
+  .mailbox-btn:hover { background: rgba(0, 255, 136, 0.2); }
+  .mailbox-badge { position: absolute; top: -5px; right: -5px; background: #ff3c3c; color: white; font-size: 10px; font-weight: bold; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
   /* Profile Dropdown */
   .profile-container { position: relative; display: flex; align-items: center; }
   .avatar-btn { width: 42px; height: 42px; border-radius: 50%; background: rgba(0, 255, 136, 0.1); border: 2px solid #00ff88; display: flex; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; transition: all 0.3s; box-shadow: 0 0 10px rgba(0,255,136,0.2); }
@@ -106,9 +110,8 @@
   /* Wallet */
   .wallet-box { display: flex; align-items: center; gap: 15px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(0, 255, 136, 0.15); border-radius: 15px; padding: 15px; margin: 12px 0; transition: all 0.3s; }
   .wallet-box:hover { border-color: rgba(0, 255, 136, 0.4); transform: translateY(-2px); }
-  .wallet-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; color: #fff; flex-shrink: 0; }
-  .wallet-icon.jazzcash { background: linear-gradient(135deg, #ed1c24, #b31016); box-shadow: 0 4px 15px rgba(237,28,36,0.3); }
-  .wallet-icon.sadapay { background: linear-gradient(135deg, #00b2a9, #007a73); box-shadow: 0 4px 15px rgba(0,178,169,0.3); }
+  .wallet-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; color: #fff; flex-shrink: 0; overflow: hidden; background: #fff; padding: 5px; }
+  .wallet-icon img { width: 100%; height: 100%; object-fit: contain; }
   .wallet-info { flex: 1; }
   .wallet-name { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #6b7a73; margin-bottom: 3px; }
   .wallet-owner { font-size: 16px; font-weight: 700; color: #fff; }
@@ -178,13 +181,29 @@
   .spin-item { position: absolute; width: 50%; height: 50%; top: 0; left: 0; transform-origin: 100% 100%; border: 1px solid rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; color: #000; }
   .spin-pointer { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent; border-top: 25px solid #ff3c3c; z-index: 10; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
 
+  /* Ad Task Center */
+  .task-card { background: rgba(15, 25, 20, 0.8); border: 1px solid rgba(0, 255, 136, 0.2); border-radius: 15px; padding: 20px; text-align: center; margin-bottom: 15px; }
+  .task-btn { background: linear-gradient(135deg, #ffc107, #d39e00); color: #000; padding: 12px 20px; border-radius: 10px; font-weight: bold; border: none; cursor: pointer; width: 100%; margin-top: 10px; transition: 0.3s; }
+  .task-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255,193,7,0.4); }
+  .task-timer { font-size: 24px; font-weight: bold; color: #ffc107; margin-top: 10px; }
+
+  /* Mailbox Modal */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px); }
+  .modal-overlay.active { display: flex; }
+  .modal-content { background: #0f1914; border: 1px solid rgba(0, 255, 136, 0.3); border-radius: 20px; width: 100%; max-width: 500px; max-height: 80vh; overflow-y: auto; padding: 25px; position: relative; animation: cardIn 0.4s ease; }
+  .close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #ff6b6b; cursor: pointer; font-weight: bold; }
+  .mail-item { background: rgba(0, 255, 136, 0.05); border-left: 3px solid #00ff88; border-radius: 8px; padding: 15px; margin-bottom: 12px; }
+  .mail-item h4 { color: #00ff88; font-size: 15px; margin-bottom: 5px; }
+  .mail-item p { color: #e0e0e0; font-size: 13px; margin-bottom: 8px; }
+  .mail-item small { color: #6b7a73; font-size: 11px; }
+
   @media (max-width: 480px) {
     .top-bar { padding: 10px 15px; flex-direction: column; gap: 12px; }
     .top-left { width: 100%; justify-content: space-between; }
     .nav-buttons { width: 100%; justify-content: flex-start; padding-bottom: 5px; }
     .container { padding: 15px; }
     .card { padding: 20px; border-radius: 18px; }
-    .wallet-icon { width: 45px; height: 45px; font-size: 16px; }
+    .wallet-icon { width: 45px; height: 45px; }
     .dash-grid { grid-template-columns: 1fr 1fr; }
   }
 </style>
@@ -243,6 +262,12 @@
       </div>
       
       <div class="coins-box"><span>🪙</span><span id="balance">0</span></div>
+      
+      <!-- MAILBOX BUTTON -->
+      <button class="mailbox-btn" onclick="openMailbox()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        <span id="mailboxBadge" class="mailbox-badge hidden">1</span>
+      </button>
     </div>
     
     <div class="nav-buttons">
@@ -257,8 +282,6 @@
   <div class="container">
     <!-- DASHBOARD -->
     <div id="dashboardPage" class="page active">
-      
-      <!-- Daily Bonus & Spin Grid -->
       <div class="dash-grid">
         <div class="card" style="margin-bottom:0; background: linear-gradient(135deg, rgba(0,255,136,0.1), rgba(0,0,0,0.6)); border-color: rgba(0,255,136,0.3);">
           <h2 style="color: #00ff88; font-size: 16px;">🎁 Daily Bonus</h2>
@@ -268,12 +291,25 @@
         
         <div class="card" style="margin-bottom:0; background: linear-gradient(135deg, rgba(255,193,7,0.1), rgba(0,0,0,0.6)); border-color: rgba(255,193,7,0.3);">
           <h2 style="color: #ffc107; font-size: 16px;">🎡 Daily Spin</h2>
-          <p style="font-size:12px; margin-bottom:10px;">Win up to 100 coins</p>
+          <p style="font-size:12px; margin-bottom:10px;">Win 1-5 coins</p>
           <button id="openSpinBtn" class="submit-btn" style="padding:10px; font-size:14px; background:linear-gradient(135deg, #ffc107, #d39e00);">Spin Now</button>
         </div>
       </div>
 
+      <!-- NEW EARNING METHOD: TASK CENTER -->
       <div class="card" style="margin-top: 15px;">
+        <h2>💼 Earning Tasks</h2>
+        <p style="font-size:13px; margin-bottom:15px;">Complete tasks to earn extra coins!</p>
+        
+        <div class="task-card">
+          <h3 style="color: #ffc107; margin-bottom: 5px;">Watch Video Ad</h3>
+          <p style="font-size: 12px; margin-bottom: 10px;">Watch a short ad for 5 seconds and earn 2 coins.</p>
+          <button id="watchAdBtn" class="task-btn">Watch & Earn (2 Coins)</button>
+          <div id="adTimer" class="task-timer hidden">5</div>
+        </div>
+      </div>
+
+      <div class="card">
         <h2>🎯 Play Quiz</h2>
         <p style="font-size:13px; margin-bottom:15px;">Answer faster to win more coins!</p>
         <button id="startBtn" class="submit-btn">Start Question (100 Coins)</button>
@@ -309,29 +345,24 @@
       <button id="backFromProfile" class="back-btn">← Back</button>
       <div class="card">
         <h2>⚙️ Profile Settings</h2>
-        
         <div class="profile-avatar-large" id="profileAvatarLarge">
           <span id="profileAvatarInitial">U</span>
           <img id="profileAvatarImage" class="hidden" src="" alt="Profile">
           <label for="avatarUpload" class="avatar-upload-btn">📷</label>
           <input type="file" id="avatarUpload" accept="image/*" class="hidden" onchange="uploadAvatar(event)">
         </div>
-        
         <div class="field">
           <label style="color:#a0b0a8; font-size:12px; margin-left:5px;">Full Name</label>
           <input id="profileName" type="text" placeholder="Enter your full name" />
         </div>
-        
         <div class="field">
           <label style="color:#a0b0a8; font-size:12px; margin-left:5px;">Mobile Number</label>
           <input id="profilePhone" type="text" placeholder="e.g., 03001234567" />
         </div>
-        
         <div class="field">
           <label style="color:#a0b0a8; font-size:12px; margin-left:5px;">Email Address</label>
           <input id="profileEmail" type="email" disabled style="opacity:0.6; cursor:not-allowed;" />
         </div>
-
         <button id="saveProfileBtn" class="submit-btn" style="margin-top:15px;">Save Changes</button>
         <div id="profileMsg" class="msg hidden"></div>
       </div>
@@ -343,7 +374,7 @@
       <div class="card">
         <h2>💰 Deposit Funds</h2>
         <div class="wallet-box">
-          <div class="wallet-icon jazzcash">JC</div>
+          <div class="wallet-icon"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9e/JazzCash_Logo.svg/1200px-JazzCash_Logo.svg.png" alt="JazzCash"></div>
           <div class="wallet-info">
             <div class="wallet-name">JazzCash</div>
             <div class="wallet-owner">Saima Batool</div>
@@ -351,16 +382,14 @@
           </div>
         </div>
         <div class="wallet-box">
-          <div class="wallet-icon sadapay">SP</div>
+          <div class="wallet-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/SadaPay_Logo.svg/1200px-SadaPay_Logo.svg.png" alt="SadaPay"></div>
           <div class="wallet-info">
             <div class="wallet-name">SadaPay</div>
             <div class="wallet-owner">Syed Abid Hussain Shah</div>
             <div class="wallet-number">03034538628</div>
           </div>
         </div>
-        <div class="instruction">
-          Send payment to the above numbers, then fill the form with the Transaction ID (TID) and upload a screenshot. Approval takes up to 2 hours.
-        </div>
+        <div class="instruction">Send payment to the above numbers, then fill the form with the Transaction ID (TID) and upload a screenshot. Approval takes up to 2 hours.</div>
         <input id="depAmount" type="number" min="100" max="100000" placeholder="Amount (100 - 100,000)" />
         <select id="depMethod">
           <option value="jazzcash">JazzCash</option>
@@ -372,16 +401,11 @@
         <div id="depMsg" class="msg hidden"></div>
       </div>
       
-      <!-- Deposit History -->
       <div class="card">
         <h2>📜 Deposit History</h2>
         <table class="history-table">
-          <thead>
-            <tr><th>Date</th><th>Amount</th><th>Status</th></tr>
-          </thead>
-          <tbody id="depositHistoryBody">
-            <tr><td colspan="3" style="text-align:center; color:#6b7a73;">No deposits yet.</td></tr>
-          </tbody>
+          <thead><tr><th>Date</th><th>Amount</th><th>Status</th></tr></thead>
+          <tbody id="depositHistoryBody"><tr><td colspan="3" style="text-align:center; color:#6b7a73;">No deposits yet.</td></tr></tbody>
         </table>
       </div>
     </div>
@@ -407,16 +431,11 @@
         <div id="wdMsg" class="msg hidden"></div>
       </div>
 
-      <!-- Withdrawal History -->
       <div class="card">
         <h2>📜 Withdrawal History</h2>
         <table class="history-table">
-          <thead>
-            <tr><th>Date</th><th>Amount</th><th>Status</th></tr>
-          </thead>
-          <tbody id="withdrawHistoryBody">
-            <tr><td colspan="3" style="text-align:center; color:#6b7a73;">No withdrawals yet.</td></tr>
-          </tbody>
+          <thead><tr><th>Date</th><th>Amount</th><th>Status</th></tr></thead>
+          <tbody id="withdrawHistoryBody"><tr><td colspan="3" style="text-align:center; color:#6b7a73;">No withdrawals yet.</td></tr></tbody>
         </table>
       </div>
     </div>
@@ -427,30 +446,22 @@
       <div class="card">
         <h2>🎁 Refer & Earn</h2>
         <p style="font-size:14px; margin-bottom:20px;">Invite friends! When they sign up and deposit 100+ coins, you get <b>10 Rupees</b> bonus.</p>
-        
         <p style="font-size:12px; color:#6b7a73; margin-bottom:5px;">Your Referral ID:</p>
         <div style="background:rgba(0,0,0,0.5); padding:12px; border-radius:10px; border:1px dashed #00ff88; margin-bottom:15px; text-align:center;">
           <strong id="myReferralId" style="color:#00ff88; word-break:break-all;">Loading...</strong>
           <button class="btn btn-secondary" style="width:auto; padding:6px 12px; margin-top:8px; font-size:12px;" onclick="copyRefId()">Copy ID</button>
         </div>
-
         <p style="font-size:12px; color:#6b7a73; margin-bottom:5px;">Referral Link:</p>
         <div style="background:rgba(0,0,0,0.5); padding:12px; border-radius:10px; border:1px dashed #00ff88; margin-bottom:15px; text-align:center;">
           <a href="#" id="myReferralLink" style="color:#00ff88; word-break:break-all; font-size:13px;">Loading...</a>
           <button class="btn btn-secondary" style="width:auto; padding:6px 12px; margin-top:8px; font-size:12px;" onclick="copyRefLink()">Copy Link</button>
         </div>
       </div>
-
-      <!-- Referred Members List -->
       <div class="card">
         <h2>👥 Your Referrals</h2>
         <table class="history-table">
-          <thead>
-            <tr><th>Member Email</th><th>Status</th></tr>
-          </thead>
-          <tbody id="referralListBody">
-            <tr><td colspan="2" style="text-align:center; color:#6b7a73;">No referrals yet.</td></tr>
-          </tbody>
+          <thead><tr><th>Member Email</th><th>Status</th></tr></thead>
+          <tbody id="referralListBody"><tr><td colspan="2" style="text-align:center; color:#6b7a73;">No referrals yet.</td></tr></tbody>
         </table>
       </div>
     </div>
@@ -463,7 +474,6 @@
         <button class="nav-btn" id="tabAbout" onclick="switchInfoTab('about')">About</button>
         <button class="nav-btn" id="tabContact" onclick="switchInfoTab('contact')">Contact</button>
       </div>
-
       <div id="infoTerms" class="card">
         <h2>📜 Terms & Conditions</h2>
         <div class="text-content">
@@ -482,7 +492,6 @@
           <p>Earn 10 rupees per referral once they deposit 100+ coins. Daily bonus of 1-2 coins is available every 24 hours.</p>
         </div>
       </div>
-
       <div id="infoAbout" class="card hidden">
         <h2>ℹ️ About Us</h2>
         <div class="text-content">
@@ -491,7 +500,6 @@
           <p>Available for users in Pakistan and India.</p>
         </div>
       </div>
-
       <div id="infoContact" class="card hidden">
         <h2>📞 Contact Support</h2>
         <p style="font-size:13px; margin-bottom:20px;">Have an issue? Send us a message.</p>
@@ -506,6 +514,17 @@
       </div>
     </div>
 
+  </div>
+</div>
+
+<!-- MAILBOX MODAL -->
+<div class="modal-overlay" id="mailboxModal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeMailbox()">×</span>
+    <h2 style="color:#00ff88; margin-bottom:20px;">📬 Your Mailbox</h2>
+    <div id="mailList">
+      <p style="text-align:center; color:#6b7a73;">Loading messages...</p>
+    </div>
   </div>
 </div>
 
@@ -637,7 +656,6 @@ async function loadData() {
     document.getElementById('profileAvatarInitial').textContent = initial;
   }
 
-  // Profile Fields Update
   document.getElementById('profileName').value = data?.full_name || '';
   document.getElementById('profilePhone').value = data?.phone_number || '';
   document.getElementById('profileEmail').value = currentUser.email || '';
@@ -667,10 +685,10 @@ async function loadData() {
     spinBtn.textContent = "COME BACK TOMORROW";
   }
 
-  // Load Histories
   await loadDepositHistory();
   await loadWithdrawHistory();
   await loadReferrals();
+  await checkMailbox();
 }
 
 async function loadDepositHistory() {
@@ -684,11 +702,7 @@ async function loadDepositHistory() {
   data.forEach(d => {
     const date = new Date(d.created_at).toLocaleDateString();
     const statusClass = d.status === 'approved' ? 'status-approved' : 'status-pending';
-    tbody.innerHTML += `<tr>
-      <td>${date}</td>
-      <td>${d.amount}</td>
-      <td><span class="status-badge ${statusClass}">${d.status}</span></td>
-    </tr>`;
+    tbody.innerHTML += `<tr><td>${date}</td><td>${d.amount}</td><td><span class="status-badge ${statusClass}">${d.status}</span></td></tr>`;
   });
 }
 
@@ -703,11 +717,7 @@ async function loadWithdrawHistory() {
   data.forEach(d => {
     const date = new Date(d.created_at).toLocaleDateString();
     const statusClass = d.status === 'approved' ? 'status-approved' : 'status-pending';
-    tbody.innerHTML += `<tr>
-      <td>${date}</td>
-      <td>${d.amount}</td>
-      <td><span class="status-badge ${statusClass}">${d.status}</span></td>
-    </tr>`;
+    tbody.innerHTML += `<tr><td>${date}</td><td>${d.amount}</td><td><span class="status-badge ${statusClass}">${d.status}</span></td></tr>`;
   });
 }
 
@@ -722,78 +732,178 @@ async function loadReferrals() {
   data.forEach(d => {
     const status = d.referral_bonus_paid ? 'Earned 10₹' : 'Pending 100 Deposit';
     const statusClass = d.referral_bonus_paid ? 'status-approved' : 'status-pending';
-    tbody.innerHTML += `<tr>
-      <td>${d.email}</td>
-      <td><span class="status-badge ${statusClass}">${status}</span></td>
-    </tr>`;
+    tbody.innerHTML += `<tr><td>${d.email}</td><td><span class="status-badge ${statusClass}">${status}</span></td></tr>`;
   });
 }
 
-// PROFILE DROPDOWN
-window.toggleProfileMenu = function() {
-  document.getElementById('profileDropdown').classList.toggle('active');
+// MAILBOX FUNCTIONS
+async function checkMailbox() {
+  const { data } = await supabase.from('mailbox').select('*').eq('user_id', currentUser.id).eq('is_read', false);
+  if (data && data.length > 0) {
+    document.getElementById('mailboxBadge').textContent = data.length;
+    document.getElementById('mailboxBadge').classList.remove('hidden');
+  } else {
+    document.getElementById('mailboxBadge').classList.add('hidden');
+  }
 }
 
+window.openMailbox = async function() {
+  document.getElementById('mailboxModal').classList.add('active');
+  const list = document.getElementById('mailList');
+  list.innerHTML = 'Loading...';
+  
+  const { data } = await supabase.from('mailbox').select('*').eq('user_id', currentUser.id).order('created_at', { ascending: false });
+  if (!data || data.length === 0) {
+    list.innerHTML = '<p style="text-align:center; color:#6b7a73;">No messages yet.</p>';
+    return;
+  }
+  
+  list.innerHTML = '';
+  data.forEach(m => {
+    const date = new Date(m.created_at).toLocaleString();
+    list.innerHTML += `
+      <div class="mail-item">
+        <h4>${m.subject}</h4>
+        <p>${m.message}</p>
+        <small>${date}</small>
+      </div>
+    `;
+  });
+  
+  // Mark as read
+  await supabase.from('mailbox').update({ is_read: true }).eq('user_id', currentUser.id).eq('is_read', false);
+  document.getElementById('mailboxBadge').classList.add('hidden');
+}
+
+window.closeMailbox = function() {
+  document.getElementById('mailboxModal').classList.remove('active');
+}
+
+// WATCH AD TASK
+document.getElementById('watchAdBtn').addEventListener('click', async () => {
+  const btn = document.getElementById('watchAdBtn');
+  const timerEl = document.getElementById('adTimer');
+  btn.disabled = true;
+  timerEl.classList.remove('hidden');
+  
+  let timeLeft = 5;
+  timerEl.textContent = timeLeft;
+  
+  const interval = setInterval(async () => {
+    timeLeft--;
+    timerEl.textContent = timeLeft;
+    
+    if (timeLeft <= 0) {
+      clearInterval(interval);
+      timerEl.classList.add('hidden');
+      try {
+        // Add 2 coins to balance
+        const { error } = await supabase.rpc('claim_daily_spin', { p_amount: 2 }); // Using spin function to bypass 24h limit for tasks
+        if (error) throw error;
+        alert('🎉 Task complete! You earned 2 coins.');
+        await loadData();
+      } catch(e) {
+        alert('Error: ' + e.message);
+      }
+      btn.disabled = false;
+    }
+  }, 1000);
+});
+
+// SPIN WHEEL LOGIC (1-5 Coins)
+const spinOptions = [
+  { text: '1₹', value: 1, color: '#ff4d4d' },
+  { text: '2₹', value: 2, color: '#4d79ff' },
+  { text: '3₹', value: 3, color: '#ffc107' },
+  { text: '4₹', value: 4, color: '#00cc6a' },
+  { text: '5₹', value: 5, color: '#cc0000' }
+];
+let isSpinning = false;
+
+function initSpinWheel() {
+  const wheel = document.getElementById('spinWheel');
+  const anglePerSegment = 360 / spinOptions.length;
+  wheel.innerHTML = '';
+  spinOptions.forEach((opt, index) => {
+    const el = document.createElement('div');
+    el.className = 'spin-item';
+    el.style.background = opt.color;
+    el.style.transform = `rotate(${index * anglePerSegment}deg) skewY(${90 - anglePerSegment}deg)`;
+    el.innerHTML = `<span style="transform: skewY(-${90 - anglePerSegment}deg) rotate(${anglePerSegment/2}deg); display:inline-block;">${opt.text}</span>`;
+    wheel.appendChild(el);
+  });
+}
+initSpinWheel();
+
+async function spinWheel() {
+  if (isSpinning) return;
+  const btn = document.getElementById('spinBtn');
+  if (btn.disabled) return;
+  
+  isSpinning = true;
+  btn.disabled = true;
+  btn.textContent = 'Spinning...';
+  
+  const winnerIndex = Math.floor(Math.random() * spinOptions.length);
+  const winner = spinOptions[winnerIndex];
+  
+  const anglePerSegment = 360 / spinOptions.length;
+  const targetAngle = 3600 + (360 - (winnerIndex * anglePerSegment)) - (anglePerSegment / 2);
+  
+  const wheel = document.getElementById('spinWheel');
+  wheel.style.transform = `rotate(${targetAngle}deg)`;
+  
+  setTimeout(async () => {
+    try {
+      const { error } = await supabase.rpc('claim_daily_spin', { p_amount: winner.value });
+      if (error) throw error;
+      showMsg('spinMsg', `🎉 You won ${winner.value} coins!`, 'ok');
+      await loadData();
+    } catch (e) {
+      showMsg('spinMsg', '❌ ' + (e.message || e));
+    }
+    isSpinning = false;
+  }, 4500);
+}
+
+// OTHER FUNCTIONS (Profile, Nav, etc)
+window.toggleProfileMenu = function() { document.getElementById('profileDropdown').classList.toggle('active'); }
 document.addEventListener('click', (e) => {
   const dropdown = document.getElementById('profileDropdown');
   const avatar = document.getElementById('avatarBtn');
-  if (dropdown.classList.contains('active') && !dropdown.contains(e.target) && !avatar.contains(e.target)) {
-    dropdown.classList.remove('active');
-  }
+  if (dropdown.classList.contains('active') && !dropdown.contains(e.target) && !avatar.contains(e.target)) dropdown.classList.remove('active');
 });
-
-window.openProfilePage = function() {
-  document.getElementById('profileDropdown').classList.remove('active');
-  closeAllPages();
-  document.getElementById('profilePage').classList.add('active');
-}
-
-window.logoutUser = async function() {
-  await supabase.auth.signOut({ scope: 'local' });
-  location.reload();
-}
-
-// AVATAR UPLOAD
+window.openProfilePage = function() { document.getElementById('profileDropdown').classList.remove('active'); closeAllPages(); document.getElementById('profilePage').classList.add('active'); }
+window.logoutUser = async function() { await supabase.auth.signOut({ scope: 'local' }); location.reload(); }
 window.uploadAvatar = async function(event) {
-  const file = event.target.files[0];
-  if (!file) return;
+  const file = event.target.files[0]; if (!file) return;
   try {
     const path = `avatars/${currentUser.id}_${Date.now()}.jpg`;
-    const { error: upErr } = await supabase.storage.from('avatars').upload(path, file);
-    if (upErr) throw upErr;
+    const { error: upErr } = await supabase.storage.from('avatars').upload(path, file); if (upErr) throw upErr;
     const { data } = supabase.storage.from('avatars').getPublicUrl(path);
     await supabase.from('profiles').update({ avatar_url: data.publicUrl }).eq('id', currentUser.id);
     await loadData();
-  } catch (e) {
-    alert('Error uploading image: ' + e.message);
-  }
+  } catch (e) { alert('Error uploading image: ' + e.message); }
 }
-
-// SAVE PROFILE
 document.getElementById('saveProfileBtn').addEventListener('click', async () => {
   const btn = document.getElementById('saveProfileBtn');
   const name = document.getElementById('profileName').value.trim();
   const phone = document.getElementById('profilePhone').value.trim();
-  
   btnLoading(btn, true, 'Saving...');
   try {
     await supabase.from('profiles').update({ full_name: name, phone_number: phone }).eq('id', currentUser.id);
     showMsg('profileMsg', '✅ Profile updated successfully!', 'ok');
     await loadData();
-  } catch (e) {
-    showMsg('profileMsg', '❌ ' + e.message);
-  }
+  } catch (e) { showMsg('profileMsg', '❌ ' + e.message); }
   btnLoading(btn, false);
 });
 
-// NAVIGATION
 function closeAllPages() {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => {
       if(b.parentElement.classList.contains('nav-buttons')) b.classList.remove('active');
   });
 }
-
 document.getElementById('navDashboard').addEventListener('click', () => { closeAllPages(); document.getElementById('dashboardPage').classList.add('active'); document.getElementById('navDashboard').classList.add('active'); });
 document.getElementById('navDeposit').addEventListener('click', () => { closeAllPages(); document.getElementById('depositPage').classList.add('active'); document.getElementById('navDeposit').classList.add('active'); });
 document.getElementById('navWithdraw').addEventListener('click', () => { closeAllPages(); document.getElementById('withdrawPage').classList.add('active'); document.getElementById('navWithdraw').classList.add('active'); });
@@ -817,7 +927,6 @@ window.switchInfoTab = function(tab) {
   else if(tab === 'about') { document.getElementById('tabAbout').classList.add('active'); document.getElementById('infoAbout').classList.remove('hidden'); }
   else if(tab === 'contact') { document.getElementById('tabContact').classList.add('active'); document.getElementById('infoContact').classList.remove('hidden'); }
 }
-
 window.copyRefId = function() { navigator.clipboard.writeText(currentUser.id); alert('Referral ID Copied!'); }
 window.copyRefLink = function() { navigator.clipboard.writeText(`https://fortube.online?ref=${currentUser.id}`); alert('Link Copied!'); }
 
@@ -857,68 +966,8 @@ async function claimBonus() {
     if (error) throw error;
     showMsg('bonusMsg', `✅ You claimed ${bonusAmount} coins bonus!`, 'ok');
     await loadData();
-  } catch(e) {
-    showMsg('bonusMsg', '❌ ' + (e.message || e));
-  }
+  } catch(e) { showMsg('bonusMsg', '❌ ' + (e.message || e)); }
   btnLoading(btn, false);
-}
-
-// SPIN WHEEL LOGIC
-const spinOptions = [
-  { text: '5', value: 5, color: '#ff4d4d' },
-  { text: '10', value: 10, color: '#4d79ff' },
-  { text: '50', value: 50, color: '#ffc107' },
-  { text: '20', value: 20, color: '#00cc6a' },
-  { text: '100', value: 100, color: '#cc0000' }
-];
-let isSpinning = false;
-
-function initSpinWheel() {
-  const wheel = document.getElementById('spinWheel');
-  const anglePerSegment = 360 / spinOptions.length;
-  wheel.innerHTML = '';
-  spinOptions.forEach((opt, index) => {
-    const el = document.createElement('div');
-    el.className = 'spin-item';
-    el.style.background = opt.color;
-    el.style.transform = `rotate(${index * anglePerSegment}deg) skewY(${90 - anglePerSegment}deg)`;
-    el.innerHTML = `<span style="transform: skewY(-${90 - anglePerSegment}deg) rotate(${anglePerSegment/2}deg); display:inline-block;">${opt.text}</span>`;
-    wheel.appendChild(el);
-  });
-}
-initSpinWheel();
-
-async function spinWheel() {
-  if (isSpinning) return;
-  const btn = document.getElementById('spinBtn');
-  if (btn.disabled) return;
-  
-  isSpinning = true;
-  btn.disabled = true;
-  btn.textContent = 'Spinning...';
-  
-  // Randomly select winner
-  const winnerIndex = Math.floor(Math.random() * spinOptions.length);
-  const winner = spinOptions[winnerIndex];
-  
-  // Calculate rotation
-  const anglePerSegment = 360 / spinOptions.length;
-  const targetAngle = 3600 + (360 - (winnerIndex * anglePerSegment)) - (anglePerSegment / 2);
-  
-  const wheel = document.getElementById('spinWheel');
-  wheel.style.transform = `rotate(${targetAngle}deg)`;
-  
-  setTimeout(async () => {
-    try {
-      const { error } = await supabase.rpc('claim_daily_spin', { p_amount: winner.value });
-      if (error) throw error;
-      showMsg('spinMsg', `🎉 You won ${winner.value} coins!`, 'ok');
-      await loadData();
-    } catch (e) {
-      showMsg('spinMsg', '❌ ' + (e.message || e));
-    }
-    isSpinning = false;
-  }, 4500); // Wait for animation
 }
 
 async function submitDeposit() {
@@ -927,11 +976,9 @@ async function submitDeposit() {
   const method = document.getElementById('depMethod').value;
   const tid = document.getElementById('depTid').value.trim();
   const file = document.getElementById('depShot').files[0];
-
   if (!amount || amount < 100 || amount > 100000) return showMsg('depMsg', 'Amount must be 100-100,000');
   if (!tid) return showMsg('depMsg', 'Transaction ID required');
   if (!file) return showMsg('depMsg', 'Screenshot required');
-
   btnLoading(btn, true, 'Uploading...');
   try {
     await ensureProfile(currentUser);
@@ -943,9 +990,7 @@ async function submitDeposit() {
     if (error) throw error;
     showMsg('depMsg', '✅ Deposit submitted. Approval in 2 hours.', 'ok');
     await loadData();
-  } catch (e) {
-    showMsg('depMsg', '❌ ' + (e.message || e));
-  }
+  } catch (e) { showMsg('depMsg', '❌ ' + (e.message || e)); }
   btnLoading(btn, false);
 }
 
@@ -956,7 +1001,6 @@ async function startQuestion() {
   const btn = document.getElementById('startBtn');
   const { data: prof } = await supabase.from('profiles').select('balance').eq('id', currentUser.id).single();
   if (!prof || prof.balance < 100) return alert('Insufficient balance. Please deposit.');
-
   btnLoading(btn, true, 'Loading...');
   const { data: attempted } = await supabase.from('attempts').select('question_id').eq('user_id', currentUser.id);
   const doneIds = (attempted ?? []).map(a => a.question_id);
@@ -968,10 +1012,8 @@ async function startQuestion() {
     if (all?.length) q = all[Math.floor(Math.random() * all.length)];
   }
   if (!q) { btnLoading(btn, false); return alert('No questions available.'); }
-
   currentQ = q;
   const opts = shuffle([{ key: 'A', text: q.option_a }, { key: 'B', text: q.option_b }, { key: 'C', text: q.option_c }]);
-
   document.getElementById('qtext').textContent = q.question_text;
   const box = document.getElementById('options');
   box.innerHTML = '';
@@ -984,10 +1026,8 @@ async function startQuestion() {
     div.addEventListener('click', () => submitAnswer(o.key, 10 - t));
     box.appendChild(div);
   });
-
   document.getElementById('questionBox').classList.remove('hidden');
   btn.disabled = true;
-
   let t = 10;
   const timerEl = document.getElementById('timer');
   timerEl.textContent = t;
@@ -1003,25 +1043,20 @@ async function startQuestion() {
 async function submitAnswer(chosenKey, timeTaken) {
   clearInterval(timerInterval);
   document.querySelectorAll('.option').forEach(o => o.style.pointerEvents = 'none');
-
   try {
     const { data, error } = await supabase.functions.invoke('answer-question', {
       body: { question_id: currentQ.id, chosen_option: chosenKey, time_taken: timeTaken }
     });
-
     if (error) {
       let msg = error.message;
       if (error.context) { try { const body = await error.context.json(); if (body?.error) msg = body.error; } catch (e) {} }
       throw new Error(msg);
     }
-
     document.querySelectorAll('.option').forEach(o => {
       if (o.dataset.orig === data.correct_option) o.classList.add('correct');
       else if (o.dataset.orig === chosenKey) o.classList.add('wrong');
     });
-
     document.getElementById('balance').textContent = data.new_balance;
-
     setTimeout(() => {
       document.getElementById('questionBox').classList.add('hidden');
       document.getElementById('startBtn').disabled = false;
@@ -1043,19 +1078,14 @@ async function submitWithdrawal() {
   const acc = document.getElementById('wdAccount').value.trim();
   if (!amount || amount < 100) return showMsg('wdMsg', 'Minimum 100 coins required.');
   if (!acc) return showMsg('wdMsg', 'Account number required');
-
   btnLoading(btn, true, 'Sending...');
   try {
-    const { data, error } = await supabase.rpc('request_withdrawal', {
-      p_amount: amount, p_method: method, p_account_number: acc
-    });
+    const { data, error } = await supabase.rpc('request_withdrawal', { p_amount: amount, p_method: method, p_account_number: acc });
     if (error) throw error;
     if (data && data.error) throw new Error(data.error);
     showMsg('wdMsg', '✅ ' + (data.message || 'Request sent successfully!'), 'ok');
     await loadData();
-  } catch (e) {
-    showMsg('wdMsg', '❌ ' + (e.message || e));
-  }
+  } catch (e) { showMsg('wdMsg', '❌ ' + (e.message || e)); }
   btnLoading(btn, false);
 }
 </script>
