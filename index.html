@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Earn</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: 'Segoe UI', system-ui, Arial, sans-serif;
+    min-height: 100vh;
+    background: #fdfaf3;
+    color: #332d1a;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Motion Background */
+  .bg-layer {
+    position: fixed; inset: 0; z-index: -2;
+    background: linear-gradient(-45deg, #fdfaf3, #fff8d6, #fffdf5, #fcf5e3);
+    background-size: 400% 400%;
+    animation: gradientShift 18s ease infinite;
+  }
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .orb { position: fixed; border-radius: 50%; z-index: -1; filter: blur(70px); opacity: 0.6; pointer-events: none; }
+  .orb1 { width: 320px; height: 320px; background: radial-gradient(circle, #fceeb5, transparent 70%); top: -80px; left: -80px; animation: float1 20s ease-in-out infinite; }
+  .orb2 { width: 380px; height: 380px; background: radial-gradient(circle, #ffeaa7, transparent 70%); bottom: -120px; right: -120px; animation: float2 25s ease-in-out infinite; }
+  .orb3 { width: 260px; height: 260px; background: radial-gradient(circle, #fff4c2, transparent 70%); top: 45%; left: 55%; animation: float3 22s ease-in-out infinite; }
+  @keyframes float1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(80px, 120px) scale(1.15); } }
+  @keyframes float2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-100px, -80px) scale(1.1); } }
+  @keyframes float3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-60px, 90px) scale(0.9); } }
+
+  /* Login Screen */
+  #loginScreen { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+  .login-card {
+    width: 100%; max-width: 400px;
+    background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(230, 200, 77, 0.3); border-radius: 24px; padding: 32px 26px;
+    box-shadow: 0 25px 60px rgba(200, 180, 100, 0.2), 0 0 40px rgba(255,255,255,0.5);
+    animation: cardIn 0.6s cubic-bezier(0.16,1,0.3,1) both;
+  }
+  @keyframes cardIn { from { opacity: 0; transform: translateY(30px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  .brand { text-align: center; margin-bottom: 24px; }
+  .brand-logo { width: 64px; height: 64px; margin: 0 auto 12px; border-radius: 18px; background: linear-gradient(135deg, #f5e6a3, #e6c84d); display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 8px 24px rgba(230,200,77,0.4); animation: pulseLogo 3s ease-in-out infinite; }
+  @keyframes pulseLogo { 0%,100% { box-shadow: 0 8px 24px rgba(230,200,77,0.4); } 50% { box-shadow: 0 8px 40px rgba(230,200,77,0.7); } }
+  .brand h1 { font-size: 26px; letter-spacing: 1px; color: #332d1a; }
+  .brand p { font-size: 13px; color: #7a6e4a; margin-top: 4px; }
+
+  /* Inputs */
+  .field { position: relative; margin-bottom: 14px; }
+  .field input, .field textarea {
+    width: 100%; padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(230, 200, 77, 0.4); border-radius: 14px;
+    color: #332d1a; font-size: 15px; transition: all 0.25s ease; font-family: inherit;
+  }
+  .field textarea { resize: vertical; min-height: 100px; }
+  .field input::placeholder, .field textarea::placeholder { color: #a89d7a; }
+  .field input:focus, .field textarea:focus { outline: none; border-color: #e6c84d; background: #ffffff; box-shadow: 0 0 0 3px rgba(230, 200, 77, 0.2); }
+
+  .check { display: flex; align-items: center; gap: 10px; margin: 14px 0; font-size: 14px; color: #5c5233; cursor: pointer; }
+  .check input { width: 18px; height: 18px; accent-color: #e6c84d; cursor: pointer; }
+  .check a { color: #d4b02a; font-weight: bold; text-decoration: none; }
+
+  /* Buttons */
+  .btn { width: 100%; padding: 14px; border: none; border-radius: 14px; font-weight: 700; font-size: 15px; cursor: pointer; transition: all 0.25s cubic-bezier(0.16,1,0.3,1); letter-spacing: 0.3px; }
+  .btn-primary { background: linear-gradient(135deg, #e6c84d, #d4b02a); color: #1a1a1a; box-shadow: 0 6px 20px rgba(230, 200, 77, 0.4); }
+  .btn-primary:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(230, 200, 77, 0.6); }
+  .btn-secondary { background: #ffffff; color: #332d1a; border: 1px solid rgba(230, 200, 77, 0.5); margin-top: 10px; }
+  .btn-secondary:hover:not(:disabled) { background: #fcf9f0; transform: translateY(-2px); }
+  .btn-danger { background: linear-gradient(135deg, #eb3349, #f45c43); color: #fff; width: auto; padding: 8px 16px; font-size: 13px; }
+  .btn:active:not(:disabled) { transform: translateY(0); }
+  .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  /* Top Bar */
+  .top-bar {
+    position: sticky; top: 0; z-index: 30; display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 16px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(230, 200, 77, 0.3); animation: slideDown 0.5s ease both; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  }
+  @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+  .top-left { display: flex; align-items: center; gap: 10px; }
+  .coins-box { display: flex; align-items: center; gap: 7px; background: linear-gradient(135deg, #e6c84d, #d4b02a); color: #fff; padding: 8px 16px; border-radius: 22px; font-weight: 800; font-size: 15px; box-shadow: 0 4px 16px rgba(230, 200, 77, 0.4); animation: coinGlow 2.5s ease-in-out infinite; }
+  @keyframes coinGlow { 0%,100% { box-shadow: 0 4px 16px rgba(230, 200, 77, 0.4); } 50% { box-shadow: 0 4px 26px rgba(230, 200, 77, 0.7); } }
+  .logout-btn { background: rgba(235,51,73,0.1); border: 1px solid rgba(235,51,73,0.4); color: #d32f2f; padding: 7px 14px; border-radius: 18px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .logout-btn:hover { background: rgba(235,51,73,0.2); }
+
+  .nav-buttons { display: flex; gap: 8px; overflow-x: auto; }
+  .nav-btn { padding: 8px 14px; border-radius: 18px; border: 1px solid rgba(230, 200, 77, 0.4); background: #ffffff; color: #5c5233; font-weight: 700; font-size: 13px; cursor: pointer; transition: all 0.25s; white-space: nowrap; }
+  .nav-btn:hover { background: #fcf9f0; transform: translateY(-1px); }
+  .nav-btn.active { background: linear-gradient(135deg, #e6c84d, #d4b02a); color: #1a1a1a; border-color: transparent; }
+
+  /* Layout */
+  .container { max-width: 520px; margin: auto; padding: 16px; }
+  .card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(230, 200, 77, 0.2); border-radius: 20px; padding: 22px; margin-bottom: 16px; box-shadow: 0 10px 40px rgba(200, 180, 100, 0.1); animation: fadeUp 0.45s cubic-bezier(0.16,1,0.3,1) both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  h2 { font-size: 18px; margin-bottom: 14px; color: #332d1a; display: flex; align-items: center; gap: 8px; }
+  p { color: #7a6e4a; font-size: 14px; line-height: 1.5; }
+
+  /* Wallet Box */
+  .wallet-box { display: flex; align-items: center; gap: 14px; background: #ffffff; border: 1px solid rgba(230, 200, 77, 0.3); border-radius: 14px; padding: 14px; margin: 10px 0; transition: all 0.25s; }
+  .wallet-box:hover { border-color: rgba(230, 200, 77, 0.6); transform: translateY(-1px); }
+  .wallet-icon { width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px; color: #fff; flex-shrink: 0; }
+  .wallet-icon.jazzcash { background: linear-gradient(135deg, #ed1c24, #c8102e); box-shadow: 0 4px 14px rgba(237,28,36,0.3); }
+  .wallet-icon.sadapay { background: linear-gradient(135deg, #00b2a9, #008079); box-shadow: 0 4px 14px rgba(0,178,169,0.3); }
+  .wallet-info { flex: 1; }
+  .wallet-name { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #a89d7a; margin-bottom: 3px; }
+  .wallet-owner { font-size: 15px; font-weight: 700; color: #332d1a; }
+  .wallet-number { font-size: 14px; color: #1a1a1a; font-family: 'Courier New', monospace; letter-spacing: 0.5px; margin-top: 2px; }
+
+  .instruction { background: #fff8d6; border-left: 3px solid #e6c84d; border-radius: 10px; padding: 12px 14px; font-size: 13px; color: #5c5233; margin: 14px 0; line-height: 1.6; }
+
+  /* Form Elements */
+  input[type="number"], input[type="text"], select {
+    width: 100%; padding: 13px 15px; margin: 6px 0; background: #ffffff; border: 1px solid rgba(230, 200, 77, 0.4); border-radius: 12px; color: #332d1a; font-size: 15px; transition: all 0.25s; font-family: inherit;
+  }
+  input[type="number"]::placeholder, input[type="text"]::placeholder { color: #a89d7a; }
+  input:focus, select:focus { outline: none; border-color: #e6c84d; background: #ffffff; box-shadow: 0 0 0 3px rgba(230, 200, 77, 0.2); }
+  select option { background: #ffffff; color: #332d1a; }
+  input[type="file"] { width: 100%; padding: 11px; margin: 6px 0; background: #ffffff; border: 1px dashed rgba(230, 200, 77, 0.5); border-radius: 12px; color: #7a6e4a; font-size: 13px; cursor: pointer; }
+
+  .submit-btn { width: 100%; padding: 14px; margin-top: 8px; background: linear-gradient(135deg, #e6c84d, #d4b02a); color: #1a1a1a; border: none; border-radius: 14px; font-weight: 800; font-size: 15px; cursor: pointer; transition: all 0.25s cubic-bezier(0.16,1,0.3,1); box-shadow: 0 6px 20px rgba(230, 200, 77, 0.4); }
+  .submit-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(230, 200, 77, 0.6); }
+  .submit-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+  /* Quiz Options */
+  .option { padding: 15px 18px; margin: 9px 0; border-radius: 14px; border: 2px solid rgba(230, 200, 77, 0.3); background: #ffffff; cursor: pointer; font-size: 15px; color: #332d1a; transition: all 0.22s cubic-bezier(0.16,1,0.3,1); animation: slideIn 0.35s ease both; }
+  @keyframes slideIn { from { opacity: 0; transform: translateX(-18px); } to { opacity: 1; transform: translateX(0); } }
+  .option:hover { border-color: #e6c84d; background: #fcf9f0; transform: translateX(4px); }
+  .option.correct { background: linear-gradient(135deg, #2e7d32, #43a047); border-color: #43a047; color: #fff; animation: correctPulse 0.5s ease; }
+  @keyframes correctPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+  .option.wrong { background: linear-gradient(135deg, #c62828, #e53935); border-color: #e53935; color: #fff; animation: wrongShake 0.4s ease; }
+  @keyframes wrongShake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-7px); } 75% { transform: translateX(7px); } }
+
+  #timer { font-size: 30px; font-weight: 800; color: #d4b02a; text-align: center; margin: 10px 0; transition: all 0.3s; text-shadow: 0 0 20px rgba(230, 200, 77, 0.4); }
+  #timer.warn { color: #e53935; animation: timerPulse 0.6s infinite; }
+  @keyframes timerPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+
+  /* Messages */
+  .msg { font-size: 13px; margin-top: 10px; padding: 11px 14px; border-radius: 10px; animation: fadeUp 0.3s ease; }
+  .msg.err { background: rgba(244,67,54,0.1); color: #d32f2f; border-left: 3px solid #e53935; }
+  .msg.ok { background: rgba(76,175,80,0.1); color: #2e7d32; border-left: 3px solid #43a047; }
+
+  .hidden { display: none !important; }
+  .page { display: none; }
+  .page.active { display: block; animation: fadeUp 0.4s ease both; }
+
+  .back-btn { background: #ffffff; border: 1px solid rgba(230, 200, 77, 0.4); color: #5c5233; padding: 8px 16px; border-radius: 18px; font-size: 13px; font-weight: 600; cursor: pointer; margin-bottom: 12px; transition: all 0.2s; }
+  .back-btn:hover { background: #fcf9f0; transform: translateX(-3px); }
+
+  .user-email { font-size: 12px; color: #a89d7a; margin-bottom: 12px; text-align: center; word-break: break-all; }
+
+  /* Terms & About Text */
+  .text-content { font-size: 13px; color: #5c5233; line-height: 1.6; }
+  .text-content h3 { color: #332d1a; margin: 10px 0 5px 0; font-size: 15px; }
+  .text-content ul { padding-left: 20px; margin-bottom: 10px; }
+
+  @media (max-width: 420px) {
+    .top-bar { padding: 10px 12px; flex-direction: column; gap: 10px; }
+    .top-left { width: 100%; justify-content: space-between; }
+    .nav-buttons { width: 100%; justify-content: space-between; }
+    .nav-btn { flex: 1; text-align: center; padding: 8px 5px; }
+    .container { padding: 12px; }
+    .card { padding: 18px; border-radius: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Motion background layers -->
+<div class="bg-layer"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<!-- ============ LOGIN / SIGNUP ============ -->
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="brand">
+      <div class="brand-logo">🎯</div>
+      <h1>Quiz Earn</h1>
+      <p>Answer karein, kamaayein</p>
+    </div>
+    <div class="field">
+      <input id="email" type="email" placeholder="Email address" autocomplete="email" />
+    </div>
+    <div class="field">
+      <input id="password" type="password" placeholder="Password (min 6 characters)" autocomplete="current-password" />
+    </div>
+    <label class="check">
+      <input id="ageCheck" type="checkbox" />
+      <span>Main 10 saal se zyada hoon aur <a href="#" onclick="showTermsFromLogin(event)">Terms & Conditions</a> se agree karta hoon</span>
+    </label>
+    <button id="loginBtn" class="btn btn-primary">Login</button>
+    <button id="signupBtn" class="btn btn-secondary">Signup — Naya Account</button>
+    <div id="loginMsg" class="msg hidden"></div>
+  </div>
+</div>
+
+<!-- ============ MAIN APP ============ -->
+<div id="appScreen" class="hidden">
+  <div class="top-bar">
+    <div class="top-left">
+      <div class="coins-box">
+        <span>🪙</span>
+        <span id="balance">0</span>
+      </div>
+      <button id="logoutBtn" class="logout-btn">Logout</button>
+    </div>
+    <div class="nav-buttons">
+      <button id="navQuiz" class="nav-btn active">🎯 Quiz</button>
+      <button id="navDeposit" class="nav-btn">💰 Deposit</button>
+      <button id="navWithdraw" class="nav-btn">🏦 Withdraw</button>
+      <button id="navInfo" class="nav-btn">ℹ️ Info</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <p class="user-email">Logged in: <span id="userEmail"></span></p>
+
+    <!-- QUIZ PAGE (Default) -->
+    <div id="quizPage" class="page active">
+      <div class="card">
+        <h2>🎯 Quiz</h2>
+        <p style="font-size:13px; margin-bottom:10px;">Har baar naya question aur options shuffle honge.</p>
+        <button id="startBtn" class="submit-btn">Enable Question (100 coins)</button>
+        <div id="questionBox" class="hidden">
+          <div id="timer">10</div>
+          <h3 id="qtext" style="margin:12px 0; color:#332d1a; font-size:17px; line-height:1.5;"></h3>
+          <div id="options"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEPOSIT PAGE -->
+    <div id="depositPage" class="page">
+      <button id="backFromDeposit" class="back-btn">← Dashboard</button>
+      <div class="card">
+        <h2>💰 Deposit</h2>
+        <div class="wallet-box">
+          <div class="wallet-icon jazzcash">JC</div>
+          <div class="wallet-info">
+            <div class="wallet-name">JazzCash</div>
+            <div class="wallet-owner">Saima Batool</div>
+            <div class="wallet-number">03010975121</div>
+          </div>
+        </div>
+        <div class="wallet-box">
+          <div class="wallet-icon sadapay">SP</div>
+          <div class="wallet-info">
+            <div class="wallet-name">SadaPay</div>
+            <div class="wallet-owner">Syed Abid Hussain Shah</div>
+            <div class="wallet-number">03034538628</div>
+          </div>
+        </div>
+        <div class="instruction">
+          Is number par JazzCash ya SadaPay mein payment kar dein. Jitny paisy deposit karna chahty hain utni amount bhejein. Phir neeche form mein amount, method, Transaction ID (TID) aur screenshot daal kar submit karein. 2 hours mein approval milega.
+        </div>
+        <input id="depAmount" type="number" min="100" max="100000" placeholder="Amount (100 - 100000)" />
+        <select id="depMethod">
+          <option value="jazzcash">JazzCash</option>
+          <option value="sadapay">SadaPay</option>
+        </select>
+        <input id="depTid" type="text" placeholder="Transaction ID (TID)" />
+        <input id="depShot" type="file" accept="image/*" />
+        <button id="depBtn" class="submit-btn">Submit for Approval</button>
+        <div id="depMsg" class="msg hidden"></div>
+      </div>
+    </div>
+
+    <!-- WITHDRAW PAGE -->
+    <div id="withdrawPage" class="page">
+      <button id="backFromWithdraw" class="back-btn">← Dashboard</button>
+      <div class="card">
+        <h2>🏦 Withdrawal</h2>
+        <div class="instruction">
+          <b>Rules:</b><br>
+          1. Minimum withdrawal 100 coins hai.<br>
+          2. Aap sirf tab withdraw kar sakte hain jab aapne apne total deposit se zyada paisy kama liye hon (yani aap profit mein hon).
+        </div>
+        <input id="wdAmount" type="number" placeholder="Amount" />
+        <select id="wdMethod">
+          <option value="jazzcash">JazzCash</option>
+          <option value="sadapay">SadaPay</option>
+        </select>
+        <input id="wdAccount" type="text" placeholder="JazzCash / SadaPay Number" />
+        <button id="wdBtn" class="submit-btn">Send Request</button>
+        <div id="wdMsg" class="msg hidden"></div>
+      </div>
+    </div>
+
+    <!-- INFO PAGE (Terms, About, Contact) -->
+    <div id="infoPage" class="page">
+      <button id="backFromInfo" class="back-btn">← Dashboard</button>
+      
+      <!-- TABS for Info -->
+      <div style="display:flex; gap:8px; margin-bottom:15px;">
+        <button class="nav-btn active" id="tabTerms" onclick="switchInfoTab('terms')">Terms</button>
+        <button class="nav-btn" id="tabAbout" onclick="switchInfoTab('about')">About Us</button>
+        <button class="nav-btn" id="tabContact" onclick="switchInfoTab('contact')">Contact</button>
+      </div>
+
+      <!-- Terms Content -->
+      <div id="infoTerms" class="card">
+        <h2>📜 Terms & Conditions</h2>
+        <div class="text-content">
+          <p>Quiz Earn par account banane aur khelne se pehle in sharaait ka ghaur se mutala karein:</p>
+          <h3>1. Khelnay ki Marzi (Free Will)</h3>
+          <p>Yeh app tashreehat (entertainment) aur zehni abiyari (mental exercise) ke liye hai. Aap apni marzi se paisy deposit karte hain aur quiz khel kar unhe double karne ki koshish karte hain. Kisi bhi qism ka dabao (pressure) nahi hai.</p>
+          <h3>2. Deposit Rules</h3>
+          <ul>
+            <li>Deposit kam az kam 100 coins aur zyada se zyada 100,000 coins tak ho sakta hai.</li>
+            <li>Paisy JazzCash ya SadaPay ke zariye bheje jayen aur screenshot ke sath Transaction ID (TID) submit ki jaye.</li>
+            <li>Deposit approve hone mein 2 se 24 ghante lag sakte hain.</li>
+          </ul>
+          <h3>3. Withdrawal Rules</h3>
+          <ul>
+            <li>Withdraw kam az kam 100 coins ka ho sakta hai.</li>
+            <li>Aap sirf tab withdraw kar sakte hain jab aapka total balance aapke total deposit se zyada ho (yani aap profit mein hon).</li>
+            <li>Withdrawal requests admin ke approve karne ke baad process hongi.</li>
+          </ul>
+          <h3>4. Zimmedari</h3>
+          <p>Aap apne account ki security ke khud zimmedar hain. Password kisi ke sath share na karein. Quiz Earn kisi bhi qism ke financial nuqsan ki zimmedari nahi leta.</p>
+        </div>
+      </div>
+
+      <!-- About Content -->
+      <div id="infoAbout" class="card hidden">
+        <h2>ℹ️ About Us</h2>
+        <div class="text-content">
+          <p><b>Quiz Earn</b> ek online quiz platform hai jahan aap apne ilm (knowledge) ko test kar sakte hain aur saath hi paisay bhi kama sakte hain.</p>
+          <p>Hamara maqsad logon ko mushkil sawalon ke zariye apni sochne ki salahiyat (thinking ability) ko tez karna aur unhe inaam dena hai.</p>
+          <p>Yeh platform Pakistan aur India ke logon ke liye banaya gaya hai jahan wo general knowledge, science, history, aur literature jaise topics par apna ilm azma sakte hain.</p>
+        </div>
+      </div>
+
+      <!-- Contact Content -->
+      <div id="infoContact" class="card hidden">
+        <h2>📞 Contact Us</h2>
+        <p style="font-size:13px; margin-bottom:15px;">Koi sawal ya masla hai? Humein message bhejein, hum 24 ghante mein jawab denge.</p>
+        
+        <!-- FormSubmit form direct to email -->
+        <form action="https://formsubmit.co/syedadeen16@gmail.com" method="POST">
+          <!-- Disable Captcha -->
+          <input type="hidden" name="_captcha" value="false">
+          <!-- Redirect after submit -->
+          <input type="hidden" name="_next" value="https://your-website-url.com/index.html"> 
+          
+          <div class="field">
+            <input type="email" name="email" placeholder="Aapki Email" required />
+          </div>
+          <div class="field">
+            <input type="text" name="topic" placeholder="Topic (Maslan: Deposit Issue)" required />
+          </div>
+          <div class="field">
+            <textarea name="message" placeholder="Apna message yahan likhein..." required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+        <p style="font-size:11px; margin-top:10px; text-align:center;">Ya seedha email karein: <b>syedadeen16@gmail.com</b></p>
+      </div>
+      
+    </div>
+
+  </div>
+</div>
+
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+const SUPABASE_URL = "https://sqqvdubuvnbikigwftux.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_3s0Xk1JENESD5odir4NrFQ_Htdc_MvD";
+
+function showMsg(elId, text, type = 'err') {
+  const el = document.getElementById(elId);
+  if (!el) return;
+  el.textContent = text;
+  el.className = 'msg ' + type;
+  el.classList.remove('hidden');
+}
+
+let supabase;
+try {
+  supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+    auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, storage: window.localStorage }
+  });
+} catch (e) {
+  showMsg('loginMsg', '⚠️ Supabase client error: ' + e.message);
+  throw e;
+}
+
+let currentUser = null;
+
+function btnLoading(btn, loading, label) {
+  if (loading) {
+    btn.dataset.label = btn.textContent;
+    btn.textContent = label || 'Please wait...';
+    btn.disabled = true;
+  } else {
+    btn.textContent = btn.dataset.label || btn.textContent;
+    btn.disabled = false;
+  }
+}
+
+async function ensureProfile(user) {
+  const { error } = await supabase.from('profiles').upsert(
+    { id: user.id, email: user.email, age_confirmed: true },
+    { onConflict: 'id' }
+  );
+  if (error) throw error;
+}
+
+// ---------- SIGNUP ----------
+async function signup() {
+  const btn = document.getElementById('signupBtn');
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const ageOk = document.getElementById('ageCheck').checked;
+
+  if (!email || !password) return showMsg('loginMsg', 'Email aur password daalein');
+  if (password.length < 6) return showMsg('loginMsg', 'Password kam az kam 6 characters');
+  if (!ageOk) return showMsg('loginMsg', '10 saal se zyada hone ka checkbox aur Terms tick karein');
+
+  btnLoading(btn, true, 'Signing up...');
+  try {
+    const { data, error } = await supabase.auth.signUp({ email, password });
+    if (error) throw error;
+    if (data.user) {
+      try { await ensureProfile(data.user); } catch (e) { /* ignore */ }
+    }
+    showMsg('loginMsg', '✅ Account ban gaya. Ab Login dabaein.', 'ok');
+  } catch (e) {
+    showMsg('loginMsg', '❌ ' + (e.message || e));
+  }
+  btnLoading(btn, false);
+}
+
+// ---------- LOGIN ----------
+async function login() {
+  const btn = document.getElementById('loginBtn');
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const ageOk = document.getElementById('ageCheck').checked;
+
+  if (!email || !password) return showMsg('loginMsg', 'Email aur password daalein');
+  if (!ageOk) return showMsg('loginMsg', '10 saal se zyada hone ka checkbox aur Terms tick karein');
+
+  btnLoading(btn, true, 'Logging in...');
+  try {
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) throw error;
+    currentUser = data.user;
+    try { await ensureProfile(currentUser); } catch (e) { /* ignore */ }
+    showApp();
+  } catch (e) {
+    showMsg('loginMsg', '❌ ' + (e.message || e));
+    btnLoading(btn, false);
+  }
+}
+
+// ---------- APP SHOW ----------
+async function showApp() {
+  document.getElementById('loginScreen').classList.add('hidden');
+  document.getElementById('appScreen').classList.remove('hidden');
+  if (currentUser) {
+    document.getElementById('userEmail').textContent = currentUser.email;
+    await loadBalance();
+  }
+}
+
+async function loadBalance() {
+  if (!currentUser) return;
+  const { data } = await supabase.from('profiles').select('balance').eq('id', currentUser.id).single();
+  document.getElementById('balance').textContent = data?.balance ?? 0;
+}
+
+// ---------- NAVIGATION ----------
+function closeAllPages() {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => {
+      if(b.parentElement.classList.contains('nav-buttons')) b.classList.remove('active');
+  });
+}
+
+document.getElementById('navQuiz').addEventListener('click', () => {
+  closeAllPages();
+  document.getElementById('quizPage').classList.add('active');
+  document.getElementById('navQuiz').classList.add('active');
+});
+
+document.getElementById('navDeposit').addEventListener('click', () => {
+  closeAllPages();
+  document.getElementById('depositPage').classList.add('active');
+  document.getElementById('navDeposit').classList.add('active');
+});
+
+document.getElementById('navWithdraw').addEventListener('click', () => {
+  closeAllPages();
+  document.getElementById('withdrawPage').classList.add('active');
+  document.getElementById('navWithdraw').classList.add('active');
+});
+
+document.getElementById('navInfo').addEventListener('click', () => {
+  closeAllPages();
+  document.getElementById('infoPage').classList.add('active');
+  document.getElementById('navInfo').classList.add('active');
+  switchInfoTab('terms'); // Default tab
+});
+
+// Back Buttons
+document.getElementById('backFromDeposit').addEventListener('click', () => document.getElementById('navQuiz').click());
+document.getElementById('backFromWithdraw').addEventListener('click', () => document.getElementById('navQuiz').click());
+document.getElementById('backFromInfo').addEventListener('click', () => document.getElementById('navQuiz').click());
+
+// Info Tabs Switch
+window.switchInfoTab = function(tab) {
+  document.querySelectorAll('#infoPage .nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('infoTerms').classList.add('hidden');
+  document.getElementById('infoAbout').classList.add('hidden');
+  document.getElementById('infoContact').classList.add('hidden');
+
+  if(tab === 'terms') {
+    document.getElementById('tabTerms').classList.add('active');
+    document.getElementById('infoTerms').classList.remove('hidden');
+  } else if(tab === 'about') {
+    document.getElementById('tabAbout').classList.add('active');
+    document.getElementById('infoAbout').classList.remove('hidden');
+  } else if(tab === 'contact') {
+    document.getElementById('tabContact').classList.add('active');
+    document.getElementById('infoContact').classList.remove('hidden');
+  }
+}
+
+window.showTermsFromLogin = function(e) {
+  e.preventDefault();
+  // Just show an alert in login screen for terms (since infoPage is hidden)
+  alert("Terms & Conditions:\n\n1. Yeh platform entertainment ke liye hai.\n2. Deposit minimum 100 hai.\n3. Withdrawal tabhi hogi jab aap profit mein hon.\n4. Khelna aapki apni marzi hai.");
+}
+
+// ---------- EVENT LISTENERS ----------
+document.getElementById('loginBtn').addEventListener('click', login);
+document.getElementById('signupBtn').addEventListener('click', signup);
+document.getElementById('logoutBtn').addEventListener('click', async () => {
+  await supabase.auth.signOut({ scope: 'local' });
+  location.reload();
+});
+document.getElementById('depBtn').addEventListener('click', submitDeposit);
+document.getElementById('startBtn').addEventListener('click', startQuestion);
+document.getElementById('wdBtn').addEventListener('click', submitWithdrawal);
+
+// ---------- SESSION PERSISTENCE ----------
+supabase.auth.onAuthStateChange(async (event, session) => {
+  if (session?.user) {
+    currentUser = session.user;
+    try { await ensureProfile(currentUser); } catch (e) { /* ignore */ }
+    showApp();
+  } else {
+    currentUser = null;
+    document.getElementById('loginScreen').classList.remove('hidden');
+    document.getElementById('appScreen').classList.add('hidden');
+  }
+});
+
+(async () => {
+  try {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session?.user) {
+      currentUser = session.user;
+      try { await ensureProfile(currentUser); } catch (e) { /* ignore */ }
+      showApp();
+    }
+  } catch (e) { /* ignore */ }
+})();
+
+// ---------- DEPOSIT ----------
+async function submitDeposit() {
+  const btn = document.getElementById('depBtn');
+  const amount = Number(document.getElementById('depAmount').value);
+  const method = document.getElementById('depMethod').value;
+  const tid = document.getElementById('depTid').value.trim();
+  const file = document.getElementById('depShot').files[0];
+
+  if (!amount || amount < 100 || amount > 100000) return showMsg('depMsg', 'Amount 100 se 100000 ke darmiyan ho');
+  if (!tid) return showMsg('depMsg', 'Transaction ID daalein');
+  if (!file) return showMsg('depMsg', 'Screenshot select karein');
+
+  btnLoading(btn, true, 'Uploading...');
+  try {
+    await ensureProfile(currentUser);
+
+    const path = `${currentUser.id}/${Date.now()}_${file.name}`;
+    const { error: upErr } = await supabase.storage.from('screenshots').upload(path, file);
+    if (upErr) throw upErr;
+
+    const { data: pub } = supabase.storage.from('screenshots').getPublicUrl(path);
+
+    const { error } = await supabase.from('deposits').insert({
+      user_id: currentUser.id, amount, method,
+      transaction_id: tid, screenshot_url: pub.publicUrl
+    });
+    if (error) throw error;
+    
+    showMsg('depMsg', '✅ Deposit submit ho gaya. 2 hours mein approval milega.', 'ok');
+  } catch (e) {
+    showMsg('depMsg', '❌ ' + (e.message || e));
+  }
+  btnLoading(btn, false);
+}
+
+// ---------- QUIZ ----------
+let currentQ = null, timerInterval = null;
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+async function startQuestion() {
+  const btn = document.getElementById('startBtn');
+
+  const { data: prof } = await supabase.from('profiles').select('balance').eq('id', currentUser.id).single();
+  if (!prof || prof.balance < 100) return alert('Balance kam hai. Pehle deposit karein.');
+
+  btnLoading(btn, true, 'Loading question...');
+
+  const { data: attempted } = await supabase.from('attempts').select('question_id').eq('user_id', currentUser.id);
+  const doneIds = (attempted ?? []).map(a => a.question_id);
+
+  let q = null;
+  const { data: fresh } = await supabase.from('questions').select('*').not('id', 'in', `(${doneIds.join(',') || 0})`).limit(100);
+  if (fresh?.length) q = fresh[Math.floor(Math.random() * fresh.length)];
+  else {
+    const { data: all } = await supabase.from('questions').select('*').limit(1200);
+    if (all?.length) q = all[Math.floor(Math.random() * all.length)];
+  }
+  if (!q) { btnLoading(btn, false); return alert('Koi question nahi mila.'); }
+
+  currentQ = q;
+  const opts = shuffle([
+    { key: 'A', text: q.option_a }, { key: 'B', text: q.option_b }, { key: 'C', text: q.option_c }
+  ]);
+
+  document.getElementById('qtext').textContent = q.question_text;
+  const box = document.getElementById('options');
+  box.innerHTML = '';
+  opts.forEach((o, i) => {
+    const div = document.createElement('div');
+    div.className = 'option';
+    div.textContent = o.text;
+    div.dataset.orig = o.key;
+    div.style.animationDelay = (i * 0.08) + 's';
+    div.addEventListener('click', () => submitAnswer(o.key));
+    box.appendChild(div);
+  });
+
+  document.getElementById('questionBox').classList.remove('hidden');
+  btn.disabled = true;
+
+  let t = 10;
+  const timerEl = document.getElementById('timer');
+  timerEl.textContent = t;
+  timerEl.classList.remove('warn');
+  timerInterval = setInterval(() => {
+    t--;
+    timerEl.textContent = t;
+    if (t <= 3) timerEl.classList.add('warn');
+    if (t <= 0) { clearInterval(timerInterval); submitAnswer(null); }
+  }, 1000);
+}
+
+async function submitAnswer(chosenKey) {
+  clearInterval(timerInterval);
+  document.querySelectorAll('.option').forEach(o => o.style.pointerEvents = 'none');
+
+  try {
+    const { data, error } = await supabase.functions.invoke('answer-question', {
+      body: { question_id: currentQ.id, chosen_option: chosenKey }
+    });
+
+    if (error) {
+      let msg = error.message;
+      if (error.context) {
+        try {
+          const body = await error.context.json();
+          if (body?.error) msg = body.error;
+        } catch (e) {}
+      }
+      throw new Error(msg);
+    }
+
+    document.querySelectorAll('.option').forEach(o => {
+      if (o.dataset.orig === data.correct_option) o.classList.add('correct');
+      else if (o.dataset.orig === chosenKey) o.classList.add('wrong');
+    });
+
+    document.getElementById('balance').textContent = data.new_balance;
+
+    setTimeout(() => {
+      document.getElementById('questionBox').classList.add('hidden');
+      document.getElementById('startBtn').disabled = false;
+      currentQ = null;
+    }, 2000);
+  } catch (e) {
+    alert('Quiz error: ' + e.message + '\n\nSupabase → Edge Functions → answer-question → Logs check karein.');
+    document.getElementById('startBtn').disabled = false;
+    document.getElementById('questionBox').classList.add('hidden');
+    currentQ = null;
+  }
+}
+
+// ---------- WITHDRAWAL (RPC) ----------
+async function submitWithdrawal() {
+  const btn = document.getElementById('wdBtn');
+  const amount = Number(document.getElementById('wdAmount').value);
+  const method = document.getElementById('wdMethod').value;
+  const acc = document.getElementById('wdAccount').value.trim();
+  
+  if (!amount || amount < 100) return showMsg('wdMsg', 'Minimum withdrawal 100 coins hai.');
+  if (!acc) return showMsg('wdMsg', 'Account number daalein');
+
+  btnLoading(btn, true, 'Sending...');
+  try {
+    const { data, error } = await supabase.rpc('request_withdrawal', {
+      p_amount: amount,
+      p_method: method,
+      p_account_number: acc
+    });
+
+    if (error) throw error;
+    if (data && data.error) throw new Error(data.error);
+
+    showMsg('wdMsg', '✅ ' + (data.message || 'Withdrawal request bhej di gayi.'), 'ok');
+    await loadBalance();
+  } catch (e) {
+    showMsg('wdMsg', '❌ ' + (e.message || e));
+  }
+  btnLoading(btn, false);
+}
+</script>
+</body>
+</html>
