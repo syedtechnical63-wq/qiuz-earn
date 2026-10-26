@@ -3,10 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiz Earn - Play & Win</title>
-<meta name="description" content="Play engaging quizzes, test your knowledge, and earn rewards. Daily bonuses, referral system, and instant payouts.">
+<title>Fortube Quiz - Play, Learn & Earn Real Rewards</title>
+<meta name="description" content="Fortube Quiz is an online quiz platform where you can test your knowledge, play engaging quizzes, and earn real rewards. Daily bonuses, referral system, and instant payouts.">
+<meta name="keywords" content="Fortube Quiz, online quiz, earn money, quiz game, Pakistan quiz, India quiz, play and earn">
+
+<!-- Open Graph / Video Sharing / Social Media Meta Tags -->
+<meta property="og:title" content="Fortube Quiz - Play & Win Real Cash">
+<meta property="og:description" content="Test your knowledge, answer fast, and earn rewards. Join Fortube Quiz today!">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fortube.online/">
+<meta property="og:image" content="https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fortube Quiz - Play & Earn">
+<meta name="twitter:description" content="Answer fast, win big! Join the ultimate quiz platform.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3557/3557942.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; }
   body { font-family: 'Poppins', sans-serif; min-height: 100vh; background: #0a0a0a; color: #e0e0e0; overflow-x: hidden; position: relative; }
@@ -154,7 +174,7 @@
   <div class="login-card">
     <div class="brand">
       <div class="brand-logo">🎯</div>
-      <h1>QUIZ EARN</h1>
+      <h1>FORTUBE QUIZ</h1>
       <p>Play • Learn • Earn</p>
     </div>
     <div class="field">
@@ -345,7 +365,7 @@
       <div id="infoAbout" class="card hidden">
         <h2>ℹ️ About Us</h2>
         <div class="text-content">
-          <p><b>Quiz Earn</b> is an online quiz platform where you can test your knowledge and earn real rewards.</p>
+          <p><b>Fortube Quiz</b> is an online quiz platform where you can test your knowledge and earn real rewards.</p>
           <p>Our mission is to sharpen your thinking ability through difficult questions while rewarding you for your intellect.</p>
           <p>Available for users in Pakistan and India.</p>
         </div>
@@ -389,7 +409,6 @@ let supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
 let currentUser = null;
 let userProfile = null;
 
-// URL se Referral ID nikalne ka code
 const urlParams = new URLSearchParams(window.location.search);
 const refIdFromUrl = urlParams.get('ref');
 if (refIdFromUrl) {
@@ -482,7 +501,6 @@ async function loadData() {
   document.getElementById('balance').textContent = data?.balance ?? 0;
   document.getElementById('myReferralId').textContent = currentUser.id;
   
-  // Referral Count nikalne ke liye
   const { count } = await supabase.from('profiles').select('*', { count: 'exact', head: true }).eq('referred_by', currentUser.id);
   document.getElementById('referralCount').textContent = count || 0;
 
