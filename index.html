@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-<html lang="ur">
+<html lang="en" translate="no">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="google" content="notranslate">
 <title>Fortube Quiz - Play, Learn & Earn Real Rewards</title>
 <meta name="description" content="Fortube Quiz is an online quiz platform where you can test your knowledge, play engaging quizzes, and earn real rewards. Daily bonuses, referral system, and instant payouts.">
-<meta name="keywords" content="Fortube Quiz, online quiz, earn money, quiz game, Pakistan quiz, India quiz, play and earn">
 
-<!-- Open Graph / Video Sharing / Social Media Meta Tags -->
 <meta property="og:title" content="Fortube Quiz - Play & Win Real Cash">
 <meta property="og:description" content="Test your knowledge, answer fast, and earn rewards. Join Fortube Quiz today!">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://fortube.online/">
 <meta property="og:image" content="https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
 
-<!-- Favicon -->
+<link rel="manifest" href='data:application/manifest+json,{"name":"Fortube Quiz","short_name":"Fortube","start_url":"/","display":"standalone","background_color":"#0a0a0a","theme_color":"#00ff88","icons":[{"src":"https://cdn-icons-png.flaticon.com/512/3557/3557942.png","sizes":"512x512","type":"image/png"}]}'>
 <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3557/3557942.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,22 +22,11 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; }
-  body { font-family: 'Poppins', sans-serif; min-height: 100vh; background: #0a0a0a; color: #e0e0e0; overflow-x: hidden; position: relative; }
+  body { font-family: 'Poppins', sans-serif; min-height: 100vh; background: #0a0a0a; color: #e0e0e0; overflow-x: hidden; position: relative; user-select: none; }
   
-  /* ===== NEW ADVANCED MOTION BACKGROUND ===== */
-  .bg-layer { 
-    position: fixed; inset: 0; z-index: -3; 
-    background: linear-gradient(-45deg, #050505, #0a1a10, #0d2614, #050505); 
-    background-size: 400% 400%; 
-    animation: gradientShift 18s ease infinite; 
-  }
-  @keyframes gradientShift { 
-    0% { background-position: 0% 50%; } 
-    50% { background-position: 100% 50%; } 
-    100% { background-position: 0% 50%; } 
-  }
-
-  /* Floating glowing orbs */
+  /* Background */
+  .bg-layer { position: fixed; inset: 0; z-index: -3; background: linear-gradient(-45deg, #050505, #0a1a10, #0d2614, #050505); background-size: 400% 400%; animation: gradientShift 18s ease infinite; }
+  @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
   .orb { position: fixed; border-radius: 50%; z-index: -2; filter: blur(80px); opacity: 0.5; pointer-events: none; }
   .orb1 { width: 350px; height: 350px; background: radial-gradient(circle, #00ff88, transparent 70%); top: -100px; left: -100px; animation: float1 25s ease-in-out infinite; }
   .orb2 { width: 400px; height: 400px; background: radial-gradient(circle, #00cc6a, transparent 70%); bottom: -150px; right: -150px; animation: float2 30s ease-in-out infinite; }
@@ -47,19 +35,14 @@
   @keyframes float2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-120px, -100px) scale(1.15); } }
   @keyframes float3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-80px, 100px) scale(0.9); } }
 
-  /* Floating Symbols (Question Marks & Dollars) */
+  /* Floating Symbols */
   .floating-symbol { position: fixed; z-index: -1; color: rgba(0, 255, 136, 0.15); font-weight: bold; pointer-events: none; font-family: 'Poppins', sans-serif; }
-  .sym1 { font-size: 120px; top: 10%; left: 5%; animation: floatSym 15s linear infinite; }
-  .sym2 { font-size: 80px; top: 60%; right: 10%; animation: floatSym 20s linear infinite 2s; }
-  .sym3 { font-size: 150px; bottom: 10%; left: 20%; animation: floatSym 25s linear infinite 5s; }
-  .sym4 { font-size: 60px; top: 30%; right: 25%; animation: floatSym 18s linear infinite 1s; }
-  .sym5 { font-size: 100px; bottom: 30%; right: 5%; animation: floatSym 22s linear infinite 7s; }
-  
-  @keyframes floatSym {
-    0% { transform: translateY(0px) rotate(0deg); opacity: 0.1; }
-    50% { transform: translateY(-50px) rotate(15deg); opacity: 0.3; }
-    100% { transform: translateY(0px) rotate(0deg); opacity: 0.1; }
-  }
+  .sym1 { font-size: 120px; top: 10%; left: 5%; animation: floatSym 10s linear infinite; }
+  .sym2 { font-size: 80px; top: 60%; right: 10%; animation: floatSym 12s linear infinite 2s; }
+  .sym3 { font-size: 150px; bottom: 10%; left: 20%; animation: floatSym 14s linear infinite 5s; }
+  .sym4 { font-size: 60px; top: 30%; right: 25%; animation: floatSym 9s linear infinite 1s; }
+  .sym5 { font-size: 100px; bottom: 30%; right: 5%; animation: floatSym 11s linear infinite 7s; }
+  @keyframes floatSym { 0% { transform: translateY(0px) rotate(0deg); opacity: 0.1; } 50% { transform: translateY(-60px) rotate(15deg); opacity: 0.4; } 100% { transform: translateY(0px) rotate(0deg); opacity: 0.1; } }
 
   /* Login Screen */
   #loginScreen { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; position: relative; z-index: 10; }
@@ -94,16 +77,7 @@
   @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
   
   .top-left { display: flex; align-items: center; gap: 12px; }
-  
-  /* UPDATED COINS BOX (Rs. instead of Icon) */
-  .coins-box { 
-    display: flex; align-items: center; gap: 4px; 
-    background: linear-gradient(135deg, #00ff88, #00cc6a); 
-    color: #000; padding: 8px 16px; border-radius: 25px; 
-    font-weight: 800; font-size: 16px; 
-    box-shadow: 0 0 20px rgba(0, 255, 136, 0.4); 
-    animation: coinGlow 3s ease-in-out infinite; 
-  }
+  .coins-box { display: flex; align-items: center; gap: 4px; background: linear-gradient(135deg, #00ff88, #00cc6a); color: #000; padding: 8px 16px; border-radius: 25px; font-weight: 800; font-size: 16px; box-shadow: 0 0 20px rgba(0, 255, 136, 0.4); animation: coinGlow 3s ease-in-out infinite; }
   @keyframes coinGlow { 0%,100% { box-shadow: 0 0 20px rgba(0,255,136,0.3); } 50% { box-shadow: 0 0 35px rgba(0,255,136,0.6); } }
   
   .mailbox-btn { position: relative; background: rgba(0, 255, 136, 0.1); border: 1px solid rgba(0, 255, 136, 0.3); color: #00ff88; padding: 8px 12px; border-radius: 12px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; }
@@ -144,11 +118,8 @@
   /* Wallet */
   .wallet-box { display: flex; align-items: center; gap: 15px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(0, 255, 136, 0.15); border-radius: 15px; padding: 15px; margin: 12px 0; transition: all 0.3s; }
   .wallet-box:hover { border-color: rgba(0, 255, 136, 0.4); transform: translateY(-2px); }
-  
-  /* FIXED ICONS */
   .wallet-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; color: #fff; flex-shrink: 0; overflow: hidden; background: #fff; padding: 6px; }
   .wallet-icon img { width: 100%; height: 100%; object-fit: contain; }
-  
   .wallet-info { flex: 1; }
   .wallet-name { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #6b7a73; margin-bottom: 3px; }
   .wallet-owner { font-size: 16px; font-weight: 700; color: #fff; }
@@ -300,7 +271,6 @@
         </div>
       </div>
       
-      <!-- UPDATED: Rs. instead of Icon -->
       <div class="coins-box"><span>Rs.</span><span id="balance">0</span></div>
       
       <!-- MAILBOX BUTTON -->
@@ -401,10 +371,9 @@
       <div class="card">
         <h2>💰 Deposit Funds</h2>
         
-        <!-- UPDATED ICONS: Reliable CDN -->
         <div class="wallet-box">
           <div class="wallet-icon">
-            <img src="jazzcash_64x64.png" alt="JazzCash">
+            <img src="https://cdn-icons-png.flaticon.com/512/825/825514.png" alt="JazzCash">
           </div>
           <div class="wallet-info">
             <div class="wallet-name">JazzCash</div>
@@ -414,7 +383,7 @@
         </div>
         <div class="wallet-box">
           <div class="wallet-icon">
-            <img src="sadapay_64x64.png" alt="SadaPay">
+            <img src="https://cdn-icons-png.flaticon.com/512/6963/6963703.png" alt="SadaPay">
           </div>
           <div class="wallet-info">
             <div class="wallet-name">SadaPay</div>
@@ -676,7 +645,6 @@ async function loadData() {
   document.getElementById('balance').textContent = data?.balance ?? 0;
   document.getElementById('myReferralId').textContent = currentUser.id;
   
-  // Profile Picture Update
   if (data?.avatar_url) {
     document.getElementById('avatarImage').src = data.avatar_url;
     document.getElementById('avatarImage').classList.remove('hidden');
@@ -694,7 +662,6 @@ async function loadData() {
   document.getElementById('profilePhone').value = data?.phone_number || '';
   document.getElementById('profileEmail').value = currentUser.email || '';
 
-  // Bonus Check
   const now = new Date();
   const lastClaim = data?.last_bonus_claim ? new Date(data.last_bonus_claim) : null;
   const canClaim = !lastClaim || (now - lastClaim) > 24 * 60 * 60 * 1000;
@@ -707,7 +674,6 @@ async function loadData() {
     claimBtn.textContent = "Wait 24h";
   }
   
-  // Spin Check
   const lastSpin = data?.last_spin_claim ? new Date(data.last_spin_claim) : null;
   const canSpin = !lastSpin || (now - lastSpin) > 24 * 60 * 60 * 1000;
   const spinBtn = document.getElementById('spinBtn');
@@ -770,7 +736,6 @@ async function loadReferrals() {
   });
 }
 
-// MAILBOX FUNCTIONS
 async function checkMailbox() {
   const { data } = await supabase.from('mailbox').select('*').eq('user_id', currentUser.id).eq('is_read', false);
   if (data && data.length > 0) {
@@ -804,7 +769,6 @@ window.openMailbox = async function() {
     `;
   });
   
-  // Mark as read
   await supabase.from('mailbox').update({ is_read: true }).eq('user_id', currentUser.id).eq('is_read', false);
   document.getElementById('mailboxBadge').classList.add('hidden');
 }
@@ -813,7 +777,6 @@ window.closeMailbox = function() {
   document.getElementById('mailboxModal').classList.remove('active');
 }
 
-// SPIN WHEEL LOGIC (1-5 Coins)
 const spinOptions = [
   { text: '1', value: 1, color: '#ff4d4d' },
   { text: '2', value: 2, color: '#4d79ff' },
@@ -869,7 +832,6 @@ async function spinWheel() {
   }, 4500);
 }
 
-// OTHER FUNCTIONS
 window.toggleProfileMenu = function() { document.getElementById('profileDropdown').classList.toggle('active'); }
 document.addEventListener('click', (e) => {
   const dropdown = document.getElementById('profileDropdown');
@@ -997,13 +959,14 @@ async function submitDeposit() {
   btnLoading(btn, false);
 }
 
-let currentQ = null, timerInterval = null;
+let currentQ = null, timerInterval = null, currentTimeLeft = 10;
 function shuffle(arr) { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
 async function startQuestion() {
   const btn = document.getElementById('startBtn');
   const { data: prof } = await supabase.from('profiles').select('balance').eq('id', currentUser.id).single();
   if (!prof || prof.balance < 100) return alert('Insufficient balance. Please deposit.');
+  
   btnLoading(btn, true, 'Loading...');
   const { data: attempted } = await supabase.from('attempts').select('question_id').eq('user_id', currentUser.id);
   const doneIds = (attempted ?? []).map(a => a.question_id);
@@ -1015,60 +978,113 @@ async function startQuestion() {
     if (all?.length) q = all[Math.floor(Math.random() * all.length)];
   }
   if (!q) { btnLoading(btn, false); return alert('No questions available.'); }
+  
   currentQ = q;
-  const opts = shuffle([{ key: 'A', text: q.option_a }, { key: 'B', text: q.option_b }, { key: 'C', text: q.option_c }]);
+  document.getElementById('questionBox').classList.remove('hidden');
   document.getElementById('qtext').textContent = q.question_text;
+  
   const box = document.getElementById('options');
   box.innerHTML = '';
+  const opts = shuffle([{ key: 'A', text: q.option_a }, { key: 'B', text: q.option_b }, { key: 'C', text: q.option_c }]);
+  
   opts.forEach((o, i) => {
     const div = document.createElement('div');
     div.className = 'option';
     div.textContent = o.text;
     div.dataset.orig = o.key;
     div.style.animationDelay = (i * 0.1) + 's';
-    div.addEventListener('click', () => submitAnswer(o.key, 10 - t));
+    
+    // Answer Click Event
+    div.addEventListener('click', () => {
+      if (div.style.pointerEvents === 'none') return; // Prevent double click
+      submitAnswer(o.key, currentTimeLeft);
+    });
+    
     box.appendChild(div);
   });
-  document.getElementById('questionBox').classList.remove('hidden');
-  btn.disabled = true;
+
+  btnLoading(btn, false);
+  startCountdown();
+}
+
+function startCountdown() {
   let t = 10;
+  currentTimeLeft = 10;
   const timerEl = document.getElementById('timer');
   timerEl.textContent = t;
   timerEl.classList.remove('warn');
+  
+  clearInterval(timerInterval);
   timerInterval = setInterval(() => {
     t--;
-    timerEl.textContent = t;
-    if (t <= 3) timerEl.classList.add('warn');
-    if (t <= 0) { clearInterval(timerInterval); submitAnswer(null, 0); }
+    currentTimeLeft = t;
+    if (t >= 0) {
+      timerEl.textContent = t;
+      if (t <= 3) timerEl.classList.add('warn');
+    }
+    if (t <= 0) {
+      clearInterval(timerInterval);
+      submitAnswer(null, 0); // 0 seconds taken = Wrong
+    }
   }, 1000);
 }
 
 async function submitAnswer(chosenKey, timeTaken) {
+  // 1. INSTANTLY Stop Timer
   clearInterval(timerInterval);
+  
+  // 2. INSTANTLY Disable all clicks
   document.querySelectorAll('.option').forEach(o => o.style.pointerEvents = 'none');
+
+  // 3. Highlight clicked option instantly
+  let localIsCorrect = false;
+  document.querySelectorAll('.option').forEach(o => {
+    if (chosenKey && o.dataset.orig === chosenKey) {
+      o.classList.add('correct'); // Temporarily green (will change to red if wrong)
+    }
+  });
+
   try {
     const { data, error } = await supabase.functions.invoke('answer-question', {
       body: { question_id: currentQ.id, chosen_option: chosenKey, time_taken: timeTaken }
     });
+    
     if (error) {
       let msg = error.message;
       if (error.context) { try { const body = await error.context.json(); if (body?.error) msg = body.error; } catch (e) {} }
       throw new Error(msg);
     }
+    
+    // 4. Update UI with Server Response (Sahi ya Ghalat)
     document.querySelectorAll('.option').forEach(o => {
-      if (o.dataset.orig === data.correct_option) o.classList.add('correct');
-      else if (o.dataset.orig === chosenKey) o.classList.add('wrong');
+      // Remove temporary green if wrong
+      if (o.dataset.orig === chosenKey && o.dataset.orig !== data.correct_option) {
+        o.classList.remove('correct');
+        o.classList.add('wrong');
+      }
+      // Show correct answer
+      if (o.dataset.orig === data.correct_option) {
+        o.classList.add('correct');
+      }
     });
+    
     document.getElementById('balance').textContent = data.new_balance;
+    
+    // 5. Wait 2 seconds then reset for next question
     setTimeout(() => {
       document.getElementById('questionBox').classList.add('hidden');
-      document.getElementById('startBtn').disabled = false;
+      const startBtn = document.getElementById('startBtn');
+      startBtn.disabled = false;
+      startBtn.textContent = "Next Question (100 Coins)";
       currentQ = null;
       loadData();
     }, 2000);
+    
   } catch (e) {
     alert('Quiz error: ' + e.message);
-    document.getElementById('startBtn').disabled = false;
+    const startBtn = document.getElementById('startBtn');
+    startBtn.disabled = false;
+    startBtn.textContent = "Next Question (100 Coins)";
     document.getElementById('questionBox').classList.add('hidden');
     currentQ = null;
   }
