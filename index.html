@@ -311,7 +311,7 @@
         <p style="font-size:13px; margin-bottom:15px;">Answer faster to win more coins!</p>
         <button id="startBtn" class="submit-btn">Start Question (100 Coins)</button>
         <div id="questionBox" class="hidden">
-          <div id="timer">10</div>
+          <div id="timer">20</div>
           <h3 id="qtext" style="margin:15px 0; color:#fff; font-size:16px; line-height:1.5;"></h3>
           <div id="options"></div>
         </div>
@@ -373,7 +373,7 @@
         
         <div class="wallet-box">
           <div class="wallet-icon">
-            <img src="https://cdn-icons-png.flaticon.com/512/825/825514.png" alt="JazzCash">
+            <img src="jazzcash_64x64.png" alt="JazzCash">
           </div>
           <div class="wallet-info">
             <div class="wallet-name">JazzCash</div>
@@ -383,7 +383,7 @@
         </div>
         <div class="wallet-box">
           <div class="wallet-icon">
-            <img src="https://cdn-icons-png.flaticon.com/512/6963/6963703.png" alt="SadaPay">
+            <img src="sadapay_64x64.png" alt="SadaPay">
           </div>
           <div class="wallet-info">
             <div class="wallet-name">SadaPay</div>
@@ -959,7 +959,7 @@ async function submitDeposit() {
   btnLoading(btn, false);
 }
 
-let currentQ = null, timerInterval = null, currentTimeLeft = 10;
+let currentQ = null, timerInterval = null, currentTimeLeft = 20;
 function shuffle(arr) { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
 async function startQuestion() {
@@ -1008,8 +1008,8 @@ async function startQuestion() {
 }
 
 function startCountdown() {
-  let t = 10;
-  currentTimeLeft = 10;
+  let t = 20;
+  currentTimeLeft = 20;
   const timerEl = document.getElementById('timer');
   timerEl.textContent = t;
   timerEl.classList.remove('warn');
