@@ -247,7 +247,7 @@
       </div>
       <label class="check">
         <input id="ageCheck" type="checkbox" />
-        <span>I am 10+ years old & agree to the <a href="#" onclick="alert('Terms:\n1. Play at your own risk.\n2. Deposit min 100.\n3. Withdraw after solving 10 questions & in profit.\n4. Referral bonus paid after 100 deposit.')">Terms & Conditions</a></span>
+        <span>I am 10+ years old & agree to the <a href="#" onclick="alert('Terms:\n1. Play at your own risk.\n2. Deposit min 100.\n3. Withdraw after solving 20 questions & in profit.\n4. Referral bonus paid after 100 deposit.')">Terms & Conditions</a></span>
       </label>
       <button id="loginBtn" class="btn btn-primary">Login</button>
       <button id="signupBtn" class="btn btn-secondary">Sign Up (New Account)</button>
@@ -470,7 +470,7 @@
         <div class="instruction" style="border-left-color:#ff3c3c; background:rgba(255,60,60,0.1);">
           <b>Rules:</b><br>
           1. Minimum withdrawal: 100 Coins<br>
-          2. Solve at least 10 questions after your last deposit.<br>
+          2. Solve at least 20 questions after your last deposit.<br>
           3. You must be in profit (Balance > Total Deposit).
         </div>
         <input id="wdAmount" type="number" placeholder="Amount" />
@@ -536,7 +536,7 @@
           <h3>3. Withdrawal Rules</h3>
           <ul>
             <li>Minimum withdrawal is 100 coins.</li>
-            <li>You must solve at least 10 questions after your last deposit.</li>
+            <li>You must solve at least 20 questions after your last deposit.</li>
             <li>You can only withdraw if your balance is greater than your total deposit.</li>
             <li>After withdrawal, you must deposit again to unlock the next withdrawal.</li>
           </ul>
@@ -985,7 +985,11 @@ async function spinWheel() {
       const { error } = await supabase.rpc('claim_daily_spin', { p_amount: winner.value });
       if (error) throw error;
       showMsg('spinMsg', `🎉 You won Rs. ${winner.value}!`, 'ok');
+      
+      // === YEH NAYI LINE HAI: Balance foran update karne ke liye ===
       await loadData();
+      document.getElementById('balance').textContent = userProfile.balance;
+
     } catch (e) {
       showMsg('spinMsg', '❌ ' + (e.message || e));
     }
