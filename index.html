@@ -36,13 +36,13 @@
   @keyframes float2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-120px, -100px) scale(1.15); } }
   @keyframes float3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-80px, 100px) scale(0.9); } }
 
-  /* Dollar & Question Mark Rain */
+  /* Dollar & Question Mark Rain (Slow and Large) */
   .rain-container { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
-  .rain-symbol { position: absolute; top: -50px; color: rgba(0, 255, 136, 0.25); font-weight: 800; font-family: 'Poppins', sans-serif; animation: fall linear infinite; }
-  @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+  .rain-symbol { position: absolute; top: -100px; color: rgba(0, 255, 136, 0.15); font-weight: 800; font-family: 'Poppins', sans-serif; animation: fall linear infinite; }
+  @keyframes fall { to { transform: translateY(120vh) rotate(360deg); } }
 
   /* Login Screen */
-  #loginScreen { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; position: relative; z-index: 10; }
+  #loginScreen { min-height: 100vh; display: none; align-items: center; justify-content: center; padding: 20px; position: relative; z-index: 10; }
   .login-card { width: 100%; max-width: 420px; background: rgba(15, 25, 20, 0.85); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1px solid rgba(0, 255, 136, 0.2); border-radius: 24px; padding: 35px 28px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 0 20px rgba(0, 255, 136, 0.05); animation: cardIn 0.6s cubic-bezier(0.16,1,0.3,1) both; }
   @keyframes cardIn { from { opacity: 0; transform: translateY(30px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
   .brand { text-align: center; margin-bottom: 25px; }
@@ -225,74 +225,8 @@
 <!-- DOLLAR & QUESTION MARK RAIN -->
 <div class="rain-container" id="rainContainer"></div>
 
-<!-- LOGIN SCREEN -->
-<div id="loginScreen">
-  <div class="login-card">
-    <div class="brand">
-      <div class="brand-logo">🎯</div>
-      <h1>FORTUBE QUIZ</h1>
-      <p>Play • Learn • Earn</p>
-    </div>
-    
-    <!-- Normal Login Form -->
-    <div id="loginFormBox">
-      <div class="field">
-        <input id="email" type="email" placeholder="Email Address" autocomplete="email" />
-      </div>
-      <div class="field">
-        <input id="password" type="password" placeholder="Password" autocomplete="current-password" />
-      </div>
-      <div class="field">
-        <input id="promoCode" type="text" placeholder="Promo Code (Optional, for referrals)" />
-      </div>
-      <label class="check">
-        <input id="ageCheck" type="checkbox" />
-        <span>I am 10+ years old & agree to the <a href="#" onclick="alert('Terms:\n1. Play at your own risk.\n2. Deposit min 100.\n3. Withdraw after solving 20 questions & in profit.\n4. Referral bonus paid after 100 deposit.')">Terms & Conditions</a></span>
-      </label>
-      <button id="loginBtn" class="btn btn-primary">Login</button>
-      <button id="signupBtn" class="btn btn-secondary">Sign Up (New Account)</button>
-      
-      <!-- Google Login Button -->
-      <button id="googleLoginBtn" class="btn btn-google">
-        <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-        Continue with Google
-      </button>
-
-      <div style="text-align: center; margin-top: 15px;">
-        <a href="#" onclick="showForgotPassword()" style="color: #a0b0a8; font-size: 13px; text-decoration: none;">Forgot Password?</a>
-      </div>
-    </div>
-
-    <!-- Forgot Password Form -->
-    <div id="forgotFormBox" class="hidden">
-      <div class="field">
-        <input id="forgotEmail" type="email" placeholder="Enter your registered Email" />
-      </div>
-      <button id="sendCodeBtn" class="btn btn-primary">Send Reset Code</button>
-      
-      <!-- Reset Code and New Password (Hidden initially) -->
-      <div id="resetCodeBox" class="hidden" style="margin-top: 20px;">
-        <div class="field">
-          <input id="resetCode" type="text" placeholder="Enter Code sent to email" />
-        </div>
-        <div class="field">
-          <input id="newPassword" type="password" placeholder="New Password" />
-        </div>
-        <div class="field">
-          <input id="confirmPassword" type="password" placeholder="Confirm New Password" />
-        </div>
-        <button id="resetPassBtn" class="btn btn-primary">Reset Password</button>
-      </div>
-
-      <button class="btn btn-secondary" style="margin-top: 15px;" onclick="backToLogin()">Back to Login</button>
-      <div id="forgotMsg" class="msg hidden"></div>
-    </div>
-
-  </div>
-</div>
-
-<!-- MAIN APP (Dashboard, Quiz, etc.) -->
-<div id="appScreen" class="hidden">
+<!-- MAIN APP (Dashboard, Quiz, etc.) - Ab yeh pehle khulega -->
+<div id="appScreen">
   <!-- TOP BAR -->
   <div class="top-bar">
     <div class="top-left">
@@ -336,13 +270,13 @@
         <div class="card" style="margin-bottom:0; background: linear-gradient(135deg, rgba(0,255,136,0.1), rgba(0,0,0,0.6)); border-color: rgba(0,255,136,0.3);">
           <h2 style="color: #00ff88; font-size: 16px;">🎁 Daily Bonus</h2>
           <p style="font-size:12px; margin-bottom:10px;">Get 1-2 coins</p>
-          <button id="claimBonusBtn" class="submit-btn" style="padding:10px; font-size:14px;">Claim</button>
+          <button id="claimBonusBtn" class="submit-btn" style="padding:10px; font-size:14px;" onclick="checkLoginAndProceed('claimBonusBtn')">Claim</button>
         </div>
         
         <div class="card" style="margin-bottom:0; background: linear-gradient(135deg, rgba(255,193,7,0.1), rgba(0,0,0,0.6)); border-color: rgba(255,193,7,0.3);">
           <h2 style="color: #ffc107; font-size: 16px;">🎡 Daily Spin</h2>
           <p style="font-size:12px; margin-bottom:10px;">Win 1-5 coins</p>
-          <button id="openSpinBtn" class="submit-btn" style="padding:10px; font-size:14px; background:linear-gradient(135deg, #ffc107, #d39e00);">Spin Now</button>
+          <button id="openSpinBtn" class="submit-btn" style="padding:10px; font-size:14px; background:linear-gradient(135deg, #ffc107, #d39e00);" onclick="checkLoginAndProceed('openSpinBtn')">Spin Now</button>
         </div>
       </div>
 
@@ -529,18 +463,20 @@
       <div id="infoTerms" class="card">
         <h2>📜 Terms & Conditions</h2>
         <div class="text-content">
-          <h3>1. Play at Your Own Risk</h3>
-          <p>This platform is for entertainment and mental exercise. You deposit money voluntarily to participate in quizzes and attempt to double it.</p>
-          <h3>2. Time-Based Rewards</h3>
+          <h3>1. Maqsad (Purpose)</h3>
+          <p>Yeh platform sirf aapki knowledge (ilm) ko barhane ke liye banaya gaya hai, na ke paisy kamane ke liye. Yahan quiz khelna aapki apni marzi hai, koi pressure nahi hai.</p>
+          <h3>2. Khelnay ki Marzi (Free Will)</h3>
+          <p>Aap yahan participate kar ke earnings kar sakte hain, lekin yeh mukammal tor par aapki apni marzi hogi. Hum kisi ko majboor nahi karte.</p>
+          <h3>3. Time & Voice Rules</h3>
           <p>Answer within 20 seconds. The faster you answer, the more you win. 20s = Double, 0s (timeout) = Lose the bet amount.</p>
-          <h3>3. Withdrawal Rules</h3>
+          <h3>4. Withdrawal Rules</h3>
           <ul>
             <li>Minimum withdrawal is 100 coins.</li>
             <li>You must solve at least 20 questions after your last deposit.</li>
             <li>You can only withdraw if your balance is greater than your total deposit.</li>
             <li>After withdrawal, you must deposit again to unlock the next withdrawal.</li>
           </ul>
-          <h3>4. Referral & Bonus</h3>
+          <h3>5. Referral & Bonus</h3>
           <p>Earn 10 rupees per referral once they deposit 100+ coins. Daily bonus of 1-2 coins is available every 24 hours.</p>
         </div>
       </div>
@@ -564,6 +500,72 @@
           <button type="submit" class="submit-btn">Send Message</button>
         </form>
       </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LOGIN SCREEN (Ab yeh hidden hai, sirf tab khulega jab zaroorat ho) -->
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="brand">
+      <div class="brand-logo">🎯</div>
+      <h1>FORTUBE QUIZ</h1>
+      <p>Play • Learn • Earn</p>
+    </div>
+    
+    <!-- Normal Login Form -->
+    <div id="loginFormBox">
+      <div class="field">
+        <input id="email" type="email" placeholder="Email Address" autocomplete="email" />
+      </div>
+      <div class="field">
+        <input id="password" type="password" placeholder="Password" autocomplete="current-password" />
+      </div>
+      <div class="field">
+        <input id="promoCode" type="text" placeholder="Promo Code (Optional, for referrals)" />
+      </div>
+      <label class="check">
+        <input id="ageCheck" type="checkbox" />
+        <span>I am 10+ years old & agree to the <a href="#" onclick="alert('Terms:\n1. Play at your own risk.\n2. Deposit min 100.\n3. Withdraw after solving 20 questions & in profit.\n4. Referral bonus paid after 100 deposit.')">Terms & Conditions</a></span>
+      </label>
+      <button id="loginBtn" class="btn btn-primary">Login</button>
+      <button id="signupBtn" class="btn btn-secondary">Sign Up (New Account)</button>
+      
+      <!-- Google Login Button -->
+      <button id="googleLoginBtn" class="btn btn-google">
+        <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+        Continue with Google
+      </button>
+
+      <div style="text-align: center; margin-top: 15px;">
+        <a href="#" onclick="showForgotPassword()" style="color: #a0b0a8; font-size: 13px; text-decoration: none;">Forgot Password?</a>
+      </div>
+    </div>
+
+    <!-- Forgot Password Form -->
+    <div id="forgotFormBox" class="hidden">
+      <div class="field">
+        <input id="forgotEmail" type="email" placeholder="Enter your registered Email" />
+      </div>
+      <button id="sendCodeBtn" class="btn btn-primary">Send Reset Code</button>
+      
+      <!-- Reset Code and New Password (Hidden initially) -->
+      <div id="resetCodeBox" class="hidden" style="margin-top: 20px;">
+        <div class="field">
+          <input id="resetCode" type="text" placeholder="Enter Code sent to email" />
+        </div>
+        <div class="field">
+          <input id="newPassword" type="password" placeholder="New Password" />
+        </div>
+        <div class="field">
+          <input id="confirmPassword" type="password" placeholder="Confirm New Password" />
+        </div>
+        <button id="resetPassBtn" class="btn btn-primary">Reset Password</button>
+      </div>
+
+      <button class="btn btn-secondary" style="margin-top: 15px;" onclick="backToLogin()">Back to Login</button>
+      <div id="forgotMsg" class="msg hidden"></div>
     </div>
 
   </div>
@@ -602,26 +604,46 @@ let currentUser = null;
 let userProfile = null;
 let currentBetAmount = 100;
 
-// ===== DOLLAR RAIN EFFECT =====
+// ===== DOLLAR RAIN EFFECT (SLOW & LARGE) =====
 function createRain() {
   const container = document.getElementById('rainContainer');
   const symbols = ['$', '?', '€', '£'];
-  const totalDrops = 30;
+  const totalDrops = 20; // Kam symbols, slow effect
 
   for (let i = 0; i < totalDrops; i++) {
     const drop = document.createElement('div');
     drop.className = 'rain-symbol';
     drop.textContent = symbols[Math.floor(Math.random() * symbols.length)];
     drop.style.left = Math.random() * 100 + 'vw';
-    drop.style.fontSize = (Math.random() * 20 + 15) + 'px';
-    drop.style.animationDuration = (Math.random() * 3 + 2) + 's';
-    drop.style.animationDelay = Math.random() * 2 + 's';
+    drop.style.fontSize = (Math.random() * 40 + 30) + 'px'; // Bade icons (30px se 70px)
+    drop.style.animationDuration = (Math.random() * 8 + 6) + 's'; // Slow speed (6 se 14 sec)
+    drop.style.animationDelay = Math.random() * 5 + 's';
     container.appendChild(drop);
   }
 }
 createRain();
 
-// ===== GENERATE 10 QUIZ CARDS =====
+// ===== CHECK LOGIN & PROCEED (Views without login) =====
+window.checkLoginAndProceed = function(action) {
+  if (!currentUser) {
+    // Agar login nahi hai to login screen show karo
+    document.getElementById('appScreen').classList.add('hidden');
+    document.getElementById('loginScreen').style.display = 'flex';
+    return;
+  }
+  
+  // Agar login hai to action perform karo
+  if (action === 'claimBonusBtn') claimBonus();
+  else if (action === 'openSpinBtn') {
+    closeAllPages(); 
+    document.getElementById('spinPage').classList.add('active');
+  }
+  else if (action === 'startQuiz') {
+    // Yeh function startQuestion se handle hoga
+  }
+}
+
+// ===== GENERATE 10 QUIZ CARDS (WITH LOGIN CHECK) =====
 function generateQuizCards() {
   const grid = document.getElementById('quizCardsGrid');
   grid.innerHTML = '';
@@ -634,7 +656,16 @@ function generateQuizCards() {
       <div class="quiz-card-amount">Rs. ${bet}</div>
       <div class="quiz-card-text">Win Rs. ${bet}</div>
     `;
-    card.onclick = () => startQuestion(bet);
+    // Card click par check karein ke user logged in hai ya nahi
+    card.onclick = () => {
+      if (!currentUser) {
+        // Agar login nahi hai to login screen show karo
+        document.getElementById('appScreen').classList.add('hidden');
+        document.getElementById('loginScreen').style.display = 'flex';
+      } else {
+        startQuestion(bet);
+      }
+    };
     grid.appendChild(card);
   });
 }
@@ -771,11 +802,9 @@ document.getElementById('resetPassBtn').addEventListener('click', async () => {
   const btn = document.getElementById('resetPassBtn');
   btnLoading(btn, true, 'Resetting...');
   try {
-    // Supabase mein OTP verify karne ka function (Agar aap custom OTP use kar rahe hain to code change hoga)
     const { error } = await supabase.auth.verifyOtp({ email, token: code, type: 'recovery' });
     if (error) throw error;
     
-    // Password update
     const { error: updateErr } = await supabase.auth.updateUser({ password: newPass });
     if (updateErr) throw updateErr;
 
@@ -789,7 +818,7 @@ document.getElementById('resetPassBtn').addEventListener('click', async () => {
 
 
 async function showApp() {
-  document.getElementById('loginScreen').classList.add('hidden');
+  document.getElementById('loginScreen').style.display = 'none';
   document.getElementById('appScreen').classList.remove('hidden');
   if (currentUser) {
     document.getElementById('dropdownEmail').textContent = currentUser.email;
@@ -908,6 +937,11 @@ async function checkMailbox() {
 }
 
 window.openMailbox = async function() {
+  if (!currentUser) {
+    document.getElementById('appScreen').classList.add('hidden');
+    document.getElementById('loginScreen').style.display = 'flex';
+    return;
+  }
   document.getElementById('mailboxModal').classList.add('active');
   const list = document.getElementById('mailList');
   list.innerHTML = 'Loading...';
@@ -1036,9 +1070,18 @@ function closeAllPages() {
   });
 }
 document.getElementById('navDashboard').addEventListener('click', () => { closeAllPages(); document.getElementById('dashboardPage').classList.add('active'); document.getElementById('navDashboard').classList.add('active'); });
-document.getElementById('navDeposit').addEventListener('click', () => { closeAllPages(); document.getElementById('depositPage').classList.add('active'); document.getElementById('navDeposit').classList.add('active'); });
-document.getElementById('navWithdraw').addEventListener('click', () => { closeAllPages(); document.getElementById('withdrawPage').classList.add('active'); document.getElementById('navWithdraw').classList.add('active'); });
-document.getElementById('navReferral').addEventListener('click', () => { closeAllPages(); document.getElementById('referralPage').classList.add('active'); document.getElementById('navReferral').classList.add('active'); document.getElementById('myReferralLink').href = `https://fortube.online?ref=${currentUser.id}`; document.getElementById('myReferralLink').textContent = `https://fortube.online?ref=${currentUser.id}`; });
+document.getElementById('navDeposit').addEventListener('click', () => { 
+    if(!currentUser) { document.getElementById('appScreen').classList.add('hidden'); document.getElementById('loginScreen').style.display = 'flex'; return; }
+    closeAllPages(); document.getElementById('depositPage').classList.add('active'); document.getElementById('navDeposit').classList.add('active'); 
+});
+document.getElementById('navWithdraw').addEventListener('click', () => { 
+    if(!currentUser) { document.getElementById('appScreen').classList.add('hidden'); document.getElementById('loginScreen').style.display = 'flex'; return; }
+    closeAllPages(); document.getElementById('withdrawPage').classList.add('active'); document.getElementById('navWithdraw').classList.add('active'); 
+});
+document.getElementById('navReferral').addEventListener('click', () => { 
+    if(!currentUser) { document.getElementById('appScreen').classList.add('hidden'); document.getElementById('loginScreen').style.display = 'flex'; return; }
+    closeAllPages(); document.getElementById('referralPage').classList.add('active'); document.getElementById('navReferral').classList.add('active'); document.getElementById('myReferralLink').href = `https://fortube.online?ref=${currentUser.id}`; document.getElementById('myReferralLink').textContent = `https://fortube.online?ref=${currentUser.id}`; 
+});
 document.getElementById('navInfo').addEventListener('click', () => { closeAllPages(); document.getElementById('infoPage').classList.add('active'); document.getElementById('navInfo').classList.add('active'); switchInfoTab('terms'); });
 
 document.getElementById('backFromProfile').addEventListener('click', () => document.getElementById('navDashboard').click());
@@ -1047,7 +1090,10 @@ document.getElementById('backFromWithdraw').addEventListener('click', () => docu
 document.getElementById('backFromReferral').addEventListener('click', () => document.getElementById('navDashboard').click());
 document.getElementById('backFromInfo').addEventListener('click', () => document.getElementById('navDashboard').click());
 document.getElementById('backFromSpin').addEventListener('click', () => document.getElementById('navDashboard').click());
-document.getElementById('openSpinBtn').addEventListener('click', () => { closeAllPages(); document.getElementById('spinPage').classList.add('active'); });
+document.getElementById('openSpinBtn').addEventListener('click', () => { 
+    if(!currentUser) { document.getElementById('appScreen').classList.add('hidden'); document.getElementById('loginScreen').style.display = 'flex'; return; }
+    closeAllPages(); document.getElementById('spinPage').classList.add('active'); 
+});
 
 window.switchInfoTab = function(tab) {
   document.querySelectorAll('#infoPage .nav-btn').forEach(b => b.classList.remove('active'));
@@ -1076,7 +1122,7 @@ supabase.auth.onAuthStateChange(async (event, session) => {
     showApp();
   } else {
     currentUser = null;
-    document.getElementById('loginScreen').classList.remove('hidden');
+    document.getElementById('loginScreen').style.display = 'flex';
     document.getElementById('appScreen').classList.add('hidden');
   }
 });
@@ -1084,11 +1130,20 @@ supabase.auth.onAuthStateChange(async (event, session) => {
 (async () => {
   try {
     const { data: { session } } = await supabase.auth.getSession();
-    if (session?.user) { currentUser = session.user; try { await ensureProfile(currentUser); } catch (e) {} showApp(); }
+    if (session?.user) { 
+        currentUser = session.user; 
+        try { await ensureProfile(currentUser); } catch (e) {} 
+        showApp(); 
+    } else {
+        // Agar user login nahi hai, to dashboard show karein login screen ke bajaye
+        document.getElementById('appScreen').classList.remove('hidden');
+        document.getElementById('loginScreen').style.display = 'none';
+    }
   } catch (e) {}
 })();
 
 async function claimBonus() {
+  if (!currentUser) return;
   const btn = document.getElementById('claimBonusBtn');
   btnLoading(btn, true, 'Claiming...');
   try {
@@ -1102,6 +1157,11 @@ async function claimBonus() {
 }
 
 async function submitDeposit() {
+  if (!currentUser) {
+    document.getElementById('appScreen').classList.add('hidden');
+    document.getElementById('loginScreen').style.display = 'flex';
+    return;
+  }
   const btn = document.getElementById('depBtn');
   const amount = Number(document.getElementById('depAmount').value);
   const method = document.getElementById('depMethod').value;
@@ -1130,6 +1190,11 @@ let currentQ = null, timerInterval = null, currentTimeLeft = 20;
 function shuffle(arr) { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
 async function startQuestion(betAmount) {
+  if (!currentUser) {
+    document.getElementById('appScreen').classList.add('hidden');
+    document.getElementById('loginScreen').style.display = 'flex';
+    return;
+  }
   if (userProfile.balance < betAmount) return alert(`Insufficient balance. You need at least Rs. ${betAmount} to play this card.`);
   
   currentBetAmount = betAmount;
@@ -1244,6 +1309,11 @@ async function submitAnswer(chosenKey, timeTaken) {
 }
 
 async function submitWithdrawal() {
+  if (!currentUser) {
+    document.getElementById('appScreen').classList.add('hidden');
+    document.getElementById('loginScreen').style.display = 'flex';
+    return;
+  }
   const btn = document.getElementById('wdBtn');
   const amount = Number(document.getElementById('wdAmount').value);
   const method = document.getElementById('wdMethod').value;
