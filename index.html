@@ -173,6 +173,11 @@
   .page.active { display: block; animation: fadeUp 0.4s ease both; }
   .back-btn { background: rgba(0, 255, 136, 0.1); border: 1px solid rgba(0, 255, 136, 0.3); color: #00ff88; padding: 8px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; margin-bottom: 15px; transition: all 0.2s; }
   .back-btn:hover { background: rgba(0, 255, 136, 0.2); transform: translateX(-3px); }
+
+  /* Info Page Tab Buttons */
+  .nav-btn { background: rgba(0, 255, 136, 0.1); border: 1px solid rgba(0, 255, 136, 0.3); color: #a0b0a8; padding: 8px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: 'Poppins', sans-serif; }
+  .nav-btn:hover { border-color: #00ff88; color: #00ff88; }
+  .nav-btn.active { background: linear-gradient(135deg, #00ff88, #00cc6a); color: #000; border-color: #00ff88; }
   
   .user-email { font-size: 12px; color: #6b7a73; margin-bottom: 15px; text-align: center; word-break: break-all; }
   .text-content { font-size: 14px; color: #a0b0a8; line-height: 1.7; }
@@ -262,6 +267,7 @@
           <h2 style="color: #00ff88; font-size: 16px;">🎁 Daily Bonus</h2>
           <p style="font-size:12px; margin-bottom:10px;">Get 1-2 coins</p>
           <button id="claimBonusBtn" class="submit-btn" style="padding:10px; font-size:14px;" onclick="checkLoginAndProceed('claimBonusBtn')">Claim</button>
+          <div id="bonusMsg" class="msg hidden"></div>
         </div>
         
         <div class="card" style="margin-bottom:0; background: linear-gradient(135deg, rgba(255,193,7,0.1), rgba(0,0,0,0.6)); border-color: rgba(255,193,7,0.3);">
@@ -1080,7 +1086,7 @@ document.getElementById('saveProfileBtn').addEventListener('click', async () => 
   btnLoading(btn, false);
 });
 
-function switchPage(pageId, navId) {
+window.switchPage = function(pageId, navId) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.bottom-nav-btn').forEach(b => b.classList.remove('active'));
   
@@ -1094,7 +1100,7 @@ function switchPage(pageId, navId) {
   if (pageId === 'infoPage') {
       switchInfoTab('terms');
   }
-}
+};
 
 document.getElementById('backFromProfile').addEventListener('click', () => switchPage('dashboardPage', 'navDashboard'));
 document.getElementById('backFromDeposit').addEventListener('click', () => switchPage('dashboardPage', 'navDashboard'));
