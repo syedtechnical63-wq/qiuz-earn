@@ -23,7 +23,7 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; }
-  body { font-family: 'Poppins', sans-serif; min-height: 100vh; background: #0a0a0a; color: #e0e0e0; overflow-x: hidden; position: relative; user-select: none; }
+  body { font-family: 'Poppins', sans-serif; min-height: 100vh; background: #0a0a0a; color: #e0e0e0; overflow-x: hidden; position: relative; user-select: none; padding-bottom: 70px; }
   
   /* Background */
   .bg-layer { position: fixed; inset: 0; z-index: -3; background: linear-gradient(-45deg, #050505, #0a1a10, #0d2614, #050505); background-size: 400% 400%; animation: gradientShift 18s ease infinite; }
@@ -36,7 +36,7 @@
   @keyframes float2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-120px, -100px) scale(1.15); } }
   @keyframes float3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-80px, 100px) scale(0.9); } }
 
-  /* Dollar & Question Mark Rain (Slow and Large) */
+  /* Dollar & Question Mark Rain */
   .rain-container { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
   .rain-symbol { position: absolute; top: -100px; color: rgba(0, 255, 136, 0.15); font-weight: 800; font-family: 'Poppins', sans-serif; animation: fall linear infinite; }
   @keyframes fall { to { transform: translateY(120vh) rotate(360deg); } }
@@ -100,12 +100,12 @@
   .profile-menu-item.logout { color: #ff6b6b; border-top: 1px solid rgba(255, 60, 60, 0.1); }
   .profile-menu-item.logout:hover { background: rgba(255, 60, 60, 0.1); color: #ff3c3c; }
 
-  /* Nav Buttons */
-  .nav-buttons { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; }
-  .nav-buttons::-webkit-scrollbar { display: none; }
-  .nav-btn { padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(0, 255, 136, 0.2); background: rgba(0, 0, 0, 0.4); color: #a0b0a8; font-weight: 600; font-size: 13px; cursor: pointer; transition: all 0.25s; white-space: nowrap; }
-  .nav-btn:hover { background: rgba(0, 255, 136, 0.1); color: #00ff88; }
-  .nav-btn.active { background: #00ff88; color: #000; border-color: #00ff88; box-shadow: 0 0 15px rgba(0, 255, 136, 0.4); }
+  /* Bottom Nav */
+  .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(15, 25, 20, 0.95); backdrop-filter: blur(20px); border-top: 1px solid rgba(0, 255, 136, 0.2); display: flex; justify-content: space-around; padding: 10px 5px; z-index: 100; box-shadow: 0 -5px 20px rgba(0,0,0,0.5); }
+  .bottom-nav-btn { background: transparent; border: none; color: #a0b0a8; font-size: 11px; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; transition: all 0.3s; flex: 1; }
+  .bottom-nav-btn svg { width: 22px; height: 22px; }
+  .bottom-nav-btn.active { color: #00ff88; transform: translateY(-2px); }
+  .bottom-nav-btn.active svg { filter: drop-shadow(0 0 8px rgba(0,255,136,0.5)); }
 
   /* Layout */
   .container { max-width: 800px; margin: auto; padding: 20px; position: relative; z-index: 10; }
@@ -207,7 +207,6 @@
   @media (max-width: 480px) {
     .top-bar { padding: 10px 15px; flex-direction: column; gap: 12px; }
     .top-left { width: 100%; justify-content: space-between; }
-    .nav-buttons { width: 100%; justify-content: flex-start; padding-bottom: 5px; }
     .container { padding: 15px; }
     .card { padding: 20px; border-radius: 18px; }
     .wallet-icon { width: 45px; height: 45px; }
@@ -225,7 +224,7 @@
 <!-- DOLLAR & QUESTION MARK RAIN -->
 <div class="rain-container" id="rainContainer"></div>
 
-<!-- MAIN APP (Dashboard, Quiz, etc.) - Ab yeh pehle khulega -->
+<!-- MAIN APP (Dashboard, Quiz, etc.) -->
 <div id="appScreen">
   <!-- TOP BAR -->
   <div class="top-bar">
@@ -252,14 +251,6 @@
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
         <span id="mailboxBadge" class="mailbox-badge hidden">1</span>
       </button>
-    </div>
-    
-    <div class="nav-buttons">
-      <button id="navDashboard" class="nav-btn active">🏠 Home</button>
-      <button id="navDeposit" class="nav-btn">💰 Deposit</button>
-      <button id="navWithdraw" class="nav-btn">🏦 Withdraw</button>
-      <button id="navReferral" class="nav-btn">🎁 Refer</button>
-      <button id="navInfo" class="nav-btn">ℹ️ Info</button>
     </div>
   </div>
 
@@ -352,7 +343,7 @@
     <div id="depositPage" class="page">
       <button id="backFromDeposit" class="back-btn">← Back</button>
       <div class="card">
-        <h2>💰 Deposit Funds</h2>
+        <h2><img src="https://cdn-icons-png.flaticon.com/512/825/825514.png" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 8px;"> Deposit Funds</h2>
         
         <div class="wallet-box">
           <div class="wallet-icon">
@@ -432,6 +423,9 @@
       <div class="card">
         <h2>🎁 Refer & Earn</h2>
         <p style="font-size:14px; margin-bottom:20px;">Invite friends! When they sign up and deposit 100+ coins, you get <b>10 Rupees</b> bonus.</p>
+        
+        <button id="claimReferralBtn" class="submit-btn" style="margin-bottom: 20px; background: linear-gradient(135deg, #ffc107, #d39e00);">Claim Referral Bonus</button>
+
         <p style="font-size:12px; color:#6b7a73; margin-bottom:5px;">Your Referral ID:</p>
         <div style="background:rgba(0,0,0,0.5); padding:12px; border-radius:10px; border:1px dashed #00ff88; margin-bottom:15px; text-align:center;">
           <strong id="myReferralId" style="color:#00ff88; word-break:break-all;">Loading...</strong>
@@ -505,7 +499,7 @@
   </div>
 </div>
 
-<!-- LOGIN SCREEN (Ab yeh hidden hai, sirf tab khulega jab zaroorat ho) -->
+<!-- LOGIN SCREEN -->
 <div id="loginScreen">
   <div class="login-card">
     <div class="brand">
@@ -582,6 +576,30 @@
   </div>
 </div>
 
+<!-- BOTTOM NAVIGATION BAR -->
+<div class="bottom-nav">
+  <button id="navDashboard" class="bottom-nav-btn active" onclick="switchPage('dashboardPage', 'navDashboard')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+    Home
+  </button>
+  <button id="navReferral" class="bottom-nav-btn" onclick="checkLoginAndSwitch('referralPage', 'navReferral')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+    Refer
+  </button>
+  <button id="navDeposit" class="bottom-nav-btn" onclick="checkLoginAndSwitch('depositPage', 'navDeposit')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+    Deposit
+  </button>
+  <button id="navWithdraw" class="bottom-nav-btn" onclick="checkLoginAndSwitch('withdrawPage', 'navWithdraw')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+    Withdraw
+  </button>
+  <button id="navInfo" class="bottom-nav-btn" onclick="switchPage('infoPage', 'navInfo')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+    Info
+  </button>
+</div>
+
 <script type="module">
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
@@ -608,39 +626,40 @@ let currentBetAmount = 100;
 function createRain() {
   const container = document.getElementById('rainContainer');
   const symbols = ['$', '?', '€', '£'];
-  const totalDrops = 20; // Kam symbols, slow effect
+  const totalDrops = 20;
 
   for (let i = 0; i < totalDrops; i++) {
     const drop = document.createElement('div');
     drop.className = 'rain-symbol';
     drop.textContent = symbols[Math.floor(Math.random() * symbols.length)];
     drop.style.left = Math.random() * 100 + 'vw';
-    drop.style.fontSize = (Math.random() * 40 + 30) + 'px'; // Bade icons (30px se 70px)
-    drop.style.animationDuration = (Math.random() * 8 + 6) + 's'; // Slow speed (6 se 14 sec)
+    drop.style.fontSize = (Math.random() * 40 + 30) + 'px';
+    drop.style.animationDuration = (Math.random() * 8 + 6) + 's';
     drop.style.animationDelay = Math.random() * 5 + 's';
     container.appendChild(drop);
   }
 }
 createRain();
 
-// ===== CHECK LOGIN & PROCEED (Views without login) =====
+// ===== CHECK LOGIN & SWITCH PAGE =====
+window.checkLoginAndSwitch = function(pageId, navId) {
+  if (!currentUser) {
+    document.getElementById('appScreen').classList.add('hidden');
+    document.getElementById('loginScreen').style.display = 'flex';
+    return;
+  }
+  switchPage(pageId, navId);
+}
+
 window.checkLoginAndProceed = function(action) {
   if (!currentUser) {
-    // Agar login nahi hai to login screen show karo
     document.getElementById('appScreen').classList.add('hidden');
     document.getElementById('loginScreen').style.display = 'flex';
     return;
   }
   
-  // Agar login hai to action perform karo
   if (action === 'claimBonusBtn') claimBonus();
-  else if (action === 'openSpinBtn') {
-    closeAllPages(); 
-    document.getElementById('spinPage').classList.add('active');
-  }
-  else if (action === 'startQuiz') {
-    // Yeh function startQuestion se handle hoga
-  }
+  else if (action === 'openSpinBtn') switchPage('spinPage', null);
 }
 
 // ===== GENERATE 10 QUIZ CARDS (WITH LOGIN CHECK) =====
@@ -656,10 +675,8 @@ function generateQuizCards() {
       <div class="quiz-card-amount">Rs. ${bet}</div>
       <div class="quiz-card-text">Win Rs. ${bet}</div>
     `;
-    // Card click par check karein ke user logged in hai ya nahi
     card.onclick = () => {
       if (!currentUser) {
-        // Agar login nahi hai to login screen show karo
         document.getElementById('appScreen').classList.add('hidden');
         document.getElementById('loginScreen').style.display = 'flex';
       } else {
@@ -1038,7 +1055,7 @@ document.addEventListener('click', (e) => {
   const avatar = document.getElementById('avatarBtn');
   if (dropdown.classList.contains('active') && !dropdown.contains(e.target) && !avatar.contains(e.target)) dropdown.classList.remove('active');
 });
-window.openProfilePage = function() { document.getElementById('profileDropdown').classList.remove('active'); closeAllPages(); document.getElementById('profilePage').classList.add('active'); }
+window.openProfilePage = function() { document.getElementById('profileDropdown').classList.remove('active'); switchPage('profilePage', 'navDashboard'); }
 window.logoutUser = async function() { await supabase.auth.signOut({ scope: 'local' }); location.reload(); }
 window.uploadAvatar = async function(event) {
   const file = event.target.files[0]; if (!file) return;
@@ -1063,37 +1080,28 @@ document.getElementById('saveProfileBtn').addEventListener('click', async () => 
   btnLoading(btn, false);
 });
 
-function closeAllPages() {
+function switchPage(pageId, navId) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b => {
-      if(b.parentElement.classList.contains('nav-buttons')) b.classList.remove('active');
-  });
-}
-document.getElementById('navDashboard').addEventListener('click', () => { closeAllPages(); document.getElementById('dashboardPage').classList.add('active'); document.getElementById('navDashboard').classList.add('active'); });
-document.getElementById('navDeposit').addEventListener('click', () => { 
-    if(!currentUser) { document.getElementById('appScreen').classList.add('hidden'); document.getElementById('loginScreen').style.display = 'flex'; return; }
-    closeAllPages(); document.getElementById('depositPage').classList.add('active'); document.getElementById('navDeposit').classList.add('active'); 
-});
-document.getElementById('navWithdraw').addEventListener('click', () => { 
-    if(!currentUser) { document.getElementById('appScreen').classList.add('hidden'); document.getElementById('loginScreen').style.display = 'flex'; return; }
-    closeAllPages(); document.getElementById('withdrawPage').classList.add('active'); document.getElementById('navWithdraw').classList.add('active'); 
-});
-document.getElementById('navReferral').addEventListener('click', () => { 
-    if(!currentUser) { document.getElementById('appScreen').classList.add('hidden'); document.getElementById('loginScreen').style.display = 'flex'; return; }
-    closeAllPages(); document.getElementById('referralPage').classList.add('active'); document.getElementById('navReferral').classList.add('active'); document.getElementById('myReferralLink').href = `https://fortube.online?ref=${currentUser.id}`; document.getElementById('myReferralLink').textContent = `https://fortube.online?ref=${currentUser.id}`; 
-});
-document.getElementById('navInfo').addEventListener('click', () => { closeAllPages(); document.getElementById('infoPage').classList.add('active'); document.getElementById('navInfo').classList.add('active'); switchInfoTab('terms'); });
+  document.querySelectorAll('.bottom-nav-btn').forEach(b => b.classList.remove('active'));
+  
+  if(pageId) document.getElementById(pageId).classList.add('active');
+  if(navId) document.getElementById(navId).classList.add('active');
 
-document.getElementById('backFromProfile').addEventListener('click', () => document.getElementById('navDashboard').click());
-document.getElementById('backFromDeposit').addEventListener('click', () => document.getElementById('navDashboard').click());
-document.getElementById('backFromWithdraw').addEventListener('click', () => document.getElementById('navDashboard').click());
-document.getElementById('backFromReferral').addEventListener('click', () => document.getElementById('navDashboard').click());
-document.getElementById('backFromInfo').addEventListener('click', () => document.getElementById('navDashboard').click());
-document.getElementById('backFromSpin').addEventListener('click', () => document.getElementById('navDashboard').click());
-document.getElementById('openSpinBtn').addEventListener('click', () => { 
-    if(!currentUser) { document.getElementById('appScreen').classList.add('hidden'); document.getElementById('loginScreen').style.display = 'flex'; return; }
-    closeAllPages(); document.getElementById('spinPage').classList.add('active'); 
-});
+  if (pageId === 'referralPage' && currentUser) {
+      document.getElementById('myReferralLink').href = `https://fortube.online?ref=${currentUser.id}`;
+      document.getElementById('myReferralLink').textContent = `https://fortube.online?ref=${currentUser.id}`;
+  }
+  if (pageId === 'infoPage') {
+      switchInfoTab('terms');
+  }
+}
+
+document.getElementById('backFromProfile').addEventListener('click', () => switchPage('dashboardPage', 'navDashboard'));
+document.getElementById('backFromDeposit').addEventListener('click', () => switchPage('dashboardPage', 'navDashboard'));
+document.getElementById('backFromWithdraw').addEventListener('click', () => switchPage('dashboardPage', 'navDashboard'));
+document.getElementById('backFromReferral').addEventListener('click', () => switchPage('dashboardPage', 'navDashboard'));
+document.getElementById('backFromInfo').addEventListener('click', () => switchPage('dashboardPage', 'navDashboard'));
+document.getElementById('backFromSpin').addEventListener('click', () => switchPage('dashboardPage', 'navDashboard'));
 
 window.switchInfoTab = function(tab) {
   document.querySelectorAll('#infoPage .nav-btn').forEach(b => b.classList.remove('active'));
@@ -1135,7 +1143,6 @@ supabase.auth.onAuthStateChange(async (event, session) => {
         try { await ensureProfile(currentUser); } catch (e) {} 
         showApp(); 
     } else {
-        // Agar user login nahi hai, to dashboard show karein login screen ke bajaye
         document.getElementById('appScreen').classList.remove('hidden');
         document.getElementById('loginScreen').style.display = 'none';
     }
