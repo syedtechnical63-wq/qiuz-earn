@@ -2,238 +2,162 @@
 <html lang="en" translate="no">
 <head>
 <link rel="icon" type="image/png" href="/favicon.png">
-<link rel="icon" type="image/png" href="/favicon.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="google" content="notranslate">
 <title>Fortube Quiz</title>
-<meta name="description" content="Fortube Quiz is an online quiz platform where you can test your knowledge, play engaging quizzes, and earn real rewards. Daily bonuses, referral system, and instant payouts.">
-
-<meta property="og:title" content="Fortube Quiz - Play & Win Real Cash">
-<meta property="og:description" content="Test your knowledge, answer fast, and earn rewards. Join Fortube Quiz today!">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://fortube.online/">
-<meta property="og:image" content="https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
-
-<link rel="manifest" href='data:application/manifest+json,{"name":"Fortube Quiz","short_name":"Fortube","start_url":"/","display":"standalone","background_color":"#0a0a0a","theme_color":"#00ff88","icons":[{"src":"https://cdn-icons-png.flaticon.com/512/10409/10409373.png","sizes":"512x512","type":"image/png"}]}'>
-<!-- Favicon: Question Mark Icon -->
-<link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/10409/10409373.png">
-
+<link rel="manifest" href='data:application/manifest+json,{"name":"Fortube Quiz","short_name":"Fortube","start_url":"/","display":"standalone","background_color":"#0a0a0a","theme_color":"#00ff88"}'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { height: 100%; }
-  body { font-family: 'Poppins', sans-serif; min-height: 100vh; background: #0a0a0a; color: #e0e0e0; overflow-x: hidden; position: relative; user-select: none; padding-bottom: 70px; }
-  
-  /* Background */
-  .bg-layer { position: fixed; inset: 0; z-index: -3; background: linear-gradient(-45deg, #050505, #0a1a10, #0d2614, #050505); background-size: 400% 400%; animation: gradientShift 18s ease infinite; }
-  @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-  .orb { position: fixed; border-radius: 50%; z-index: -2; filter: blur(80px); opacity: 0.5; pointer-events: none; }
-  .orb1 { width: 350px; height: 350px; background: radial-gradient(circle, #00ff88, transparent 70%); top: -100px; left: -100px; animation: float1 25s ease-in-out infinite; }
-  .orb2 { width: 400px; height: 400px; background: radial-gradient(circle, #00cc6a, transparent 70%); bottom: -150px; right: -150px; animation: float2 30s ease-in-out infinite; }
-  .orb3 { width: 300px; height: 300px; background: radial-gradient(circle, #39ff14, transparent 70%); top: 40%; left: 50%; animation: float3 22s ease-in-out infinite; }
-  @keyframes float1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(100px, 150px) scale(1.2); } }
-  @keyframes float2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-120px, -100px) scale(1.15); } }
-  @keyframes float3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-80px, 100px) scale(0.9); } }
-
-  /* Dollar & Question Mark Rain */
-  .rain-container { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
-  .rain-symbol { position: absolute; top: -100px; color: rgba(0, 255, 136, 0.15); font-weight: 800; font-family: 'Poppins', sans-serif; animation: fall linear infinite; }
-  @keyframes fall { to { transform: translateY(120vh) rotate(360deg); } }
-
-  /* Login Screen */
-  #loginScreen { min-height: 100vh; display: none; align-items: center; justify-content: center; padding: 20px; position: relative; z-index: 10; }
-  .login-card { width: 100%; max-width: 420px; background: rgba(15, 25, 20, 0.85); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1px solid rgba(0, 255, 136, 0.2); border-radius: 24px; padding: 35px 28px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 0 20px rgba(0, 255, 136, 0.05); animation: cardIn 0.6s cubic-bezier(0.16,1,0.3,1) both; }
-  @keyframes cardIn { from { opacity: 0; transform: translateY(30px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
-  .brand { text-align: center; margin-bottom: 25px; }
-  .brand-logo { width: 70px; height: 70px; margin: 0 auto 15px; border-radius: 20px; background: linear-gradient(135deg, #00ff88, #008f4c); display: flex; align-items: center; justify-content: center; font-size: 36px; box-shadow: 0 0 25px rgba(0, 255, 136, 0.4); animation: pulseLogo 3s ease-in-out infinite; }
-  @keyframes pulseLogo { 0%,100% { box-shadow: 0 0 25px rgba(0,255,136,0.4); } 50% { box-shadow: 0 0 45px rgba(0,255,136,0.8); } }
-  .brand h1 { font-size: 28px; letter-spacing: 1px; color: #fff; text-shadow: 0 0 10px rgba(0,255,136,0.3); }
-  .brand p { font-size: 13px; color: #00ff88; margin-top: 5px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
-
-  /* Inputs */
-  .field { position: relative; margin-bottom: 15px; }
-  .field input, textarea { width: 100%; padding: 15px 18px; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(0, 255, 136, 0.3); border-radius: 14px; color: #fff; font-size: 15px; transition: all 0.3s ease; font-family: 'Poppins', sans-serif; }
-  textarea { resize: vertical; min-height: 100px; }
-  .field input::placeholder, textarea::placeholder { color: #6b7a73; }
-  .field input:focus, textarea:focus { outline: none; border-color: #00ff88; background: rgba(0, 255, 136, 0.05); box-shadow: 0 0 15px rgba(0, 255, 136, 0.2); }
-  .check { display: flex; align-items: flex-start; gap: 10px; margin: 15px 0; font-size: 13px; color: #a0b0a8; cursor: pointer; line-height: 1.4; }
-  .check input { width: 18px; height: 18px; accent-color: #00ff88; cursor: pointer; margin-top: 2px; }
-  .check a { color: #00ff88; font-weight: bold; text-decoration: none; }
-
-  /* Buttons */
-  .btn { width: 100%; padding: 15px; border: none; border-radius: 14px; font-weight: 700; font-size: 16px; cursor: pointer; transition: all 0.3s cubic-bezier(0.16,1,0.3,1); letter-spacing: 0.5px; font-family: 'Poppins', sans-serif; }
-  .btn-primary { background: linear-gradient(135deg, #00ff88, #00cc6a); color: #000; box-shadow: 0 8px 25px rgba(0, 255, 136, 0.3); }
-  .btn-primary:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(0, 255, 136, 0.5); }
-  .btn-secondary { background: transparent; color: #00ff88; border: 1px solid rgba(0, 255, 136, 0.4); margin-top: 12px; }
-  .btn-secondary:hover:not(:disabled) { background: rgba(0, 255, 136, 0.1); transform: translateY(-2px); }
-  .btn-google { background: #fff; color: #333; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-  .btn-google:hover { background: #f1f1f1; transform: translateY(-2px); }
-  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-  /* Top Bar */
-  .top-bar { position: sticky; top: 0; z-index: 30; display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0, 255, 136, 0.15); animation: slideDown 0.5s ease both; }
-  @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
-  
-  .top-left { display: flex; align-items: center; gap: 12px; }
-  .coins-box { display: flex; align-items: center; gap: 4px; background: linear-gradient(135deg, #00ff88, #00cc6a); color: #000; padding: 8px 16px; border-radius: 25px; font-weight: 800; font-size: 16px; box-shadow: 0 0 20px rgba(0, 255, 136, 0.4); animation: coinGlow 3s ease-in-out infinite; }
-  @keyframes coinGlow { 0%,100% { box-shadow: 0 0 20px rgba(0,255,136,0.3); } 50% { box-shadow: 0 0 35px rgba(0,255,136,0.6); } }
-  
-  .mailbox-btn { position: relative; background: rgba(0, 255, 136, 0.1); border: 1px solid rgba(0, 255, 136, 0.3); color: #00ff88; padding: 8px 12px; border-radius: 12px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; }
-  .mailbox-btn:hover { background: rgba(0, 255, 136, 0.2); }
-  .mailbox-badge { position: absolute; top: -5px; right: -5px; background: #ff3c3c; color: white; font-size: 10px; font-weight: bold; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-
-  /* Profile Dropdown */
-  .profile-container { position: relative; display: flex; align-items: center; }
-  .avatar-btn { width: 42px; height: 42px; border-radius: 50%; background: rgba(0, 255, 136, 0.1); border: 2px solid #00ff88; display: flex; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; transition: all 0.3s; box-shadow: 0 0 10px rgba(0,255,136,0.2); }
-  .avatar-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(0,255,136,0.5); }
-  .avatar-btn img { width: 100%; height: 100%; object-fit: cover; }
-  .avatar-btn span { font-size: 18px; font-weight: bold; color: #00ff88; }
-  
-  .profile-dropdown { position: absolute; top: 55px; left: 0; background: rgba(15, 25, 20, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(0, 255, 136, 0.3); border-radius: 15px; width: 200px; overflow: hidden; display: none; box-shadow: 0 10px 30px rgba(0,0,0,0.8); z-index: 100; }
-  .profile-dropdown.active { display: block; animation: fadeUp 0.2s ease; }
-  .profile-dropdown-header { padding: 15px; border-bottom: 1px solid rgba(0, 255, 136, 0.1); text-align: center; }
-  .profile-dropdown-header p { font-size: 12px; color: #a0b0a8; margin-bottom: 2px; }
-  .profile-dropdown-header strong { font-size: 14px; color: #00ff88; word-break: break-all; }
-  .profile-menu-item { display: flex; align-items: center; gap: 10px; padding: 12px 15px; font-size: 14px; color: #e0e0e0; cursor: pointer; transition: all 0.2s; text-decoration: none; }
-  .profile-menu-item:hover { background: rgba(0, 255, 136, 0.1); color: #00ff88; }
-  .profile-menu-item.logout { color: #ff6b6b; border-top: 1px solid rgba(255, 60, 60, 0.1); }
-  .profile-menu-item.logout:hover { background: rgba(255, 60, 60, 0.1); color: #ff3c3c; }
-
-  /* Bottom Nav */
-  .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(15, 25, 20, 0.95); backdrop-filter: blur(20px); border-top: 1px solid rgba(0, 255, 136, 0.2); display: flex; justify-content: space-around; padding: 10px 5px; z-index: 100; box-shadow: 0 -5px 20px rgba(0,0,0,0.5); }
-  .bottom-nav-btn { background: transparent; border: none; color: #a0b0a8; font-size: 11px; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; transition: all 0.3s; flex: 1; }
-  .bottom-nav-btn svg { width: 22px; height: 22px; }
-  .bottom-nav-btn.active { color: #00ff88; transform: translateY(-2px); }
-  .bottom-nav-btn.active svg { filter: drop-shadow(0 0 8px rgba(0,255,136,0.5)); }
-
-  /* Layout */
-  .container { max-width: 800px; margin: auto; padding: 20px; position: relative; z-index: 10; }
-  .card { background: rgba(15, 25, 20, 0.75); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(0, 255, 136, 0.15); border-radius: 20px; padding: 25px; margin-bottom: 20px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); animation: fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) both; }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-  h2 { font-size: 20px; margin-bottom: 15px; color: #fff; display: flex; align-items: center; gap: 10px; }
-  p { color: #a0b0a8; font-size: 14px; line-height: 1.6; }
-
-  /* Wallet */
-  .wallet-box { display: flex; align-items: center; gap: 15px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(0, 255, 136, 0.15); border-radius: 15px; padding: 15px; margin: 12px 0; transition: all 0.3s; }
-  .wallet-box:hover { border-color: rgba(0, 255, 136, 0.4); transform: translateY(-2px); }
-  .wallet-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; color: #fff; flex-shrink: 0; overflow: hidden; background: #fff; padding: 6px; }
-  .wallet-icon img { width: 100%; height: 100%; object-fit: contain; }
-  .wallet-info { flex: 1; }
-  .wallet-name { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #6b7a73; margin-bottom: 3px; }
-  .wallet-owner { font-size: 16px; font-weight: 700; color: #fff; }
-  .wallet-number { font-size: 15px; color: #00ff88; font-family: 'Courier New', monospace; letter-spacing: 1px; margin-top: 3px; font-weight: bold; }
-
-  .instruction { background: rgba(0, 255, 136, 0.05); border-left: 4px solid #00ff88; border-radius: 8px; padding: 15px; font-size: 13px; color: #a0b0a8; margin: 15px 0; line-height: 1.6; }
-
-  /* Forms */
-  input[type="number"], input[type="text"], select { width: 100%; padding: 14px 16px; margin: 8px 0; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(0, 255, 136, 0.25); border-radius: 12px; color: #fff; font-size: 15px; transition: all 0.3s; font-family: 'Poppins', sans-serif; }
-  input[type="number"]::placeholder, input[type="text"]::placeholder { color: #6b7a73; }
-  input:focus, select:focus { outline: none; border-color: #00ff88; background: rgba(0, 255, 136, 0.05); box-shadow: 0 0 15px rgba(0, 255, 136, 0.15); }
-  select option { background: #0a0a0a; color: #fff; }
-  input[type="file"] { width: 100%; padding: 12px; margin: 8px 0; background: rgba(0, 0, 0, 0.5); border: 1px dashed rgba(0, 255, 136, 0.4); border-radius: 12px; color: #a0b0a8; font-size: 13px; cursor: pointer; }
-
-  .submit-btn { width: 100%; padding: 15px; margin-top: 10px; background: linear-gradient(135deg, #00ff88, #00cc6a); color: #000; border: none; border-radius: 12px; font-weight: 800; font-size: 16px; cursor: pointer; transition: all 0.3s; box-shadow: 0 6px 20px rgba(0, 255, 136, 0.3); font-family: 'Poppins', sans-serif; }
-  .submit-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0, 255, 136, 0.5); }
-  .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-  /* Quiz Box */
-  .quiz-box { background: rgba(0,0,0,0.4); padding: 20px; border-radius: 15px; border: 1px solid rgba(0,255,136,0.2); margin-top: 20px; }
-  .option { padding: 16px 20px; margin: 10px 0; border-radius: 12px; border: 2px solid rgba(0, 255, 136, 0.2); background: rgba(0, 0, 0, 0.4); cursor: pointer; font-size: 15px; color: #fff; transition: all 0.25s; animation: slideIn 0.4s ease both; }
-  @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
-  .option:hover { border-color: #00ff88; background: rgba(0, 255, 136, 0.1); transform: translateX(5px); }
-  .option.correct { background: linear-gradient(135deg, #00cc6a, #00994d); border-color: #00cc6a; color: #fff; animation: correctPulse 0.6s ease; }
-  @keyframes correctPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.03); box-shadow: 0 0 30px rgba(0,255,136,0.5); } }
-  .option.wrong { background: linear-gradient(135deg, #cc0000, #990000); border-color: #cc0000; color: #fff; animation: wrongShake 0.5s ease; }
-  @keyframes wrongShake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
-
-  #timer { font-size: 36px; font-weight: 800; color: #00ff88; text-align: center; margin: 15px 0; transition: all 0.3s; text-shadow: 0 0 25px rgba(0, 255, 136, 0.5); }
-  #timer.warn { color: #ff3c3c; text-shadow: 0 0 25px rgba(255, 60, 60, 0.5); animation: timerPulse 0.5s infinite; }
-  @keyframes timerPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.15); } }
-
-  /* NEW 10 CARDS GRID */
-  .quiz-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-top: 20px; }
-  .quiz-card-btn {
-    background: linear-gradient(135deg, rgba(0,255,136,0.1), rgba(0,0,0,0.6));
-    border: 1px solid rgba(0,255,136,0.3);
-    border-radius: 15px; padding: 20px 10px; text-align: center; cursor: pointer;
-    transition: all 0.25s; display: flex; flex-direction: column; align-items: center; gap: 8px;
-  }
-  .quiz-card-btn:hover { border-color: #00ff88; background: rgba(0, 255, 136, 0.2); transform: translateY(-3px); box-shadow: 0 5px 20px rgba(0,255,136,0.2); }
-  .quiz-card-amount { font-size: 22px; font-weight: 800; color: #00ff88; text-shadow: 0 0 15px rgba(0,255,136,0.4); }
-  .quiz-card-text { font-size: 12px; color: #a0b0a8; font-weight: 600; }
-
-  /* Messages */
-  .msg { font-size: 13px; margin-top: 12px; padding: 12px 15px; border-radius: 10px; animation: fadeUp 0.3s ease; font-weight: 500; }
-  .msg.err { background: rgba(255, 60, 60, 0.1); color: #ff6b6b; border-left: 4px solid #ff3c3c; }
-  .msg.ok { background: rgba(0, 255, 136, 0.1); color: #00ff88; border-left: 4px solid #00ff88; }
-
-  .hidden { display: none !important; }
-  .page { display: none; }
-  .page.active { display: block; animation: fadeUp 0.4s ease both; }
-  .back-btn { background: rgba(0, 255, 136, 0.1); border: 1px solid rgba(0, 255, 136, 0.3); color: #00ff88; padding: 8px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; margin-bottom: 15px; transition: all 0.2s; }
-  .back-btn:hover { background: rgba(0, 255, 136, 0.2); transform: translateX(-3px); }
-
-  /* Info Page Tab Buttons */
-  .nav-btn { background: rgba(0, 255, 136, 0.1); border: 1px solid rgba(0, 255, 136, 0.3); color: #a0b0a8; padding: 8px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: 'Poppins', sans-serif; }
-  .nav-btn:hover { border-color: #00ff88; color: #00ff88; }
-  .nav-btn.active { background: linear-gradient(135deg, #00ff88, #00cc6a); color: #000; border-color: #00ff88; }
-  
-  .user-email { font-size: 12px; color: #6b7a73; margin-bottom: 15px; text-align: center; word-break: break-all; }
-  .text-content { font-size: 14px; color: #a0b0a8; line-height: 1.7; }
-  .text-content h3 { color: #00ff88; margin: 15px 0 8px 0; font-size: 16px; }
-  .text-content ul { padding-left: 20px; margin-bottom: 15px; }
-  .text-content li { margin-bottom: 8px; }
-
-  /* History Table */
-  .history-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
-  .history-table th { text-align: left; padding: 10px; color: #6b7a73; border-bottom: 1px solid rgba(0, 255, 136, 0.1); font-weight: 600; }
-  .history-table td { padding: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); color: #e0e0e0; }
-  .history-table tr:last-child td { border-bottom: none; }
-  .status-badge { padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
-  .status-pending { background: rgba(255, 193, 7, 0.15); color: #ffc107; }
-  .status-approved { background: rgba(0, 255, 136, 0.15); color: #00ff88; }
-
-  /* Spin Wheel */
-  .spin-container { position: relative; width: 250px; height: 250px; margin: 20px auto; border-radius: 50%; border: 5px solid #00ff88; box-shadow: 0 0 30px rgba(0, 255, 136, 0.3); overflow: hidden; transition: transform 4s cubic-bezier(0.1, 0.8, 0.1, 1); }
-  .spin-item { position: absolute; width: 50%; height: 50%; top: 0; left: 0; transform-origin: 100% 100%; border: 1px solid rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; color: #000; }
-  .spin-pointer { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent; border-top: 25px solid #ff3c3c; z-index: 10; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
-
-  /* Mailbox Modal */
-  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px); }
-  .modal-overlay.active { display: flex; }
-  .modal-content { background: #0f1914; border: 1px solid rgba(0, 255, 136, 0.3); border-radius: 20px; width: 100%; max-width: 500px; max-height: 80vh; overflow-y: auto; padding: 25px; position: relative; animation: cardIn 0.4s ease; }
-  .close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #ff6b6b; cursor: pointer; font-weight: bold; }
-  .mail-item { background: rgba(0, 255, 136, 0.05); border-left: 3px solid #00ff88; border-radius: 8px; padding: 15px; margin-bottom: 12px; }
-  .mail-item h4 { color: #00ff88; font-size: 15px; margin-bottom: 5px; }
-  .mail-item p { color: #e0e0e0; font-size: 13px; margin-bottom: 8px; }
-  .mail-item small { color: #6b7a73; font-size: 11px; }
-
-  @media (max-width: 480px) {
-    .top-bar { padding: 10px 15px; flex-direction: column; gap: 12px; }
-    .top-left { width: 100%; justify-content: space-between; }
-    .container { padding: 15px; }
-    .card { padding: 20px; border-radius: 18px; }
-    .wallet-icon { width: 45px; height: 45px; }
-    .quiz-grid { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); }
-  }
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}body{font-family:'Poppins',sans-serif;min-height:100vh;background:#0a0a0a;color:#e0e0e0;overflow-x:hidden;position:relative;user-select:none;padding-bottom:70px}
+.bg-layer{position:fixed;inset:0;z-index:-3;background:linear-gradient(-45deg,#050505,#0a1a10,#0d2614,#050505);background-size:400% 400%;animation:gradientShift 18s ease infinite}
+@keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.orb{position:fixed;border-radius:50%;z-index:-2;filter:blur(80px);opacity:.5;pointer-events:none}
+.orb1{width:350px;height:350px;background:radial-gradient(circle,#00ff88,transparent 70%);top:-100px;left:-100px;animation:float1 25s ease-in-out infinite}
+.orb2{width:400px;height:400px;background:radial-gradient(circle,#00cc6a,transparent 70%);bottom:-150px;right:-150px;animation:float2 30s ease-in-out infinite}
+.orb3{width:300px;height:300px;background:radial-gradient(circle,#39ff14,transparent 70%);top:40%;left:50%;animation:float3 22s ease-in-out infinite}
+@keyframes float1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(100px,150px) scale(1.2)}}
+@keyframes float2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-120px,-100px) scale(1.15)}}
+@keyframes float3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-80px,100px) scale(0.9)}}
+.rain-container{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.rain-symbol{position:absolute;top:-100px;color:rgba(0,255,136,.15);font-weight:800;font-family:'Poppins',sans-serif;animation:fall linear infinite}
+@keyframes fall{to{transform:translateY(120vh) rotate(360deg)}}
+#loginScreen{min-height:100vh;display:none;align-items:center;justify-content:center;padding:20px;position:relative;z-index:10}
+.login-card{width:100%;max-width:420px;background:rgba(15,25,20,.85);backdrop-filter:blur(25px);border:1px solid rgba(0,255,136,.2);border-radius:24px;padding:35px 28px;box-shadow:0 20px 50px rgba(0,0,0,.7);animation:cardIn .6s cubic-bezier(.16,1,.3,1) both}
+@keyframes cardIn{from{opacity:0;transform:translateY(30px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+.brand{text-align:center;margin-bottom:25px}
+.brand-logo{width:70px;height:70px;margin:0 auto 15px;border-radius:20px;background:linear-gradient(135deg,#00ff88,#008f4c);display:flex;align-items:center;justify-content:center;font-size:36px;box-shadow:0 0 25px rgba(0,255,136,.4);animation:pulseLogo 3s ease-in-out infinite}
+@keyframes pulseLogo{0%,100%{box-shadow:0 0 25px rgba(0,255,136,.4)}50%{box-shadow:0 0 45px rgba(0,255,136,.8)}}
+.brand h1{font-size:28px;letter-spacing:1px;color:#fff;text-shadow:0 0 10px rgba(0,255,136,.3)}
+.brand p{font-size:13px;color:#00ff88;margin-top:5px;font-weight:600;text-transform:uppercase;letter-spacing:2px}
+.field{position:relative;margin-bottom:15px}
+.field input,textarea{width:100%;padding:15px 18px;background:rgba(0,0,0,.5);border:1px solid rgba(0,255,136,.3);border-radius:14px;color:#fff;font-size:15px;transition:all .3s;font-family:'Poppins',sans-serif}
+textarea{resize:vertical;min-height:100px}
+.field input::placeholder,textarea::placeholder{color:#6b7a73}
+.field input:focus,textarea:focus{outline:none;border-color:#00ff88;background:rgba(0,255,136,.05);box-shadow:0 0 15px rgba(0,255,136,.2)}
+.check{display:flex;align-items:flex-start;gap:10px;margin:15px 0;font-size:13px;color:#a0b0a8;cursor:pointer;line-height:1.4}
+.check input{width:18px;height:18px;accent-color:#00ff88;cursor:pointer;margin-top:2px}
+.check a{color:#00ff88;font-weight:bold;text-decoration:none}
+.btn{width:100%;padding:15px;border:none;border-radius:14px;font-weight:700;font-size:16px;cursor:pointer;transition:all .3s cubic-bezier(.16,1,.3,1);letter-spacing:.5px;font-family:'Poppins',sans-serif}
+.btn-primary{background:linear-gradient(135deg,#00ff88,#00cc6a);color:#000;box-shadow:0 8px 25px rgba(0,255,136,.3)}
+.btn-primary:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 12px 35px rgba(0,255,136,.5)}
+.btn-secondary{background:transparent;color:#00ff88;border:1px solid rgba(0,255,136,.4);margin-top:12px}
+.btn-secondary:hover:not(:disabled){background:rgba(0,255,136,.1);transform:translateY(-2px)}
+.btn-google{background:#fff;color:#333;font-weight:600;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:15px;box-shadow:0 4px 15px rgba(0,0,0,.2)}
+.btn-google:hover{background:#f1f1f1;transform:translateY(-2px)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.top-bar{position:sticky;top:0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:rgba(10,10,10,.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,255,136,.15);animation:slideDown .5s ease both}
+@keyframes slideDown{from{transform:translateY(-100%)}to{transform:translateY(0)}}
+.top-left{display:flex;align-items:center;gap:12px}
+.coins-box{display:flex;align-items:center;gap:4px;background:linear-gradient(135deg,#00ff88,#00cc6a);color:#000;padding:8px 16px;border-radius:25px;font-weight:800;font-size:16px;box-shadow:0 0 20px rgba(0,255,136,.4);animation:coinGlow 3s ease-in-out infinite}
+@keyframes coinGlow{0%,100%{box-shadow:0 0 20px rgba(0,255,136,.3)}50%{box-shadow:0 0 35px rgba(0,255,136,.6)}}
+.mailbox-btn{position:relative;background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:#00ff88;padding:8px 12px;border-radius:12px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
+.mailbox-btn:hover{background:rgba(0,255,136,.2)}
+.mailbox-badge{position:absolute;top:-5px;right:-5px;background:#ff3c3c;color:#fff;font-size:10px;font-weight:bold;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.profile-container{position:relative;display:flex;align-items:center}
+.avatar-btn{width:42px;height:42px;border-radius:50%;background:rgba(0,255,136,.1);border:2px solid #00ff88;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;transition:all .3s;box-shadow:0 0 10px rgba(0,255,136,.2)}
+.avatar-btn:hover{transform:scale(1.05);box-shadow:0 0 20px rgba(0,255,136,.5)}
+.avatar-btn img{width:100%;height:100%;object-fit:cover}
+.avatar-btn span{font-size:18px;font-weight:bold;color:#00ff88}
+.profile-dropdown{position:absolute;top:55px;left:0;background:rgba(15,25,20,.95);backdrop-filter:blur(20px);border:1px solid rgba(0,255,136,.3);border-radius:15px;width:200px;overflow:hidden;display:none;box-shadow:0 10px 30px rgba(0,0,0,.8);z-index:100}
+.profile-dropdown.active{display:block;animation:fadeUp .2s ease}
+.profile-dropdown-header{padding:15px;border-bottom:1px solid rgba(0,255,136,.1);text-align:center}
+.profile-dropdown-header p{font-size:12px;color:#a0b0a8;margin-bottom:2px}
+.profile-dropdown-header strong{font-size:14px;color:#00ff88;word-break:break-all}
+.profile-menu-item{display:flex;align-items:center;gap:10px;padding:12px 15px;font-size:14px;color:#e0e0e0;cursor:pointer;transition:all .2s;text-decoration:none}
+.profile-menu-item:hover{background:rgba(0,255,136,.1);color:#00ff88}
+.profile-menu-item.logout{color:#ff6b6b;border-top:1px solid rgba(255,60,60,.1)}
+.profile-menu-item.logout:hover{background:rgba(255,60,60,.1);color:#ff3c3c}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(15,25,20,.95);backdrop-filter:blur(20px);border-top:1px solid rgba(0,255,136,.2);display:flex;justify-content:space-around;padding:10px 5px;z-index:100;box-shadow:0 -5px 20px rgba(0,0,0,.5)}
+.bottom-nav-btn{background:transparent;border:none;color:#a0b0a8;font-size:11px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;transition:all .3s;flex:1}
+.bottom-nav-btn svg{width:22px;height:22px}
+.bottom-nav-btn.active{color:#00ff88;transform:translateY(-2px)}
+.bottom-nav-btn.active svg{filter:drop-shadow(0 0 8px rgba(0,255,136,.5))}
+.container{max-width:800px;margin:auto;padding:20px;position:relative;z-index:10}
+.card{background:rgba(15,25,20,.75);backdrop-filter:blur(15px);border:1px solid rgba(0,255,136,.15);border-radius:20px;padding:25px;margin-bottom:20px;box-shadow:0 10px 40px rgba(0,0,0,.5);animation:fadeUp .5s cubic-bezier(.16,1,.3,1) both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+h2{font-size:20px;margin-bottom:15px;color:#fff;display:flex;align-items:center;gap:10px}
+p{color:#a0b0a8;font-size:14px;line-height:1.6}
+.wallet-box{display:flex;align-items:center;gap:15px;background:rgba(0,0,0,.4);border:1px solid rgba(0,255,136,.15);border-radius:15px;padding:15px;margin:12px 0;transition:all .3s}
+.wallet-box:hover{border-color:rgba(0,255,136,.4);transform:translateY(-2px)}
+.wallet-icon{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;color:#fff;flex-shrink:0;overflow:hidden;background:#fff;padding:6px}
+.wallet-icon img{width:100%;height:100%;object-fit:contain}
+.wallet-info{flex:1}
+.wallet-name{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#6b7a73;margin-bottom:3px}
+.wallet-owner{font-size:16px;font-weight:700;color:#fff}
+.wallet-number{font-size:15px;color:#00ff88;font-family:'Courier New',monospace;letter-spacing:1px;margin-top:3px;font-weight:bold}
+.instruction{background:rgba(0,255,136,.05);border-left:4px solid #00ff88;border-radius:8px;padding:15px;font-size:13px;color:#a0b0a8;margin:15px 0;line-height:1.6}
+input[type="number"],input[type="text"],select{width:100%;padding:14px 16px;margin:8px 0;background:rgba(0,0,0,.5);border:1px solid rgba(0,255,136,.25);border-radius:12px;color:#fff;font-size:15px;transition:all .3s;font-family:'Poppins',sans-serif}
+input[type="number"]::placeholder,input[type="text"]::placeholder{color:#6b7a73}
+input:focus,select:focus{outline:none;border-color:#00ff88;background:rgba(0,255,136,.05);box-shadow:0 0 15px rgba(0,255,136,.15)}
+select option{background:#0a0a0a;color:#fff}
+input[type="file"]{width:100%;padding:12px;margin:8px 0;background:rgba(0,0,0,.5);border:1px dashed rgba(0,255,136,.4);border-radius:12px;color:#a0b0a8;font-size:13px;cursor:pointer}
+.submit-btn{width:100%;padding:15px;margin-top:10px;background:linear-gradient(135deg,#00ff88,#00cc6a);color:#000;border:none;border-radius:12px;font-weight:800;font-size:16px;cursor:pointer;transition:all .3s;box-shadow:0 6px 20px rgba(0,255,136,.3);font-family:'Poppins',sans-serif}
+.submit-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,255,136,.5)}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed}
+.quiz-box{background:rgba(0,0,0,.4);padding:20px;border-radius:15px;border:1px solid rgba(0,255,136,.2);margin-top:20px}
+.option{padding:16px 20px;margin:10px 0;border-radius:12px;border:2px solid rgba(0,255,136,.2);background:rgba(0,0,0,.4);cursor:pointer;font-size:15px;color:#fff;transition:all .25s;animation:slideIn .4s ease both}
+@keyframes slideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+.option:hover{border-color:#00ff88;background:rgba(0,255,136,.1);transform:translateX(5px)}
+.option.correct{background:linear-gradient(135deg,#00cc6a,#00994d);border-color:#00cc6a;color:#fff;animation:correctPulse .6s ease}
+@keyframes correctPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03);box-shadow:0 0 30px rgba(0,255,136,.5)}}
+.option.wrong{background:linear-gradient(135deg,#cc0000,#990000);border-color:#cc0000;color:#fff;animation:wrongShake .5s ease}
+@keyframes wrongShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+#timer{font-size:36px;font-weight:800;color:#00ff88;text-align:center;margin:15px 0;transition:all .3s;text-shadow:0 0 25px rgba(0,255,136,.5)}
+#timer.warn{color:#ff3c3c;text-shadow:0 0 25px rgba(255,60,60,.5);animation:timerPulse .5s infinite}
+@keyframes timerPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+.quiz-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-top:20px}
+.quiz-card-btn{background:linear-gradient(135deg,rgba(0,255,136,.1),rgba(0,0,0,.6));border:1px solid rgba(0,255,136,.3);border-radius:15px;padding:20px 10px;text-align:center;cursor:pointer;transition:all .25s;display:flex;flex-direction:column;align-items:center;gap:8px}
+.quiz-card-btn:hover{border-color:#00ff88;background:rgba(0,255,136,.2);transform:translateY(-3px);box-shadow:0 5px 20px rgba(0,255,136,.2)}
+.quiz-card-amount{font-size:22px;font-weight:800;color:#00ff88;text-shadow:0 0 15px rgba(0,255,136,.4)}
+.quiz-card-text{font-size:12px;color:#a0b0a8;font-weight:600}
+.msg{font-size:13px;margin-top:12px;padding:12px 15px;border-radius:10px;animation:fadeUp .3s ease;font-weight:500}
+.msg.err{background:rgba(255,60,60,.1);color:#ff6b6b;border-left:4px solid #ff3c3c}
+.msg.ok{background:rgba(0,255,136,.1);color:#00ff88;border-left:4px solid #00ff88}
+.hidden{display:none!important}
+.page{display:none}
+.page.active{display:block;animation:fadeUp .4s ease both}
+.back-btn{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:#00ff88;padding:8px 18px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;margin-bottom:15px;transition:all .2s}
+.back-btn:hover{background:rgba(0,255,136,.2);transform:translateX(-3px)}
+.nav-btn{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:#a0b0a8;padding:8px 18px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Poppins',sans-serif}
+.nav-btn:hover{border-color:#00ff88;color:#00ff88}
+.nav-btn.active{background:linear-gradient(135deg,#00ff88,#00cc6a);color:#000;border-color:#00ff88}
+.user-email{font-size:12px;color:#6b7a73;margin-bottom:15px;text-align:center;word-break:break-all}
+.text-content{font-size:14px;color:#a0b0a8;line-height:1.7}
+.text-content h3{color:#00ff88;margin:15px 0 8px 0;font-size:16px}
+.text-content ul{padding-left:20px;margin-bottom:15px}
+.text-content li{margin-bottom:8px}
+.history-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px}
+.history-table th{text-align:left;padding:10px;color:#6b7a73;border-bottom:1px solid rgba(0,255,136,.1);font-weight:600}
+.history-table td{padding:10px;border-bottom:1px solid rgba(255,255,255,.05);color:#e0e0e0}
+.history-table tr:last-child td{border-bottom:none}
+.status-badge{padding:4px 8px;border-radius:6px;font-size:11px;font-weight:700;text-transform:uppercase}
+.status-pending{background:rgba(255,193,7,.15);color:#ffc107}
+.status-approved{background:rgba(0,255,136,.15);color:#00ff88}
+.spin-container{position:relative;width:250px;height:250px;margin:20px auto;border-radius:50%;border:5px solid #00ff88;box-shadow:0 0 30px rgba(0,255,136,.3);overflow:hidden;transition:transform 4s cubic-bezier(.1,.8,.1,1)}
+.spin-item{position:absolute;width:50%;height:50%;top:0;left:0;transform-origin:100% 100%;border:1px solid rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:14px;color:#000}
+.spin-pointer{position:absolute;top:-15px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:15px solid transparent;border-right:15px solid transparent;border-top:25px solid #ff3c3c;z-index:10;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5))}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(5px)}
+.modal-overlay.active{display:flex}
+.modal-content{background:#0f1914;border:1px solid rgba(0,255,136,.3);border-radius:20px;width:100%;max-width:500px;max-height:80vh;overflow-y:auto;padding:25px;position:relative;animation:cardIn .4s ease}
+.close-modal{position:absolute;top:15px;right:20px;font-size:24px;color:#ff6b6b;cursor:pointer;font-weight:bold}
+.mail-item{background:rgba(0,255,136,.05);border-left:3px solid #00ff88;border-radius:8px;padding:15px;margin-bottom:12px}
+.mail-item h4{color:#00ff88;font-size:15px;margin-bottom:5px}
+.mail-item p{color:#e0e0e0;font-size:13px;margin-bottom:8px}
+.mail-item small{color:#6b7a73;font-size:11px}
+@media(max-width:480px){.top-bar{padding:10px 15px;flex-direction:column;gap:12px}.top-left{width:100%;justify-content:space-between}.container{padding:15px}.card{padding:20px;border-radius:18px}.wallet-icon{width:45px;height:45px}.quiz-grid{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}}
 </style>
 </head>
 <body>
-<!-- BACKGROUND -->
 <div class="bg-layer"></div>
 <div class="orb orb1"></div>
 <div class="orb orb2"></div>
 <div class="orb orb3"></div>
-
-<!-- DOLLAR & QUESTION MARK RAIN -->
 <div class="rain-container" id="rainContainer"></div>
 
-<!-- MAIN APP (Dashboard, Quiz, etc.) -->
 <div id="appScreen">
-  <!-- TOP BAR -->
   <div class="top-bar">
     <div class="top-left">
       <div class="profile-container">
@@ -250,10 +174,7 @@
           <div class="profile-menu-item logout" onclick="logoutUser()">🚪 Logout</div>
         </div>
       </div>
-      
       <div class="coins-box"><span>Rs.</span><span id="balance">0</span></div>
-      
-      <!-- MAILBOX BUTTON -->
       <button class="mailbox-btn" onclick="openMailbox()">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
         <span id="mailboxBadge" class="mailbox-badge hidden">1</span>
@@ -262,202 +183,168 @@
   </div>
 
   <div class="container">
-    <!-- DASHBOARD -->
     <div id="dashboardPage" class="page active">
-      <div class="dash-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-        <div class="card" style="margin-bottom:0; background: linear-gradient(135deg, rgba(0,255,136,0.1), rgba(0,0,0,0.6)); border-color: rgba(0,255,136,0.3);">
-          <h2 style="color: #00ff88; font-size: 16px;">🎁 Daily Bonus</h2>
-          <p style="font-size:12px; margin-bottom:10px;">Get 1-2 coins</p>
-          <button id="claimBonusBtn" class="submit-btn" style="padding:10px; font-size:14px;" onclick="checkLoginAndProceed('claimBonusBtn')">Claim</button>
+      <div class="dash-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:15px">
+        <div class="card" style="margin-bottom:0;background:linear-gradient(135deg,rgba(0,255,136,.1),rgba(0,0,0,.6));border-color:rgba(0,255,136,.3)">
+          <h2 style="color:#00ff88;font-size:16px">🎁 Daily Bonus</h2>
+          <p style="font-size:12px;margin-bottom:10px">Get 1-2 coins</p>
+          <button id="claimBonusBtn" class="submit-btn" style="padding:10px;font-size:14px" onclick="checkLoginAndProceed('claimBonusBtn')">Claim</button>
           <div id="bonusMsg" class="msg hidden"></div>
         </div>
-        
-        <div class="card" style="margin-bottom:0; background: linear-gradient(135deg, rgba(255,193,7,0.1), rgba(0,0,0,0.6)); border-color: rgba(255,193,7,0.3);">
-          <h2 style="color: #ffc107; font-size: 16px;">🎡 Daily Spin</h2>
-          <p style="font-size:12px; margin-bottom:10px;">Win 1-5 coins</p>
-          <button id="openSpinBtn" class="submit-btn" style="padding:10px; font-size:14px; background:linear-gradient(135deg, #ffc107, #d39e00);" onclick="checkLoginAndProceed('openSpinBtn')">Spin Now</button>
+        <div class="card" style="margin-bottom:0;background:linear-gradient(135deg,rgba(255,193,7,.1),rgba(0,0,0,.6));border-color:rgba(255,193,7,.3)">
+          <h2 style="color:#ffc107;font-size:16px">🎡 Daily Spin</h2>
+          <p style="font-size:12px;margin-bottom:10px">Win 1-5 coins</p>
+          <button id="openSpinBtn" class="submit-btn" style="padding:10px;font-size:14px;background:linear-gradient(135deg,#ffc107,#d39e00)" onclick="checkLoginAndProceed('openSpinBtn')">Spin Now</button>
         </div>
       </div>
 
-      <!-- 10 QUIZ CARDS -->
-      <div class="card" style="margin-top: 15px;">
-        <h2 style="text-align: center; justify-content: center;">🎯 Play Quiz</h2>
-        <p style="text-align: center; font-size:13px; margin-bottom:20px;">Answer faster to win more coins!</p>
-        
-        <div class="quiz-grid" id="quizCardsGrid">
-          <!-- Cards 10 to 200 injected by JS -->
-        </div>
-
-        <!-- Question Box (Hidden by default) -->
+      <div class="card" style="margin-top:15px">
+        <h2 style="text-align:center;justify-content:center">🎯 Play Quiz</h2>
+        <p style="text-align:center;font-size:13px;margin-bottom:20px">Answer faster to win more coins!</p>
+        <div class="quiz-grid" id="quizCardsGrid"></div>
         <div id="questionBox" class="quiz-box hidden">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-            <span style="color: #00ff88; font-weight: 800; font-size: 18px;">Bet: Rs. <span id="currentBetAmount">0</span></span>
-            <span style="color: #ff3c3c; font-weight: 800; font-size: 18px;" id="timer">20</span>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px">
+            <span style="color:#00ff88;font-weight:800;font-size:18px">Bet: Rs. <span id="currentBetAmount">0</span></span>
+            <span style="color:#ff3c3c;font-weight:800;font-size:18px" id="timer">20</span>
           </div>
-          <h3 id="qtext" style="margin:15px 0; color:#fff; font-size:16px; line-height:1.5; text-align: center;"></h3>
+          <h3 id="qtext" style="margin:15px 0;color:#fff;font-size:16px;line-height:1.5;text-align:center"></h3>
           <div id="options"></div>
         </div>
       </div>
+
+      <div class="card" style="margin-top:15px">
+        <h2 style="text-align:center;justify-content:center">📋 Survey to Earn</h2>
+        <p style="text-align:center;font-size:13px;margin-bottom:20px">Complete tasks and earn real money!</p>
+        <div class="task-grid" id="taskGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-top:20px"></div>
+        <button class="submit-btn" style="margin-top:15px;background:linear-gradient(135deg,#667eea,#764ba2)" onclick="openAddTaskPage()">➕ Add Your Task (Advertiser)</button>
+      </div>
     </div>
 
-    <!-- SPIN PAGE -->
+    <div id="addTaskPage" class="page">
+      <button id="backFromAddTask" class="back-btn">← Back</button>
+      <div class="card">
+        <h2>➕ Add New Task</h2>
+        <p style="font-size:13px;margin-bottom:15px">Apni website, channel ya video promo karein.</p>
+        <div class="field">
+          <label style="color:#a0b0a8;font-size:12px;margin-left:5px">Task Type</label>
+          <select id="taskType" onchange="calculateCharge()">
+            <option value="website">Website Visit (Charge: Rs. 2 / click)</option>
+            <option value="sub">YouTube Subscribe (Charge: Rs. 2 / sub)</option>
+            <option value="video">YouTube Video Watch (Charge: Rs. 1 / view)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label style="color:#a0b0a8;font-size:12px;margin-left:5px">Link (URL)</label>
+          <input id="taskLink" type="text" placeholder="https://..." />
+        </div>
+        <div class="field">
+          <label style="color:#a0b0a8;font-size:12px;margin-left:5px">Quantity (Visitors/Subs/Views)</label>
+          <input id="taskLimit" type="number" placeholder="e.g., 10" oninput="calculateCharge()" />
+        </div>
+        <div class="field">
+          <label style="color:#a0b0a8;font-size:12px;margin-left:5px">Total Charge (Rs.)</label>
+          <input id="taskCharge" type="text" value="Rs. 0" disabled style="opacity:.6;cursor:not-allowed" />
+        </div>
+        <button id="addTaskBtn" class="submit-btn">Submit & Pay</button>
+        <div id="addTaskMsg" class="msg hidden"></div>
+      </div>
+    </div>
+
     <div id="spinPage" class="page">
       <button id="backFromSpin" class="back-btn">← Back</button>
-      <div class="card" style="text-align:center;">
+      <div class="card" style="text-align:center">
         <h2>🎡 Spin & Win</h2>
-        <p style="font-size:13px; margin-bottom:15px;">Try your luck once every 24 hours!</p>
-        
-        <div style="position: relative; width: 250px; margin: 0 auto;">
+        <p style="font-size:13px;margin-bottom:15px">Try your luck once every 24 hours!</p>
+        <div style="position:relative;width:250px;margin:0 auto">
           <div class="spin-pointer"></div>
-          <div class="spin-container" id="spinWheel">
-            <!-- Segments injected here -->
-          </div>
+          <div class="spin-container" id="spinWheel"></div>
         </div>
-        
-        <button id="spinBtn" class="submit-btn" style="margin-top:20px; background:linear-gradient(135deg, #ffc107, #d39e00);">SPIN NOW</button>
+        <button id="spinBtn" class="submit-btn" style="margin-top:20px;background:linear-gradient(135deg,#ffc107,#d39e00)">SPIN NOW</button>
         <div id="spinMsg" class="msg hidden"></div>
       </div>
     </div>
 
-    <!-- PROFILE SETTINGS PAGE -->
     <div id="profilePage" class="page">
       <button id="backFromProfile" class="back-btn">← Back</button>
       <div class="card">
         <h2>⚙️ Profile Settings</h2>
-        <div class="profile-avatar-large" id="profileAvatarLarge" style="width:100px; height:100px; border-radius:50%; margin:0 auto 20px; background:rgba(0,255,136,0.1); border:3px solid #00ff88; display:flex; align-items: center; justify-content: center; overflow:hidden; position:relative;">
-          <span id="profileAvatarInitial" style="font-size:40px; font-weight:bold; color:#00ff88;">U</span>
-          <img id="profileAvatarImage" class="hidden" src="" alt="Profile" style="width:100%; height:100%; object-fit:cover;">
-          <label for="avatarUpload" style="position:absolute; bottom:0; right:0; background:#00ff88; color:#000; border-radius:50%; width:32px; height:32px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; border:2px solid #0a0a0a;">📷</label>
+        <div class="profile-avatar-large" id="profileAvatarLarge" style="width:100px;height:100px;border-radius:50%;margin:0 auto 20px;background:rgba(0,255,136,.1);border:3px solid #00ff88;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative">
+          <span id="profileAvatarInitial" style="font-size:40px;font-weight:bold;color:#00ff88">U</span>
+          <img id="profileAvatarImage" class="hidden" src="" alt="Profile" style="width:100%;height:100%;object-fit:cover">
+          <label for="avatarUpload" style="position:absolute;bottom:0;right:0;background:#00ff88;color:#000;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;border:2px solid #0a0a0a">📷</label>
           <input type="file" id="avatarUpload" accept="image/*" class="hidden" onchange="uploadAvatar(event)">
         </div>
-        <div class="field">
-          <label style="color:#a0b0a8; font-size:12px; margin-left:5px;">Full Name</label>
-          <input id="profileName" type="text" placeholder="Enter your full name" />
-        </div>
-        <div class="field">
-          <label style="color:#a0b0a8; font-size:12px; margin-left:5px;">Mobile Number</label>
-          <input id="profilePhone" type="text" placeholder="e.g., 03001234567" />
-        </div>
-        <div class="field">
-          <label style="color:#a0b0a8; font-size:12px; margin-left:5px;">Email Address</label>
-          <input id="profileEmail" type="email" disabled style="opacity:0.6; cursor:not-allowed;" />
-        </div>
-        <button id="saveProfileBtn" class="submit-btn" style="margin-top:15px;">Save Changes</button>
+        <div class="field"><label style="color:#a0b0a8;font-size:12px;margin-left:5px">Full Name</label><input id="profileName" type="text" placeholder="Enter your full name" /></div>
+        <div class="field"><label style="color:#a0b0a8;font-size:12px;margin-left:5px">Mobile Number</label><input id="profilePhone" type="text" placeholder="e.g., 03001234567" /></div>
+        <div class="field"><label style="color:#a0b0a8;font-size:12px;margin-left:5px">Email Address</label><input id="profileEmail" type="email" disabled style="opacity:.6;cursor:not-allowed" /></div>
+        <button id="saveProfileBtn" class="submit-btn" style="margin-top:15px">Save Changes</button>
         <div id="profileMsg" class="msg hidden"></div>
       </div>
     </div>
 
-    <!-- DEPOSIT -->
     <div id="depositPage" class="page">
       <button id="backFromDeposit" class="back-btn">← Back</button>
       <div class="card">
         <h2>Deposit Wallat</h2>
-        
-        <div class="wallet-box">
-          <div class="wallet-icon">
-            <img src="jazzcash_64x64.png" alt="JazzCash">
-          </div>
-          <div class="wallet-info">
-            <div class="wallet-name">JazzCash</div>
-            <div class="wallet-owner">Saima Batool</div>
-            <div class="wallet-number">03010975121</div>
-          </div>
-        </div>
-        <div class="wallet-box">
-          <div class="wallet-icon">
-            <img src="sadapay_64x64.png" alt="SadaPay">
-          </div>
-          <div class="wallet-info">
-            <div class="wallet-name">SadaPay</div>
-            <div class="wallet-owner">Syed Abid Hussain Shah</div>
-            <div class="wallet-number">03034538628</div>
-          </div>
-        </div>
-
+        <div class="wallet-box"><div class="wallet-icon"><img src="jazzcash_64x64.png" alt="JazzCash"></div><div class="wallet-info"><div class="wallet-name">JazzCash</div><div class="wallet-owner">Saima Batool</div><div class="wallet-number">03010975121</div></div></div>
+        <div class="wallet-box"><div class="wallet-icon"><img src="sadapay_64x64.png" alt="SadaPay"></div><div class="wallet-info"><div class="wallet-name">SadaPay</div><div class="wallet-owner">Syed Abid Hussain Shah</div><div class="wallet-number">03034538628</div></div></div>
         <div class="instruction">Send payment to the above numbers, then fill the form with the Transaction ID (TID) and upload a screenshot. Approval takes up to 2 hours.</div>
         <input id="depAmount" type="number" min="100" max="100000" placeholder="Amount (100 - 100,000)" />
-        <select id="depMethod">
-          <option value="jazzcash">JazzCash</option>
-          <option value="sadapay">SadaPay</option>
-        </select>
+        <select id="depMethod"><option value="jazzcash">JazzCash</option><option value="sadapay">SadaPay</option></select>
         <input id="depTid" type="text" placeholder="Transaction ID (TID)" />
         <input id="depShot" type="file" accept="image/*" />
         <button id="depBtn" class="submit-btn">Submit Deposit</button>
         <div id="depMsg" class="msg hidden"></div>
       </div>
-      
       <div class="card">
         <h2>📜 Deposit History</h2>
-        <table class="history-table">
-          <thead><tr><th>Date</th><th>Amount</th><th>Status</th></tr></thead>
-          <tbody id="depositHistoryBody"><tr><td colspan="3" style="text-align:center; color:#6b7a73;">No deposits yet.</td></tr></tbody>
-        </table>
+        <table class="history-table"><thead><tr><th>Date</th><th>Amount</th><th>Status</th></tr></thead><tbody id="depositHistoryBody"><tr><td colspan="3" style="text-align:center;color:#6b7a73">No deposits yet.</td></tr></tbody></table>
       </div>
     </div>
 
-    <!-- WITHDRAW -->
     <div id="withdrawPage" class="page">
       <button id="backFromWithdraw" class="back-btn">← Back</button>
       <div class="card">
         <h2>🏦 Withdraw Funds</h2>
-        <div class="instruction" style="border-left-color:#ff3c3c; background:rgba(255,60,60,0.1);">
-          <b>Rules:</b><br>
-          1. Minimum withdrawal: 100 Coins<br>
-          2. Solve at least 20 questions after your last deposit.<br>
-          3. You must be in profit (Balance > Total Deposit).
-        </div>
+        <div class="instruction" style="border-left-color:#ff3c3c;background:rgba(255,60,60,.1)"><b>Rules:</b><br>1. Minimum withdrawal: 100 Coins<br>2. Solve at least 20 questions after your last deposit.<br>3. You must be in profit (Balance > Total Deposit).</div>
         <input id="wdAmount" type="number" placeholder="Amount" />
-        <select id="wdMethod">
-          <option value="jazzcash">JazzCash</option>
-          <option value="sadapay">SadaPay</option>
-        </select>
+        <select id="wdMethod"><option value="jazzcash">JazzCash</option><option value="sadapay">SadaPay</option></select>
         <input id="wdAccount" type="text" placeholder="Your JazzCash/SadaPay Number" />
         <button id="wdBtn" class="submit-btn">Request Withdrawal</button>
         <div id="wdMsg" class="msg hidden"></div>
       </div>
-
       <div class="card">
         <h2>📜 Withdrawal History</h2>
-        <table class="history-table">
-          <thead><tr><th>Date</th><th>Amount</th><th>Status</th></tr></thead>
-          <tbody id="withdrawHistoryBody"><tr><td colspan="3" style="text-align:center; color:#6b7a73;">No withdrawals yet.</td></tr></tbody>
-        </table>
+        <table class="history-table"><thead><tr><th>Date</th><th>Amount</th><th>Status</th></tr></thead><tbody id="withdrawHistoryBody"><tr><td colspan="3" style="text-align:center;color:#6b7a73">No withdrawals yet.</td></tr></tbody></table>
       </div>
     </div>
 
-    <!-- REFERRAL -->
     <div id="referralPage" class="page">
       <button id="backFromReferral" class="back-btn">← Back</button>
       <div class="card">
         <h2>🎁 Refer & Earn</h2>
-        <p style="font-size:14px; margin-bottom:20px;">Invite friends! When they sign up and deposit 100+ coins, you get <b>10 Rupees</b> bonus.</p>
-        
-        <button id="claimReferralBtn" class="submit-btn" style="margin-bottom: 20px; background: linear-gradient(135deg, #ffc107, #d39e00);">Claim Referral Bonus</button>
-
-        <p style="font-size:12px; color:#6b7a73; margin-bottom:5px;">Your Referral ID:</p>
-        <div style="background:rgba(0,0,0,0.5); padding:12px; border-radius:10px; border:1px dashed #00ff88; margin-bottom:15px; text-align:center;">
-          <strong id="myReferralId" style="color:#00ff88; word-break:break-all;">Loading...</strong>
-          <button class="btn btn-secondary" style="width:auto; padding:6px 12px; margin-top:8px; font-size:12px;" onclick="copyRefId()">Copy ID</button>
+        <p style="font-size:14px;margin-bottom:20px">Invite friends! When they sign up and deposit 100+ coins, you get <b>10 Rupees</b> bonus.</p>
+        <button id="claimReferralBtn" class="submit-btn" style="margin-bottom:20px;background:linear-gradient(135deg,#ffc107,#d39e00)">Claim Referral Bonus</button>
+        <p style="font-size:12px;color:#6b7a73;margin-bottom:5px">Your Referral ID:</p>
+        <div style="background:rgba(0,0,0,.5);padding:12px;border-radius:10px;border:1px dashed #00ff88;margin-bottom:15px;text-align:center">
+          <strong id="myReferralId" style="color:#00ff88;word-break:break-all">Loading...</strong>
+          <button class="btn btn-secondary" style="width:auto;padding:6px 12px;margin-top:8px;font-size:12px" onclick="copyRefId()">Copy ID</button>
         </div>
-        <p style="font-size:12px; color:#6b7a73; margin-bottom:5px;">Referral Link:</p>
-        <div style="background:rgba(0,0,0,0.5); padding:12px; border-radius:10px; border:1px dashed #00ff88; margin-bottom:15px; text-align:center;">
-          <a href="#" id="myReferralLink" style="color:#00ff88; word-break:break-all; font-size:13px;">Loading...</a>
-          <button class="btn btn-secondary" style="width:auto; padding:6px 12px; margin-top:8px; font-size:12px;" onclick="copyRefLink()">Copy Link</button>
+        <p style="font-size:12px;color:#6b7a73;margin-bottom:5px">Referral Link:</p>
+        <div style="background:rgba(0,0,0,.5);padding:12px;border-radius:10px;border:1px dashed #00ff88;margin-bottom:15px;text-align:center">
+          <a href="#" id="myReferralLink" style="color:#00ff88;word-break:break-all;font-size:13px">Loading...</a>
+          <button class="btn btn-secondary" style="width:auto;padding:6px 12px;margin-top:8px;font-size:12px" onclick="copyRefLink()">Copy Link</button>
         </div>
       </div>
       <div class="card">
         <h2>👥 Your Referrals</h2>
-        <table class="history-table">
-          <thead><tr><th>Member Email</th><th>Status</th></tr></thead>
-          <tbody id="referralListBody"><tr><td colspan="2" style="text-align:center; color:#6b7a73;">No referrals yet.</td></tr></tbody>
-        </table>
+        <table class="history-table"><thead><tr><th>Member Email</th><th>Status</th></tr></thead><tbody id="referralListBody"><tr><td colspan="2" style="text-align:center;color:#6b7a73">No referrals yet.</td></tr></tbody></table>
       </div>
     </div>
 
-    <!-- INFO -->
     <div id="infoPage" class="page">
       <button id="backFromInfo" class="back-btn">← Back</button>
-      <div style="display:flex; gap:10px; margin-bottom:20px;">
+      <div style="display:flex;gap:10px;margin-bottom:20px">
         <button class="nav-btn active" id="tabTerms" onclick="switchInfoTab('terms')">Terms</button>
         <button class="nav-btn" id="tabAbout" onclick="switchInfoTab('about')">About</button>
         <button class="nav-btn" id="tabContact" onclick="switchInfoTab('contact')">Contact</button>
@@ -465,37 +352,20 @@
       <div id="infoTerms" class="card">
         <h2>📜 Terms & Conditions</h2>
         <div class="text-content">
-          <h3>1. Maqsad (Purpose)</h3>
-          <p>Yeh platform sirf aapki knowledge (ilm) ko barhane ke liye banaya gaya hai, na ke paisy kamane ke liye. Yahan quiz khelna aapki apni marzi hai, koi pressure nahi hai.</p>
-          <h3>2. Khelnay ki Marzi (Free Will)</h3>
-          <p>Aap yahan participate kar ke earnings kar sakte hain, lekin yeh mukammal tor par aapki apni marzi hogi. Hum kisi ko majboor nahi karte.</p>
-          <h3>3. Time & Voice Rules</h3>
-          <p>Answer within 20 seconds. The faster you answer, the more you win. 20s = Double, 0s (timeout) = Lose the bet amount.</p>
-          <h3>4. Withdrawal Rules</h3>
-          <ul>
-            <li>Minimum withdrawal is 100 coins.</li>
-            <li>You must solve at least 20 questions after your last deposit.</li>
-            <li>You can only withdraw if your balance is greater than your total deposit.</li>
-            <li>After withdrawal, you must deposit again to unlock the next withdrawal.</li>
-          </ul>
-          <h3>5. Referral & Bonus</h3>
-          <p>Earn 10 rupees per referral once they deposit 100+ coins. Daily bonus of 1-2 coins is available every 24 hours.</p>
+          <h3>1. Maqsad (Purpose)</h3><p>Yeh platform sirf aapki knowledge (ilm) ko barhane ke liye banaya gaya hai, na ke paisy kamane ke liye. Yahan quiz khelna aapki apni marzi hai, koi pressure nahi hai.</p>
+          <h3>2. Khelnay ki Marzi (Free Will)</h3><p>Aap yahan participate kar ke earnings kar sakte hain, lekin yeh mukammal tor par aapki apni marzi hogi. Hum kisi ko majboor nahi karte.</p>
+          <h3>3. Time & Voice Rules</h3><p>Answer within 20 seconds. The faster you answer, the more you win. 20s = Double, 0s (timeout) = Lose the bet amount.</p>
+          <h3>4. Withdrawal Rules</h3><ul><li>Minimum withdrawal is 100 coins.</li><li>You must solve at least 20 questions after your last deposit.</li><li>You can only withdraw if your balance is greater than your total deposit.</li><li>After withdrawal, you must deposit again to unlock the next withdrawal.</li></ul>
+          <h3>5. Referral & Bonus</h3><p>Earn 10 rupees per referral once they deposit 100+ coins. Daily bonus of 1-2 coins is available every 24 hours.</p>
         </div>
       </div>
       <div id="infoAbout" class="card hidden">
-        <h2>ℹ️ About Us</h2>
-        <div class="text-content">
-          <p><b>Fortube Quiz</b> is an online quiz platform where you can test your knowledge and earn real rewards.</p>
-          <p>Our mission is to sharpen your thinking ability through difficult questions while rewarding you for your intellect.</p>
-          <p>Available for users in Pakistan and India.</p>
-        </div>
+        <h2>ℹ️ About Us</h2><div class="text-content"><p><b>Fortube Quiz</b> is an online quiz platform where you can test your knowledge and earn real rewards.</p><p>Our mission is to sharpen your thinking ability through difficult questions while rewarding you for your intellect.</p><p>Available for users in Pakistan and India.</p></div>
       </div>
       <div id="infoContact" class="card hidden">
-        <h2>📞 Contact Support</h2>
-        <p style="font-size:13px; margin-bottom:20px;">Have an issue? Send us a message.</p>
+        <h2>📞 Contact Support</h2><p style="font-size:13px;margin-bottom:20px">Have an issue? Send us a message.</p>
         <form action="https://formsubmit.co/syedadeen16@gmail.com" method="POST">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" value="https://fortube.online">
+          <input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value="https://fortube.online">
           <div class="field"><input type="email" name="email" placeholder="Your Email" required /></div>
           <div class="field"><input type="text" name="topic" placeholder="Topic (e.g., Deposit Issue)" required /></div>
           <div class="field"><textarea name="message" placeholder="Your message..." required></textarea></div>
@@ -503,114 +373,55 @@
         </form>
       </div>
     </div>
-
   </div>
 </div>
 
-<!-- LOGIN SCREEN -->
 <div id="loginScreen">
   <div class="login-card">
-    <div class="brand">
-      <div class="brand-logo">🎯</div>
-      <h1>FORTUBE QUIZ</h1>
-      <p>Play • Learn • Earn</p>
-    </div>
-    
-    <!-- Normal Login Form -->
+    <div class="brand"><div class="brand-logo">🎯</div><h1>FORTUBE QUIZ</h1><p>Play • Learn • Earn</p></div>
     <div id="loginFormBox">
-      <div class="field">
-        <input id="email" type="email" placeholder="Email Address" autocomplete="email" />
-      </div>
-      <div class="field">
-        <input id="password" type="password" placeholder="Password" autocomplete="current-password" />
-      </div>
-      <div class="field">
-        <input id="promoCode" type="text" placeholder="Promo Code (Optional, for referrals)" />
-      </div>
-      <label class="check">
-        <input id="ageCheck" type="checkbox" />
-        <span>I am 10+ years old & agree to the <a href="#" onclick="alert('Terms:\n1. Play at your own risk.\n2. Deposit min 100.\n3. Withdraw after solving 20 questions & in profit.\n4. Referral bonus paid after 100 deposit.')">Terms & Conditions</a></span>
-      </label>
+      <div class="field"><input id="email" type="email" placeholder="Email Address" autocomplete="email" /></div>
+      <div class="field"><input id="password" type="password" placeholder="Password" autocomplete="current-password" /></div>
+      <div class="field"><input id="promoCode" type="text" placeholder="Promo Code (Optional, for referrals)" /></div>
+      <label class="check"><input id="ageCheck" type="checkbox" /><span>I am 10+ years old & agree to the <a href="#" onclick="alert('Terms:\n1. Play at your own risk.\n2. Deposit min 100.\n3. Withdraw after solving 20 questions & in profit.\n4. Referral bonus paid after 100 deposit.')">Terms & Conditions</a></span></label>
       <button id="loginBtn" class="btn btn-primary">Login</button>
       <button id="signupBtn" class="btn btn-secondary">Sign Up (New Account)</button>
-      
-      <!-- Google Login Button -->
-      <button id="googleLoginBtn" class="btn btn-google">
-        <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-        Continue with Google
-      </button>
-
-      <div style="text-align: center; margin-top: 15px;">
-        <a href="#" onclick="showForgotPassword()" style="color: #a0b0a8; font-size: 13px; text-decoration: none;">Forgot Password?</a>
-      </div>
+      <button id="googleLoginBtn" class="btn btn-google"><svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>Continue with Google</button>
+      <div style="text-align:center;margin-top:15px"><a href="#" onclick="showForgotPassword()" style="color:#a0b0a8;font-size:13px;text-decoration:none">Forgot Password?</a></div>
     </div>
-
-    <!-- Forgot Password Form -->
     <div id="forgotFormBox" class="hidden">
-      <div class="field">
-        <input id="forgotEmail" type="email" placeholder="Enter your registered Email" />
-      </div>
+      <div class="field"><input id="forgotEmail" type="email" placeholder="Enter your registered Email" /></div>
       <button id="sendCodeBtn" class="btn btn-primary">Send Reset Code</button>
-      
-      <!-- Reset Code and New Password (Hidden initially) -->
-      <div id="resetCodeBox" class="hidden" style="margin-top: 20px;">
-        <div class="field">
-          <input id="resetCode" type="text" placeholder="Enter Code sent to email" />
-        </div>
-        <div class="field">
-          <input id="newPassword" type="password" placeholder="New Password" />
-        </div>
-        <div class="field">
-          <input id="confirmPassword" type="password" placeholder="Confirm New Password" />
-        </div>
+      <div id="resetCodeBox" class="hidden" style="margin-top:20px">
+        <div class="field"><input id="resetCode" type="text" placeholder="Enter Code sent to email" /></div>
+        <div class="field"><input id="newPassword" type="password" placeholder="New Password" /></div>
+        <div class="field"><input id="confirmPassword" type="password" placeholder="Confirm New Password" /></div>
         <button id="resetPassBtn" class="btn btn-primary">Reset Password</button>
       </div>
-
-      <button class="btn btn-secondary" style="margin-top: 15px;" onclick="backToLogin()">Back to Login</button>
+      <button class="btn btn-secondary" style="margin-top:15px" onclick="backToLogin()">Back to Login</button>
       <div id="forgotMsg" class="msg hidden"></div>
     </div>
-
   </div>
 </div>
 
-<!-- MAILBOX MODAL -->
 <div class="modal-overlay" id="mailboxModal">
   <div class="modal-content">
     <span class="close-modal" onclick="closeMailbox()">×</span>
-    <h2 style="color:#00ff88; margin-bottom:20px;">📬 Your Mailbox</h2>
-    <div id="mailList">
-      <p style="text-align:center; color:#6b7a73;">Loading messages...</p>
-    </div>
+    <h2 style="color:#00ff88;margin-bottom:20px">📬 Your Mailbox</h2>
+    <div id="mailList"><p style="text-align:center;color:#6b7a73">Loading messages...</p></div>
   </div>
 </div>
 
-<!-- BOTTOM NAVIGATION BAR -->
 <div class="bottom-nav">
-  <button id="navDashboard" class="bottom-nav-btn active" onclick="switchPage('dashboardPage', 'navDashboard')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-    Home
-  </button>
-  <button id="navReferral" class="bottom-nav-btn" onclick="checkLoginAndSwitch('referralPage', 'navReferral')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-    Refer
-  </button>
-  <button id="navDeposit" class="bottom-nav-btn" onclick="checkLoginAndSwitch('depositPage', 'navDeposit')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-    Deposit
-  </button>
-  <button id="navWithdraw" class="bottom-nav-btn" onclick="checkLoginAndSwitch('withdrawPage', 'navWithdraw')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
-    Withdraw
-  </button>
-  <button id="navInfo" class="bottom-nav-btn" onclick="switchPage('infoPage', 'navInfo')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-    Info
-  </button>
+  <button id="navDashboard" class="bottom-nav-btn active" onclick="switchPage('dashboardPage', 'navDashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>Home</button>
+  <button id="navReferral" class="bottom-nav-btn" onclick="checkLoginAndSwitch('referralPage', 'navReferral')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Refer</button>
+  <button id="navDeposit" class="bottom-nav-btn" onclick="checkLoginAndSwitch('depositPage', 'navDeposit')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>Deposit</button>
+  <button id="navWithdraw" class="bottom-nav-btn" onclick="checkLoginAndSwitch('withdrawPage', 'navWithdraw')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>Withdraw</button>
+  <button id="navInfo" class="bottom-nav-btn" onclick="switchPage('infoPage', 'navInfo')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>Info</button>
 </div>
 
 <script type="module">
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
-
 const SUPABASE_URL = "https://sqqvdubuvnbikigwftux.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_3s0Xk1JENESD5odir4NrFQ_Htdc_MvD";
 
@@ -630,12 +441,10 @@ let currentUser = null;
 let userProfile = null;
 let currentBetAmount = 100;
 
-// ===== DOLLAR RAIN EFFECT (SLOW & LARGE) =====
 function createRain() {
   const container = document.getElementById('rainContainer');
   const symbols = ['$', '?', '€', '£'];
   const totalDrops = 20;
-
   for (let i = 0; i < totalDrops; i++) {
     const drop = document.createElement('div');
     drop.className = 'rain-symbol';
@@ -649,7 +458,6 @@ function createRain() {
 }
 createRain();
 
-// ===== CHECK LOGIN & SWITCH PAGE =====
 window.checkLoginAndSwitch = function(pageId, navId) {
   if (!currentUser) {
     document.getElementById('appScreen').classList.add('hidden');
@@ -665,24 +473,18 @@ window.checkLoginAndProceed = function(action) {
     document.getElementById('loginScreen').style.display = 'flex';
     return;
   }
-  
   if (action === 'claimBonusBtn') claimBonus();
   else if (action === 'openSpinBtn') switchPage('spinPage', null);
 }
 
-// ===== GENERATE 10 QUIZ CARDS (WITH LOGIN CHECK) =====
 function generateQuizCards() {
   const grid = document.getElementById('quizCardsGrid');
   grid.innerHTML = '';
   const bets = [10, 20, 30, 40, 50, 60, 70, 80, 100, 200];
-
   bets.forEach(bet => {
     const card = document.createElement('div');
     card.className = 'quiz-card-btn';
-    card.innerHTML = `
-      <div class="quiz-card-amount">Rs. ${bet}</div>
-      <div class="quiz-card-text">Win Rs. ${bet}</div>
-    `;
+    card.innerHTML = `<div class="quiz-card-amount">Rs. ${bet}</div><div class="quiz-card-text">Win Rs. ${bet}</div>`;
     card.onclick = () => {
       if (!currentUser) {
         document.getElementById('appScreen').classList.add('hidden');
@@ -696,11 +498,36 @@ function generateQuizCards() {
 }
 generateQuizCards();
 
+function generateTaskCards() {
+  const grid = document.getElementById('taskGrid');
+  grid.innerHTML = '';
+  // Yahan HD Icons (Images) laga diye hain. Video waly par bhi YouTube ka icon hai.
+  const tasks = [
+    { title: 'Website Visit', reward: 5, link: 'https://example.com', icon: 'https://cdn-icons-png.flaticon.com/512/1006/1006771.png' },
+    { title: 'Website Visit', reward: 5, link: 'https://example.com', icon: 'https://cdn-icons-png.flaticon.com/512/1006/1006771.png' },
+    { title: 'Website Visit', reward: 5, link: 'https://example.com', icon: 'https://cdn-icons-png.flaticon.com/512/1006/1006771.png' },
+    { title: 'YouTube Sub', reward: 5, link: 'https://youtube.com', icon: 'https://cdn-icons-png.flaticon.com/512/1384/1384060.png' },
+    { title: 'YouTube Sub', reward: 5, link: 'https://youtube.com', icon: 'https://cdn-icons-png.flaticon.com/512/1384/1384060.png' },
+    { title: 'YouTube Sub', reward: 5, link: 'https://youtube.com', icon: 'https://cdn-icons-png.flaticon.com/512/1384/1384060.png' },
+    { title: 'Watch Video', reward: 2, link: 'https://youtube.com', icon: 'https://cdn-icons-png.flaticon.com/512/1384/1384060.png' },
+    { title: 'Watch Video', reward: 2, link: 'https://youtube.com', icon: 'https://cdn-icons-png.flaticon.com/512/1384/1384060.png' },
+    { title: 'Watch Video', reward: 2, link: 'https://youtube.com', icon: 'https://cdn-icons-png.flaticon.com/512/1384/1384060.png' },
+    { title: 'Watch Video', reward: 2, link: 'https://youtube.com', icon: 'https://cdn-icons-png.flaticon.com/512/1384/1384060.png' }
+  ];
+  tasks.forEach((t) => {
+    const card = document.createElement('div');
+    card.className = 'quiz-card-btn';
+    card.style.cursor = 'pointer';
+    card.innerHTML = `<img src="${t.icon}" style="width:36px;height:36px;object-fit:contain;margin-bottom:8px"><div class="quiz-card-amount" style="font-size:16px">${t.title}</div><div class="quiz-card-text" style="color:#00ff88;font-weight:bold">Earn Rs. ${t.reward}</div>`;
+    card.onclick = () => window.open(t.link, '_blank');
+    grid.appendChild(card);
+  });
+}
+generateTaskCards();
+
 const urlParams = new URLSearchParams(window.location.search);
 const refIdFromUrl = urlParams.get('ref');
-if (refIdFromUrl) {
-    document.getElementById('promoCode').value = refIdFromUrl;
-}
+if (refIdFromUrl) document.getElementById('promoCode').value = refIdFromUrl;
 
 function btnLoading(btn, loading, label) {
   if (loading) {
@@ -719,7 +546,6 @@ async function ensureProfile(user, promoCode = null) {
     const { data: referrer } = await supabase.from('profiles').select('id').eq('id', promoCode).single();
     if (referrer) referredById = referrer.id;
   }
-
   const { error } = await supabase.from('profiles').upsert(
     { id: user.id, email: user.email, age_confirmed: true, referred_by: referredById },
     { onConflict: 'id' }
@@ -733,20 +559,16 @@ async function signup() {
   const password = document.getElementById('password').value;
   const ageOk = document.getElementById('ageCheck').checked;
   const promo = document.getElementById('promoCode').value.trim();
-
   if (!email || !password) return showMsg('loginMsg', 'Email and password required');
   if (password.length < 6) return showMsg('loginMsg', 'Password must be 6+ characters');
   if (!ageOk) return showMsg('loginMsg', 'Please accept the terms');
-
   btnLoading(btn, true, 'Signing up...');
   try {
     const { data, error } = await supabase.auth.signUp({ email, password });
     if (error) throw error;
     if (data.user) await ensureProfile(data.user, promo);
     showMsg('loginMsg', '✅ Account created. Please Login.', 'ok');
-  } catch (e) {
-    showMsg('loginMsg', '❌ ' + (e.message || e));
-  }
+  } catch (e) { showMsg('loginMsg', '❌ ' + (e.message || e)); }
   btnLoading(btn, false);
 }
 
@@ -755,10 +577,8 @@ async function login() {
   const email = document.getElementById('email').value.trim();
   const password = document.getElementById('password').value;
   const ageOk = document.getElementById('ageCheck').checked;
-
   if (!email || !password) return showMsg('loginMsg', 'Email and password required');
   if (!ageOk) return showMsg('loginMsg', 'Please accept the terms');
-
   btnLoading(btn, true, 'Logging in...');
   try {
     const { data, error } = await supabase.auth.signInWithPassword({ email, password });
@@ -766,32 +586,21 @@ async function login() {
     currentUser = data.user;
     await ensureProfile(currentUser);
     showApp();
-  } catch (e) {
-    showMsg('loginMsg', '❌ ' + (e.message || e));
-    btnLoading(btn, false);
-  }
+  } catch (e) { showMsg('loginMsg', '❌ ' + (e.message || e)); btnLoading(btn, false); }
 }
 
-// Google Login
 async function googleLogin() {
   try {
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: { redirectTo: window.location.origin }
-    });
+    const { data, error } = await supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: window.location.origin } });
     if (error) throw error;
-  } catch (e) {
-    alert('Google Login Error: ' + e.message);
-  }
+  } catch (e) { alert('Google Login Error: ' + e.message); }
 }
 
-// Forgot Password Flow
 window.showForgotPassword = function() {
   document.getElementById('loginFormBox').classList.add('hidden');
   document.getElementById('forgotFormBox').classList.remove('hidden');
   document.getElementById('resetCodeBox').classList.add('hidden');
 }
-
 window.backToLogin = function() {
   document.getElementById('forgotFormBox').classList.add('hidden');
   document.getElementById('loginFormBox').classList.remove('hidden');
@@ -800,7 +609,6 @@ window.backToLogin = function() {
 document.getElementById('sendCodeBtn').addEventListener('click', async () => {
   const email = document.getElementById('forgotEmail').value.trim();
   if (!email) return showMsg('forgotMsg', 'Email required');
-  
   const btn = document.getElementById('sendCodeBtn');
   btnLoading(btn, true, 'Sending Code...');
   try {
@@ -808,9 +616,7 @@ document.getElementById('sendCodeBtn').addEventListener('click', async () => {
     if (error) throw error;
     showMsg('forgotMsg', '✅ Code sent to your email. Check inbox.', 'ok');
     document.getElementById('resetCodeBox').classList.remove('hidden');
-  } catch (e) {
-    showMsg('forgotMsg', '❌ ' + e.message);
-  }
+  } catch (e) { showMsg('forgotMsg', '❌ ' + e.message); }
   btnLoading(btn, false);
 });
 
@@ -819,28 +625,21 @@ document.getElementById('resetPassBtn').addEventListener('click', async () => {
   const newPass = document.getElementById('newPassword').value;
   const confirmPass = document.getElementById('confirmPassword').value;
   const email = document.getElementById('forgotEmail').value.trim();
-  
   if (!code) return showMsg('forgotMsg', 'Code required');
   if (newPass.length < 6) return showMsg('forgotMsg', 'Password must be 6+ chars');
   if (newPass !== confirmPass) return showMsg('forgotMsg', 'Passwords do not match');
-
   const btn = document.getElementById('resetPassBtn');
   btnLoading(btn, true, 'Resetting...');
   try {
     const { error } = await supabase.auth.verifyOtp({ email, token: code, type: 'recovery' });
     if (error) throw error;
-    
     const { error: updateErr } = await supabase.auth.updateUser({ password: newPass });
     if (updateErr) throw updateErr;
-
     showMsg('forgotMsg', '✅ Password reset! Login with new password.', 'ok');
     setTimeout(backToLogin, 2000);
-  } catch (e) {
-    showMsg('forgotMsg', '❌ ' + e.message);
-  }
+  } catch (e) { showMsg('forgotMsg', '❌ ' + e.message); }
   btnLoading(btn, false);
 });
-
 
 async function showApp() {
   document.getElementById('loginScreen').style.display = 'none';
@@ -855,10 +654,8 @@ async function loadData() {
   if (!currentUser) return;
   const { data } = await supabase.from('profiles').select('*').eq('id', currentUser.id).single();
   userProfile = data;
-  
   document.getElementById('balance').textContent = data?.balance ?? 0;
   document.getElementById('myReferralId').textContent = currentUser.id;
-  
   if (data?.avatar_url) {
     document.getElementById('avatarImage').src = data.avatar_url;
     document.getElementById('avatarImage').classList.remove('hidden');
@@ -871,34 +668,18 @@ async function loadData() {
     document.getElementById('avatarInitial').textContent = initial;
     document.getElementById('profileAvatarInitial').textContent = initial;
   }
-
   document.getElementById('profileName').value = data?.full_name || '';
   document.getElementById('profilePhone').value = data?.phone_number || '';
   document.getElementById('profileEmail').value = currentUser.email || '';
-
   const now = new Date();
   const lastClaim = data?.last_bonus_claim ? new Date(data.last_bonus_claim) : null;
   const canClaim = !lastClaim || (now - lastClaim) > 24 * 60 * 60 * 1000;
   const claimBtn = document.getElementById('claimBonusBtn');
-  if (canClaim) {
-    claimBtn.disabled = false;
-    claimBtn.textContent = "Claim";
-  } else {
-    claimBtn.disabled = true;
-    claimBtn.textContent = "Wait 24h";
-  }
-  
+  if (canClaim) { claimBtn.disabled = false; claimBtn.textContent = "Claim"; } else { claimBtn.disabled = true; claimBtn.textContent = "Wait 24h"; }
   const lastSpin = data?.last_spin_claim ? new Date(data.last_spin_claim) : null;
   const canSpin = !lastSpin || (now - lastSpin) > 24 * 60 * 60 * 1000;
   const spinBtn = document.getElementById('spinBtn');
-  if (canSpin) {
-    spinBtn.disabled = false;
-    spinBtn.textContent = "SPIN NOW";
-  } else {
-    spinBtn.disabled = true;
-    spinBtn.textContent = "COME BACK TOMORROW";
-  }
-
+  if (canSpin) { spinBtn.disabled = false; spinBtn.textContent = "SPIN NOW"; } else { spinBtn.disabled = true; spinBtn.textContent = "COME BACK TOMORROW"; }
   await loadDepositHistory();
   await loadWithdrawHistory();
   await loadReferrals();
@@ -909,10 +690,7 @@ async function loadDepositHistory() {
   const { data } = await supabase.from('deposits').select('*').eq('user_id', currentUser.id).order('created_at', { ascending: false });
   const tbody = document.getElementById('depositHistoryBody');
   tbody.innerHTML = '';
-  if (!data || data.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#6b7a73;">No deposits yet.</td></tr>';
-    return;
-  }
+  if (!data || data.length === 0) { tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;color:#6b7a73">No deposits yet.</td></tr>'; return; }
   data.forEach(d => {
     const date = new Date(d.created_at).toLocaleDateString();
     const statusClass = d.status === 'approved' ? 'status-approved' : 'status-pending';
@@ -924,10 +702,7 @@ async function loadWithdrawHistory() {
   const { data } = await supabase.from('withdrawals').select('*').eq('user_id', currentUser.id).order('created_at', { ascending: false });
   const tbody = document.getElementById('withdrawHistoryBody');
   tbody.innerHTML = '';
-  if (!data || data.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#6b7a73;">No withdrawals yet.</td></tr>';
-    return;
-  }
+  if (!data || data.length === 0) { tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;color:#6b7a73">No withdrawals yet.</td></tr>'; return; }
   data.forEach(d => {
     const date = new Date(d.created_at).toLocaleDateString();
     const statusClass = d.status === 'approved' ? 'status-approved' : 'status-pending';
@@ -939,10 +714,7 @@ async function loadReferrals() {
   const { data } = await supabase.from('profiles').select('email, created_at, referral_bonus_paid').eq('referred_by', currentUser.id);
   const tbody = document.getElementById('referralListBody');
   tbody.innerHTML = '';
-  if (!data || data.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:#6b7a73;">No referrals yet.</td></tr>';
-    return;
-  }
+  if (!data || data.length === 0) { tbody.innerHTML = '<tr><td colspan="2" style="text-align:center;color:#6b7a73">No referrals yet.</td></tr>'; return; }
   data.forEach(d => {
     const status = d.referral_bonus_paid ? 'Earned 10₹' : 'Pending 100 Deposit';
     const statusClass = d.referral_bonus_paid ? 'status-approved' : 'status-pending';
@@ -950,7 +722,6 @@ async function loadReferrals() {
   });
 }
 
-// MAILBOX FUNCTIONS
 async function checkMailbox() {
   const { data } = await supabase.from('mailbox').select('*').eq('user_id', currentUser.id).eq('is_read', false);
   if (data && data.length > 0) {
@@ -962,46 +733,25 @@ async function checkMailbox() {
 }
 
 window.openMailbox = async function() {
-  if (!currentUser) {
-    document.getElementById('appScreen').classList.add('hidden');
-    document.getElementById('loginScreen').style.display = 'flex';
-    return;
-  }
+  if (!currentUser) { document.getElementById('appScreen').classList.add('hidden'); document.getElementById('loginScreen').style.display = 'flex'; return; }
   document.getElementById('mailboxModal').classList.add('active');
   const list = document.getElementById('mailList');
   list.innerHTML = 'Loading...';
-  
   const { data } = await supabase.from('mailbox').select('*').eq('user_id', currentUser.id).order('created_at', { ascending: false });
-  if (!data || data.length === 0) {
-    list.innerHTML = '<p style="text-align:center; color:#6b7a73;">No messages yet.</p>';
-    return;
-  }
-  
+  if (!data || data.length === 0) { list.innerHTML = '<p style="text-align:center;color:#6b7a73">No messages yet.</p>'; return; }
   list.innerHTML = '';
   data.forEach(m => {
     const date = new Date(m.created_at).toLocaleString();
-    list.innerHTML += `
-      <div class="mail-item">
-        <h4>${m.subject}</h4>
-        <p>${m.message}</p>
-        <small>${date}</small>
-      </div>
-    `;
+    list.innerHTML += `<div class="mail-item"><h4>${m.subject}</h4><p>${m.message}</p><small>${date}</small></div>`;
   });
-  
   await supabase.from('mailbox').update({ is_read: true }).eq('user_id', currentUser.id).eq('is_read', false);
   document.getElementById('mailboxBadge').classList.add('hidden');
 }
-
-window.closeMailbox = function() {
-  document.getElementById('mailboxModal').classList.remove('active');
-}
+window.closeMailbox = function() { document.getElementById('mailboxModal').classList.remove('active'); }
 
 const spinOptions = [
-  { text: '1', value: 1, color: '#ff4d4d' },
-  { text: '2', value: 2, color: '#4d79ff' },
-  { text: '3', value: 3, color: '#ffc107' },
-  { text: '4', value: 4, color: '#00cc6a' },
+  { text: '1', value: 1, color: '#ff4d4d' }, { text: '2', value: 2, color: '#4d79ff' },
+  { text: '3', value: 3, color: '#ffc107' }, { text: '4', value: 4, color: '#00cc6a' },
   { text: '5', value: 5, color: '#cc0000' }
 ];
 let isSpinning = false;
@@ -1015,7 +765,7 @@ function initSpinWheel() {
     el.className = 'spin-item';
     el.style.background = opt.color;
     el.style.transform = `rotate(${index * anglePerSegment}deg) skewY(${90 - anglePerSegment}deg)`;
-    el.innerHTML = `<span style="transform: skewY(-${90 - anglePerSegment}deg) rotate(${anglePerSegment/2}deg); display:inline-block; font-size:20px;">${opt.text}</span>`;
+    el.innerHTML = `<span style="transform:skewY(-${90 - anglePerSegment}deg) rotate(${anglePerSegment / 2}deg);display:inline-block;font-size:20px">${opt.text}</span>`;
     wheel.appendChild(el);
   });
 }
@@ -1025,38 +775,25 @@ async function spinWheel() {
   if (isSpinning) return;
   const btn = document.getElementById('spinBtn');
   if (btn.disabled) return;
-  
-  isSpinning = true;
-  btn.disabled = true;
-  btn.textContent = 'Spinning...';
-  
+  isSpinning = true; btn.disabled = true; btn.textContent = 'Spinning...';
   const winnerIndex = Math.floor(Math.random() * spinOptions.length);
   const winner = spinOptions[winnerIndex];
-  
   const anglePerSegment = 360 / spinOptions.length;
   const targetAngle = 3600 + (360 - (winnerIndex * anglePerSegment)) - (anglePerSegment / 2);
-  
   const wheel = document.getElementById('spinWheel');
   wheel.style.transform = `rotate(${targetAngle}deg)`;
-  
   setTimeout(async () => {
     try {
       const { error } = await supabase.rpc('claim_daily_spin', { p_amount: winner.value });
       if (error) throw error;
       showMsg('spinMsg', `🎉 You won Rs. ${winner.value}!`, 'ok');
-      
-      // === YEH NAYI LINE HAI: Balance foran update karne ke liye ===
       await loadData();
       document.getElementById('balance').textContent = userProfile.balance;
-
-    } catch (e) {
-      showMsg('spinMsg', '❌ ' + (e.message || e));
-    }
+    } catch (e) { showMsg('spinMsg', '❌ ' + (e.message || e)); }
     isSpinning = false;
   }, 4500);
 }
 
-// OTHER FUNCTIONS
 window.toggleProfileMenu = function() { document.getElementById('profileDropdown').classList.toggle('active'); }
 document.addEventListener('click', (e) => {
   const dropdown = document.getElementById('profileDropdown');
@@ -1075,6 +812,7 @@ window.uploadAvatar = async function(event) {
     await loadData();
   } catch (e) { alert('Error uploading image: ' + e.message); }
 }
+
 document.getElementById('saveProfileBtn').addEventListener('click', async () => {
   const btn = document.getElementById('saveProfileBtn');
   const name = document.getElementById('profileName').value.trim();
@@ -1091,17 +829,13 @@ document.getElementById('saveProfileBtn').addEventListener('click', async () => 
 window.switchPage = function(pageId, navId) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.bottom-nav-btn').forEach(b => b.classList.remove('active'));
-  
-  if(pageId) document.getElementById(pageId).classList.add('active');
-  if(navId) document.getElementById(navId).classList.add('active');
-
+  if (pageId) document.getElementById(pageId).classList.add('active');
+  if (navId) document.getElementById(navId).classList.add('active');
   if (pageId === 'referralPage' && currentUser) {
-      document.getElementById('myReferralLink').href = `https://fortube.online?ref=${currentUser.id}`;
-      document.getElementById('myReferralLink').textContent = `https://fortube.online?ref=${currentUser.id}`;
+    document.getElementById('myReferralLink').href = `https://fortube.online?ref=${currentUser.id}`;
+    document.getElementById('myReferralLink').textContent = `https://fortube.online?ref=${currentUser.id}`;
   }
-  if (pageId === 'infoPage') {
-      switchInfoTab('terms');
-  }
+  if (pageId === 'infoPage') { switchInfoTab('terms'); }
 };
 
 document.getElementById('backFromProfile').addEventListener('click', () => switchPage('dashboardPage', 'navDashboard'));
@@ -1110,22 +844,53 @@ document.getElementById('backFromWithdraw').addEventListener('click', () => swit
 document.getElementById('backFromReferral').addEventListener('click', () => switchPage('dashboardPage', 'navDashboard'));
 document.getElementById('backFromInfo').addEventListener('click', () => switchPage('dashboardPage', 'navDashboard'));
 document.getElementById('backFromSpin').addEventListener('click', () => switchPage('dashboardPage', 'navDashboard'));
+document.getElementById('backFromAddTask').addEventListener('click', () => switchPage('dashboardPage', 'navDashboard'));
+
+window.openAddTaskPage = function() {
+  if (!currentUser) { document.getElementById('appScreen').classList.add('hidden'); document.getElementById('loginScreen').style.display = 'flex'; return; }
+  switchPage('addTaskPage', null);
+}
+
+window.calculateCharge = function() {
+  const type = document.getElementById('taskType').value;
+  const limit = Number(document.getElementById('taskLimit').value);
+  let rate = 1;
+  if (type === 'website' || type === 'sub') rate = 2;
+  document.getElementById('taskCharge').value = "Rs. " + (limit * rate);
+}
+
+document.getElementById('addTaskBtn').addEventListener('click', async () => {
+  const btn = document.getElementById('addTaskBtn');
+  const type = document.getElementById('taskType').value;
+  const link = document.getElementById('taskLink').value.trim();
+  const limit = Number(document.getElementById('taskLimit').value);
+  if (!link || !limit) return showMsg('addTaskMsg', 'Link aur Quantity required');
+  btnLoading(btn, true, 'Processing...');
+  try {
+    const { data, error } = await supabase.rpc('create_task', { p_type: type, p_link: link, p_limit: limit });
+    if (error) throw error;
+    if (data && data.error) throw new Error(data.error);
+    showMsg('addTaskMsg', '✅ ' + data.message, 'ok');
+    await loadData();
+  } catch (e) { showMsg('addTaskMsg', '❌ ' + (e.message || e)); }
+  btnLoading(btn, false);
+});
 
 window.switchInfoTab = function(tab) {
   document.querySelectorAll('#infoPage .nav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('infoTerms').classList.add('hidden');
   document.getElementById('infoAbout').classList.add('hidden');
   document.getElementById('infoContact').classList.add('hidden');
-  if(tab === 'terms') { document.getElementById('tabTerms').classList.add('active'); document.getElementById('infoTerms').classList.remove('hidden'); }
-  else if(tab === 'about') { document.getElementById('tabAbout').classList.add('active'); document.getElementById('infoAbout').classList.remove('hidden'); }
-  else if(tab === 'contact') { document.getElementById('tabContact').classList.add('active'); document.getElementById('infoContact').classList.remove('hidden'); }
+  if (tab === 'terms') { document.getElementById('tabTerms').classList.add('active'); document.getElementById('infoTerms').classList.remove('hidden'); }
+  else if (tab === 'about') { document.getElementById('tabAbout').classList.add('active'); document.getElementById('infoAbout').classList.remove('hidden'); }
+  else if (tab === 'contact') { document.getElementById('tabContact').classList.add('active'); document.getElementById('infoContact').classList.remove('hidden'); }
 }
 window.copyRefId = function() { navigator.clipboard.writeText(currentUser.id); alert('Referral ID Copied!'); }
 window.copyRefLink = function() { navigator.clipboard.writeText(`https://fortube.online?ref=${currentUser.id}`); alert('Link Copied!'); }
 
 document.getElementById('loginBtn').addEventListener('click', login);
 document.getElementById('signupBtn').addEventListener('click', signup);
-document.getElementById('googleLoginBtn').addEventListener('click', googleLogin); // Google Login Event
+document.getElementById('googleLoginBtn').addEventListener('click', googleLogin);
 document.getElementById('depBtn').addEventListener('click', submitDeposit);
 document.getElementById('wdBtn').addEventListener('click', submitWithdrawal);
 document.getElementById('claimBonusBtn').addEventListener('click', claimBonus);
@@ -1146,13 +911,9 @@ supabase.auth.onAuthStateChange(async (event, session) => {
 (async () => {
   try {
     const { data: { session } } = await supabase.auth.getSession();
-    if (session?.user) { 
-        currentUser = session.user; 
-        try { await ensureProfile(currentUser); } catch (e) {} 
-        showApp(); 
-    } else {
-        document.getElementById('appScreen').classList.remove('hidden');
-        document.getElementById('loginScreen').style.display = 'none';
+    if (session?.user) { currentUser = session.user; try { await ensureProfile(currentUser); } catch (e) {} showApp(); } else {
+      document.getElementById('appScreen').classList.remove('hidden');
+      document.getElementById('loginScreen').style.display = 'none';
     }
   } catch (e) {}
 })();
@@ -1167,16 +928,12 @@ async function claimBonus() {
     if (error) throw error;
     showMsg('bonusMsg', `✅ You claimed Rs. ${bonusAmount} bonus!`, 'ok');
     await loadData();
-  } catch(e) { showMsg('bonusMsg', '❌ ' + (e.message || e)); }
+  } catch (e) { showMsg('bonusMsg', '❌ ' + (e.message || e)); }
   btnLoading(btn, false);
 }
 
 async function submitDeposit() {
-  if (!currentUser) {
-    document.getElementById('appScreen').classList.add('hidden');
-    document.getElementById('loginScreen').style.display = 'flex';
-    return;
-  }
+  if (!currentUser) { document.getElementById('appScreen').classList.add('hidden'); document.getElementById('loginScreen').style.display = 'flex'; return; }
   const btn = document.getElementById('depBtn');
   const amount = Number(document.getElementById('depAmount').value);
   const method = document.getElementById('depMethod').value;
@@ -1200,28 +957,17 @@ async function submitDeposit() {
   btnLoading(btn, false);
 }
 
-// QUIZ LOGIC (10 Sec Timer for 10-100, 8 Sec for 200)
 let currentQ = null, timerInterval = null, currentTimeLeft = 20;
 function shuffle(arr) { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
 async function startQuestion(betAmount) {
-  if (!currentUser) {
-    document.getElementById('appScreen').classList.add('hidden');
-    document.getElementById('loginScreen').style.display = 'flex';
-    return;
-  }
+  if (!currentUser) { document.getElementById('appScreen').classList.add('hidden'); document.getElementById('loginScreen').style.display = 'flex'; return; }
   if (userProfile.balance < betAmount) return alert(`Insufficient balance. You need at least Rs. ${betAmount} to play this card.`);
-  
   currentBetAmount = betAmount;
-  
-  // === YAHAN TIMER KI VALUE SET KAREIN ===
-  // Agar 200 ka card hai to 8 second, warna 10 second
-  let timerDuration = (betAmount === 200) ? 8 : 10; 
-
+  let timerDuration = (betAmount === 200) ? 8 : 10;
   document.getElementById('currentBetAmount').textContent = betAmount;
   document.getElementById('quizCardsGrid').classList.add('hidden');
   document.getElementById('questionBox').classList.remove('hidden');
-
   const { data: attempted } = await supabase.from('attempts').select('question_id').eq('user_id', currentUser.id);
   const doneIds = (attempted ?? []).map(a => a.question_id);
   let q = null;
@@ -1231,31 +977,18 @@ async function startQuestion(betAmount) {
     const { data: all } = await supabase.from('questions').select('*').limit(1200);
     if (all?.length) q = all[Math.floor(Math.random() * all.length)];
   }
-  if (!q) { 
-    alert('No questions available.');
-    document.getElementById('quizCardsGrid').classList.remove('hidden');
-    document.getElementById('questionBox').classList.add('hidden');
-    return; 
-  }
-  
+  if (!q) { alert('No questions available.'); document.getElementById('quizCardsGrid').classList.remove('hidden'); document.getElementById('questionBox').classList.add('hidden'); return; }
   currentQ = q;
   document.getElementById('qtext').textContent = q.question_text;
-  
-  const box = document.getElementById('options');
-  box.innerHTML = '';
+  const box = document.getElementById('options'); box.innerHTML = '';
   const opts = shuffle([{ key: 'A', text: q.option_a }, { key: 'B', text: q.option_b }, { key: 'C', text: q.option_c }]);
-  
   opts.forEach((o, i) => {
     const div = document.createElement('div');
-    div.className = 'option';
-    div.textContent = o.text;
-    div.dataset.orig = o.key;
+    div.className = 'option'; div.textContent = o.text; div.dataset.orig = o.key;
     div.style.animationDelay = (i * 0.1) + 's';
-    // Yahan timerDuration - currentTimeLeft pass karein
     div.addEventListener('click', () => submitAnswer(o.key, timerDuration - currentTimeLeft));
     box.appendChild(div);
   });
-
   startCountdown(timerDuration);
 }
 
@@ -1263,70 +996,34 @@ function startCountdown(duration) {
   let t = duration;
   currentTimeLeft = duration;
   const timerEl = document.getElementById('timer');
-  timerEl.textContent = t;
-  timerEl.classList.remove('warn');
-  
+  timerEl.textContent = t; timerEl.classList.remove('warn');
   clearInterval(timerInterval);
   timerInterval = setInterval(() => {
-    t--;
-    currentTimeLeft = t;
-    if (t >= 0) {
-      timerEl.textContent = t;
-      if (t <= 3) timerEl.classList.add('warn');
-    }
-    if (t <= 0) {
-      clearInterval(timerInterval);
-      submitAnswer(null, 0);
-    }
+    t--; currentTimeLeft = t;
+    if (t >= 0) { timerEl.textContent = t; if (t <= 3) timerEl.classList.add('warn'); }
+    if (t <= 0) { clearInterval(timerInterval); submitAnswer(null, 0); }
   }, 1000);
 }
 
 async function submitAnswer(chosenKey, timeTaken) {
   clearInterval(timerInterval);
   document.querySelectorAll('.option').forEach(o => o.style.pointerEvents = 'none');
-
-  document.querySelectorAll('.option').forEach(o => {
-    if (chosenKey && o.dataset.orig === chosenKey) {
-      o.classList.add('correct'); 
-    }
-  });
-
+  document.querySelectorAll('.option').forEach(o => { if (chosenKey && o.dataset.orig === chosenKey) o.classList.add('correct'); });
   try {
     const { data, error } = await supabase.functions.invoke('answer-question', {
-      body: { 
-        question_id: currentQ.id, 
-        chosen_option: chosenKey, 
-        time_taken: timeTaken, 
-        bet_amount: currentBetAmount,
-        timer_duration: (currentBetAmount === 200) ? 8 : 10 // Yeh line add karein
-      }
+      body: { question_id: currentQ.id, chosen_option: chosenKey, time_taken: timeTaken, bet_amount: currentBetAmount, timer_duration: (currentBetAmount === 200) ? 8 : 10 }
     });
-    
-    if (error) {
-      let msg = error.message;
-      if (error.context) { try { const body = await error.context.json(); if (body?.error) msg = body.error; } catch (e) {} }
-      throw new Error(msg);
-    }
-    
+    if (error) { let msg = error.message; if (error.context) { try { const body = await error.context.json(); if (body?.error) msg = body.error; } catch (e) {} } throw new Error(msg); }
     document.querySelectorAll('.option').forEach(o => {
-      if (o.dataset.orig === chosenKey && o.dataset.orig !== data.correct_option) {
-        o.classList.remove('correct');
-        o.classList.add('wrong');
-      }
-      if (o.dataset.orig === data.correct_option) {
-        o.classList.add('correct');
-      }
+      if (o.dataset.orig === chosenKey && o.dataset.orig !== data.correct_option) { o.classList.remove('correct'); o.classList.add('wrong'); }
+      if (o.dataset.orig === data.correct_option) { o.classList.add('correct'); }
     });
-    
     document.getElementById('balance').textContent = data.new_balance;
-    
     setTimeout(() => {
       document.getElementById('questionBox').classList.add('hidden');
       document.getElementById('quizCardsGrid').classList.remove('hidden');
-      currentQ = null;
-      loadData();
+      currentQ = null; loadData();
     }, 2000);
-    
   } catch (e) {
     alert('Quiz error: ' + e.message);
     document.getElementById('questionBox').classList.add('hidden');
@@ -1336,11 +1033,7 @@ async function submitAnswer(chosenKey, timeTaken) {
 }
 
 async function submitWithdrawal() {
-  if (!currentUser) {
-    document.getElementById('appScreen').classList.add('hidden');
-    document.getElementById('loginScreen').style.display = 'flex';
-    return;
-  }
+  if (!currentUser) { document.getElementById('appScreen').classList.add('hidden'); document.getElementById('loginScreen').style.display = 'flex'; return; }
   const btn = document.getElementById('wdBtn');
   const amount = Number(document.getElementById('wdAmount').value);
   const method = document.getElementById('wdMethod').value;
