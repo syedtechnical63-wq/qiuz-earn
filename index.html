@@ -498,31 +498,104 @@ function generateQuizCards() {
 }
 generateQuizCards();
 
-function generateTaskCards() {
+/* ============================================================
+   ✅ FIXED: generateTaskCards - Ab database se tasks load hote hain
+   aur link click par properly khulta hai
+   ============================================================ */
+async function generateTaskCards() {
   const grid = document.getElementById('taskGrid');
+  grid.innerHTML = '<p style="text-align:center;color:#6b7a73;grid-column:1/-1">Loading tasks...</p>';
+  
+  const iconMap = {
+    website: 'https://cdn-icons-png.flaticon.com/512/1006/1006771.png',
+    sub: 'https://cdn-icons-png.flaticon.com/512/1384/1384060.png',
+    video: 'https://cdn-icons-png.flaticon.com/512/1384/1384060.png'
+  };
+  const titleMap = {
+    website: 'Website Visit',
+    sub: 'YouTube Sub',
+    video: 'Watch Video'
+  };
+  
+  try {
+    // Database se active tasks fetch karein
+    const { data: tasks, error } = await supabase
+      .from('tasks')
+      .select('*')
+      .eq('status', 'active')
+      .order('created_at', { ascending: false })
+      .limit(30);
+    
+    if (error) {
+      console.error('Tasks fetch error:', error);
+      // Fallback: hardcoded tasks dikhao agar table hi nahi hai
+      renderDefaultTasks(grid, iconMap, titleMap);
+      return;
+    }
+    
+    if (!tasks || tasks.length === 0) {
+      // Agar koi task nahi hai to default dikhao
+      renderDefaultTasks(grid, iconMap, titleMap);
+      return;
+    }
+    
+    grid.innerHTML = '';
+    tasks.forEach((t) => {
+      const card = document.createElement('div');
+      card.className = 'quiz-card-btn';
+      card.style.cursor = 'pointer';
+      const reward = t.reward || (t.type === 'video' ? 1 : 2);
+      card.innerHTML = `
+        <img src="${iconMap[t.type] || iconMap.website}" style="width:36px;height:36px;object-fit:contain;margin-bottom:8px">
+        <div class="quiz-card-amount" style="font-size:16px">${titleMap[t.type] || 'Task'}</div>
+        <div class="quiz-card-text" style="color:#00ff88;font-weight:bold">Earn Rs. ${reward}</div>
+      `;
+      
+      // 🔥 Link click handler - properly khulega
+      card.onclick = () => {
+        let url = (t.link || '').trim();
+        if (!url || url === '#') {
+          alert('Is task ka link available nahi hai.');
+          return;
+        }
+        if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
+        window.open(url, '_blank', 'noopener,noreferrer');
+      };
+      grid.appendChild(card);
+    });
+  } catch (e) {
+    console.error('Task grid error:', e);
+    renderDefaultTasks(grid, iconMap, titleMap);
+  }
+}
+
+/* Fallback default tasks (agar DB me tasks nahi hain) */
+function renderDefaultTasks(grid, iconMap, titleMap) {
   grid.innerHTML = '';
-  // Yahan HD Icons (Images) laga diye hain. Video waly par bhi YouTube ka icon hai.
-  const tasks = [
-    { title: 'Website Visit', reward: 5, link: 'https://example.com', icon: 'https://cdn-icons-png.flaticon.com/512/1006/1006771.png' },
-    { title: 'Website Visit', reward: 5, link: 'https://example.com', icon: 'https://cdn-icons-png.flaticon.com/512/1006/1006771.png' },
-    { title: 'Website Visit', reward: 5, link: 'https://example.com', icon: 'https://cdn-icons-png.flaticon.com/512/1006/1006771.png' },
-    { title: 'YouTube Sub', reward: 5, link: 'https://youtube.com', icon: 'https://cdn-icons-png.flaticon.com/512/1384/1384060.png' },
-    { title: 'YouTube Sub', reward: 5, link: 'https://youtube.com', icon: 'https://cdn-icons-png.flaticon.com/512/1384/1384060.png' },
-    { title: 'YouTube Sub', reward: 5, link: 'https://youtube.com', icon: 'https://cdn-icons-png.flaticon.com/512/1384/1384060.png' },
-    { title: 'Watch Video', reward: 2, link: 'https://youtube.com', icon: 'https://cdn-icons-png.flaticon.com/512/1384/1384060.png' },
-    { title: 'Watch Video', reward: 2, link: 'https://youtube.com', icon: 'https://cdn-icons-png.flaticon.com/512/1384/1384060.png' },
-    { title: 'Watch Video', reward: 2, link: 'https://youtube.com', icon: 'https://cdn-icons-png.flaticon.com/512/1384/1384060.png' },
-    { title: 'Watch Video', reward: 2, link: 'https://youtube.com', icon: 'https://cdn-icons-png.flaticon.com/512/1384/1384060.png' }
+  const defaults = [
+    { type: 'website', link: 'https://example.com', reward: 5 },
+    { type: 'sub', link: 'https://youtube.com', reward: 5 },
+    { type: 'video', link: 'https://youtube.com', reward: 2 }
   ];
-  tasks.forEach((t) => {
+  defaults.forEach(t => {
     const card = document.createElement('div');
     card.className = 'quiz-card-btn';
     card.style.cursor = 'pointer';
-    card.innerHTML = `<img src="${t.icon}" style="width:36px;height:36px;object-fit:contain;margin-bottom:8px"><div class="quiz-card-amount" style="font-size:16px">${t.title}</div><div class="quiz-card-text" style="color:#00ff88;font-weight:bold">Earn Rs. ${t.reward}</div>`;
-    card.onclick = () => window.open(t.link, '_blank');
+    card.innerHTML = `
+      <img src="${iconMap[t.type]}" style="width:36px;height:36px;object-fit:contain;margin-bottom:8px">
+      <div class="quiz-card-amount" style="font-size:16px">${titleMap[t.type]}</div>
+      <div class="quiz-card-text" style="color:#00ff88;font-weight:bold">Earn Rs. ${t.reward}</div>
+    `;
+    card.onclick = () => {
+      let url = t.link;
+      if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
+      window.open(url, '_blank', 'noopener,noreferrer');
+    };
     grid.appendChild(card);
   });
 }
+
+// Initial load
 generateTaskCards();
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -684,6 +757,8 @@ async function loadData() {
   await loadWithdrawHistory();
   await loadReferrals();
   await checkMailbox();
+  // ✅ Tasks ko bhi refresh karein
+  await generateTaskCards();
 }
 
 async function loadDepositHistory() {
@@ -722,31 +797,82 @@ async function loadReferrals() {
   });
 }
 
+/* ============================================================
+   ✅ FIXED: Mailbox functions
+   ============================================================ */
 async function checkMailbox() {
-  const { data } = await supabase.from('mailbox').select('*').eq('user_id', currentUser.id).eq('is_read', false);
-  if (data && data.length > 0) {
-    document.getElementById('mailboxBadge').textContent = data.length;
-    document.getElementById('mailboxBadge').classList.remove('hidden');
-  } else {
-    document.getElementById('mailboxBadge').classList.add('hidden');
+  if (!currentUser) return;
+  try {
+    const { data, error } = await supabase
+      .from('mailbox')
+      .select('id')
+      .eq('user_id', currentUser.id)
+      .eq('is_read', false);
+    
+    if (error) throw error;
+    
+    const badge = document.getElementById('mailboxBadge');
+    if (data && data.length > 0) {
+      badge.textContent = data.length > 99 ? '99+' : data.length;
+      badge.classList.remove('hidden');
+    } else {
+      badge.classList.add('hidden');
+    }
+  } catch (e) {
+    console.error('Mailbox check error:', e);
   }
 }
 
 window.openMailbox = async function() {
-  if (!currentUser) { document.getElementById('appScreen').classList.add('hidden'); document.getElementById('loginScreen').style.display = 'flex'; return; }
+  if (!currentUser) {
+    document.getElementById('appScreen').classList.add('hidden');
+    document.getElementById('loginScreen').style.display = 'flex';
+    return;
+  }
+  
   document.getElementById('mailboxModal').classList.add('active');
   const list = document.getElementById('mailList');
-  list.innerHTML = 'Loading...';
-  const { data } = await supabase.from('mailbox').select('*').eq('user_id', currentUser.id).order('created_at', { ascending: false });
-  if (!data || data.length === 0) { list.innerHTML = '<p style="text-align:center;color:#6b7a73">No messages yet.</p>'; return; }
-  list.innerHTML = '';
-  data.forEach(m => {
-    const date = new Date(m.created_at).toLocaleString();
-    list.innerHTML += `<div class="mail-item"><h4>${m.subject}</h4><p>${m.message}</p><small>${date}</small></div>`;
-  });
-  await supabase.from('mailbox').update({ is_read: true }).eq('user_id', currentUser.id).eq('is_read', false);
-  document.getElementById('mailboxBadge').classList.add('hidden');
+  list.innerHTML = '<p style="text-align:center;color:#00ff88">Loading messages...</p>';
+  
+  try {
+    const { data, error } = await supabase
+      .from('mailbox')
+      .select('*')
+      .eq('user_id', currentUser.id)
+      .order('created_at', { ascending: false });
+    
+    if (error) throw error;
+    
+    if (!data || data.length === 0) {
+      list.innerHTML = '<p style="text-align:center;color:#6b7a73">No messages yet.</p>';
+      return;
+    }
+    
+    list.innerHTML = '';
+    data.forEach(m => {
+      const date = new Date(m.created_at).toLocaleString();
+      const readStyle = m.is_read ? 'opacity:0.7' : '';
+      const unreadDot = !m.is_read ? '<span style="display:inline-block;width:8px;height:8px;background:#00ff88;border-radius:50%;margin-right:8px"></span>' : '';
+      list.innerHTML += `
+        <div class="mail-item" style="${readStyle}">
+          <h4>${unreadDot}${m.subject || 'Notification'}</h4>
+          <p>${m.message}</p>
+          <small>${date}</small>
+        </div>`;
+    });
+    
+    // Mark unread messages as read
+    const unreadIds = data.filter(m => !m.is_read).map(m => m.id);
+    if (unreadIds.length > 0) {
+      await supabase.from('mailbox').update({ is_read: true }).in('id', unreadIds);
+    }
+    
+    document.getElementById('mailboxBadge').classList.add('hidden');
+  } catch (e) {
+    list.innerHTML = `<p style="text-align:center;color:#ff6b6b">Error: ${e.message}</p>`;
+  }
 }
+
 window.closeMailbox = function() { document.getElementById('mailboxModal').classList.remove('active'); }
 
 const spinOptions = [
@@ -859,19 +985,30 @@ window.calculateCharge = function() {
   document.getElementById('taskCharge').value = "Rs. " + (limit * rate);
 }
 
+/* ============================================================
+   ✅ FIXED: Add Task - link validation + task refresh
+   ============================================================ */
 document.getElementById('addTaskBtn').addEventListener('click', async () => {
   const btn = document.getElementById('addTaskBtn');
   const type = document.getElementById('taskType').value;
   const link = document.getElementById('taskLink').value.trim();
   const limit = Number(document.getElementById('taskLimit').value);
+  
   if (!link || !limit) return showMsg('addTaskMsg', 'Link aur Quantity required');
+  if (!/^https?:\/\//i.test(link)) return showMsg('addTaskMsg', 'Link https:// se start hona chahiye');
+  if (limit < 1) return showMsg('addTaskMsg', 'Quantity kam az kam 1 honi chahiye');
+  
   btnLoading(btn, true, 'Processing...');
   try {
     const { data, error } = await supabase.rpc('create_task', { p_type: type, p_link: link, p_limit: limit });
     if (error) throw error;
     if (data && data.error) throw new Error(data.error);
-    showMsg('addTaskMsg', '✅ ' + data.message, 'ok');
+    showMsg('addTaskMsg', '✅ ' + (data.message || 'Task created successfully!'), 'ok');
+    document.getElementById('taskLink').value = '';
+    document.getElementById('taskLimit').value = '';
+    document.getElementById('taskCharge').value = 'Rs. 0';
     await loadData();
+    await generateTaskCards(); // 🔥 Tasks refresh
   } catch (e) { showMsg('addTaskMsg', '❌ ' + (e.message || e)); }
   btnLoading(btn, false);
 });
