@@ -1200,7 +1200,7 @@ async function submitDeposit() {
   btnLoading(btn, false);
 }
 
-// QUIZ LOGIC (20 Sec Timer)
+// QUIZ LOGIC (10 Sec Timer for 10-100, 8 Sec for 200)
 let currentQ = null, timerInterval = null, currentTimeLeft = 20;
 function shuffle(arr) { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
@@ -1213,6 +1213,11 @@ async function startQuestion(betAmount) {
   if (userProfile.balance < betAmount) return alert(`Insufficient balance. You need at least Rs. ${betAmount} to play this card.`);
   
   currentBetAmount = betAmount;
+  
+  // === YAHAN TIMER KI VALUE SET KAREIN ===
+  // Agar 200 ka card hai to 8 second, warna 10 second
+  let timerDuration = (betAmount === 200) ? 8 : 10; 
+
   document.getElementById('currentBetAmount').textContent = betAmount;
   document.getElementById('quizCardsGrid').classList.add('hidden');
   document.getElementById('questionBox').classList.remove('hidden');
@@ -1246,16 +1251,17 @@ async function startQuestion(betAmount) {
     div.textContent = o.text;
     div.dataset.orig = o.key;
     div.style.animationDelay = (i * 0.1) + 's';
-    div.addEventListener('click', () => submitAnswer(o.key, currentTimeLeft));
+    // Yahan timerDuration - currentTimeLeft pass karein
+    div.addEventListener('click', () => submitAnswer(o.key, timerDuration - currentTimeLeft));
     box.appendChild(div);
   });
 
-  startCountdown();
+  startCountdown(timerDuration);
 }
 
-function startCountdown() {
-  let t = 20;
-  currentTimeLeft = 20;
+function startCountdown(duration) {
+  let t = duration;
+  currentTimeLeft = duration;
   const timerEl = document.getElementById('timer');
   timerEl.textContent = t;
   timerEl.classList.remove('warn');
@@ -1266,7 +1272,7 @@ function startCountdown() {
     currentTimeLeft = t;
     if (t >= 0) {
       timerEl.textContent = t;
-      if (t <= 5) timerEl.classList.add('warn');
+      if (t <= 3) timerEl.classList.add('warn');
     }
     if (t <= 0) {
       clearInterval(timerInterval);
@@ -1287,7 +1293,13 @@ async function submitAnswer(chosenKey, timeTaken) {
 
   try {
     const { data, error } = await supabase.functions.invoke('answer-question', {
-      body: { question_id: currentQ.id, chosen_option: chosenKey, time_taken: timeTaken, bet_amount: currentBetAmount }
+      body: { 
+        question_id: currentQ.id, 
+        chosen_option: chosenKey, 
+        time_taken: timeTaken, 
+        bet_amount: currentBetAmount,
+        timer_duration: (currentBetAmount === 200) ? 8 : 10 // Yeh line add karein
+      }
     });
     
     if (error) {
