@@ -47,14 +47,16 @@ textarea{resize:vertical;min-height:100px}
 .btn-secondary:hover:not(:disabled){background:rgba(0,255,136,.1);transform:translateY(-2px)}
 .btn-google{background:#fff;color:#333;font-weight:600;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:15px;box-shadow:0 4px 15px rgba(0,0,0,.2)}
 .btn-google:hover{background:#f1f1f1;transform:translateY(-2px)}
-.btn:disabled{opacity:.5;cursor:not-allowed}
-.top-bar{position:sticky;top:0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:rgba(10,10,10,.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,255,136,.15);animation:slideDown .5s ease both}
+.btn:disabled{opacity:.5;cursor:not-allowed}.top-bar{position:sticky;top:0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:rgba(10,10,10,.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,255,136,.15);animation:slideDown .5s ease both}
 @keyframes slideDown{from{transform:translateY(-100%)}to{transform:translateY(0)}}
-.top-left{display:flex;align-items:center;gap:12px}
+.top-left{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.top-right{display:flex;align-items:center;gap:10px}
 .coins-box{display:flex;align-items:center;gap:4px;background:linear-gradient(135deg,#00ff88,#00cc6a);color:#000;padding:8px 16px;border-radius:25px;font-weight:800;font-size:16px;box-shadow:0 0 20px rgba(0,255,136,.4);animation:coinGlow 3s ease-in-out infinite}
 @keyframes coinGlow{0%,100%{box-shadow:0 0 20px rgba(0,255,136,.3)}50%{box-shadow:0 0 35px rgba(0,255,136,.6)}}
-.mailbox-btn{position:relative;background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:#00ff88;padding:8px 12px;border-radius:12px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
-.mailbox-btn:hover{background:rgba(0,255,136,.2)}
+.mailbox-btn,.support-btn{position:relative;background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:#00ff88;padding:8px 12px;border-radius:12px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600}
+.mailbox-btn:hover,.support-btn:hover{background:rgba(0,255,136,.2);transform:translateY(-1px)}
+.support-btn{background:linear-gradient(135deg,#00ff88,#00cc6a);color:#000;border-color:#00ff88;box-shadow:0 0 15px rgba(0,255,136,.35)}
+.support-btn:hover{box-shadow:0 0 25px rgba(0,255,136,.6)}
 .mailbox-badge{position:absolute;top:-5px;right:-5px;background:#ff3c3c;color:#fff;font-size:10px;font-weight:bold;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
 .profile-container{position:relative;display:flex;align-items:center}
 .avatar-btn{width:42px;height:42px;border-radius:50%;background:rgba(0,255,136,.1);border:2px solid #00ff88;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;transition:all .3s;box-shadow:0 0 10px rgba(0,255,136,.2)}
@@ -89,15 +91,14 @@ p{color:#a0b0a8;font-size:14px;line-height:1.6}
 .wallet-owner{font-size:16px;font-weight:700;color:#fff}
 .wallet-number{font-size:15px;color:#00ff88;font-family:'Courier New',monospace;letter-spacing:1px;margin-top:3px;font-weight:bold}
 .instruction{background:rgba(0,255,136,.05);border-left:4px solid #00ff88;border-radius:8px;padding:15px;font-size:13px;color:#a0b0a8;margin:15px 0;line-height:1.6}
-input[type="number"],input[type="text"],select{width:100%;padding:14px 16px;margin:8px 0;background:rgba(0,0,0,.5);border:1px solid rgba(0,255,136,.25);border-radius:12px;color:#fff;font-size:15px;transition:all .3s;font-family:'Poppins',sans-serif}
-input[type="number"]::placeholder,input[type="text"]::placeholder{color:#6b7a73}
+input[type="number"],input[type="text"],input[type="email"],input[type="password"],select{width:100%;padding:14px 16px;margin:8px 0;background:rgba(0,0,0,.5);border:1px solid rgba(0,255,136,.25);border-radius:12px;color:#fff;font-size:15px;transition:all .3s;font-family:'Poppins',sans-serif}
+input::placeholder{color:#6b7a73}
 input:focus,select:focus{outline:none;border-color:#00ff88;background:rgba(0,255,136,.05);box-shadow:0 0 15px rgba(0,255,136,.15)}
 select option{background:#0a0a0a;color:#fff}
 input[type="file"]{width:100%;padding:12px;margin:8px 0;background:rgba(0,0,0,.5);border:1px dashed rgba(0,255,136,.4);border-radius:12px;color:#a0b0a8;font-size:13px;cursor:pointer}
 .submit-btn{width:100%;padding:15px;margin-top:10px;background:linear-gradient(135deg,#00ff88,#00cc6a);color:#000;border:none;border-radius:12px;font-weight:800;font-size:16px;cursor:pointer;transition:all .3s;box-shadow:0 6px 20px rgba(0,255,136,.3);font-family:'Poppins',sans-serif}
 .submit-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,255,136,.5)}
-.submit-btn:disabled{opacity:.5;cursor:not-allowed}
-.quiz-box{background:rgba(0,0,0,.4);padding:20px;border-radius:15px;border:1px solid rgba(0,255,136,.2);margin-top:20px}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed}.quiz-box{background:rgba(0,0,0,.4);padding:20px;border-radius:15px;border:1px solid rgba(0,255,136,.2);margin-top:20px}
 .option{padding:16px 20px;margin:10px 0;border-radius:12px;border:2px solid rgba(0,255,136,.2);background:rgba(0,0,0,.4);cursor:pointer;font-size:15px;color:#fff;transition:all .25s;animation:slideIn .4s ease both}
 @keyframes slideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
 .option:hover{border-color:#00ff88;background:rgba(0,255,136,.1);transform:translateX(5px)}
@@ -108,27 +109,32 @@ input[type="file"]{width:100%;padding:12px;margin:8px 0;background:rgba(0,0,0,.5
 #timer{font-size:36px;font-weight:800;color:#00ff88;text-align:center;margin:15px 0;transition:all .3s;text-shadow:0 0 25px rgba(0,255,136,.5)}
 #timer.warn{color:#ff3c3c;text-shadow:0 0 25px rgba(255,60,60,.5);animation:timerPulse .5s infinite}
 @keyframes timerPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
-.quiz-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-top:20px}
-.quiz-card-btn{background:linear-gradient(135deg,rgba(0,255,136,.1),rgba(0,0,0,.6));border:1px solid rgba(0,255,136,.3);border-radius:15px;padding:20px 10px;text-align:center;cursor:pointer;transition:all .25s;display:flex;flex-direction:column;align-items:center;gap:8px}
+.quiz-grid,.task-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-top:20px}
+.quiz-card-btn{background:linear-gradient(135deg,rgba(0,255,136,.1),rgba(0,0,0,.6));border:1px solid rgba(0,255,136,.3);border-radius:15px;padding:20px 10px;text-align:center;cursor:pointer;transition:all .25s;display:flex;flex-direction:column;align-items:center;gap:8px;position:relative}
 .quiz-card-btn:hover{border-color:#00ff88;background:rgba(0,255,136,.2);transform:translateY(-3px);box-shadow:0 5px 20px rgba(0,255,136,.2)}
 .quiz-card-amount{font-size:22px;font-weight:800;color:#00ff88;text-shadow:0 0 15px rgba(0,255,136,.4)}
 .quiz-card-text{font-size:12px;color:#a0b0a8;font-weight:600}
-.msg{font-size:13px;margin-top:12px;padding:12px 15px;border-radius:10px;animation:fadeUp .3s ease;font-weight:500}
+.msg{font-size:13px;margin-top:12px;padding:12px 15px;border-radius:10px;animation:fadeUp .3s ease;font-weight:500;transition:opacity .5s ease}
 .msg.err{background:rgba(255,60,60,.1);color:#ff6b6b;border-left:4px solid #ff3c3c}
 .msg.ok{background:rgba(0,255,136,.1);color:#00ff88;border-left:4px solid #00ff88}
+.msg.auto-hide{animation:fadeUp .3s ease, fadeOutMsg .5s ease 3s forwards}
+@keyframes fadeOutMsg{to{opacity:0;max-height:0;padding:0;margin:0;overflow:hidden}}
 .hidden{display:none!important}
 .page{display:none}
 .page.active{display:block;animation:fadeUp .4s ease both}
-.back-btn{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:#00ff88;padding:8px 18px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;margin-bottom:15px;transition:all .2s}
+.back-btn{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:#00ff88;padding:8px 18px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;margin-bottom:15px;transition:all .2s;font-family:'Poppins',sans-serif}
 .back-btn:hover{background:rgba(0,255,136,.2);transform:translateX(-3px)}
 .nav-btn{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:#a0b0a8;padding:8px 18px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Poppins',sans-serif}
 .nav-btn:hover{border-color:#00ff88;color:#00ff88}
 .nav-btn.active{background:linear-gradient(135deg,#00ff88,#00cc6a);color:#000;border-color:#00ff88}
 .user-email{font-size:12px;color:#6b7a73;margin-bottom:15px;text-align:center;word-break:break-all}
-.text-content{font-size:14px;color:#a0b0a8;line-height:1.7}
-.text-content h3{color:#00ff88;margin:15px 0 8px 0;font-size:16px}
+.text-content{font-size:14px;color:#a0b0a8;line-height:1.8}
+.text-content h3{color:#00ff88;margin:20px 0 8px 0;font-size:17px}
+.text-content h4{color:#ffc107;margin:14px 0 6px 0;font-size:15px}
 .text-content ul{padding-left:20px;margin-bottom:15px}
 .text-content li{margin-bottom:8px}
+.text-content p{margin-bottom:12px}
+.article-section{margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid rgba(0,255,136,.1)}
 .history-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px}
 .history-table th{text-align:left;padding:10px;color:#6b7a73;border-bottom:1px solid rgba(0,255,136,.1);font-weight:600}
 .history-table td{padding:10px;border-bottom:1px solid rgba(255,255,255,.05);color:#e0e0e0}
@@ -138,19 +144,45 @@ input[type="file"]{width:100%;padding:12px;margin:8px 0;background:rgba(0,0,0,.5
 .status-approved{background:rgba(0,255,136,.15);color:#00ff88}
 .spin-container{position:relative;width:250px;height:250px;margin:20px auto;border-radius:50%;border:5px solid #00ff88;box-shadow:0 0 30px rgba(0,255,136,.3);overflow:hidden;transition:transform 4s cubic-bezier(.1,.8,.1,1)}
 .spin-item{position:absolute;width:50%;height:50%;top:0;left:0;transform-origin:100% 100%;border:1px solid rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:14px;color:#000}
-.spin-pointer{position:absolute;top:-15px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:15px solid transparent;border-right:15px solid transparent;border-top:25px solid #ff3c3c;z-index:10;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5))}
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(5px)}
+.spin-pointer{position:absolute;top:-15px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:15px solid transparent;border-right:15px solid transparent;border-top:25px solid #ff3c3c;z-index:10;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5))}.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(5px)}
 .modal-overlay.active{display:flex}
 .modal-content{background:#0f1914;border:1px solid rgba(0,255,136,.3);border-radius:20px;width:100%;max-width:500px;max-height:80vh;overflow-y:auto;padding:25px;position:relative;animation:cardIn .4s ease}
-.close-modal{position:absolute;top:15px;right:20px;font-size:24px;color:#ff6b6b;cursor:pointer;font-weight:bold}
+.close-modal{position:absolute;top:15px;right:20px;font-size:24px;color:#ff6b6b;cursor:pointer;font-weight:bold;line-height:1;background:transparent;border:none}
 .mail-item{background:rgba(0,255,136,.05);border-left:3px solid #00ff88;border-radius:8px;padding:15px;margin-bottom:12px}
 .mail-item h4{color:#00ff88;font-size:15px;margin-bottom:5px}
 .mail-item p{color:#e0e0e0;font-size:13px;margin-bottom:8px}
 .mail-item small{color:#6b7a73;font-size:11px}
-@media(max-width:480px){.top-bar{padding:10px 15px;flex-direction:column;gap:12px}.top-left{width:100%;justify-content:space-between}.container{padding:15px}.card{padding:20px;border-radius:18px}.wallet-icon{width:45px;height:45px}.quiz-grid{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}}
+.task-stats-box{background:rgba(0,0,0,.4);border:1px solid rgba(0,255,136,.2);border-radius:15px;padding:15px;margin-top:15px}
+.task-stats-box h3{color:#00ff88;font-size:15px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.task-stat-item{background:rgba(0,255,136,.05);border-left:3px solid #00ff88;border-radius:8px;padding:12px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.task-stat-info{flex:1;min-width:150px}
+.task-stat-title{color:#fff;font-size:13px;font-weight:600;margin-bottom:3px;word-break:break-all}
+.task-stat-link{color:#6b7a73;font-size:11px;word-break:break-all}
+.task-stat-progress{font-size:12px;color:#00ff88;font-weight:700;text-align:right;white-space:nowrap}
+.task-stat-bar{height:6px;background:rgba(0,255,136,.15);border-radius:3px;margin-top:6px;overflow:hidden}
+.task-stat-bar-fill{height:100%;background:linear-gradient(90deg,#00ff88,#00cc6a);border-radius:3px;transition:width .5s ease}
+.task-actions{display:flex;gap:5px;margin-top:8px}
+.task-action-btn{background:rgba(255,255,255,.1);border:none;color:#fff;padding:6px 10px;border-radius:6px;font-size:11px;cursor:pointer;transition:all .2s;font-family:'Poppins',sans-serif}
+.task-action-btn:hover{background:rgba(255,255,255,.2)}
+.task-action-btn.del{background:rgba(255,60,60,.2);color:#ff6b6b}
+.task-action-btn.del:hover{background:rgba(255,60,60,.4)}
+.support-form-wrap{display:flex;flex-direction:column;gap:12px}
+.support-form-wrap .field{margin-bottom:0}
+.support-note{font-size:12px;color:#6b7a73;text-align:center;margin-top:8px}
+@media(max-width:480px){
+  .top-bar{padding:10px 12px;gap:8px}
+  .top-left{gap:8px}
+  .coins-box{padding:7px 12px;font-size:14px}
+  .mailbox-btn,.support-btn{padding:7px 10px;font-size:12px}
+  .support-btn span.support-txt{display:none}
+  .avatar-btn{width:38px;height:38px}
+  .container{padding:15px}
+  .card{padding:20px;border-radius:18px}
+  .wallet-icon{width:45px;height:45px}
+  .quiz-grid,.task-grid{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+}
 </style>
-</head>
-<body>
+</head><body>
 <div class="bg-layer"></div>
 <div class="orb orb1"></div>
 <div class="orb orb2"></div>
@@ -175,14 +207,20 @@ input[type="file"]{width:100%;padding:12px;margin:8px 0;background:rgba(0,0,0,.5
         </div>
       </div>
       <div class="coins-box"><span>Rs.</span><span id="balance">0</span></div>
-      <button class="mailbox-btn" onclick="openMailbox()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+    </div>
+    <div class="top-right">
+      <button class="mailbox-btn" onclick="openMailbox()" title="Mailbox">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
         <span id="mailboxBadge" class="mailbox-badge hidden">1</span>
+      </button>
+      <button class="support-btn" onclick="openSupport()" title="Support">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        <span class="support-txt">Support</span>
       </button>
     </div>
   </div>
 
-  <div class="container">
+  <div class="container">    <!-- DASHBOARD PAGE -->
     <div id="dashboardPage" class="page active">
       <div class="dash-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:15px">
         <div class="card" style="margin-bottom:0;background:linear-gradient(135deg,rgba(0,255,136,.1),rgba(0,0,0,.6));border-color:rgba(0,255,136,.3)">
@@ -195,9 +233,11 @@ input[type="file"]{width:100%;padding:12px;margin:8px 0;background:rgba(0,0,0,.5
           <h2 style="color:#ffc107;font-size:16px">🎡 Daily Spin</h2>
           <p style="font-size:12px;margin-bottom:10px">Win 1-5 coins</p>
           <button id="openSpinBtn" class="submit-btn" style="padding:10px;font-size:14px;background:linear-gradient(135deg,#ffc107,#d39e00)" onclick="checkLoginAndProceed('openSpinBtn')">Spin Now</button>
+          <div id="spinMsgDash" class="msg hidden"></div>
         </div>
       </div>
 
+      <!-- 🎯 PLAY QUIZ SECTION (WAPAS ADD) -->
       <div class="card" style="margin-top:15px">
         <h2 style="text-align:center;justify-content:center">🎯 Play Quiz</h2>
         <p style="text-align:center;font-size:13px;margin-bottom:20px">Answer faster to win more coins!</p>
@@ -215,41 +255,54 @@ input[type="file"]{width:100%;padding:12px;margin:8px 0;background:rgba(0,0,0,.5
       <div class="card" style="margin-top:15px">
         <h2 style="text-align:center;justify-content:center">📋 Survey to Earn</h2>
         <p style="text-align:center;font-size:13px;margin-bottom:20px">Complete tasks and earn real money!</p>
-        <div class="task-grid" id="taskGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-top:20px"></div>
-        <button class="submit-btn" style="margin-top:15px;background:linear-gradient(135deg,#667eea,#764ba2)" onclick="openAddTaskPage()">➕ Add Your Task (Advertiser)</button>
+        <!-- Live task cards render here -->
+        <div class="task-grid" id="taskGrid"></div>
       </div>
     </div>
 
+    <!-- ADD TASK PAGE -->
     <div id="addTaskPage" class="page">
       <button id="backFromAddTask" class="back-btn">← Back</button>
       <div class="card">
         <h2>➕ Add New Task</h2>
-        <p style="font-size:13px;margin-bottom:15px">Apni website, channel ya video promo karein.</p>
+        <p style="font-size:13px;margin-bottom:15px">Apni website, channel ya video promo karein. Neeche apne banaye gaye tasks ke live clicks bhi dekh sakte hain.</p>
+
+        <div style="color:#fff;font-size:16px;font-weight:700;margin:20px 0 12px 0;border-bottom:2px solid rgba(0,255,136,.2);padding-bottom:8px">📝 Task Details</div>
+
         <div class="field">
           <label style="color:#a0b0a8;font-size:12px;margin-left:5px">Task Type</label>
           <select id="taskType" onchange="calculateCharge()">
             <option value="website">Website Visit (Charge: Rs. 2 / click)</option>
             <option value="sub">YouTube Subscribe (Charge: Rs. 2 / sub)</option>
-            <option value="video">YouTube Video Watch (Charge: Rs. 1 / view)</option>
+            <option value="video">YouTube Video Watch (Charge: Rs. 2 / view)</option>
           </select>
         </div>
+
         <div class="field">
           <label style="color:#a0b0a8;font-size:12px;margin-left:5px">Link (URL)</label>
           <input id="taskLink" type="text" placeholder="https://..." />
         </div>
-        <div class="field">
-          <label style="color:#a0b0a8;font-size:12px;margin-left:5px">Quantity (Visitors/Subs/Views)</label>
-          <input id="taskLimit" type="number" placeholder="e.g., 10" oninput="calculateCharge()" />
+
+        <div class="task-form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div class="field">
+            <label style="color:#a0b0a8;font-size:12px;margin-left:5px">Quantity</label>
+            <input id="taskLimit" type="number" placeholder="e.g., 2000" oninput="calculateCharge()" />
+          </div>
+          <div class="field">
+            <label style="color:#a0b0a8;font-size:12px;margin-left:5px">Total Charge (Rs.)</label>
+            <input id="taskCharge" type="text" value="Rs. 0" disabled style="opacity:.6;cursor:not-allowed" />
+          </div>
         </div>
-        <div class="field">
-          <label style="color:#a0b0a8;font-size:12px;margin-left:5px">Total Charge (Rs.)</label>
-          <input id="taskCharge" type="text" value="Rs. 0" disabled style="opacity:.6;cursor:not-allowed" />
-        </div>
+
         <button id="addTaskBtn" class="submit-btn">Submit & Pay</button>
         <div id="addTaskMsg" class="msg hidden"></div>
-      </div>
-    </div>
 
+        <div class="task-stats-box">
+          <h3>📊 Aapke Tasks ke Live Clicks</h3>
+          <div id="myTaskStats"><p style="text-align:center;color:#6b7a73;font-size:12px">Loading stats...</p></div>
+        </div>
+      </div>
+    </div>    <!-- SPIN PAGE -->
     <div id="spinPage" class="page">
       <button id="backFromSpin" class="back-btn">← Back</button>
       <div class="card" style="text-align:center">
@@ -264,16 +317,19 @@ input[type="file"]{width:100%;padding:12px;margin:8px 0;background:rgba(0,0,0,.5
       </div>
     </div>
 
+    <!-- PROFILE PAGE -->
     <div id="profilePage" class="page">
       <button id="backFromProfile" class="back-btn">← Back</button>
       <div class="card">
         <h2>⚙️ Profile Settings</h2>
-        <div class="profile-avatar-large" id="profileAvatarLarge" style="width:100px;height:100px;border-radius:50%;margin:0 auto 20px;background:rgba(0,255,136,.1);border:3px solid #00ff88;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative">
-          <span id="profileAvatarInitial" style="font-size:40px;font-weight:bold;color:#00ff88">U</span>
+        <div class="profile-avatar-large" id="profileAvatarLarge" style="width:110px;height:110px;border-radius:50%;margin:0 auto 8px;background:rgba(0,255,136,.1);border:3px solid #00ff88;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative">
+          <span id="profileAvatarInitial" style="font-size:44px;font-weight:bold;color:#00ff88">U</span>
           <img id="profileAvatarImage" class="hidden" src="" alt="Profile" style="width:100%;height:100%;object-fit:cover">
-          <label for="avatarUpload" style="position:absolute;bottom:0;right:0;background:#00ff88;color:#000;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;border:2px solid #0a0a0a">📷</label>
+          <label for="avatarUpload" class="camera-badge" style="position:absolute;bottom:0;right:0;background:#00ff88;color:#000;border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;border:2px solid #0a0a0a;z-index:2" title="Change photo">📷</label>
           <input type="file" id="avatarUpload" accept="image/*" class="hidden" onchange="uploadAvatar(event)">
         </div>
+        <p style="text-align:center;font-size:11px;color:#6b7a73;margin-top:6px">Tap 📷 to change profile picture</p>
+
         <div class="field"><label style="color:#a0b0a8;font-size:12px;margin-left:5px">Full Name</label><input id="profileName" type="text" placeholder="Enter your full name" /></div>
         <div class="field"><label style="color:#a0b0a8;font-size:12px;margin-left:5px">Mobile Number</label><input id="profilePhone" type="text" placeholder="e.g., 03001234567" /></div>
         <div class="field"><label style="color:#a0b0a8;font-size:12px;margin-left:5px">Email Address</label><input id="profileEmail" type="email" disabled style="opacity:.6;cursor:not-allowed" /></div>
@@ -282,10 +338,11 @@ input[type="file"]{width:100%;padding:12px;margin:8px 0;background:rgba(0,0,0,.5
       </div>
     </div>
 
+    <!-- DEPOSIT PAGE -->
     <div id="depositPage" class="page">
       <button id="backFromDeposit" class="back-btn">← Back</button>
       <div class="card">
-        <h2>Deposit Wallat</h2>
+        <h2>Deposit Wallet</h2>
         <div class="wallet-box"><div class="wallet-icon"><img src="jazzcash_64x64.png" alt="JazzCash"></div><div class="wallet-info"><div class="wallet-name">JazzCash</div><div class="wallet-owner">Saima Batool</div><div class="wallet-number">03010975121</div></div></div>
         <div class="wallet-box"><div class="wallet-icon"><img src="sadapay_64x64.png" alt="SadaPay"></div><div class="wallet-info"><div class="wallet-name">SadaPay</div><div class="wallet-owner">Syed Abid Hussain Shah</div><div class="wallet-number">03034538628</div></div></div>
         <div class="instruction">Send payment to the above numbers, then fill the form with the Transaction ID (TID) and upload a screenshot. Approval takes up to 2 hours.</div>
@@ -302,11 +359,12 @@ input[type="file"]{width:100%;padding:12px;margin:8px 0;background:rgba(0,0,0,.5
       </div>
     </div>
 
+    <!-- WITHDRAW PAGE -->
     <div id="withdrawPage" class="page">
       <button id="backFromWithdraw" class="back-btn">← Back</button>
       <div class="card">
         <h2>🏦 Withdraw Funds</h2>
-        <div class="instruction" style="border-left-color:#ff3c3c;background:rgba(255,60,60,.1)"><b>Rules:</b><br>1. Minimum withdrawal: 100 Coins<br>2. Solve at least 20 questions after your last deposit.<br>3. You must be in profit (Balance > Total Deposit).</div>
+        <div class="instruction" style="border-left-color:#ff3c3c;background:rgba(255,60,60,.1)"><b>Rules:</b><br>1. Minimum withdrawal: 100 Coins<br>2. Solve at least 20 questions after your last deposit.<br>3. You must be in profit (Balance &gt; Total Deposit).</div>
         <input id="wdAmount" type="number" placeholder="Amount" />
         <select id="wdMethod"><option value="jazzcash">JazzCash</option><option value="sadapay">SadaPay</option></select>
         <input id="wdAccount" type="text" placeholder="Your JazzCash/SadaPay Number" />
@@ -319,6 +377,7 @@ input[type="file"]{width:100%;padding:12px;margin:8px 0;background:rgba(0,0,0,.5
       </div>
     </div>
 
+    <!-- REFERRAL PAGE -->
     <div id="referralPage" class="page">
       <button id="backFromReferral" class="back-btn">← Back</button>
       <div class="card">
@@ -340,54 +399,230 @@ input[type="file"]{width:100%;padding:12px;margin:8px 0;background:rgba(0,0,0,.5
         <h2>👥 Your Referrals</h2>
         <table class="history-table"><thead><tr><th>Member Email</th><th>Status</th></tr></thead><tbody id="referralListBody"><tr><td colspan="2" style="text-align:center;color:#6b7a73">No referrals yet.</td></tr></tbody></table>
       </div>
-    </div>
-
+    </div>    <!-- INFO PAGE -->
     <div id="infoPage" class="page">
       <button id="backFromInfo" class="back-btn">← Back</button>
-      <div style="display:flex;gap:10px;margin-bottom:20px">
-        <button class="nav-btn active" id="tabTerms" onclick="switchInfoTab('terms')">Terms</button>
-        <button class="nav-btn" id="tabAbout" onclick="switchInfoTab('about')">About</button>
-        <button class="nav-btn" id="tabContact" onclick="switchInfoTab('contact')">Contact</button>
+      <div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap">
+        <button class="nav-btn active" id="tabTerms" onclick="switchInfoTab('terms')">📜 Terms</button>
+        <button class="nav-btn" id="tabAbout" onclick="switchInfoTab('about')">ℹ️ About</button>
+        <button class="nav-btn" id="tabGuide" onclick="switchInfoTab('guide')">📖 Guide</button>
+        <button class="nav-btn" id="tabFaq" onclick="switchInfoTab('faq')">❓ FAQ</button>
+        <button class="nav-btn" id="tabContact" onclick="switchInfoTab('contact')">📞 Contact</button>
       </div>
+
+      <!-- TERMS -->
       <div id="infoTerms" class="card">
         <h2>📜 Terms & Conditions</h2>
         <div class="text-content">
-          <h3>1. Maqsad (Purpose)</h3><p>Yeh platform sirf aapki knowledge (ilm) ko barhane ke liye banaya gaya hai, na ke paisy kamane ke liye. Yahan quiz khelna aapki apni marzi hai, koi pressure nahi hai.</p>
-          <h3>2. Khelnay ki Marzi (Free Will)</h3><p>Aap yahan participate kar ke earnings kar sakte hain, lekin yeh mukammal tor par aapki apni marzi hogi. Hum kisi ko majboor nahi karte.</p>
-          <h3>3. Time & Voice Rules</h3><p>Answer within 20 seconds. The faster you answer, the more you win. 20s = Double, 0s (timeout) = Lose the bet amount.</p>
-          <h3>4. Withdrawal Rules</h3><ul><li>Minimum withdrawal is 100 coins.</li><li>You must solve at least 20 questions after your last deposit.</li><li>You can only withdraw if your balance is greater than your total deposit.</li><li>After withdrawal, you must deposit again to unlock the next withdrawal.</li></ul>
-          <h3>5. Referral & Bonus</h3><p>Earn 10 rupees per referral once they deposit 100+ coins. Daily bonus of 1-2 coins is available every 24 hours.</p>
+          <div class="article-section">
+            <h3>1. Maqsad (Purpose of Platform)</h3>
+            <p>Fortube Quiz ek educational aur entertainment platform hai jo aapki knowledge (ilm) ko barhane ke liye banaya gaya hai. Hamara maqsad sirf paise kamana nahi, balke aapki thinking ability aur general knowledge ko improve karna hai. Yahan quiz khelna, tasks complete karna, aur spin karna — sab aapki apni marzi hai. Koi pressure nahi hai. Agar aap ko lagta hai ke yeh platform aapke liye theek nahi, to aap kabhi bhi ruk sakte hain. Hum kisi ko majboor nahi karte.</p>
+          </div>
+          <div class="article-section">
+            <h3>2. Khelnay ki Marzi (Free Will)</h3>
+            <p>Aap yahan participate kar ke earnings kar sakte hain, lekin yeh mukammal tor par aapki apni marzi hogi. Har user ko apni financial situation dekh kar deposit karna chahiye. Hum recommend karte hain ke aap sirf utna hi paisa deposit karein jo aap afford kar sakte hain. Kisi bhi nuksan ke liye platform zimmedar nahi hoga.</p>
+          </div>
+          <div class="article-section">
+            <h3>3. Time & Voice Rules</h3>
+            <p>Quiz mein answer 20 seconds ke andar dena hota hai. Jitni jaldi aap answer denge, utna zyada win karenge. Rules yeh hain:</p>
+            <ul>
+              <li><b>20 seconds ya kam waqt mein sahi jawab:</b> Aapki bet double ho jayegi (2x reward).</li>
+              <li><b>Waqt khatam (timeout):</b> Aap apni bet amount haar jayenge.</li>
+              <li><b>Ghalat jawab:</b> Aap apni bet amount haar jayenge.</li>
+              <li><b>200 Rs. wale card:</b> Sirf 8 seconds milte hain — yeh sirf expert players ke liye hai.</li>
+            </ul>
+          </div>
+          <div class="article-section">
+            <h3>4. Withdrawal Rules (Paise Nikalne ke Rules)</h3>
+            <ul>
+              <li><b>Minimum withdrawal:</b> 100 Coins (Rs. 100).</li>
+              <li><b>Question requirement:</b> Aapko apni last deposit ke baad kam az kam 20 questions solve karne honge.</li>
+              <li><b>Profit requirement:</b> Aapka balance total deposit se zyada hona chahiye. Matlab aap profit mein hone chahiye.</li>
+              <li><b>Deposit lock:</b> Withdrawal ke baad aapko dobara deposit karna hoga taake next withdrawal unlock ho sake.</li>
+              <li><b>Processing time:</b> Withdrawal requests 24-48 hours mein process hoti hain.</li>
+              <li><b>Verification:</b> Kuch cases mein aapko apni identity verify karni pad sakti hai.</li>
+            </ul>
+          </div>
+          <div class="article-section">
+            <h3>5. Deposit Rules (Paise Dalne ke Rules)</h3>
+            <ul>
+              <li><b>Minimum deposit:</b> 100 Coins (Rs. 100).</li>
+              <li><b>Maximum deposit:</b> 100,000 Coins (Rs. 100,000) per transaction.</li>
+              <li><b>Payment methods:</b> Sirf JazzCash aur SadaPay accept kiye jate hain.</li>
+              <li><b>Transaction ID (TID):</b> Deposit form mein TID dalna zaroori hai.</li>
+              <li><b>Screenshot:</b> Payment ka screenshot upload karna zaroori hai.</li>
+              <li><b>Approval time:</b> Deposit 2 hours ke andar approve hota hai (working hours mein).</li>
+              <li><b>Fake deposits:</b> Fake TID ya screenshot dalne par account permanently ban ho sakta hai.</li>
+            </ul>
+          </div>
+          <div class="article-section">
+            <h3>6. Referral & Bonus Rules</h3>
+            <ul>
+              <li><b>Referral bonus:</b> Har successful referral par Rs. 10 bonus milta hai.</li>
+              <li><b>Condition:</b> Referred user ko kam az kam 100 coins deposit karne honge.</li>
+              <li><b>Daily bonus:</b> Roz 1-2 coins free milte hain (24 hours ke baad reset hota hai).</li>
+              <li><b>Daily spin:</b> Roz 1 spin free milta hai, jisme 1-5 coins jeet sakte hain.</li>
+              <li><b>Abuse:</b> Fake accounts bana kar bonus lene par account ban ho jayega.</li>
+            </ul>
+          </div>
+          <div class="article-section">
+            <h3>7. Account Security</h3>
+            <ul>
+              <li>Apna password kisi ke saath share na karein.</li>
+              <li>Public Wi-Fi par login na karein.</li>
+              <li>Strong password use karein (6+ characters, numbers aur symbols).</li>
+              <li>Agar aapko shak ho ke aapka account hack hua hai, foran password change karein.</li>
+              <li>Ek user sirf ek account bana sakta hai. Multiple accounts banane par sab ban ho jayenge.</li>
+            </ul>
+          </div>
+          <div class="article-section">
+            <h3>8. Prohibited Activities (Manaa Kaam)</h3>
+            <ul>
+              <li>Fake accounts banana ya multiple accounts use karna.</li>
+              <li>Bots ya automated scripts use karna.</li>
+              <li>Quiz answers ko cheat karna ya share karna.</li>
+              <li>Fake deposit screenshots upload karna.</li>
+              <li>Kisi doosre user ko harass karna.</li>
+              <li>Platform ko hack karne ki koshish karna.</li>
+              <li>Illegal activities ke liye platform use karna.</li>
+            </ul>
+            <p>In mein se koi bhi kaam karne par account permanently ban ho jayega aur balance zabt ho jayega.</p>
+          </div>
+          <div class="article-section">
+            <h3>9. Liability (Zimmedari)</h3>
+            <p>Fortube Quiz kisi bhi financial nuksan ke liye zimmedar nahi hoga. Aap apni marzi se deposit karte hain aur apni marzi se quiz khelte hain. Platform kisi bhi waqt bhi terms change kar sakta hai. Changes ke baad bhi platform use karna matlab aap naye terms accept karte hain.</p>
+          </div>
+          <div class="article-section">
+            <h3>10. Changes to Terms</h3>
+            <p>Hum kabhi bhi in terms mein changes kar sakte hain. Bade changes ke liye hum aapko email ya in-app notification bhejenge. Changes ke baad bhi platform use karna matlab aap naye terms se agree karte hain.</p>
+          </div>
         </div>
       </div>
+
+      <!-- ABOUT -->
       <div id="infoAbout" class="card hidden">
-        <h2>ℹ️ About Us</h2><div class="text-content"><p><b>Fortube Quiz</b> is an online quiz platform where you can test your knowledge and earn real rewards.</p><p>Our mission is to sharpen your thinking ability through difficult questions while rewarding you for your intellect.</p><p>Available for users in Pakistan and India.</p></div>
+        <h2>ℹ️ About Us</h2>
+        <div class="text-content">
+          <div class="article-section">
+            <h3>Fortube Quiz Kya Hai?</h3>
+            <p><b>Fortube Quiz</b> ek online quiz platform hai jahan aap apni knowledge test kar sakte hain aur real rewards (paise) bhi kama sakte hain. Yeh platform Pakistan aur India ke users ke liye banaya gaya hai. Yahan aap ko multiple features milte hain — quiz khelna, tasks complete karna, daily spin, daily bonus, aur referral program.</p>
+          </div>
+          <div class="article-section">
+            <h3>Hamara Mission</h3>
+            <p>Hamara mission simple hai: <b>Knowledge ko reward dena.</b> Hum chahte hain ke log apni free time mein kuch seekhein aur uske badle kuch kamayein.</p>
+          </div>
+          <div class="article-section">
+            <h3>Hamari Features</h3>
+            <ul>
+              <li><b>🎯 Quiz Game:</b> Different bet amounts (Rs. 10 se Rs. 200 tak).</li>
+              <li><b>🎁 Daily Bonus:</b> Roz 1-2 coins free milte hain.</li>
+              <li><b>🎡 Daily Spin:</b> Roz 1 spin free, 1-5 coins jeet sakte hain.</li>
+              <li><b>📋 Survey Tasks:</b> Chhoti chhoti tasks complete kar ke paise kamayein.</li>
+              <li><b>🎁 Referral Program:</b> Doston ko invite karein, Rs. 10 per referral kamayein.</li>
+              <li><b>📊 Task Advertising:</b> Apni website ya channel promote karein.</li>
+              <li><b>🔒 Secure Payments:</b> JazzCash aur SadaPay ke zariye deposit/withdraw.</li>
+            </ul>
+          </div>
+          <div class="article-section">
+            <h3>Kis Ke Liye Hai?</h3>
+            <ul>
+              <li>Students jo apni free time mein kuch kamana chahte hain.</li>
+              <li>Housewives jo ghar se kuch earning karna chahti hain.</li>
+              <li>Job holders jo side income chahte hain.</li>
+              <li>Knowledge seekers jo quiz khelna pasand karte hain.</li>
+              <li>Advertisers jo apni website/channel promote karna chahte hain.</li>
+            </ul>
+          </div>
+          <div class="article-section">
+            <h3>Available Countries</h3>
+            <ul><li>🇵🇰 Pakistan</li><li>🇮🇳 India</li></ul>
+            <p>Jald hi aur countries mein bhi launch hoga. Stay tuned!</p>
+          </div>
+        </div>
       </div>
+
+      <!-- GUIDE -->
+      <div id="infoGuide" class="card hidden">
+        <h2>📖 Complete Guide</h2>
+        <div class="text-content">
+          <div class="article-section">
+            <h3>Step 1: Account Banao</h3>
+            <p>Email aur password dal kar Sign Up karein. Aap Google se bhi login kar sakte hain. "I am 10+ years old" checkbox tick karna zaroori hai.</p>
+          </div>
+          <div class="article-section">
+            <h3>Step 2: Deposit Karein</h3>
+            <p>Minimum 100 Rs. deposit hai. Payment ke baad Transaction ID (TID) aur screenshot ke saath deposit form bharein. 2 hours mein approve ho jayega.</p>
+          </div>
+          <div class="article-section">
+            <h3>Step 3: Quiz Khelein</h3>
+            <p>Dashboard par jayein aur apna bet amount choose karein. Rs. 10 se Rs. 200 tak ke cards hain. 20 seconds mein answer dein. Jaldi denge to zyada jeetenge.</p>
+          </div>
+          <div class="article-section">
+            <h3>Step 4: Tasks Complete Karein</h3>
+            <p>Survey section mein advertiser ke banaye gaye tasks hote hain. YouTube Subscriber task par Rs. 5, Website/Video task par Rs. 2 milte hain.</p>
+          </div>
+          <div class="article-section">
+            <h3>Step 5: Withdraw Karein</h3>
+            <p>Balance 100+ Rs. ho jaye aur profit mein hon, to withdraw kar sakte hain. Last deposit ke baad 20 questions solve karein.</p>
+          </div>
+          <div class="article-section">
+            <h3>Step 6: Advertise Karein (Optional)</h3>
+            <p>"Add Task" page par jayein. Website Visit: Rs. 2 / click, YouTube Sub: Rs. 2 / sub, Video Watch: Rs. 2 / view. Aapke task par kitne clicks aaye, wo stats box mein dikhega.</p>
+          </div>
+          <div class="article-section">
+            <h3>Step 7: Refer & Earn</h3>
+            <p>Refer tab par jayein aur apna referral link copy karein. Doston ko share karein. Jab wo 100+ Rs. deposit karein, aapko Rs. 10 bonus milega.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div id="infoFaq" class="card hidden">
+        <h2>❓ Frequently Asked Questions</h2>
+        <div class="text-content">
+          <div class="article-section"><h4>Q1: Kya yeh platform free hai?</h4><p>Haan, sign up free hai. Aap daily bonus aur spin se free coins kama sakte hain.</p></div>
+          <div class="article-section"><h4>Q2: Minimum deposit kitna hai?</h4><p>Minimum deposit 100 Rs. hai. Maximum 100,000 Rs. per transaction hai.</p></div>
+          <div class="article-section"><h4>Q3: Minimum withdrawal kitna hai?</h4><p>Minimum 100 Rs. withdrawal hai. Saath hi aapko profit mein hona chahiye aur 20 questions solve karne chahiye.</p></div>
+          <div class="article-section"><h4>Q4: Deposit kab tak approve hota hai?</h4><p>Working hours mein 2 hours ke andar.</p></div>
+          <div class="article-section"><h4>Q5: Withdrawal kab tak milti hai?</h4><p>Withdrawal request 24-48 hours mein process hoti hai.</p></div>
+          <div class="article-section"><h4>Q6: Kya main multiple accounts bana sakta hoon?</h4><p>Nahi. Ek user sirf ek account bana sakta hai.</p></div>
+          <div class="article-section"><h4>Q7: Password bhool gaya, kya karoon?</h4><p>Login screen par "Forgot Password?" link hai. Apna email dal kar reset code lein.</p></div>
+          <div class="article-section"><h4>Q8: Quiz mein ghalat jawab diya, kya bet wapas milegi?</h4><p>Nahi. Ghalat jawab ya timeout par bet amount kaat liya jata hai.</p></div>
+          <div class="article-section"><h4>Q9: Task click karne se paise nahi aa rahe?</h4><p>Thoda wait karein, 5-10 seconds mein balance update hota hai. Agar phir bhi nahi aaye, page refresh karein.</p></div>
+          <div class="article-section"><h4>Q10: Referral bonus kab milta hai?</h4><p>Jab aapka referred friend 100+ Rs. deposit karta hai, tab aapko Rs. 10 bonus milta hai.</p></div>
+          <div class="article-section"><h4>Q11: Task Edit ya Delete kaise karein?</h4><p>Add Task page par jayein. Neeche "Aapke Tasks" section mein Edit aur Delete ke buttons honge.</p></div>
+          <div class="article-section"><h4>Q12: Data safe hai?</h4><p>Haan. Hum Supabase (secure database) use karte hain. Aapka password encrypted hota hai.</p></div>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
       <div id="infoContact" class="card hidden">
-        <h2>📞 Contact Support</h2><p style="font-size:13px;margin-bottom:20px">Have an issue? Send us a message.</p>
-        <form action="https://formsubmit.co/syedadeen16@gmail.com" method="POST">
-          <input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value="https://fortube.online">
-          <div class="field"><input type="email" name="email" placeholder="Your Email" required /></div>
-          <div class="field"><input type="text" name="topic" placeholder="Topic (e.g., Deposit Issue)" required /></div>
-          <div class="field"><textarea name="message" placeholder="Your message..." required></textarea></div>
-          <button type="submit" class="submit-btn">Send Message</button>
-        </form>
+        <h2>📞 Contact Support</h2>
+        <p style="font-size:13px;margin-bottom:20px">Koi issue hai? Hamein message bhejein. Hum 24-48 hours mein reply karte hain.</p>
+        <div class="support-form-wrap">
+          <div class="field"><input id="contactEmail" type="email" placeholder="Your Email" required /></div>
+          <div class="field"><input id="contactTopic" type="text" placeholder="Topic (e.g., Deposit Issue)" required /></div>
+          <div class="field"><textarea id="contactMessage" placeholder="Your message..." required></textarea></div>
+          <button id="contactSendBtn" class="submit-btn">Send Message</button>
+          <div id="contactMsg" class="msg hidden"></div>
+          <p class="support-note">Ya seedha email karein: <a href="mailto:syedadeen16@gmail.com" style="color:#00ff88">syedadeen16@gmail.com</a></p>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-<div id="loginScreen">
+</div><div id="loginScreen">
   <div class="login-card">
     <div class="brand"><div class="brand-logo">🎯</div><h1>FORTUBE QUIZ</h1><p>Play • Learn • Earn</p></div>
+    <div id="loginMsg" class="msg hidden" style="margin-bottom:15px"></div>
     <div id="loginFormBox">
       <div class="field"><input id="email" type="email" placeholder="Email Address" autocomplete="email" /></div>
       <div class="field"><input id="password" type="password" placeholder="Password" autocomplete="current-password" /></div>
       <div class="field"><input id="promoCode" type="text" placeholder="Promo Code (Optional, for referrals)" /></div>
-      <label class="check"><input id="ageCheck" type="checkbox" /><span>I am 10+ years old & agree to the <a href="#" onclick="alert('Terms:\n1. Play at your own risk.\n2. Deposit min 100.\n3. Withdraw after solving 20 questions & in profit.\n4. Referral bonus paid after 100 deposit.')">Terms & Conditions</a></span></label>
+      <label class="check"><input id="ageCheck" type="checkbox" /><span>I am 10+ years old &amp; agree to the <a href="#" onclick="alert('Terms:\n1. Play at your own risk.\n2. Deposit min 100.\n3. Withdraw after solving 20 questions & in profit.\n4. Referral bonus paid after 100 deposit.');return false;">Terms &amp; Conditions</a></span></label>
       <button id="loginBtn" class="btn btn-primary">Login</button>
       <button id="signupBtn" class="btn btn-secondary">Sign Up (New Account)</button>
       <button id="googleLoginBtn" class="btn btn-google"><svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>Continue with Google</button>
-      <div style="text-align:center;margin-top:15px"><a href="#" onclick="showForgotPassword()" style="color:#a0b0a8;font-size:13px;text-decoration:none">Forgot Password?</a></div>
+      <div style="text-align:center;margin-top:15px"><a href="#" onclick="showForgotPassword();return false;" style="color:#a0b0a8;font-size:13px;text-decoration:none">Forgot Password?</a></div>
     </div>
     <div id="forgotFormBox" class="hidden">
       <div class="field"><input id="forgotEmail" type="email" placeholder="Enter your registered Email" /></div>
@@ -404,81 +639,58 @@ input[type="file"]{width:100%;padding:12px;margin:8px 0;background:rgba(0,0,0,.5
   </div>
 </div>
 
+<!-- MAILBOX MODAL -->
 <div class="modal-overlay" id="mailboxModal">
   <div class="modal-content">
-    <span class="close-modal" onclick="closeMailbox()">×</span>
+    <button class="close-modal" onclick="closeMailbox()">×</button>
     <h2 style="color:#00ff88;margin-bottom:20px">📬 Your Mailbox</h2>
     <div id="mailList"><p style="text-align:center;color:#6b7a73">Loading messages...</p></div>
   </div>
 </div>
 
+<!-- SUPPORT MODAL (Top bar Support button) -->
+<div class="modal-overlay" id="supportModal">
+  <div class="modal-content">
+    <button class="close-modal" onclick="closeSupport()">×</button>
+    <h2 style="color:#00ff88;margin-bottom:8px">💬 Support Center</h2>
+    <p style="font-size:13px;color:#a0b0a8;margin-bottom:18px">Koi issue hai? Neeche message bhejein — hum 24-48 hours mein reply karte hain.</p>
+    <div class="support-form-wrap">
+      <div class="field"><input id="supportEmail" type="email" placeholder="Your Email" /></div>
+      <div class="field"><input id="supportTopic" type="text" placeholder="Topic (e.g., Deposit Issue)" /></div>
+      <div class="field"><textarea id="supportMessage" placeholder="Apna message likhein..."></textarea></div>
+      <button id="supportSendBtn" class="submit-btn">Send Message</button>
+      <div id="supportMsg" class="msg hidden"></div>
+      <p class="support-note">Ya seedha email karein: <a href="mailto:syedadeen16@gmail.com" style="color:#00ff88">syedadeen16@gmail.com</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
 <div class="bottom-nav">
   <button id="navDashboard" class="bottom-nav-btn active" onclick="switchPage('dashboardPage', 'navDashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>Home</button>
   <button id="navReferral" class="bottom-nav-btn" onclick="checkLoginAndSwitch('referralPage', 'navReferral')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Refer</button>
   <button id="navDeposit" class="bottom-nav-btn" onclick="checkLoginAndSwitch('depositPage', 'navDeposit')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>Deposit</button>
   <button id="navWithdraw" class="bottom-nav-btn" onclick="checkLoginAndSwitch('withdrawPage', 'navWithdraw')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>Withdraw</button>
+  <button id="navAddTask" class="bottom-nav-btn" onclick="checkLoginAndSwitch('addTaskPage', 'navAddTask')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>Add Task</button>
   <button id="navInfo" class="bottom-nav-btn" onclick="switchPage('infoPage', 'navInfo')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>Info</button>
-</div>
-
-<script type="module">
+</div><script type="module">
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 const SUPABASE_URL = "https://sqqvdubuvnbikigwftux.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_3s0Xk1JENESD5odir4NrFQ_Htdc_MvD";
 
-function showMsg(elId, text, type = 'err') {
-  const el = document.getElementById(elId);
-  if (!el) return;
-  el.textContent = text;
-  el.className = 'msg ' + type;
-  el.classList.remove('hidden');
-}
-
-let supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
   auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, storage: window.localStorage }
 });
 
 let currentUser = null;
 let userProfile = null;
 let currentBetAmount = 100;
+let loginBusy = false;
 
-function createRain() {
-  const container = document.getElementById('rainContainer');
-  const symbols = ['$', '?', '€', '£'];
-  const totalDrops = 20;
-  for (let i = 0; i < totalDrops; i++) {
-    const drop = document.createElement('div');
-    drop.className = 'rain-symbol';
-    drop.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-    drop.style.left = Math.random() * 100 + 'vw';
-    drop.style.fontSize = (Math.random() * 40 + 30) + 'px';
-    drop.style.animationDuration = (Math.random() * 8 + 6) + 's';
-    drop.style.animationDelay = Math.random() * 5 + 's';
-    container.appendChild(drop);
-  }
-}
-createRain();
-
-window.checkLoginAndSwitch = function(pageId, navId) {
-  if (!currentUser) {
-    document.getElementById('appScreen').classList.add('hidden');
-    document.getElementById('loginScreen').style.display = 'flex';
-    return;
-  }
-  switchPage(pageId, navId);
-}
-
-window.checkLoginAndProceed = function(action) {
-  if (!currentUser) {
-    document.getElementById('appScreen').classList.add('hidden');
-    document.getElementById('loginScreen').style.display = 'flex';
-    return;
-  }
-  if (action === 'claimBonusBtn') claimBonus();
-  else if (action === 'openSpinBtn') switchPage('spinPage', null);
-}
-
+/* ========== QUIZ CARDS GENERATOR (WAPAS ADD) ========== */
 function generateQuizCards() {
   const grid = document.getElementById('quizCardsGrid');
+  if (!grid) return;
   grid.innerHTML = '';
   const bets = [10, 20, 30, 40, 50, 60, 70, 80, 100, 200];
   bets.forEach(bet => {
@@ -498,111 +710,58 @@ function generateQuizCards() {
 }
 generateQuizCards();
 
-/* ============================================================
-   ✅ FIXED: generateTaskCards - Ab database se tasks load hote hain
-   aur link click par properly khulta hai
-   ============================================================ */
-async function generateTaskCards() {
-  const grid = document.getElementById('taskGrid');
-  grid.innerHTML = '<p style="text-align:center;color:#6b7a73;grid-column:1/-1">Loading tasks...</p>';
-  
-  const iconMap = {
-    website: 'https://cdn-icons-png.flaticon.com/512/1006/1006771.png',
-    sub: 'https://cdn-icons-png.flaticon.com/512/1384/1384060.png',
-    video: 'https://cdn-icons-png.flaticon.com/512/1384/1384060.png'
-  };
-  const titleMap = {
-    website: 'Website Visit',
-    sub: 'YouTube Sub',
-    video: 'Watch Video'
-  };
-  
-  try {
-    // Database se active tasks fetch karein
-    const { data: tasks, error } = await supabase
-      .from('tasks')
-      .select('*')
-      .eq('status', 'active')
-      .order('created_at', { ascending: false })
-      .limit(30);
-    
-    if (error) {
-      console.error('Tasks fetch error:', error);
-      // Fallback: hardcoded tasks dikhao agar table hi nahi hai
-      renderDefaultTasks(grid, iconMap, titleMap);
-      return;
-    }
-    
-    if (!tasks || tasks.length === 0) {
-      // Agar koi task nahi hai to default dikhao
-      renderDefaultTasks(grid, iconMap, titleMap);
-      return;
-    }
-    
-    grid.innerHTML = '';
-    tasks.forEach((t) => {
-      const card = document.createElement('div');
-      card.className = 'quiz-card-btn';
-      card.style.cursor = 'pointer';
-      const reward = t.reward || (t.type === 'video' ? 1 : 2);
-      card.innerHTML = `
-        <img src="${iconMap[t.type] || iconMap.website}" style="width:36px;height:36px;object-fit:contain;margin-bottom:8px">
-        <div class="quiz-card-amount" style="font-size:16px">${titleMap[t.type] || 'Task'}</div>
-        <div class="quiz-card-text" style="color:#00ff88;font-weight:bold">Earn Rs. ${reward}</div>
-      `;
-      
-      // 🔥 Link click handler - properly khulega
-      card.onclick = () => {
-        let url = (t.link || '').trim();
-        if (!url || url === '#') {
-          alert('Is task ka link available nahi hai.');
-          return;
-        }
-        if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
-        window.open(url, '_blank', 'noopener,noreferrer');
-      };
-      grid.appendChild(card);
-    });
-  } catch (e) {
-    console.error('Task grid error:', e);
-    renderDefaultTasks(grid, iconMap, titleMap);
+/* ========== MESSAGE HELPER ========== */
+function showMsg(elId, text, type = 'err', autoHide = false) {
+  const el = document.getElementById(elId);
+  if (!el) return;
+  el.textContent = text;
+  el.className = 'msg ' + type + (autoHide ? ' auto-hide' : '');
+  el.classList.remove('hidden');
+  if (autoHide) {
+    setTimeout(() => { el.classList.add('hidden'); el.className = 'msg hidden'; }, 3500);
   }
 }
 
-/* Fallback default tasks (agar DB me tasks nahi hain) */
-function renderDefaultTasks(grid, iconMap, titleMap) {
-  grid.innerHTML = '';
-  const defaults = [
-    { type: 'website', link: 'https://example.com', reward: 5 },
-    { type: 'sub', link: 'https://youtube.com', reward: 5 },
-    { type: 'video', link: 'https://youtube.com', reward: 2 }
-  ];
-  defaults.forEach(t => {
-    const card = document.createElement('div');
-    card.className = 'quiz-card-btn';
-    card.style.cursor = 'pointer';
-    card.innerHTML = `
-      <img src="${iconMap[t.type]}" style="width:36px;height:36px;object-fit:contain;margin-bottom:8px">
-      <div class="quiz-card-amount" style="font-size:16px">${titleMap[t.type]}</div>
-      <div class="quiz-card-text" style="color:#00ff88;font-weight:bold">Earn Rs. ${t.reward}</div>
-    `;
-    card.onclick = () => {
-      let url = t.link;
-      if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
-      window.open(url, '_blank', 'noopener,noreferrer');
-    };
-    grid.appendChild(card);
-  });
+/* ========== RAIN ========== */
+function createRain() {
+  const container = document.getElementById('rainContainer');
+  const symbols = ['$', '?', '€', '£'];
+  for (let i = 0; i < 20; i++) {
+    const drop = document.createElement('div');
+    drop.className = 'rain-symbol';
+    drop.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    drop.style.left = Math.random() * 100 + 'vw';
+    drop.style.fontSize = (Math.random() * 40 + 30) + 'px';
+    drop.style.animationDuration = (Math.random() * 8 + 6) + 's';
+    drop.style.animationDelay = Math.random() * 5 + 's';
+    container.appendChild(drop);
+  }
 }
+createRain();
 
-// Initial load
-generateTaskCards();
+/* ========== LOGIN GUARDS ========== */
+window.checkLoginAndSwitch = function(pageId, navId) {
+  if (!currentUser) {
+    document.getElementById('appScreen').classList.add('hidden');
+    document.getElementById('loginScreen').style.display = 'flex';
+    return;
+  }
+  switchPage(pageId, navId);
+};
 
-const urlParams = new URLSearchParams(window.location.search);
-const refIdFromUrl = urlParams.get('ref');
-if (refIdFromUrl) document.getElementById('promoCode').value = refIdFromUrl;
+window.checkLoginAndProceed = function(action) {
+  if (!currentUser) {
+    document.getElementById('appScreen').classList.add('hidden');
+    document.getElementById('loginScreen').style.display = 'flex';
+    return;
+  }
+  if (action === 'claimBonusBtn') claimBonus();
+  else if (action === 'openSpinBtn') switchPage('spinPage', null);
+};
 
+/* ========== BUTTON LOADING ========== */
 function btnLoading(btn, loading, label) {
+  if (!btn) return;
   if (loading) {
     btn.dataset.label = btn.textContent;
     btn.textContent = label || 'Please wait...';
@@ -613,6 +772,7 @@ function btnLoading(btn, loading, label) {
   }
 }
 
+/* ========== PROFILE ENSURE ========== */
 async function ensureProfile(user, promoCode = null) {
   let referredById = null;
   if (promoCode) {
@@ -624,6 +784,29 @@ async function ensureProfile(user, promoCode = null) {
     { onConflict: 'id' }
   );
   if (error) throw error;
+}
+
+/* ========== LOGIN / SIGNUP ========== */
+async function login() {
+  if (loginBusy) return;
+  const btn = document.getElementById('loginBtn');
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const ageOk = document.getElementById('ageCheck').checked;
+  if (!email || !password) return showMsg('loginMsg', 'Email and password required');
+  if (!ageOk) return showMsg('loginMsg', 'Please accept the terms');
+  loginBusy = true;
+  btnLoading(btn, true, 'Logging in...');
+  try {
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) throw error;
+    currentUser = data.user;
+    await ensureProfile(currentUser);
+    await showApp();
+  } catch (e) {
+    showMsg('loginMsg', '❌ ' + (e.message || e));
+    btnLoading(btn, false);
+  } finally { loginBusy = false; }
 }
 
 async function signup() {
@@ -645,39 +828,23 @@ async function signup() {
   btnLoading(btn, false);
 }
 
-async function login() {
-  const btn = document.getElementById('loginBtn');
-  const email = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value;
-  const ageOk = document.getElementById('ageCheck').checked;
-  if (!email || !password) return showMsg('loginMsg', 'Email and password required');
-  if (!ageOk) return showMsg('loginMsg', 'Please accept the terms');
-  btnLoading(btn, true, 'Logging in...');
-  try {
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) throw error;
-    currentUser = data.user;
-    await ensureProfile(currentUser);
-    showApp();
-  } catch (e) { showMsg('loginMsg', '❌ ' + (e.message || e)); btnLoading(btn, false); }
-}
-
 async function googleLogin() {
   try {
-    const { data, error } = await supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: window.location.origin } });
+    const { error } = await supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: window.location.origin } });
     if (error) throw error;
   } catch (e) { alert('Google Login Error: ' + e.message); }
 }
 
+/* ========== FORGOT PASSWORD ========== */
 window.showForgotPassword = function() {
   document.getElementById('loginFormBox').classList.add('hidden');
   document.getElementById('forgotFormBox').classList.remove('hidden');
   document.getElementById('resetCodeBox').classList.add('hidden');
-}
+};
 window.backToLogin = function() {
   document.getElementById('forgotFormBox').classList.add('hidden');
   document.getElementById('loginFormBox').classList.remove('hidden');
-}
+};
 
 document.getElementById('sendCodeBtn').addEventListener('click', async () => {
   const email = document.getElementById('forgotEmail').value.trim();
@@ -687,7 +854,7 @@ document.getElementById('sendCodeBtn').addEventListener('click', async () => {
   try {
     const { error } = await supabase.auth.resetPasswordForEmail(email);
     if (error) throw error;
-    showMsg('forgotMsg', '✅ Code sent to your email. Check inbox.', 'ok');
+    showMsg('forgotMsg', '✅ Code sent to your email.', 'ok');
     document.getElementById('resetCodeBox').classList.remove('hidden');
   } catch (e) { showMsg('forgotMsg', '❌ ' + e.message); }
   btnLoading(btn, false);
@@ -714,15 +881,20 @@ document.getElementById('resetPassBtn').addEventListener('click', async () => {
   btnLoading(btn, false);
 });
 
+/* ========== SHOW APP ========== */
 async function showApp() {
   document.getElementById('loginScreen').style.display = 'none';
   document.getElementById('appScreen').classList.remove('hidden');
   if (currentUser) {
     document.getElementById('dropdownEmail').textContent = currentUser.email;
     await loadData();
+    const lastPage = localStorage.getItem('fortube_last_page') || 'dashboardPage';
+    const lastNav = localStorage.getItem('fortube_last_nav') || 'navDashboard';
+    switchPage(lastPage, lastNav);
   }
 }
 
+/* ========== LOAD DATA ========== */
 async function loadData() {
   if (!currentUser) return;
   const { data } = await supabase.from('profiles').select('*').eq('id', currentUser.id).single();
@@ -757,8 +929,8 @@ async function loadData() {
   await loadWithdrawHistory();
   await loadReferrals();
   await checkMailbox();
-  // ✅ Tasks ko bhi refresh karein
   await generateTaskCards();
+  await loadMyTaskStats();
 }
 
 async function loadDepositHistory() {
@@ -797,30 +969,128 @@ async function loadReferrals() {
   });
 }
 
-/* ============================================================
-   ✅ FIXED: Mailbox functions
-   ============================================================ */
+/* ========== REAL-TIME TASK CARDS ========== */
+async function generateTaskCards() {
+  const grid = document.getElementById('taskGrid');
+  if (!grid) return;
+  if (!grid.hasChildNodes()) {
+    grid.innerHTML = '<p style="text-align:center;color:#6b7a73;grid-column:1/-1">Loading tasks...</p>';
+  }
+  const iconMap = {
+    website: 'https://cdn-icons-png.flaticon.com/512/1006/1006771.png',
+    sub: 'https://cdn-icons-png.flaticon.com/512/1384/1384060.png',
+    video: 'https://cdn-icons-png.flaticon.com/512/1384/1384060.png'
+  };
+  const titleMap = { website: 'Website Visit', sub: 'YouTube Sub', video: 'Watch Video' };
+  try {
+    const { data: tasks, error } = await supabase
+      .from('tasks').select('*').eq('status', 'active')
+      .order('created_at', { ascending: false }).limit(30);
+    if (error) { console.error('Tasks fetch error:', error); grid.innerHTML = '<p style="text-align:center;color:#6b7a73;grid-column:1/-1">Tasks load nahi ho sake.</p>'; return; }
+    grid.innerHTML = '';
+    if (!tasks || tasks.length === 0) {
+      grid.innerHTML = '<p style="text-align:center;color:#6b7a73;grid-column:1/-1">Abhi koi task available nahi hai.</p>';
+      return;
+    }
+    for (const t of tasks) {
+      const limit = Number(t.limit_count) || Number(t.total_limit) || 0;
+      const currentClicks = Number(t.clicks_count) || 0;
+      if (limit > 0 && currentClicks >= limit) continue;
+      const reward = t.type === 'sub' ? 5 : 2;
+      const card = document.createElement('div');
+      card.className = 'quiz-card-btn';
+      card.style.cursor = 'pointer';
+      const countDisplay = limit > 0 ? `${currentClicks}/${limit} done` : `${currentClicks} done`;
+      card.innerHTML = `
+        <img src="${iconMap[t.type] || iconMap.website}" style="width:36px;height:36px;object-fit:contain;margin-bottom:8px">
+        <div class="quiz-card-amount" style="font-size:16px">${titleMap[t.type] || 'Task'}</div>
+        <div class="quiz-card-text" style="color:#00ff88;font-weight:bold">Earn Rs. ${reward}</div>
+        <div class="quiz-card-text" style="font-size:10px;color:#6b7a73">${countDisplay}</div>
+      `;
+      card.onclick = async () => {
+        if (!currentUser) {
+          document.getElementById('appScreen').classList.add('hidden');
+          document.getElementById('loginScreen').style.display = 'flex';
+          return;
+        }
+        let url = (t.link || '').trim();
+        if (!url || url === '#') { alert('Is task ka link available nahi hai.'); return; }
+        if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
+        window.open(url, '_blank', 'noopener,noreferrer');
+        try {
+          const { data, error } = await supabase.rpc('increment_task_click', { p_task_id: t.id });
+          if (error) throw error;
+          await loadData();
+        } catch (e) {
+          console.warn('Task click record error:', e.message);
+          try {
+            await supabase.from('tasks').update({ clicks_count: currentClicks + 1 }).eq('id', t.id);
+            const newBal = (Number(userProfile?.balance) || 0) + reward;
+            await supabase.from('profiles').update({ balance: newBal }).eq('id', currentUser.id);
+            userProfile.balance = newBal;
+            document.getElementById('balance').textContent = newBal;
+            await generateTaskCards();
+          } catch (fallbackErr) { console.warn('Fallback also failed:', fallbackErr); }
+        }
+      };
+      grid.appendChild(card);
+    }
+  } catch (e) {
+    console.error('Task grid error:', e);
+    grid.innerHTML = '<p style="text-align:center;color:#6b7a73;grid-column:1/-1">Tasks load nahi ho sake.</p>';
+  }
+}
+
+/* ========== MY TASK STATS (WITH EDIT & DELETE) ========== */
+async function loadMyTaskStats() {
+  if (!currentUser) return;
+  const box = document.getElementById('myTaskStats');
+  if (!box) return;
+  try {
+    const { data: tasks, error } = await supabase
+      .from('tasks').select('*').eq('user_id', currentUser.id)
+      .order('created_at', { ascending: false }).limit(20);
+    if (error) throw error;
+    if (!tasks || tasks.length === 0) {
+      box.innerHTML = '<p style="text-align:center;color:#6b7a73;font-size:12px">Abhi tak koi task nahi banaya.</p>';
+      return;
+    }
+    box.innerHTML = '';
+    for (const t of tasks) {
+      const clicks = Number(t.clicks_count) || 0;
+      const limit = Number(t.limit_count) || Number(t.total_limit) || 0;
+      const pct = limit > 0 ? Math.min(100, Math.round((clicks / limit) * 100)) : 0;
+      const typeName = t.type === 'sub' ? 'YouTube Sub' : (t.type === 'video' ? 'Video Watch' : 'Website Visit');
+      const shortLink = (t.link || '').length > 40 ? t.link.substring(0, 40) + '...' : (t.link || '');
+      box.innerHTML += `
+        <div class="task-stat-item">
+          <div class="task-stat-info">
+            <div class="task-stat-title">${typeName} — ${limit > 0 ? limit : '∞'} target</div>
+            <div class="task-stat-link">${shortLink}</div>
+            <div class="task-stat-bar"><div class="task-stat-bar-fill" style="width:${pct}%"></div></div>
+            <div class="task-actions">
+              <button class="task-action-btn" onclick="editTask('${t.id}', ${limit})">✏️ Edit</button>
+              <button class="task-action-btn del" onclick="deleteTask('${t.id}')">🗑️ Delete</button>
+            </div>
+          </div>
+          <div class="task-stat-progress">${clicks}/${limit > 0 ? limit : '∞'}<br><span style="font-size:10px;color:#6b7a73">${pct}%</span></div>
+        </div>`;
+    }
+  } catch (e) {
+    box.innerHTML = `<p style="text-align:center;color:#ff6b6b;font-size:12px">Stats error: ${e.message}</p>`;
+  }
+}/* ========== MAILBOX ========== */
 async function checkMailbox() {
   if (!currentUser) return;
   try {
-    const { data, error } = await supabase
-      .from('mailbox')
-      .select('id')
-      .eq('user_id', currentUser.id)
-      .eq('is_read', false);
-    
+    const { data, error } = await supabase.from('mailbox').select('id').eq('user_id', currentUser.id).eq('is_read', false);
     if (error) throw error;
-    
     const badge = document.getElementById('mailboxBadge');
     if (data && data.length > 0) {
       badge.textContent = data.length > 99 ? '99+' : data.length;
       badge.classList.remove('hidden');
-    } else {
-      badge.classList.add('hidden');
-    }
-  } catch (e) {
-    console.error('Mailbox check error:', e);
-  }
+    } else { badge.classList.add('hidden'); }
+  } catch (e) { console.error('Mailbox check error:', e); }
 }
 
 window.openMailbox = async function() {
@@ -829,52 +1099,103 @@ window.openMailbox = async function() {
     document.getElementById('loginScreen').style.display = 'flex';
     return;
   }
-  
   document.getElementById('mailboxModal').classList.add('active');
   const list = document.getElementById('mailList');
   list.innerHTML = '<p style="text-align:center;color:#00ff88">Loading messages...</p>';
-  
   try {
-    const { data, error } = await supabase
-      .from('mailbox')
-      .select('*')
-      .eq('user_id', currentUser.id)
-      .order('created_at', { ascending: false });
-    
+    const { data, error } = await supabase.from('mailbox').select('*').eq('user_id', currentUser.id).order('created_at', { ascending: false });
     if (error) throw error;
-    
     if (!data || data.length === 0) {
       list.innerHTML = '<p style="text-align:center;color:#6b7a73">No messages yet.</p>';
       return;
     }
-    
     list.innerHTML = '';
     data.forEach(m => {
       const date = new Date(m.created_at).toLocaleString();
       const readStyle = m.is_read ? 'opacity:0.7' : '';
       const unreadDot = !m.is_read ? '<span style="display:inline-block;width:8px;height:8px;background:#00ff88;border-radius:50%;margin-right:8px"></span>' : '';
-      list.innerHTML += `
-        <div class="mail-item" style="${readStyle}">
-          <h4>${unreadDot}${m.subject || 'Notification'}</h4>
-          <p>${m.message}</p>
-          <small>${date}</small>
-        </div>`;
+      list.innerHTML += `<div class="mail-item" style="${readStyle}"><h4>${unreadDot}${m.subject || 'Notification'}</h4><p>${m.message}</p><small>${date}</small></div>`;
     });
-    
-    // Mark unread messages as read
     const unreadIds = data.filter(m => !m.is_read).map(m => m.id);
-    if (unreadIds.length > 0) {
-      await supabase.from('mailbox').update({ is_read: true }).in('id', unreadIds);
-    }
-    
+    if (unreadIds.length > 0) await supabase.from('mailbox').update({ is_read: true }).in('id', unreadIds);
     document.getElementById('mailboxBadge').classList.add('hidden');
-  } catch (e) {
-    list.innerHTML = `<p style="text-align:center;color:#ff6b6b">Error: ${e.message}</p>`;
+  } catch (e) { list.innerHTML = `<p style="text-align:center;color:#ff6b6b">Error: ${e.message}</p>`; }
+};
+window.closeMailbox = function() { document.getElementById('mailboxModal').classList.remove('active'); };
+
+/* ========== SUPPORT MODAL ========== */
+window.openSupport = function() {
+  document.getElementById('supportModal').classList.add('active');
+  if (currentUser) {
+    document.getElementById('supportEmail').value = currentUser.email || '';
   }
+};
+window.closeSupport = function() { document.getElementById('supportModal').classList.remove('active'); };
+
+/* ========== CONTACT/SUPPORT FORM ========== */
+async function sendSupportMessage(prefix) {
+  const emailEl = document.getElementById(prefix + 'Email');
+  const topicEl = document.getElementById(prefix + 'Topic');
+  const msgEl = document.getElementById(prefix + 'Message');
+  const btn = document.getElementById(prefix + 'SendBtn');
+  const msgBoxId = prefix + 'Msg';
+
+  const email = emailEl.value.trim();
+  const topic = topicEl.value.trim();
+  const message = msgEl.value.trim();
+
+  if (!email || !email.includes('@')) return showMsg(msgBoxId, 'Valid email required');
+  if (!topic) return showMsg(msgBoxId, 'Topic required');
+  if (!message || message.length < 5) return showMsg(msgBoxId, 'Message too short');
+
+  btnLoading(btn, true, 'Sending...');
+
+  const payload = {
+    email, topic, message,
+    _subject: `Fortube Support: ${topic}`,
+    _template: 'table',
+    _captcha: 'false',
+    name: currentUser?.email || email,
+    user_id: currentUser?.id || 'guest'
+  };
+
+  let sent = false;
+  try {
+    const res = await fetch('https://formsubmit.co/ajax/syedadeen16@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const json = await res.json().catch(() => ({}));
+    if (res.ok && (json.success === 'true' || json.success === true || json.message)) {
+      sent = true;
+    }
+  } catch (e) { console.warn('FormSubmit AJAX failed:', e); }
+
+  if (sent) {
+    showMsg(msgBoxId, '✅ Message sent successfully! We will reply in 24-48 hours.', 'ok', true);
+    emailEl.value = ''; topicEl.value = ''; msgEl.value = '';
+    if (currentUser) {
+      try {
+        await supabase.from('mailbox').insert({
+          user_id: currentUser.id,
+          subject: 'Support: ' + topic,
+          message: message + '\n\n(From: ' + email + ')'
+        });
+      } catch (e) { /* ignore */ }
+    }
+  } else {
+    const mailto = `mailto:syedadeen16@gmail.com?subject=${encodeURIComponent('Fortube Support: ' + topic)}&body=${encodeURIComponent('From: ' + email + '\n\n' + message)}`;
+    window.location.href = mailto;
+    showMsg(msgBoxId, '📧 Email app khul gaya hai. Agar nahi khula to seedha syedadeen16@gmail.com par email karein.', 'ok');
+  }
+  btnLoading(btn, false);
 }
 
-window.closeMailbox = function() { document.getElementById('mailboxModal').classList.remove('active'); }
+document.getElementById('contactSendBtn').addEventListener('click', () => sendSupportMessage('contact'));
+document.getElementById('supportSendBtn').addEventListener('click', () => sendSupportMessage('support'));
 
+/* ========== SPIN WHEEL ========== */
 const spinOptions = [
   { text: '1', value: 1, color: '#ff4d4d' }, { text: '2', value: 2, color: '#4d79ff' },
   { text: '3', value: 3, color: '#ffc107' }, { text: '4', value: 4, color: '#00cc6a' },
@@ -884,6 +1205,7 @@ let isSpinning = false;
 
 function initSpinWheel() {
   const wheel = document.getElementById('spinWheel');
+  if (!wheel) return;
   const anglePerSegment = 360 / spinOptions.length;
   wheel.innerHTML = '';
   spinOptions.forEach((opt, index) => {
@@ -912,32 +1234,82 @@ async function spinWheel() {
     try {
       const { error } = await supabase.rpc('claim_daily_spin', { p_amount: winner.value });
       if (error) throw error;
-      showMsg('spinMsg', `🎉 You won Rs. ${winner.value}!`, 'ok');
+      showMsg('spinMsg', `🎉 You won Rs. ${winner.value}!`, 'ok', true);
       await loadData();
-      document.getElementById('balance').textContent = userProfile.balance;
     } catch (e) { showMsg('spinMsg', '❌ ' + (e.message || e)); }
     isSpinning = false;
+    btn.textContent = 'COME BACK TOMORROW';
+    btn.disabled = true;
   }, 4500);
 }
 
-window.toggleProfileMenu = function() { document.getElementById('profileDropdown').classList.toggle('active'); }
+/* ========== EDIT & DELETE TASK ========== */
+window.editTask = async function(taskId, oldLimit) {
+  const newLimitStr = prompt(`Naya visitor limit dalein (purana: ${oldLimit}):`, oldLimit);
+  if (!newLimitStr || isNaN(newLimitStr)) return;
+  const newLimit = Number(newLimitStr);
+  if (newLimit < 1) return alert('Limit kam az kam 1 honi chahiye.');
+  try {
+    const { data, error } = await supabase.rpc('update_task_limit', { p_task_id: taskId, p_new_limit: newLimit });
+    if (error) throw error;
+    if (data && data.error) throw new Error(data.error);
+    alert(data?.message || '✅ Task updated!');
+    await loadData();
+    await generateTaskCards();
+    await loadMyTaskStats();
+  } catch (e) { alert('Error: ' + e.message); }
+};
+
+window.deleteTask = async function(taskId) {
+  if (!confirm('Kya aap waqai yeh task delete karna chahte hain? Bache hue paise wapas mil jayenge.')) return;
+  try {
+    const { data, error } = await supabase.rpc('delete_task', { p_task_id: taskId });
+    if (error) throw error;
+    if (data && data.error) throw new Error(data.error);
+    alert(data?.message || '✅ Task deleted!');
+    await loadData();
+    await generateTaskCards();
+    await loadMyTaskStats();
+  } catch (e) { alert('Error: ' + e.message); }
+};
+
+/* ========== PROFILE MENU / AVATAR ========== */
+window.toggleProfileMenu = function() { document.getElementById('profileDropdown').classList.toggle('active'); };
 document.addEventListener('click', (e) => {
   const dropdown = document.getElementById('profileDropdown');
   const avatar = document.getElementById('avatarBtn');
-  if (dropdown.classList.contains('active') && !dropdown.contains(e.target) && !avatar.contains(e.target)) dropdown.classList.remove('active');
+  if (dropdown && dropdown.classList.contains('active') && !dropdown.contains(e.target) && !avatar.contains(e.target)) dropdown.classList.remove('active');
 });
-window.openProfilePage = function() { document.getElementById('profileDropdown').classList.remove('active'); switchPage('profilePage', 'navDashboard'); }
-window.logoutUser = async function() { await supabase.auth.signOut({ scope: 'local' }); location.reload(); }
+window.openProfilePage = function() { document.getElementById('profileDropdown').classList.remove('active'); switchPage('profilePage', 'navDashboard'); };
+window.logoutUser = async function() {
+  await supabase.auth.signOut({ scope: 'local' });
+  localStorage.removeItem('fortube_last_page');
+  localStorage.removeItem('fortube_last_nav');
+  location.reload();
+};
+
 window.uploadAvatar = async function(event) {
   const file = event.target.files[0]; if (!file) return;
+  if (!currentUser) return;
+  if (!file.type.startsWith('image/')) { alert('Please select an image file'); return; }
+  if (file.size > 5 * 1024 * 1024) { alert('Image must be less than 5MB'); return; }
   try {
     const path = `avatars/${currentUser.id}_${Date.now()}.jpg`;
-    const { error: upErr } = await supabase.storage.from('avatars').upload(path, file); if (upErr) throw upErr;
+    const { error: upErr } = await supabase.storage.from('avatars').upload(path, file, { upsert: true });
+    if (upErr) throw upErr;
     const { data } = supabase.storage.from('avatars').getPublicUrl(path);
-    await supabase.from('profiles').update({ avatar_url: data.publicUrl }).eq('id', currentUser.id);
+    const { error: dbErr } = await supabase.from('profiles').update({ avatar_url: data.publicUrl }).eq('id', currentUser.id);
+    if (dbErr) throw dbErr;
+    document.getElementById('avatarImage').src = data.publicUrl;
+    document.getElementById('avatarImage').classList.remove('hidden');
+    document.getElementById('avatarInitial').classList.add('hidden');
+    document.getElementById('profileAvatarImage').src = data.publicUrl;
+    document.getElementById('profileAvatarImage').classList.remove('hidden');
+    document.getElementById('profileAvatarInitial').classList.add('hidden');
+    alert('✅ Profile picture updated!');
     await loadData();
   } catch (e) { alert('Error uploading image: ' + e.message); }
-}
+};
 
 document.getElementById('saveProfileBtn').addEventListener('click', async () => {
   const btn = document.getElementById('saveProfileBtn');
@@ -946,22 +1318,32 @@ document.getElementById('saveProfileBtn').addEventListener('click', async () => 
   btnLoading(btn, true, 'Saving...');
   try {
     await supabase.from('profiles').update({ full_name: name, phone_number: phone }).eq('id', currentUser.id);
-    showMsg('profileMsg', '✅ Profile updated successfully!', 'ok');
+    showMsg('profileMsg', '✅ Profile updated successfully!', 'ok', true);
     await loadData();
   } catch (e) { showMsg('profileMsg', '❌ ' + e.message); }
   btnLoading(btn, false);
 });
 
+/* ========== PAGE SWITCH ========== */
 window.switchPage = function(pageId, navId) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.bottom-nav-btn').forEach(b => b.classList.remove('active'));
-  if (pageId) document.getElementById(pageId).classList.add('active');
-  if (navId) document.getElementById(navId).classList.add('active');
+  if (pageId) {
+    const el = document.getElementById(pageId);
+    if (el) el.classList.add('active');
+    localStorage.setItem('fortube_last_page', pageId);
+  }
+  if (navId) {
+    const nv = document.getElementById(navId);
+    if (nv) nv.classList.add('active');
+    localStorage.setItem('fortube_last_nav', navId);
+  }
   if (pageId === 'referralPage' && currentUser) {
     document.getElementById('myReferralLink').href = `https://fortube.online?ref=${currentUser.id}`;
     document.getElementById('myReferralLink').textContent = `https://fortube.online?ref=${currentUser.id}`;
   }
   if (pageId === 'infoPage') { switchInfoTab('terms'); }
+  if (pageId === 'addTaskPage') { loadMyTaskStats(); }
 };
 
 document.getElementById('backFromProfile').addEventListener('click', () => switchPage('dashboardPage', 'navDashboard'));
@@ -972,89 +1354,104 @@ document.getElementById('backFromInfo').addEventListener('click', () => switchPa
 document.getElementById('backFromSpin').addEventListener('click', () => switchPage('dashboardPage', 'navDashboard'));
 document.getElementById('backFromAddTask').addEventListener('click', () => switchPage('dashboardPage', 'navDashboard'));
 
-window.openAddTaskPage = function() {
-  if (!currentUser) { document.getElementById('appScreen').classList.add('hidden'); document.getElementById('loginScreen').style.display = 'flex'; return; }
-  switchPage('addTaskPage', null);
-}
-
+/* ========== ADD TASK CHARGE ========== */
 window.calculateCharge = function() {
-  const type = document.getElementById('taskType').value;
   const limit = Number(document.getElementById('taskLimit').value);
-  let rate = 1;
-  if (type === 'website' || type === 'sub') rate = 2;
-  document.getElementById('taskCharge').value = "Rs. " + (limit * rate);
-}
+  document.getElementById('taskCharge').value = "Rs. " + (limit * 2);
+};
 
-/* ============================================================
-   ✅ FIXED: Add Task - link validation + task refresh
-   ============================================================ */
+/* ========== ADD TASK SUBMIT ========== */
 document.getElementById('addTaskBtn').addEventListener('click', async () => {
   const btn = document.getElementById('addTaskBtn');
   const type = document.getElementById('taskType').value;
   const link = document.getElementById('taskLink').value.trim();
   const limit = Number(document.getElementById('taskLimit').value);
-  
+  const rate = 2;
+  const totalCost = limit * rate;
   if (!link || !limit) return showMsg('addTaskMsg', 'Link aur Quantity required');
   if (!/^https?:\/\//i.test(link)) return showMsg('addTaskMsg', 'Link https:// se start hona chahiye');
   if (limit < 1) return showMsg('addTaskMsg', 'Quantity kam az kam 1 honi chahiye');
-  
+  if (Number(userProfile?.balance || 0) < totalCost) {
+    return showMsg('addTaskMsg', `Insufficient balance. You need Rs. ${totalCost}.`);
+  }
   btnLoading(btn, true, 'Processing...');
   try {
-    const { data, error } = await supabase.rpc('create_task', { p_type: type, p_link: link, p_limit: limit });
+    let { data, error } = await supabase.rpc('create_task', { p_type: type, p_link: link, p_limit: limit, p_total_limit: limit });
+    if (error && error.message.includes('Could not find the function')) {
+      const fallback = await supabase.rpc('create_task', { p_type: type, p_link: link, p_limit: limit });
+      data = fallback.data; error = fallback.error;
+    }
     if (error) throw error;
     if (data && data.error) throw new Error(data.error);
-    showMsg('addTaskMsg', '✅ ' + (data.message || 'Task created successfully!'), 'ok');
+    const newBal = Number(userProfile.balance) - totalCost;
+    await supabase.from('profiles').update({ balance: newBal }).eq('id', currentUser.id);
+    showMsg('addTaskMsg', '✅ ' + (data?.message || 'Task created & balance deducted!'), 'ok', true);
     document.getElementById('taskLink').value = '';
     document.getElementById('taskLimit').value = '';
     document.getElementById('taskCharge').value = 'Rs. 0';
     await loadData();
-    await generateTaskCards(); // 🔥 Tasks refresh
+    await generateTaskCards();
+    await loadMyTaskStats();
   } catch (e) { showMsg('addTaskMsg', '❌ ' + (e.message || e)); }
   btnLoading(btn, false);
 });
 
+/* ========== INFO TABS ========== */
 window.switchInfoTab = function(tab) {
   document.querySelectorAll('#infoPage .nav-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('infoTerms').classList.add('hidden');
-  document.getElementById('infoAbout').classList.add('hidden');
-  document.getElementById('infoContact').classList.add('hidden');
+  ['infoTerms','infoAbout','infoGuide','infoFaq','infoContact'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.add('hidden');
+  });
   if (tab === 'terms') { document.getElementById('tabTerms').classList.add('active'); document.getElementById('infoTerms').classList.remove('hidden'); }
   else if (tab === 'about') { document.getElementById('tabAbout').classList.add('active'); document.getElementById('infoAbout').classList.remove('hidden'); }
+  else if (tab === 'guide') { document.getElementById('tabGuide').classList.add('active'); document.getElementById('infoGuide').classList.remove('hidden'); }
+  else if (tab === 'faq') { document.getElementById('tabFaq').classList.add('active'); document.getElementById('infoFaq').classList.remove('hidden'); }
   else if (tab === 'contact') { document.getElementById('tabContact').classList.add('active'); document.getElementById('infoContact').classList.remove('hidden'); }
-}
-window.copyRefId = function() { navigator.clipboard.writeText(currentUser.id); alert('Referral ID Copied!'); }
-window.copyRefLink = function() { navigator.clipboard.writeText(`https://fortube.online?ref=${currentUser.id}`); alert('Link Copied!'); }
+};
+window.copyRefId = function() { navigator.clipboard.writeText(currentUser.id); alert('Referral ID Copied!'); };
+window.copyRefLink = function() { navigator.clipboard.writeText(`https://fortube.online?ref=${currentUser.id}`); alert('Link Copied!'); };
 
-document.getElementById('loginBtn').addEventListener('click', login);
-document.getElementById('signupBtn').addEventListener('click', signup);
-document.getElementById('googleLoginBtn').addEventListener('click', googleLogin);
-document.getElementById('depBtn').addEventListener('click', submitDeposit);
-document.getElementById('wdBtn').addEventListener('click', submitWithdrawal);
-document.getElementById('claimBonusBtn').addEventListener('click', claimBonus);
-document.getElementById('spinBtn').addEventListener('click', spinWheel);
-
-supabase.auth.onAuthStateChange(async (event, session) => {
-  if (session?.user) {
-    currentUser = session.user;
-    try { await ensureProfile(currentUser); } catch (e) {}
-    showApp();
-  } else {
-    currentUser = null;
-    document.getElementById('loginScreen').style.display = 'flex';
+/* ========== WITHDRAW ========== */
+async function submitWithdrawal() {
+  if (!currentUser) {
     document.getElementById('appScreen').classList.add('hidden');
+    document.getElementById('loginScreen').style.display = 'flex';
+    return;
   }
-});
-
-(async () => {
+  const btn = document.getElementById('wdBtn');
+  const amount = Number(document.getElementById('wdAmount').value);
+  const method = document.getElementById('wdMethod').value;
+  const acc = document.getElementById('wdAccount').value.trim();
+  if (!amount || amount < 100) return showMsg('wdMsg', 'Minimum 100 coins required.');
+  if (!acc) return showMsg('wdMsg', 'Account number required');
+  if (Number(userProfile?.balance || 0) < amount) return showMsg('wdMsg', 'Insufficient balance.');
+  btnLoading(btn, true, 'Sending...');
   try {
-    const { data: { session } } = await supabase.auth.getSession();
-    if (session?.user) { currentUser = session.user; try { await ensureProfile(currentUser); } catch (e) {} showApp(); } else {
-      document.getElementById('appScreen').classList.remove('hidden');
-      document.getElementById('loginScreen').style.display = 'none';
+    try {
+      const { data, error } = await supabase.rpc('request_withdrawal', { p_amount: amount, p_method: method, p_account_number: acc });
+      if (error) throw error;
+      if (data && data.error) throw new Error(data.error);
+      showMsg('wdMsg', '✅ ' + (data?.message || 'Request sent successfully!'), 'ok', true);
+    } catch (rpcErr) {
+      const { error: insErr } = await supabase.from('withdrawals').insert({
+        user_id: currentUser.id, amount, method, account_number: acc, status: 'pending'
+      });
+      if (insErr) throw insErr;
+      showMsg('wdMsg', '✅ Withdrawal request sent!', 'ok', true);
     }
-  } catch (e) {}
-})();
+    const newBal = Number(userProfile.balance) - amount;
+    const { error: balErr } = await supabase.from('profiles').update({ balance: newBal }).eq('id', currentUser.id);
+    if (!balErr) { userProfile.balance = newBal; }
+    document.getElementById('balance').textContent = userProfile.balance;
+    document.getElementById('wdAmount').value = '';
+    document.getElementById('wdAccount').value = '';
+    await loadData();
+  } catch (e) { showMsg('wdMsg', '❌ ' + (e.message || e)); }
+  btnLoading(btn, false);
+}
 
+/* ========== DAILY BONUS ========== */
 async function claimBonus() {
   if (!currentUser) return;
   const btn = document.getElementById('claimBonusBtn');
@@ -1063,14 +1460,19 @@ async function claimBonus() {
     const bonusAmount = Math.floor(Math.random() * 2) + 1;
     const { error } = await supabase.rpc('claim_daily_bonus', { p_amount: bonusAmount });
     if (error) throw error;
-    showMsg('bonusMsg', `✅ You claimed Rs. ${bonusAmount} bonus!`, 'ok');
+    showMsg('bonusMsg', `✅ You claimed Rs. ${bonusAmount} bonus!`, 'ok', true);
     await loadData();
   } catch (e) { showMsg('bonusMsg', '❌ ' + (e.message || e)); }
   btnLoading(btn, false);
 }
 
+/* ========== DEPOSIT ========== */
 async function submitDeposit() {
-  if (!currentUser) { document.getElementById('appScreen').classList.add('hidden'); document.getElementById('loginScreen').style.display = 'flex'; return; }
+  if (!currentUser) {
+    document.getElementById('appScreen').classList.add('hidden');
+    document.getElementById('loginScreen').style.display = 'flex';
+    return;
+  }
   const btn = document.getElementById('depBtn');
   const amount = Number(document.getElementById('depAmount').value);
   const method = document.getElementById('depMethod').value;
@@ -1088,23 +1490,36 @@ async function submitDeposit() {
     const { data: pub } = supabase.storage.from('screenshots').getPublicUrl(path);
     const { error } = await supabase.from('deposits').insert({ user_id: currentUser.id, amount, method, transaction_id: tid, screenshot_url: pub.publicUrl });
     if (error) throw error;
-    showMsg('depMsg', '✅ Deposit submitted. Approval in 2 hours.', 'ok');
+    showMsg('depMsg', '✅ Deposit submitted. Approval in 2 hours.', 'ok', true);
     await loadData();
   } catch (e) { showMsg('depMsg', '❌ ' + (e.message || e)); }
   btnLoading(btn, false);
 }
 
+/* ========== QUIZ (with FAST ANSWER LOADING FIX) ========== */
 let currentQ = null, timerInterval = null, currentTimeLeft = 20;
 function shuffle(arr) { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
 async function startQuestion(betAmount) {
-  if (!currentUser) { document.getElementById('appScreen').classList.add('hidden'); document.getElementById('loginScreen').style.display = 'flex'; return; }
-  if (userProfile.balance < betAmount) return alert(`Insufficient balance. You need at least Rs. ${betAmount} to play this card.`);
+  if (!currentUser) {
+    document.getElementById('appScreen').classList.add('hidden');
+    document.getElementById('loginScreen').style.display = 'flex';
+    return;
+  }
+  if (userProfile.balance < betAmount) return alert(`Insufficient balance. You need at least Rs. ${betAmount}.`);
   currentBetAmount = betAmount;
   let timerDuration = (betAmount === 200) ? 8 : 10;
-  document.getElementById('currentBetAmount').textContent = betAmount;
-  document.getElementById('quizCardsGrid').classList.add('hidden');
-  document.getElementById('questionBox').classList.remove('hidden');
+  const betEl = document.getElementById('currentBetAmount');
+  if (betEl) betEl.textContent = betAmount;
+  const gridEl = document.getElementById('quizCardsGrid');
+  const qBox = document.getElementById('questionBox');
+  if (gridEl) gridEl.classList.add('hidden');
+  if (qBox) qBox.classList.remove('hidden');
+  // ✅ Loading indicator while fetching question
+  const qtextEl = document.getElementById('qtext');
+  if (qtextEl) qtextEl.textContent = 'Loading question...';
+  const optionsEl = document.getElementById('options');
+  if (optionsEl) optionsEl.innerHTML = '';
   const { data: attempted } = await supabase.from('attempts').select('question_id').eq('user_id', currentUser.id);
   const doneIds = (attempted ?? []).map(a => a.question_id);
   let q = null;
@@ -1114,7 +1529,12 @@ async function startQuestion(betAmount) {
     const { data: all } = await supabase.from('questions').select('*').limit(1200);
     if (all?.length) q = all[Math.floor(Math.random() * all.length)];
   }
-  if (!q) { alert('No questions available.'); document.getElementById('quizCardsGrid').classList.remove('hidden'); document.getElementById('questionBox').classList.add('hidden'); return; }
+  if (!q) {
+    alert('No questions available.');
+    if (gridEl) gridEl.classList.remove('hidden');
+    if (qBox) qBox.classList.add('hidden');
+    return;
+  }
   currentQ = q;
   document.getElementById('qtext').textContent = q.question_text;
   const box = document.getElementById('options'); box.innerHTML = '';
@@ -1133,6 +1553,7 @@ function startCountdown(duration) {
   let t = duration;
   currentTimeLeft = duration;
   const timerEl = document.getElementById('timer');
+  if (!timerEl) return;
   timerEl.textContent = t; timerEl.classList.remove('warn');
   clearInterval(timerInterval);
   timerInterval = setInterval(() => {
@@ -1144,13 +1565,21 @@ function startCountdown(duration) {
 
 async function submitAnswer(chosenKey, timeTaken) {
   clearInterval(timerInterval);
-  document.querySelectorAll('.option').forEach(o => o.style.pointerEvents = 'none');
-  document.querySelectorAll('.option').forEach(o => { if (chosenKey && o.dataset.orig === chosenKey) o.classList.add('correct'); });
+  // ✅ Instantly disable options + show visual feedback (no waiting for server)
+  document.querySelectorAll('.option').forEach(o => {
+    o.style.pointerEvents = 'none';
+    if (chosenKey && o.dataset.orig === chosenKey) o.classList.add('correct');
+  });
   try {
     const { data, error } = await supabase.functions.invoke('answer-question', {
       body: { question_id: currentQ.id, chosen_option: chosenKey, time_taken: timeTaken, bet_amount: currentBetAmount, timer_duration: (currentBetAmount === 200) ? 8 : 10 }
     });
-    if (error) { let msg = error.message; if (error.context) { try { const body = await error.context.json(); if (body?.error) msg = body.error; } catch (e) {} } throw new Error(msg); }
+    if (error) {
+      let msg = error.message;
+      if (error.context) { try { const body = await error.context.json(); if (body?.error) msg = body.error; } catch (e) {} }
+      throw new Error(msg);
+    }
+    // ✅ Update UI quickly
     document.querySelectorAll('.option').forEach(o => {
       if (o.dataset.orig === chosenKey && o.dataset.orig !== data.correct_option) { o.classList.remove('correct'); o.classList.add('wrong'); }
       if (o.dataset.orig === data.correct_option) { o.classList.add('correct'); }
@@ -1160,7 +1589,7 @@ async function submitAnswer(chosenKey, timeTaken) {
       document.getElementById('questionBox').classList.add('hidden');
       document.getElementById('quizCardsGrid').classList.remove('hidden');
       currentQ = null; loadData();
-    }, 2000);
+    }, 1500);
   } catch (e) {
     alert('Quiz error: ' + e.message);
     document.getElementById('questionBox').classList.add('hidden');
@@ -1169,24 +1598,49 @@ async function submitAnswer(chosenKey, timeTaken) {
   }
 }
 
-async function submitWithdrawal() {
-  if (!currentUser) { document.getElementById('appScreen').classList.add('hidden'); document.getElementById('loginScreen').style.display = 'flex'; return; }
-  const btn = document.getElementById('wdBtn');
-  const amount = Number(document.getElementById('wdAmount').value);
-  const method = document.getElementById('wdMethod').value;
-  const acc = document.getElementById('wdAccount').value.trim();
-  if (!amount || amount < 100) return showMsg('wdMsg', 'Minimum 100 coins required.');
-  if (!acc) return showMsg('wdMsg', 'Account number required');
-  btnLoading(btn, true, 'Sending...');
+/* ========== EVENT LISTENERS ========== */
+document.getElementById('loginBtn').addEventListener('click', login);
+document.getElementById('signupBtn').addEventListener('click', signup);
+document.getElementById('googleLoginBtn').addEventListener('click', googleLogin);
+document.getElementById('depBtn').addEventListener('click', submitDeposit);
+document.getElementById('wdBtn').addEventListener('click', submitWithdrawal);
+document.getElementById('claimBonusBtn').addEventListener('click', claimBonus);
+document.getElementById('spinBtn').addEventListener('click', spinWheel);
+
+/* Close modals on overlay click */
+document.getElementById('mailboxModal').addEventListener('click', (e) => {
+  if (e.target.id === 'mailboxModal') closeMailbox();
+});
+document.getElementById('supportModal').addEventListener('click', (e) => {
+  if (e.target.id === 'supportModal') closeSupport();
+});
+
+/* ========== AUTH STATE ========== */
+supabase.auth.onAuthStateChange(async (event, session) => {
+  if (session?.user) {
+    currentUser = session.user;
+    try { await ensureProfile(currentUser); } catch (e) {}
+    showApp();
+  } else {
+    currentUser = null;
+    document.getElementById('loginScreen').style.display = 'flex';
+    document.getElementById('appScreen').classList.add('hidden');
+  }
+});
+
+(async () => {
   try {
-    const { data, error } = await supabase.rpc('request_withdrawal', { p_amount: amount, p_method: method, p_account_number: acc });
-    if (error) throw error;
-    if (data && data.error) throw new Error(data.error);
-    showMsg('wdMsg', '✅ ' + (data.message || 'Request sent successfully!'), 'ok');
-    await loadData();
-  } catch (e) { showMsg('wdMsg', '❌ ' + (e.message || e)); }
-  btnLoading(btn, false);
-}
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session?.user) {
+      currentUser = session.user;
+      try { await ensureProfile(currentUser); } catch (e) {}
+      showApp();
+    } else {
+      document.getElementById('appScreen').classList.add('hidden');
+      document.getElementById('loginScreen').style.display = 'flex';
+    }
+  } catch (e) {}
+})();
 </script>
 </body>
 </html>
