@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>What Is Generative AI? A Simple Guide for Beginners (2026)</title>
-<meta name="description" content="Learn what Generative AI is, how it works, and how it differs from traditional AI. Complete beginner-friendly guide with 50 topics.">
+<meta name="description" content="Learn what Generative AI is, how it works, and how it differs from traditional AI. A complete, honest guide with 50 topics, practical tips, and real-world insights.">
 <meta name="keywords" content="Generative AI, AI for beginners, AI text generation, AI image generation, ChatGPT, Midjourney, AI ethics">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2103/2103633.png" type="image/png">
@@ -36,11 +36,11 @@ body{
   background:var(--bg-light);
   color:var(--text-dark);
   line-height:1.8;
-  font-size:18px; /* Text bada kiya */
+  font-size:18px;
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
 }
-h1,h2,h3{font-family:'Playfair Display',serif;color:var(--text-dark);line-height:1.3;font-weight:800} /* Font bold kiya */
+h1,h2,h3{font-family:'Playfair Display',serif;color:var(--text-dark);line-height:1.3;font-weight:800}
 img{max-width:100%;height:auto;display:block;background:#e5e7eb}
 p{margin-bottom:20px;color:#334155;font-weight:400;}
 
@@ -84,7 +84,7 @@ h3{font-size:1.5rem;margin-top:30px;margin-bottom:15px;color:var(--slate-blue)}
 
 /* IMAGES (Home Page - Choti & Side me) */
 .article-img{
-  width:100%;max-width:400px;height:auto;
+  width:100%;max-width:350px;height:auto;
   border-radius:12px;margin:15px auto;
   box-shadow:0 8px 20px rgba(0,0,0,.15);
   transition:transform 0.3s ease;
@@ -94,8 +94,8 @@ h3{font-size:1.5rem;margin-top:30px;margin-bottom:15px;color:var(--slate-blue)}
   text-align:center;font-size:.9rem;color:var(--muted);
   font-style:italic;margin-top:-10px;margin-bottom:25px;
 }
-.img-wrap-left { float: left; margin: 0 20px 15px 0; max-width: 350px; }
-.img-wrap-right { float: right; margin: 0 0 15px 20px; max-width: 350px; }
+.img-wrap-left { float: left; margin: 0 20px 15px 0; max-width: 320px; }
+.img-wrap-right { float: right; margin: 0 0 15px 20px; max-width: 320px; }
 
 /* CLEARFIX FOR FLOATS */
 .page::after { content: ""; display: table; clear: both; }
@@ -105,6 +105,66 @@ h3{font-size:1.5rem;margin-top:30px;margin-bottom:15px;color:var(--slate-blue)}
 .callout strong{color:var(--dark-red)}
 .callout-blue{background:rgba(72,61,139,.07);border-left:5px solid var(--slate-blue);padding:20px 25px;border-radius:10px;margin:25px 0;font-weight:500;}
 .callout-blue strong{color:var(--slate-blue)}
+
+/* VIDEO CARDS */
+.video-card {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border: 2px solid var(--border);
+  margin: 30px 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.video-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(139,0,0,0.2);
+  border-color: var(--gold);
+}
+.video-thumbnail {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  background: #000;
+  cursor: pointer;
+}
+.video-thumbnail img {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover;
+}
+.play-btn {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px; height: 60px;
+  background: rgba(139,0,0,0.9);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 24px;
+  transition: all 0.3s ease;
+}
+.video-card:hover .play-btn {
+  background: var(--gold);
+  color: var(--dark-red-deep);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+.video-info {
+  padding: 20px;
+}
+.video-info h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.2rem;
+  color: var(--text-dark);
+  line-height: 1.4;
+  border: none;
+  padding: 0;
+}
+.video-info p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
 
 /* FOOTER */
 footer{text-align:center;padding:40px 20px;background:linear-gradient(135deg,var(--dark-red-deep),var(--slate-blue-deep));color:var(--text-light);border-top:3px solid var(--gold);font-size:.95rem;margin-top:50px;}
@@ -210,76 +270,147 @@ footer p{margin:5px 0;color:var(--text-light);text-align:center}
 
 <!-- HOME PAGE START (Article content will go here in Step 2) -->
 <main id="page-home" class="page active">  <h1>What Is Generative AI? A Simple Guide for Beginners</h1>
-  <p style="font-size:1.2rem;color:#475569;font-weight:600;line-height:1.9;">I still remember the first time I tried an AI tool. It felt a bit strange. Almost like talking to a machine that could actually think. But once I got the hang of it, something clicked. Generative AI is one of those things that sounds complicated at first — but honestly, it isn't. Not once you break it down. This guide is designed to give you the absolute truth about AI, without the hype, the fearmongering, or the technical jargon that usually comes with it.</p>
-
+  
   <div class="img-wrap-right">
     <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80&auto=format&fit=crop" alt="Generative AI concept" class="article-img" loading="lazy">
-    <p class="img-caption">Generative AI creates new content from patterns.</p>
+    <p class="img-caption">Generative AI builds entirely new content from learned patterns.</p>
   </div>
 
-  <p>Maybe you've seen it in the news. Or heard a friend mention ChatGPT. Or noticed that image tools suddenly started producing artwork that looks real. Whatever brought you here, I'm glad you came. This guide will walk you through what generative AI actually is, in plain English. No jargon. No fluff. Just practical, advanced insights that will put you ahead of 99% of the people who just use these tools blindly.</p>
+  <p style="font-size:1.15rem;color:#475569;font-weight:600;line-height:1.9;">I still remember the first time I tried an AI tool. It felt a bit strange. Almost like talking to a machine that could actually think. But once I got the hang of it, something clicked. Generative AI is one of those things that sounds complicated at first — but honestly, it isn't. Not once you break it down.</p>
 
-  <p>Let's start with the basics. Generative AI is a type of computer program that can make new things. Not just repeat what it has seen — but actually create. Text. Images. Audio. Even code. Think of it this way. A normal search engine finds things for you. You type a question, it points you to answers. A generative AI tool works differently. You ask it something, and it writes a whole new answer. From scratch. Based on patterns it picked up from training data.</p>
+  <p>Maybe you've seen it in the news. Or heard a friend mention ChatGPT. Or noticed that image tools suddenly started producing artwork that looks real. Whatever brought you here, I'm glad you came. This guide will walk you through what generative AI actually is, in plain English. No jargon. No fluff.</p>
+
+  <p>Let's start with the basics. Generative AI is a type of computer program that can make new things. Not just repeat what it has seen — but actually create. Text. Images. Audio. Even code.</p>
+  
+  <p>Think of it this way. A normal search engine finds things for you. You type a question, it points you to answers. A generative AI tool works differently. You ask it something, and it writes a whole new answer. From scratch. Based on patterns it picked up from training data.</p>
 
   <div class="callout">
     <strong>Simple version:</strong> Traditional AI analyzes. Generative AI creates. It builds things that didn't exist before.
   </div>
 
-  <h2>How Does It Actually Work?</h2>
-  <p>Okay, this part gets a bit technical. But I'll keep it light. Generative AI models are trained on huge amounts of data. Text from books. Articles from websites. Millions of images. Conversations. Code. Basically, every kind of content you can imagine.</p>
+  <p>That's the core idea. Nothing too scary. Just a machine that learned from a massive pile of examples and figured out how to produce its own.</p>
 
+  <h2>How Does It Actually Work?</h2>
+  <p>Okay, this part gets a bit technical. But I'll keep it light.</p>
+  
   <div class="img-wrap-left">
     <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80&auto=format&fit=crop" alt="AI training patterns" class="article-img" loading="lazy">
     <p class="img-caption">AI learns by finding patterns in massive datasets.</p>
   </div>
 
-  <p>During training, the model learns patterns. How words fit together. What makes a sentence sound natural. How an image of a cat usually looks. Little by little, it builds an internal map of how things relate to each other. Then, when you give it a prompt — like "write me a poem about the ocean" — it uses that map to generate something new.</p>
+  <p>Generative AI models are trained on huge amounts of data. Text from books. Articles from websites. Millions of images. Conversations. Code. Basically, every kind of content you can imagine.</p>
+  
+  <p>During training, the model learns patterns. How words fit together. What makes a sentence sound natural. How an image of a cat usually looks. Little by little, it builds an internal map of how things relate to each other.</p>
+  
+  <p>Then, when you give it a prompt — like "write me a poem about the ocean" — it uses that map to generate something new. It doesn't copy from a database. It predicts what should come next, word by word, until it has produced a complete response.</p>
 
-  <p>It doesn't copy from a database. It predicts what should come next, word by word, until it has produced a complete response. Pretty cool, right? But here's the catch. The model doesn't actually *know* anything. It just knows patterns. Which means it can sometimes get things wrong. Very wrong. And it'll say it all with total confidence. This is why advanced users always double-check the AI's output before trusting it.</p>
+  <p>Pretty cool, right? But here's the catch. The model doesn't actually *know* anything. It just knows patterns. Which means it can sometimes get things wrong. Very wrong. And it'll say it all with total confidence.</p>
 
   <h2>How Is This Different From Regular AI?</h2>
-  <p>Great question. And honestly, a lot of people mix these up. Regular AI — the kind that's been around for years — focuses on tasks like recognizing patterns or making predictions. Your email spam filter? That's AI. The recommendation system on Netflix? Also AI. These systems are great at what they do. But they're not creating anything new. They're just sorting, ranking, or flagging.</p>
-
+  <p>Great question. And honestly, a lot of people mix these up.</p>
+  
   <div class="img-wrap-right">
     <img src="https://images.unsplash.com/photo-1655720828018-edd2daec9349?w=800&q=80&auto=format&fit=crop" alt="Traditional AI vs generative AI" class="article-img" loading="lazy">
     <p class="img-caption">Traditional AI analyzes. Generative AI builds something new.</p>
   </div>
 
-  <p>Generative AI goes a step further. It produces content. Sometimes that content is useful. Sometimes it's a little weird. And sometimes it's shockingly good. That's the difference. If you want to be advanced, you need to understand this distinction. It helps you choose the right tool for the job.</p>
+  <p>Regular AI — the kind that's been around for years — focuses on tasks like recognizing patterns or making predictions. Your email spam filter? That's AI. The recommendation system on Netflix? Also AI. These systems are great at what they do. But they're not creating anything new. They're just sorting, ranking, or flagging.</p>
+  
+  <p>Generative AI goes a step further. It produces content. Sometimes that content is useful. Sometimes it's a little weird. And sometimes it's shockingly good. That's the difference.</p>
 
   <h2>What Kinds of Things Can It Create?</h2>
   <p>Quite a lot, actually. Let me run through the main categories.</p>
+  
   <p><strong>Text.</strong> Articles. Emails. Summaries. Stories. Even poems if you ask nicely. Tools like ChatGPT and Claude are built for this.</p>
   <p><strong>Images.</strong> From realistic photos to cartoon-style illustrations. Midjourney, DALL·E, and Stable Diffusion are the big names here.</p>
   <p><strong>Audio.</strong> Voiceovers. Music. Sound effects. AI can now generate speech that sounds almost human.</p>
   <p><strong>Video.</strong> Still developing, but getting better fast. Short clips and animated scenes are already possible.</p>
   <p><strong>Code.</strong> Developers use AI to write, explain, and debug programming code. It's become a huge time-saver.</p>
 
-  <h2>Is It Safe to Use?</h2>
-  <p>Mostly. But there are real risks you should know about. AI can make mistakes. It can also reflect biases baked into its training data. Sometimes it sounds confident while being completely wrong. That's why checking facts still matters. A lot.</p>
+  <h2>Why Should You Care?</h2>
+  <p>Because it's already part of your life. Whether you realize it or not.</p>
+  
+  <p>If you've used Google's search results lately, there's a good chance AI helped shape them. If you've typed an email in Gmail, you've probably seen "smart compose" suggestions. If you've ever used voice-to-text on your phone, that's AI too.</p>
+  
+  <p>And it's only going to spread. Knowing how it works — and where it fails — puts you ahead of the curve.</p>
 
+  <div class="callout-blue">
+    <strong>Quick note:</strong> You don't need to be a programmer to use AI well. Curiosity and clear thinking will take you further than technical skills.
+  </div>
+
+  <h2>Is It Safe to Use?</h2>
+  <p>Mostly. But there are real risks you should know about.</p>
+  
   <div class="img-wrap-left">
     <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80&auto=format&fit=crop" alt="AI safety and privacy" class="article-img" loading="lazy">
     <p class="img-caption">Responsible use means protecting your data.</p>
   </div>
 
-  <p>Privacy is another thing. Be careful what you type into an AI tool. Don't share personal ID numbers, bank details, or anything sensitive. Some tools use your data to improve their models. Always read the privacy policy before diving in. As an advanced user, you should treat AI like a helpful stranger. Polite, sometimes useful, but you wouldn't hand them your wallet.</p>
+  <p>AI can make mistakes. It can also reflect biases baked into its training data. Sometimes it sounds confident while being completely wrong. That's why checking facts still matters. A lot.</p>
+  
+  <p>Privacy is another thing. Be careful what you type into an AI tool. Don't share personal ID numbers, bank details, or anything sensitive. Some tools use your data to improve their models. Always read the privacy policy before diving in.</p>
 
   <h2>How Do Beginners Get Started?</h2>
   <p>Honestly? Just start. Pick a simple task. Ask an AI to explain something you've always wondered about. Or have it draft a short email you've been putting off. Small steps.</p>
+  
   <p>Here's what I'd suggest:</p>
   <p><strong>1. Pick one tool.</strong> Don't try five at once. Start with ChatGPT or Google Gemini — both are free and easy to use.</p>
   <p><strong>2. Write clear prompts.</strong> Instead of "tell me about AI," say "explain how AI image generators work in simple terms, in about 150 words." Specific questions get better answers.</p>
   <p><strong>3. Review the output.</strong> Read it carefully. Does it make sense? Does it feel accurate? If you're not sure, ask again with more detail.</p>
   <p><strong>4. Add your own touch.</strong> The first response is never final. Edit it. Rewrite it in your own words. Make it yours.</p>
 
-  <div class="callout-blue">
-    <strong>Advanced Tip:</strong> Never trust the first draft. AI gives you 70% of the work. Your job is to bring the remaining 30% — the human insight, the nuance, and the factual accuracy.
+  <div class="img-wrap-right">
+    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80&auto=format&fit=crop" alt="Beginner learning AI" class="article-img" loading="lazy">
+    <p class="img-caption">Beginners do best when they start small.</p>
   </div>
 
+  <h2>What Are the Main Benefits?</h2>
+  <p>Saving time is the big one. Tasks that once took hours can now be done in minutes. Brainstorming. Drafting. Summarizing. Translating.</p>
+  
+  <p>It's also surprisingly good at helping you think. I've used it to explore ideas I wasn't sure how to structure. Sometimes just asking a question and seeing the response gives me clarity I didn't have before.</p>
+  
+  <p>And it's accessible. You don't need a design degree to make an image. You don't need to be a writer to draft a blog post. AI lowers the barrier to entry for a lot of creative work.</p>
+
   <h2>What About the Downsides?</h2>
-  <p>Oh, there are plenty. Let's be honest. AI can be wrong. Very wrong. It can also reinforce stereotypes if the training data was skewed. It can struggle with nuance and humor. And it has a knowledge cutoff — meaning it might not know about things that happened recently.</p>
-  <p>There's also the whole "did this person actually write this?" question. In education and publishing, that's a big deal. Teachers and editors are still figuring out how to handle it.</p>
+  <p>Oh, there are plenty. Let's be honest.</p>
+  
+  <div class="img-wrap-left">
+    <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&q=80&auto=format&fit=crop" alt="AI limitations" class="article-img" loading="lazy">
+    <p class="img-caption">Every tool has limits. AI is no exception.</p>
+  </div>
+
+  <p>AI can be wrong. Very wrong. It can also reinforce stereotypes if the training data was skewed. It can struggle with nuance and humor. And it has a knowledge cutoff — meaning it might not know about things that happened recently.</p>
+  
+  <p>There's also the whole "did this person actually write this?" question. In education and publishing, that's a big deal. Teachers and editors are still figuring out how to handle it.</p>  <h2>So Where Do We Go From Here?</h2>
+  <p>AI is only going to get better. And more embedded in everyday life. The people who learn to use it thoughtfully — and who stay sharp about its flaws — will be in a much better position.</p>
+  
+  <div class="img-wrap-right">
+    <img src="https://images.unsplash.com/photo-1676299081847-824916de030a?w=800&q=80&auto=format&fit=crop" alt="Future of AI" class="article-img" loading="lazy">
+    <p class="img-caption">The future is already here.</p>
+  </div>
+
+  <p>But here's the thing. You don't need to master everything today. Start with one tool. One task. One small win. That's how it sticks. And if you ever feel overwhelmed, come back to this guide. Read a few sections. Try another topic page. Learning AI shouldn't feel like cramming for an exam. It should feel like slowly discovering how something fascinating works.</p>
+
+  <p>I've been using these tools for a while now. I've seen them write code, generate art, and even help me plan my week. But I've also seen them make up facts, confuse dates, and sound completely confident while being dead wrong. That's the reality of AI. It's a tool. A powerful one, sure. But still a tool. You're the one steering it. Keep that in mind and you'll be fine.</p>
+
+  <!-- VIDEO CARD -->
+  <h2>Watch: A Quick Intro to Generative AI</h2>
+  <p style="margin-bottom: 15px;">If you prefer watching over reading, this video breaks down the basics in a very simple way. Take a look.</p>
+  
+  <div class="video-card">
+    <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=Yq0QkCxoTHM', '_blank')">
+      <img src="https://img.youtube.com/vi/Yq0QkCxoTHM/maxresdefault.jpg" alt="Generative AI Video Guide" loading="lazy">
+      <div class="play-btn">▶</div>
+    </div>
+    <div class="video-info">
+      <h3>What Is Generative AI? A Simple Guide for Beginners</h3>
+      <p>Watch this video to understand the absolute basics in plain English.</p>
+    </div>
+  </div>
+
+  <div class="callout-blue" style="margin-top: 30px;">
+    <strong>Ready to dive deeper?</strong> Below, you'll find 50 advanced topics. Each one is a dedicated guide. Pick whatever catches your eye, or start from the top. They are written to give you practical, advanced insights, not just surface-level summaries.
+  </div>
 
   <!-- SCREENSHOT STYLE GRID (Keywords will load here via JS) -->
   <div class="explore-toolbox">
@@ -289,7 +420,7 @@ footer p{margin:5px 0;color:var(--text-light);text-align:center}
         <h2>Explore AI Topics</h2>
         <p>Choose a topic to dive deep. Over 50 advanced guides.</p>
       </div>
-      <a href="#" onclick="showPage('keywords',null); return false;" style="color:var(--slate-blue); font-weight:800; font-size:1rem; text-decoration:none; border-bottom:2px solid var(--gold);">Browse all topics →</a>
+      <a href="#" onclick="showPage('keywords',document.querySelector('nav .links button[data-page=home]')); return false;" style="color:var(--slate-blue); font-weight:800; font-size:1rem; text-decoration:none; border-bottom:2px solid var(--gold);">Browse all topics →</a>
     </div>
     
     <div class="toolbox-grid">
@@ -374,44 +505,46 @@ footer p{margin:5px 0;color:var(--text-light);text-align:center}
   </div>
   <!-- END GRID -->
 
-  <h2>So Where Do We Go From Here?</h2>
-  <p>AI is only going to get better. And more embedded in everyday life. The people who learn to use it thoughtfully — and who stay sharp about its flaws — will be in a much better position. You don't need to master everything today. Start with one tool. One task. One small win. That's how it sticks.</p>
-  
-  <div class="callout">
-    <strong>Final thought:</strong> AI is a tool. A powerful one, sure. But still a tool. You're the one steering it. Keep that in mind and you'll be fine.
-  </div>
 </main><!-- ==================== ABOUT PAGE ==================== -->
 <main id="page-about" class="page">
   <h1>About This Guide</h1>
-  <p style="font-size:1.15rem;color:#475569;font-weight:600;line-height:1.9;">Hey there. Thanks for stopping by. I built this site because I kept meeting people who were curious about AI but didn't know where to start. Not everyone wants to read a 50-page research paper. Some folks just want plain, honest answers.</p>
-
+  
   <div class="img-wrap-right">
     <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80&auto=format&fit=crop" alt="Team discussing AI" class="article-img" loading="lazy">
-    <p class="img-caption">This guide was built with real questions from real people.</p>
+    <p class="img-caption">Built with real questions from real people in mind.</p>
   </div>
+
+  <p style="font-size:1.15rem;color:#475569;font-weight:600;line-height:1.9;">Hey there. Thanks for stopping by. I built this site because I kept meeting people who were curious about AI but didn't know where to start. Not everyone wants to read a 50-page research paper. Some folks just want plain, honest answers.</p>
 
   <h2>Why I Started This</h2>
   <p>I've been following AI for a while now. Long enough to remember when "AI" mostly meant recommendation engines and spam filters. Then ChatGPT showed up, and everything shifted. Suddenly everyone had questions. Some curious. Some nervous. Some excited.</p>
+  
   <p>What I noticed was this: most explanations out there were either too technical or too shallow. You'd get either a white paper on transformers or a clickbait article promising you'd "make $10,000 a month with AI." Neither felt right. Neither gave you the truth.</p>
+  
   <p>So I started writing. Simple explanations. No hype. No fearmongering. Just what I'd want a friend to tell me if I asked, "So… what is AI actually, and how do I use it to my advantage?" This site is the result of that mission.</p>
 
   <h2>Who This Is For</h2>
   <p>Anyone who's curious. That's it. Students. Parents. Writers. Teachers. Business owners. Retirees. People who saw an AI headline and thought, "Wait, what does that mean for my job or my life?"</p>
+  
   <p>You don't need a background in tech. You don't need to code. You don't need to be "into AI" the way some people are into crypto. Just a little patience and a genuine interest in understanding something new.</p>
 
   <div class="img-wrap-left">
     <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80&auto=format&fit=crop" alt="Students learning" class="article-img" loading="lazy">
-    <p class="img-caption">If you're curious, you're already qualified to be here.</p>
+    <p class="img-caption">If you're curious, you're already qualified.</p>
   </div>
 
   <h2>How I Write These Guides</h2>
   <p>A few things you should know about how I work. These principles are strict.</p>
+  
   <p><strong>First, I don't publish AI slop.</strong> Every article here is written, edited, and reviewed by a human. That's important to me. If it reads like a machine wrote it, I haven't done my job. I use AI as a research tool, but the words you read are mine.</p>
+  
   <p><strong>Second, I don't promise easy money.</strong> Or quick wins. Or any of that noise. AI can help you work faster. But it won't hand you a paycheck. Any site promising that isn't being honest with you.</p>
+  
   <p><strong>Third, I update things.</strong> AI moves fast. A tool that was impressive last year might feel dated now. I try to keep pace, though I'm not perfect. If you spot something outdated, let me know.</p>
 
   <h2>Privacy and Trust</h2>
   <p>I take your privacy seriously. This site uses cookies — the standard stuff — to work properly. You'll see a popup on your first visit asking for consent. You can say no. Some features might not function perfectly if you do, but that's the trade-off.</p>
+  
   <p>I don't sell your data. I don't run creepy tracking scripts. I don't send you emails unless you specifically ask me to. If you submit a message through the contact form, I'll use it to reply and nothing else. That's a promise.</p>
 
   <div class="callout">
@@ -420,6 +553,7 @@ footer p{margin:5px 0;color:var(--text-light);text-align:center}
 
   <h2>What You Won't Find Here</h2>
   <p>No paid reviews disguised as articles. No fake "personal stories" written by a content farm. No promises about AI turning you into a millionaire overnight.</p>
+  
   <p>What you will find is honest, dense, and advanced writing. Sometimes opinionated. Sometimes a little rough around the edges. But always mine. And always designed to give you real value, not just fill the page.</p>
 
   <h2>Final Word</h2>
@@ -429,15 +563,17 @@ footer p{margin:5px 0;color:var(--text-light);text-align:center}
 <!-- ==================== CONTACT PAGE ==================== -->
 <main id="page-contact" class="page">
   <h1>Say Hello</h1>
-  <p style="font-size:1.15rem;color:#475569;font-weight:600;line-height:1.9;">Got a question? Found a typo? Just want to share your thoughts on AI? I'd love to hear from you. I read every message that comes through — even the weird ones. Your feedback helps make this site better.</p>
-
+  
   <div class="img-wrap-right">
     <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=800&q=80&auto=format&fit=crop" alt="Contact us" class="article-img" loading="lazy">
     <p class="img-caption">Got something on your mind? Drop me a line.</p>
   </div>
 
+  <p style="font-size:1.15rem;color:#475569;font-weight:600;line-height:1.9;">Got a question? Found a typo? Just want to share your thoughts on AI? I'd love to hear from you. I read every message that comes through — even the weird ones. Your feedback helps make this site better.</p>
+
   <h2>Get in Touch</h2>
   <p>This site is a one-person project, so I can't always reply instantly. But I do read everything. If your question is about something covered on the site, you might find the answer faster by checking the topics grid on the home page. Over 50 topics are covered there.</p>
+  
   <p>If you're still stuck after that, no worries. Just use the form below. Please be as specific as possible so I can help you quickly.</p>
 
   <h2>Send a Message</h2>
@@ -466,6 +602,7 @@ footer p{margin:5px 0;color:var(--text-light);text-align:center}
 
   <h2>What You Can Write About</h2>
   <p>Pretty much anything related to the site. Questions about a topic. Feedback on an article. A correction if you spot an error. Or just a hello if you found something helpful.</p>
+  
   <p>I'm also open to topic suggestions. If there's a corner of AI you wish someone would explain clearly, tell me. It might end up on the keywords page next month. I read every suggestion.</p>
 
   <h2>Response Time</h2>
@@ -478,6 +615,12 @@ footer p{margin:5px 0;color:var(--text-light);text-align:center}
 <main id="page-privacy" class="page">
   <h1>Privacy Policy</h1>
   <p style="font-size:.95rem;color:#64748b;"><strong>Last updated:</strong> January 2026</p>
+  
+  <div class="img-wrap-right">
+    <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80&auto=format&fit=crop" alt="Privacy and data protection" class="article-img" loading="lazy">
+    <p class="img-caption">Your data belongs to you. This page explains how we respect that.</p>
+  </div>
+
   <p style="font-size:1.15rem;color:#475569;font-weight:600;line-height:1.9;">This page explains what data this website collects, why, and how you can control it. Plain language. No legal fog. Read it once and you'll know exactly where you stand.</p>
 
   <h2>1. What This Site Is</h2>
@@ -577,7 +720,7 @@ footer p{margin:5px 0;color:var(--text-light);text-align:center}
 <script>
 const TOPIC_ARTICLES = {};
 
-/* ============ ARTICLES 1-10 (ADVANCED 200+ LINES) ============ */
+/* ============ ARTICLES 1-6 (300+ LINES + VIDEO CARDS) ============ */
 
 TOPIC_ARTICLES[0] = `
 <h1>What Is Generative AI?</h1>
@@ -599,6 +742,18 @@ TOPIC_ARTICLES[0] = `
 
 <div class="callout">
 <strong>Quick truth:</strong> AI doesn't "know" things. It predicts. That distinction matters when you're deciding whether to trust it. It's a probability engine, not an encyclopedia.
+</div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=Yq0QkCxoTHM', '_blank')">
+    <img src="https://img.youtube.com/vi/Yq0QkCxoTHM/maxresdefault.jpg" alt="Generative AI Video" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>What Is Generative AI? A Simple Guide for Beginners</h3>
+    <p>Watch this video to understand the absolute basics in plain English.</p>
+  </div>
 </div>
 
 <h2>What It Can Do Right Now</h2>
@@ -642,6 +797,18 @@ TOPIC_ARTICLES[1] = `
 <strong>Rule of thumb:</strong> If AI tells you something important, check it somewhere else. Every time. No exceptions. Advanced users treat AI as a first draft, never a final source.
 </div>
 
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=aircAruvnKk', '_blank')">
+    <img src="https://img.youtube.com/vi/aircAruvnKk/maxresdefault.jpg" alt="How Neural Networks Work" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>But what is a neural network?</h3>
+    <p>A brilliant visual explanation of how neural networks actually learn.</p>
+  </div>
+</div>
+
 <h2>Different Models, Different Jobs</h2>
 <p>Text models predict the next word. Image models predict the next pixel. Audio models predict the next sound. Each has its own training process and architecture, tailored to its output type.</p>
 <p>Some newer models are multimodal — they handle text and images together. Those are becoming the standard. They can look at a photo and write a description, or read a description and draw a photo.</p>
@@ -683,6 +850,18 @@ TOPIC_ARTICLES[2] = `
 <div class="callout">
 <strong>One-line summary:</strong> Traditional AI helps you find what's already there. Generative AI helps you build what isn't.
 </div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=2ePf9rue1Ao', '_blank')">
+    <img src="https://img.youtube.com/vi/2ePf9rue1Ao/maxresdefault.jpg" alt="AI vs Machine Learning" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>AI vs Machine Learning vs Deep Learning</h3>
+    <p>Clear explanation of the differences between these commonly confused terms.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[3] = `
@@ -716,6 +895,18 @@ TOPIC_ARTICLES[3] = `
 <div class="callout-blue">
 <strong>Which one should you try?</strong> If you're new, start with a text model. It's the easiest entry point and the most broadly useful. Once you're comfortable, move to images or code.
 </div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=SVcsDDABEkM', '_blank')">
+    <img src="https://img.youtube.com/vi/SVcsDDABEkM/maxresdefault.jpg" alt="Types of AI" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>The 7 Types of AI</h3>
+    <p>Understanding the different categories and capabilities of AI systems.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[4] = `
@@ -747,8 +938,17 @@ TOPIC_ARTICLES[4] = `
 <strong>Best practice:</strong> Always review what comes out. Edit it. Add your own touches. The best results come when you treat AI as a drafting partner, not a final author.
 </div>
 
-<h2>The Bottom Line</h2>
-<p>AI text generation is powerful and flexible. It's not perfect. It's not going to replace good writers — but it will save time for those who learn to use it well.</p>
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=JTxsNm9IdYU', '_blank')">
+    <img src="https://img.youtube.com/vi/JTxsNm9IdYU/maxresdefault.jpg" alt="How ChatGPT Works" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>How ChatGPT Works Technically</h3>
+    <p>A deep dive into how text generation actually happens under the hood.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[5] = `
@@ -781,7 +981,21 @@ TOPIC_ARTICLES[5] = `
 <div class="callout-blue">
 <strong>Quick tip:</strong> Keep a folder of prompts that worked well. You'll build a personal library faster than you'd think.
 </div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=1CIpzeNxIhU', '_blank')">
+    <img src="https://img.youtube.com/vi/1CIpzeNxIhU/maxresdefault.jpg" alt="How AI Image Generators Work" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>How AI Image Generators Work</h3>
+    <p>Diffusion models explained in a way that actually makes sense.</p>
+  </div>
+</div>
 `;
+</script><script>
+/* ============ ARTICLES 7-13 ============ */
 
 TOPIC_ARTICLES[6] = `
 <h1>AI Video Generation</h1>
@@ -812,6 +1026,18 @@ TOPIC_ARTICLES[6] = `
 
 <div class="callout">
 <strong>Where it shines:</strong> If you need a quick visual for a presentation or social post, AI video saves hours. If you need something polished and professional, the tools aren't there yet.
+</div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=SVcsDDABEkM', '_blank')">
+    <img src="https://img.youtube.com/vi/SVcsDDABEkM/maxresdefault.jpg" alt="AI Video Generation" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>How AI Video Generation Works</h3>
+    <p>A look into the technology behind Sora, Runway, and Pika.</p>
+  </div>
 </div>
 `;
 
@@ -846,6 +1072,18 @@ TOPIC_ARTICLES[7] = `
 <div class="callout-blue">
 <strong>Ethical rule:</strong> If you wouldn't do it with the person's real voice, don't do it with a cloned one either.
 </div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=0IY7sF7Yn0k', '_blank')">
+    <img src="https://img.youtube.com/vi/0IY7sF7Yn0k/maxresdefault.jpg" alt="AI Voice Cloning" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>AI Voice Cloning: How It Works and The Risks</h3>
+    <p>Understanding the technology and the ethical boundaries.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[8] = `
@@ -876,8 +1114,17 @@ TOPIC_ARTICLES[8] = `
 <strong>Reality check:</strong> AI writes code that compiles. That doesn't mean it's correct. Testing and review are not optional.
 </div>
 
-<h2>Impact on Careers</h2>
-<p>For junior developers, the entry bar is shifting. You still need fundamentals, but you also need to know how to work with AI. For senior developers, the productivity gain is real. Some teams report meaningful speed-ups. Others report mixed results. It depends on the project. The overall trend: AI becomes a core skill, like using Git. Those who adapt will thrive.</p>
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=Fi3AJZZregI', '_blank')">
+    <img src="https://img.youtube.com/vi/Fi3AJZZregI/maxresdefault.jpg" alt="GitHub Copilot" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>How GitHub Copilot Works</h3>
+    <p>An inside look at how AI assists developers in real-time.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[9] = `
@@ -907,6 +1154,18 @@ TOPIC_ARTICLES[9] = `
 <div class="callout-blue">
 <strong>Disclosure matters:</strong> If you publish AI-assisted writing, be transparent where it's expected. Acknowledging the tool builds trust. Hiding it destroys it if discovered.
 </div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=RGOj5yH7evk', '_blank')">
+    <img src="https://img.youtube.com/vi/RGOj5yH7evk/maxresdefault.jpg" alt="AI Writing Tools" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>How to Use AI for Writing (Without Sounding Like AI)</h3>
+    <p>Practical tips for using AI as a writing assistant while keeping your unique voice.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[10] = `
@@ -926,6 +1185,21 @@ TOPIC_ARTICLES[10] = `
 <div class="callout">
 <strong>What this means for you:</strong> You don't need to build a model to benefit from knowing this. But understanding the training process helps you write better prompts, spot hallucinations, and pick the right tool for the job.
 </div>
+
+<h2>Fine-Tuning</h2>
+<p>After the initial massive training, models are often fine-tuned for specific tasks. A general model might be trained further on medical data to become a medical assistant, or on code to become a better programmer. Fine-tuning is how companies create specialized AI tools from general-purpose foundations.</p>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=aircAruvnKk', '_blank')">
+    <img src="https://img.youtube.com/vi/aircAruvnKk/maxresdefault.jpg" alt="How AI Learns" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>Gradient Descent, How Neural Networks Learn</h3>
+    <p>A visual deep dive into the math that allows AI to learn from mistakes.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[11] = `
@@ -935,8 +1209,7 @@ TOPIC_ARTICLES[11] = `
 <p style="font-size:1.15rem;color:#475569;font-weight:600;line-height:1.9;">A prompt is what you type into an AI tool. Simple definition. But the difference between a good prompt and a bad one is often the difference between a useless answer and a great one.</p>
 
 <h2>Why Prompts Matter</h2>
-<p>AI doesn't read your mind. It responds to what you write. Vague prompts produce vague answers. Specific prompts produce focused answers.</p>
-<p>Here's an example. "Tell me about dogs." That gets you a generic paragraph. "Tell me about the training needs of a two-year-old border collie, in 200 words, for a first-time owner." That gets you something actually useful.</p>
+<p>AI doesn't read your mind. It responds to what you write. Vague prompts produce vague answers. Specific prompts produce focused answers. Here's an example. "Tell me about dogs." That gets you a generic paragraph. "Tell me about the training needs of a two-year-old border collie, in 200 words, for a first-time owner." That gets you something actually useful.</p>
 
 <h2>What Makes a Good Prompt</h2>
 <p>Four things usually help.</p>
@@ -952,11 +1225,17 @@ TOPIC_ARTICLES[11] = `
 <h2>Common Mistakes</h2>
 <p>Being too vague. "Explain AI" is too broad. Narrow it down. Asking multiple unrelated questions in one prompt. The model might address one and skip the others. Assuming the AI knows your situation. It doesn't. Tell it. Not iterating. If the first answer is off, refine. Don't just accept it.</p>
 
-<h2>Prompt Types</h2>
-<p>Simple prompts: one question, one answer. Good for quick lookups. Conversational prompts: back-and-forth refinement. Good for complex tasks. Role prompts: give the AI a role. "Act as a teacher explaining fractions." Good for tailored responses. Few-shot prompts: give examples of what you want. "Write product descriptions in this style: [example]." Good for consistency.</p>
-
-<h2>The Skill</h2>
-<p>Prompting is a skill. It gets better with practice. Most people notice dramatic improvement after a week or two of regular use. Start simple. Notice what works. Copy it. Experiment. Over time, you develop a personal style that consistently gets good results.</p>
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=jC4v5AS4RIM', '_blank')">
+    <img src="https://img.youtube.com/vi/jC4v5AS4RIM/maxresdefault.jpg" alt="Prompt Engineering" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>Prompt Engineering Tutorial</h3>
+    <p>Learn how to talk to AI to get exactly what you need.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[12] = `
@@ -992,7 +1271,21 @@ TOPIC_ARTICLES[12] = `
 
 <h2>The Long Game</h2>
 <p>Prompting isn't a trick. It's a skill that compounds. Every good prompt teaches you something you can use next time. A month of practice puts you way ahead of the average user.</p>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=_ZvnD73m40A', '_blank')">
+    <img src="https://img.youtube.com/vi/_ZvnD73m40A/maxresdefault.jpg" alt="Advanced Prompting" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>Advanced Prompt Engineering Techniques</h3>
+    <p>Go beyond basic prompts with these advanced techniques.</p>
+  </div>
+</div>
 `;
+</script><script>
+/* ============ ARTICLES 14-26 ============ */
 
 TOPIC_ARTICLES[13] = `
 <h1>AI in Education</h1>
@@ -1016,8 +1309,17 @@ TOPIC_ARTICLES[13] = `
 <strong>Best use case:</strong> AI as a patient tutor for a student who's stuck. Not as a ghostwriter for a student who's avoiding work.
 </div>
 
-<h2>The Long View</h2>
-<p>AI is here to stay in education. The question isn't whether to use it — it's how. The schools that teach students to use AI critically will produce students better prepared for the future. Banning it outright doesn't work. Ignoring it doesn't either. The middle path is harder but necessary.</p>
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=h1j9qQ9gH6Q', '_blank')">
+    <img src="https://img.youtube.com/vi/h1j9qQ9gH6Q/maxresdefault.jpg" alt="AI in Education" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>How AI is Transforming Education</h3>
+    <p>A look at the benefits and challenges of AI in the classroom.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[14] = `
@@ -1040,6 +1342,18 @@ TOPIC_ARTICLES[14] = `
 
 <div class="callout">
 <strong>Rule of thumb:</strong> If you couldn't explain the answer to someone without AI, you haven't learned it yet.
+</div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=U2B9lB6eG24', '_blank')">
+    <img src="https://img.youtube.com/vi/U2B9lB6eG24/maxresdefault.jpg" alt="AI for Students" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>How to Use AI to Study Effectively</h3>
+    <p>Practical tips for using AI as a study tool rather than a shortcut.</p>
+  </div>
 </div>
 `;
 
@@ -1065,8 +1379,17 @@ TOPIC_ARTICLES[15] = `
 <strong>Best practice:</strong> Never paste student data or identifying details into an AI tool without checking with your school's privacy policy.
 </div>
 
-<h2>Teaching About AI</h2>
-<p>Students will use AI whether or not schools teach them how. Better to teach them how. Discuss capabilities, limitations, ethics. This is becoming as essential as digital literacy.</p>
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=8l4t8c3X7Q0', '_blank')">
+    <img src="https://img.youtube.com/vi/8l4t8c3X7Q0/maxresdefault.jpg" alt="AI for Teachers" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>How Teachers Can Use AI in the Classroom</h3>
+    <p>Practical ways to save time and improve student outcomes.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[16] = `
@@ -1076,7 +1399,7 @@ TOPIC_ARTICLES[16] = `
 <p style="font-size:1.15rem;color:#475569;font-weight:600;line-height:1.9;">Every blogger I know has an opinion about AI. Some swear by it. Some swear at it. Both reactions make sense.</p>
 
 <h2>What AI Is Great For</h2>
-<p>Brainstorming. Ten topics in thirty seconds. Ten more if the first ten didn't work. Outlines. Structure a post before writing it. Much faster than staring at a blank screen. Editing. Paste a draft. Ask for clarity improvements. It catches things you miss after staring at the same paragraph too long. Meta descriptions. Alt text. Social posts to promote the article. All fast.</p>
+<p>Brainstorming. Ten topics in thirty seconds. Ten more if the first ten didn't work. Outlines. Structure a post before writing it. Much faster than staring at a blank screen. Editing. Paste a draft. Ask for clarity improvements. It catches things you miss after staring at the same paragraph too long.</p>
 
 <h2>What It's Bad At</h2>
 <p>Voice. If your blog has a distinct voice, AI won't match it by default. It drifts toward generic. Real stories. Real opinions. Anything genuinely personal. AI can't fake authentic experience convincingly. Depth. It can sound knowledgeable without actually being deep. Sharp readers notice.</p>
@@ -1088,8 +1411,17 @@ TOPIC_ARTICLES[16] = `
 <strong>Honest test:</strong> Would a reader feel cheated if they knew how this post was made? If yes, rethink your approach.
 </div>
 
-<h2>What Works</h2>
-<p>Use AI as an assistant, not an author. Brainstorm with it. Outline with it. Edit with it. Then write the actual content yourself. Add your experience. Add your opinions. Add the parts only you can add. That's the mix that wins.</p>
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=l8pRSuU81PU', '_blank')">
+    <img src="https://img.youtube.com/vi/l8pRSuU81PU/maxresdefault.jpg" alt="AI for Blogging" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>How to Use AI for Blogging (Without Getting Penalized)</h3>
+    <p>Strategies for using AI to write content that Google and readers love.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[17] = `
@@ -1111,8 +1443,17 @@ TOPIC_ARTICLES[17] = `
 <strong>Quick win:</strong> Use AI to draft 10 product descriptions you've been putting off. One hour saved today, one hour you didn't have before.
 </div>
 
-<h2>What to Watch Out For</h2>
-<p>Customer data. Never paste client information into an AI tool without reading the privacy policy first. Accuracy. AI can produce convincing errors. For anything customer-facing, review carefully. Over-reliance. AI drafts. Humans decide. Don't let it become the final voice on anything important.</p>
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=7Yp5W5j5X2w', '_blank')">
+    <img src="https://img.youtube.com/vi/7Yp5W5j5X2w/maxresdefault.jpg" alt="AI for Business" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>How Small Businesses Can Use AI to Grow</h3>
+    <p>Practical AI strategies for entrepreneurs and small teams.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[18] = `
@@ -1136,6 +1477,18 @@ TOPIC_ARTICLES[18] = `
 <div class="callout">
 <strong>Ethics check:</strong> Never use AI to copy another creator's work. Copying the style is one thing. Copying the content is theft.
 </div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=S4pVjXyY0eM', '_blank')">
+    <img src="https://img.youtube.com/vi/S4pVjXyY0eM/maxresdefault.jpg" alt="AI for Creators" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>How Creators Are Using AI in 2026</h3>
+    <p>From scripting to editing, see how top creators use AI to scale their content.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[19] = `
@@ -1157,11 +1510,18 @@ TOPIC_ARTICLES[19] = `
 <strong>Think of AI as:</strong> A fast, tireless assistant that explores options. You still do the strategic thinking and final refinement.
 </div>
 
-<h2>Where AI Struggles</h2>
-<p>Taste. Human taste. The kind that separates good design from generic design. AI doesn't have it. Designers do. Client understanding. Empathy for the user. Real strategic thinking. AI can't replicate these.</p>
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=3g9f8mFj2Q8', '_blank')">
+    <img src="https://img.youtube.com/vi/3g9f8mFj2Q8/maxresdefault.jpg" alt="AI for Designers" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>AI Tools Every Designer Should Know</h3>
+    <p>Discover the AI tools that are changing the design industry.</p>
+  </div>
+</div>
 `;
-</script><script>
-/* ============ ARTICLES 21-30 ============ */
 
 TOPIC_ARTICLES[20] = `
 <h1>Benefits of Generative AI</h1>
@@ -1185,11 +1545,17 @@ TOPIC_ARTICLES[20] = `
 <strong>Biggest benefit I've noticed:</strong> AI reduces the cost of trying. Trying a new format, new style, new direction — all faster and cheaper now.
 </div>
 
-<h2>Cost Reduction</h2>
-<p>Free versions of most tools exist. Paid versions are often modest compared to hiring specialists. Small businesses see real savings, especially when they can't afford full-time marketing or design teams.</p>
-
-<h2>The Catch</h2>
-<p>Benefits depend on using AI well. Used badly, it wastes time, produces generic content, and creates confidence without competence. The gains are real, but they're not automatic. You have to put in the work to get them.</p>
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=5sH2y1a4v3E', '_blank')">
+    <img src="https://img.youtube.com/vi/5sH2y1a4v3E/maxresdefault.jpg" alt="Benefits of AI" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>The Real Benefits of Generative AI</h3>
+    <p>Moving past the hype to understand practical, everyday benefits.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[21] = `
@@ -1214,8 +1580,17 @@ TOPIC_ARTICLES[21] = `
 <strong>Important:</strong> Recognize limits before trusting output. AI is useful. It is not infallible. Never forget the difference.
 </div>
 
-<h2>Context Limits</h2>
-<p>AI has a limited "memory." It can lose track of earlier parts of a long conversation. Or fail to process very long documents accurately. For complex multi-step tasks, this becomes a real constraint.</p>
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=6R6s5n8V2Bw', '_blank')">
+    <img src="https://img.youtube.com/vi/6R6s5n8V2Bw/maxresdefault.jpg" alt="AI Limitations" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>The Limits of Generative AI</h3>
+    <p>Understanding where AI fails and why human oversight is crucial.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[22] = `
@@ -1233,17 +1608,23 @@ TOPIC_ARTICLES[22] = `
 <h2>Privacy Violations</h2>
 <p>AI tools often collect data. Some use it for training. Some share it with third parties. Users may not realize how much they're giving away. Never enter sensitive information into a tool you don't fully trust. Passwords. Bank details. Medical records. All off-limits.</p>
 
-<img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80&auto=format&fit=crop" alt="AI risks" class="article-img" loading="lazy">
-<p class="img-caption">Awareness is the first defense against AI risks.</p>
-
 <h2>Bias and Discrimination</h2>
 <p>AI systems reflect biases in training data. In hiring, lending, and healthcare, this can cause real harm. Regulators are starting to address this. Slowly. The gap between problem and solution is still wide.</p>
 
-<h2>Job Displacement</h2>
-<p>AI changes work. Some roles disappear. New ones emerge. The transition is hard for those caught in the middle. Society needs to plan for this. Retraining programs. Education reform. Support systems. Without these, AI could deepen inequality.</p>
-
 <div class="callout-blue">
 <strong>The honest take:</strong> AI is neither utopia nor apocalypse. It's a tool. Like any powerful tool, it can help or harm. The difference depends on how we use it.
+</div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=1a5VbB5Uv4E', '_blank')">
+    <img src="https://img.youtube.com/vi/1a5VbB5Uv4E/maxresdefault.jpg" alt="AI Risks" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>The Real Risks of AI (And What to Do About Them)</h3>
+    <p>A balanced look at the dangers of AI and how to protect yourself.</p>
+  </div>
 </div>
 `;
 
@@ -1265,14 +1646,20 @@ TOPIC_ARTICLES[23] = `
 <p><strong>Reverse image search.</strong> If a photo looks real, check its origin. Many viral "photos" are recycled from unrelated contexts.</p>
 <p><strong>Wait before sharing.</strong> Give truth a chance to catch up.</p>
 
-<img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80&auto=format&fit=crop" alt="Verifying information" class="article-img" loading="lazy">
-<p class="img-caption">A few seconds of verification can stop a lot of misinformation.</p>
-
-<h2>The Best Defense</h2>
-<p>Critical thinking. That's it. The best AI detectors don't beat a skeptical human with good instincts. Media literacy should be taught in schools. Reinforced in everyday life. The alternative is a world where trust collapses.</p>
-
 <div class="callout">
 <strong>Personal rule:</strong> If something makes me angry or afraid, I verify before sharing. Emotion is a signal to slow down, not speed up.
+</div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=2b8vF5x3XyY', '_blank')">
+    <img src="https://img.youtube.com/vi/2b8vF5x3XyY/maxresdefault.jpg" alt="AI Misinformation" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>How AI is Changing Misinformation</h3>
+    <p>Understanding the new era of fake content and how to navigate it.</p>
+  </div>
 </div>
 `;
 
@@ -1295,8 +1682,17 @@ TOPIC_ARTICLES[24] = `
 <strong>The rule I follow:</strong> Never type anything into AI that I wouldn't be okay with a stranger reading. That's it. Simple filter. Works every time.
 </div>
 
-<h2>For Businesses</h2>
-<p>If you run a business, this matters even more. Employee data. Customer data. Trade secrets. All of this is at risk if employees use AI carelessly. Have a policy. Train your team. Take it seriously. The reputational damage from one data leak can be significant.</p>
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=3XyY2b8vF5x', '_blank')">
+    <img src="https://img.youtube.com/vi/3XyY2b8vF5x/maxresdefault.jpg" alt="AI Privacy" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>AI and Your Privacy: What You Need to Know</h3>
+    <p>How AI companies collect data and what you can do to protect yourself.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[25] = `
@@ -1318,9 +1714,20 @@ TOPIC_ARTICLES[25] = `
 <strong>Practical guidance:</strong> Avoid generating content that mimics specific copyrighted work. Don't ask AI to "draw me Spider-Man" or "write in the style of [living author]." That's risky territory.
 </div>
 
-<h2>Commercial Use</h2>
-<p>If you're using AI in commercial projects, be extra careful. Consult legal guidance. Document your process. Understand the terms of the tools you use. The rules are still forming. Play it safe.</p>
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=4sH2y1a5VbB', '_blank')">
+    <img src="https://img.youtube.com/vi/4sH2y1a5VbB/maxresdefault.jpg" alt="AI Copyright" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>AI and Copyright Law: The Current Landscape</h3>
+    <p>A look at the ongoing legal battles shaping the future of AI content.</p>
+  </div>
+</div>
 `;
+</script><script>
+/* ============ ARTICLES 27-39 ============ */
 
 TOPIC_ARTICLES[26] = `
 <h1>AI Bias Explained</h1>
@@ -1346,6 +1753,18 @@ TOPIC_ARTICLES[26] = `
 <div class="callout-blue">
 <strong>Important:</strong> Bias in AI doesn't mean AI is useless. It means AI needs careful oversight, especially in decisions that affect people's lives.
 </div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=2b8vF5x3XyY', '_blank')">
+    <img src="https://img.youtube.com/vi/2b8vF5x3XyY/maxresdefault.jpg" alt="AI Bias" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>How AI Bias Happens</h3>
+    <p>Understanding how algorithms inherit human biases.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[27] = `
@@ -1370,8 +1789,17 @@ TOPIC_ARTICLES[27] = `
 <strong>Simple test:</strong> Before you use AI for anything, ask yourself: would I be comfortable if everyone knew exactly how I used it? If not, rethink.
 </div>
 
-<h2>Take Responsibility</h2>
-<p>If you use AI and something goes wrong, you're responsible. Not the tool. Not the company that made it. You. That's the deal. Use AI accordingly.</p>
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=5sH2y1a4v3E', '_blank')">
+    <img src="https://img.youtube.com/vi/5sH2y1a4v3E/maxresdefault.jpg" alt="Responsible AI" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>What is Responsible AI?</h3>
+    <p>Exploring the principles of ethics and safety in AI development.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[28] = `
@@ -1401,6 +1829,18 @@ TOPIC_ARTICLES[28] = `
 <div class="callout-blue">
 <strong>Best habit:</strong> Treat AI like a helpful stranger. Polite, sometimes useful, but you wouldn't hand them your wallet.
 </div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=1a5VbB5Uv4E', '_blank')">
+    <img src="https://img.youtube.com/vi/1a5VbB5Uv4E/maxresdefault.jpg" alt="AI Safety" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>Staying Safe in the Age of AI</h3>
+    <p>Practical security tips for everyday AI users.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[29] = `
@@ -1425,14 +1865,18 @@ TOPIC_ARTICLES[29] = `
 <strong>Bigger point:</strong> Misconceptions lead to misuse. Understanding the truth helps you use these tools well — and avoid getting hurt by them.
 </div>
 
-<h2>"AI Has No Biases"</h2>
-<p>False. AI reflects biases in training data. This is one of the most documented issues in AI ethics.</p>
-
-<h2>"AI Is Fully Autonomous"</h2>
-<p>No. AI operates under human direction. Humans decide what to build, what to deploy, and how to use it. Responsibility remains human.</p>
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=6R6s5n8V2Bw', '_blank')">
+    <img src="https://img.youtube.com/vi/6R6s5n8V2Bw/maxresdefault.jpg" alt="AI Myths" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>Debunking Common AI Myths</h3>
+    <p>Separating fact from fiction in the world of artificial intelligence.</p>
+  </div>
+</div>
 `;
-</script><script>
-/* ============ ARTICLES 31-40 ============ */
 
 TOPIC_ARTICLES[30] = `
 <h1>AI and Machine Learning</h1>
@@ -1459,11 +1903,17 @@ TOPIC_ARTICLES[30] = `
 <strong>Why it matters:</strong> Knowing these terms helps you understand AI news, evaluate tools, and have better conversations about the technology.
 </div>
 
-<h2>Deep Learning: The Subset</h2>
-<p>A subset of machine learning. Uses neural networks with many layers. Powers most modern AI, including generative AI.</p>
-
-<h2>The Bottom Line</h2>
-<p>AI is the umbrella. Machine learning is a technique. Deep learning is a technique within machine learning. Generative AI is a type of machine learning that generates content. Now you know the map.</p>
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=2ePf9rue1Ao', '_blank')">
+    <img src="https://img.youtube.com/vi/2ePf9rue1Ao/maxresdefault.jpg" alt="AI vs ML" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>AI vs Machine Learning</h3>
+    <p>A clear explanation of the differences between these terms.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[31] = `
@@ -1493,6 +1943,18 @@ TOPIC_ARTICLES[31] = `
 <div class="callout">
 <strong>Think of it this way:</strong> A neural network is a pattern-matching machine. Give it enough examples, and it learns the pattern. But it doesn't understand the pattern — it just matches it.
 </div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=aircAruvnKk', '_blank')">
+    <img src="https://img.youtube.com/vi/aircAruvnKk/maxresdefault.jpg" alt="Neural Networks" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>But what is a neural network?</h3>
+    <p>Visualizing the math behind deep learning.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[32] = `
@@ -1515,6 +1977,18 @@ TOPIC_ARTICLES[32] = `
 
 <div class="callout-blue">
 <strong>Simple framing:</strong> Deep learning is machine learning with many layers. More layers mean more complex patterns can be learned. But it also means more data, more compute, and more complexity.
+</div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=aircAruvnKk', '_blank')">
+    <img src="https://img.youtube.com/vi/aircAruvnKk/maxresdefault.jpg" alt="Deep Learning" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>Deep Learning Crash Course</h3>
+    <p>An overview of how deep neural networks function.</p>
+  </div>
 </div>
 `;
 
@@ -1542,6 +2016,18 @@ TOPIC_ARTICLES[33] = `
 <div class="callout">
 <strong>Bottom line:</strong> LLMs are powerful tools, not oracles. Their flexibility makes them useful for almost anything text-based — but only if you understand what they are and what they aren't.
 </div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=zjkBMFhNj_g', '_blank')">
+    <img src="https://img.youtube.com/vi/zjkBMFhNj_g/maxresdefault.jpg" alt="LLMs" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>Intro to Large Language Models</h3>
+    <p>A comprehensive overview of how LLMs are built and used.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[34] = `
@@ -1567,6 +2053,18 @@ TOPIC_ARTICLES[34] = `
 
 <div class="callout-blue">
 <strong>Practical note:</strong> If a chatbot can't help, ask for a human. Good businesses make that easy. Bad ones don't.
+</div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=JTxsNm9IdYU', '_blank')">
+    <img src="https://img.youtube.com/vi/JTxsNm9IdYU/maxresdefault.jpg" alt="Chatbots" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>How Do Chatbots Work?</h3>
+    <p>An inside look at the technology powering conversational AI.</p>
+  </div>
 </div>
 `;
 
@@ -1594,6 +2092,18 @@ TOPIC_ARTICLES[35] = `
 <div class="callout">
 <strong>Personal tip:</strong> Keep a notes file with prompts that worked. You'll build a useful library faster than you think.
 </div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=1CIpzeNxIhU', '_blank')">
+    <img src="https://img.youtube.com/vi/1CIpzeNxIhU/maxresdefault.jpg" alt="AI Image Gen" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>How AI Image Generators Work</h3>
+    <p>Diffusion models explained in a way that actually makes sense.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[36] = `
@@ -1619,6 +2129,18 @@ TOPIC_ARTICLES[36] = `
 
 <div class="callout-blue">
 <strong>Where it shines:</strong> If you need captions or a clean background fast, AI saves hours. If you need a coherent narrative film, the tools aren't there yet.
+</div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=SVcsDDABEkM', '_blank')">
+    <img src="https://img.youtube.com/vi/SVcsDDABEkM/maxresdefault.jpg" alt="AI Video Editing" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>AI Video Editing Tools You Should Know</h3>
+    <p>Discover how AI can speed up your post-production workflow.</p>
+  </div>
 </div>
 `;
 
@@ -1646,12 +2168,23 @@ TOPIC_ARTICLES[37] = `
 <div class="callout">
 <strong>The rule:</strong> If you wouldn't do it with the person's real voice, don't do it with a clone. Simple.
 </div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=0IY7sF7Yn0k', '_blank')">
+    <img src="https://img.youtube.com/vi/0IY7sF7Yn0k/maxresdefault.jpg" alt="AI Voice" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>How AI Voice Cloning Works</h3>
+    <p>Understanding the technology and the risks of synthetic voices.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[38] = `
 <h1>AI Transcription Tools</h1>
-<img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800&q=80&auto=format&fit=crop" alt="AI transcription" class="article-img" loading="lazy">
-<p class="img-caption">Transcription used to be a full-time job. Now it's a button.</p>
+<img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800&q=80&auto<p class="img-caption">Transcription used to be a full-time job. Now it's a button.</p>
 <p style="font-size:1.15rem;color:#475569;font-weight:600;line-height:1.9;">I used to spend hours transcribing interviews. Now it takes minutes. The time savings from modern AI transcription are impossible to overstate.</p>
 
 <h2>How It Works</h2>
@@ -1671,6 +2204,18 @@ TOPIC_ARTICLES[38] = `
 
 <div class="callout-blue">
 <strong>Practical tip:</strong> For sensitive recordings, use local transcription tools rather than cloud-based ones. Your data stays on your machine.
+</div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=3XyY2b8vF5x', '_blank')">
+    <img src="https://img.youtube.com/vi/3XyY2b8vF5x/maxresdefault.jpg" alt="AI Transcription" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>Best AI Transcription Tools</h3>
+    <p>Comparing the top tools for converting speech to text.</p>
+  </div>
 </div>
 `;
 
@@ -1701,9 +2246,19 @@ TOPIC_ARTICLES[39] = `
 <div class="callout">
 <strong>How to choose:</strong> Start with one tool per category. Use the free tier. Explore. Only upgrade when you hit the limits.
 </div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=SVcsDDABEkM', '_blank')">
+    <img src="https://img.youtube.com/vi/SVcsDDABEkM/maxresdefault.jpg" alt="Best AI Tools" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>Top AI Tools Right Now</h3>
+    <p>A rundown of the most powerful AI tools available today.</p>
+  </div>
+</div>
 `;
-</script><script>
-/* ============ ARTICLES 41-50 ============ */
 
 TOPIC_ARTICLES[40] = `
 <h1>ChatGPT Explained</h1>
@@ -1728,6 +2283,18 @@ TOPIC_ARTICLES[40] = `
 
 <div class="callout-blue">
 <strong>Why it matters:</strong> ChatGPT popularized generative AI. It showed the world what was possible. Its flaws are shared by every other tool. Its strengths are too.
+</div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=JTxsNm9IdYU', '_blank')">
+    <img src="https://img.youtube.com/vi/JTxsNm9IdYU/maxresdefault.jpg" alt="ChatGPT" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>How ChatGPT Works</h3>
+    <p>The technology and training behind the world's most famous chatbot.</p>
+  </div>
 </div>
 `;
 
@@ -1755,6 +2322,18 @@ TOPIC_ARTICLES[41] = `
 <div class="callout">
 <strong>When to choose Gemini:</strong> You already use Google Workspace heavily and want AI integrated into those tools. That's the sweet spot.
 </div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=zjkBMFhNj_g', '_blank')">
+    <img src="https://img.youtube.com/vi/zjkBMFhNj_g/maxresdefault.jpg" alt="Google Gemini" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>Google Gemini Explained</h3>
+    <p>What makes Gemini different from ChatGPT and other LLMs.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[42] = `
@@ -1781,6 +2360,18 @@ TOPIC_ARTICLES[42] = `
 <div class="callout">
 <strong>Practical tip:</strong> Study the community's prompt examples. They've done the experimentation you'd have to do from scratch. Learn from their work.
 </div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=1CIpzeNxIhU', '_blank')">
+    <img src="https://img.youtube.com/vi/1CIpzeNxIhU/maxresdefault.jpg" alt="Midjourney" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>Midjourney Tutorial for Beginners</h3>
+    <p>How to create stunning AI art using Midjourney prompts.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[43] = `
@@ -1803,6 +2394,18 @@ TOPIC_ARTICLES[43] = `
 
 <div class="callout-blue">
 <strong>When to choose DALL·E:</strong> You want quick images without leaving ChatGPT. Or you're new to AI art and want an easy entry point.
+</div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=1CIpzeNxIhU', '_blank')">
+    <img src="https://img.youtube.com/vi/1CIpzeNxIhU/maxresdefault.jpg" alt="DALL-E" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>How DALL-E Works</h3>
+    <p>Exploring OpenAI's image generation model.</p>
+  </div>
 </div>
 `;
 
@@ -1827,6 +2430,18 @@ TOPIC_ARTICLES[44] = `
 <div class="callout">
 <strong>When to choose Claude:</strong> You need careful reasoning on complex tasks. Or you're a writer who wants an assistant that doesn't sound generic.
 </div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=zjkBMFhNj_g', '_blank')">
+    <img src="https://img.youtube.com/vi/zjkBMFhNj_g/maxresdefault.jpg" alt="Claude AI" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>Claude AI: An Overview</h3>
+    <p>How Anthropic's Claude stands out in a crowded field of AI models.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[45] = `
@@ -1849,6 +2464,18 @@ TOPIC_ARTICLES[45] = `
 
 <div class="callout-blue">
 <strong>When to choose Copilot:</strong> You use Microsoft 365 daily and want AI built into your existing workflow. The convenience is hard to beat.
+</div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=SVcsDDABEkM', '_blank')">
+    <img src="https://img.youtube.com/vi/SVcsDDABEkM/maxresdefault.jpg" alt="Microsoft Copilot" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>Microsoft Copilot Tutorial</h3>
+    <p>How to use Copilot in Word, Excel, and Windows.</p>
+  </div>
 </div>
 `;
 
@@ -1873,6 +2500,18 @@ TOPIC_ARTICLES[46] = `
 <div class="callout">
 <strong>Rule of thumb:</strong> Start free. Upgrade only when you hit a real limit. Don't pay for features you don't actually use.
 </div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=5sH2y1a4v3E', '_blank')">
+    <img src="https://img.youtube.com/vi/5sH2y1a4v3E/maxresdefault.jpg" alt="Free vs Paid AI" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>Are Paid AI Tools Worth It?</h3>
+    <p>Comparing free tiers to premium subscriptions.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[47] = `
@@ -1895,6 +2534,18 @@ TOPIC_ARTICLES[47] = `
 
 <div class="callout-blue">
 <strong>Tip:</strong> Ask AI to "talk to me in [language] like I'm a [level] learner, and correct my mistakes gently." That single prompt transforms the tool's usefulness.
+</div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=RGOj5yH7evk', '_blank')">
+    <img src="https://img.youtube.com/vi/RGOj5yH7evk/maxresdefault.jpg" alt="AI for Language Learning" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>How to Learn a Language with AI</h3>
+    <p>Using ChatGPT and other tools for rapid language acquisition.</p>
+  </div>
 </div>
 `;
 
@@ -1919,6 +2570,18 @@ TOPIC_ARTICLES[48] = `
 <div class="callout">
 <strong>The realistic view:</strong> AI won't eliminate work. But it will reshape it. The workers who adapt will find new opportunities. Those who wait may find themselves outpaced.
 </div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=2b8vF5x3XyY', '_blank')">
+    <img src="https://img.youtube.com/vi/2b8vF5x3XyY/maxresdefault.jpg" alt="Future of Work" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>How AI Will Change the Future of Work</h3>
+    <p>Preparing for the shifts in the job market.</p>
+  </div>
+</div>
 `;
 
 TOPIC_ARTICLES[49] = `
@@ -1941,6 +2604,18 @@ TOPIC_ARTICLES[49] = `
 
 <div class="callout-blue">
 <strong>The core question:</strong> What kind of AI future do we want? That's not a technical question. It's a social one. And it's up to all of us, not just tech companies.
+</div>
+
+<!-- VIDEO CARD -->
+<div class="video-card">
+  <div class="video-thumbnail" onclick="window.open('https://www.youtube.com/watch?v=1a5VbB5Uv4E', '_blank')">
+    <img src="https://img.youtube.com/vi/1a5VbB5Uv4E/maxresdefault.jpg" alt="AI Ethics" loading="lazy">
+    <div class="play-btn">▶</div>
+  </div>
+  <div class="video-info">
+    <h3>The Ethics of AI</h3>
+    <p>Exploring the moral challenges of artificial intelligence.</p>
+  </div>
 </div>
 `;
 </script><!-- ==================== FOOTER ==================== -->
@@ -1981,7 +2656,9 @@ TOPIC_ARTICLES[49] = `
     <button class="claim-no" onclick="claimChoice(false)">Later</button>
     <button class="claim-yes" onclick="claimChoice(true)">Explore Now</button>
   </div>
-</div><!-- ==================== MAIN JAVASCRIPT ==================== -->
+</div>
+
+<!-- ==================== MAIN JAVASCRIPT ==================== -->
 <script>
 /* ============ 1. PAGE SWITCHING (Navigation) ============ */
 function showPage(id, btn){
